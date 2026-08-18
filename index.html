@@ -3,23 +3,22 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Analyst Solution — Analytics partner for marketing agencies</title>
-<meta name="description" content="White-label analytics, reporting and dashboards for digital marketing agencies. You keep the client relationship. We handle the analysis behind the scenes." />
+<title>White-Label Analytics &amp; Reporting for Marketing Agencies | Analyst Solution</title>
+<meta name="description" content="White-label analytics for digital marketing agencies. We handle client reporting, marketing dashboards and campaign analysis under your brand — your agency keeps the client." />
 <link rel="canonical" href="https://www.analystsolution.com/" />
 <meta name="theme-color" content="#FAFAF9" />
 <meta name="robots" content="index, follow" />
 
-<!-- Open Graph / social -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Analyst Solution" />
-<meta property="og:title" content="Analyst Solution — Analytics partner for marketing agencies" />
-<meta property="og:description" content="White-label analytics, reporting and dashboards for digital marketing agencies. You keep the client relationship. We handle the analysis." />
+<meta property="og:title" content="White-Label Analytics &amp; Reporting for Marketing Agencies" />
+<meta property="og:description" content="Your agency keeps the client. We become the analytics team behind it — client reporting, dashboards and campaign analysis under your brand." />
 <meta property="og:url" content="https://www.analystsolution.com/" />
-<meta property="og:image" content="https://www.analystsolution.com/og-image.png" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Analyst Solution — Analytics partner for marketing agencies" />
-<meta name="twitter:description" content="White-label analytics, reporting and dashboards for digital marketing agencies." />
-<meta name="twitter:image" content="https://www.analystsolution.com/og-image.png" />
+<meta property="og:image" content="https://www.analystsolution.com/favicon.svg" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="White-Label Analytics &amp; Reporting for Marketing Agencies" />
+<meta name="twitter:description" content="Your agency keeps the client. We become the analytics team behind it." />
+<meta name="twitter:image" content="https://www.analystsolution.com/favicon.svg" />
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="favicon.svg" />
@@ -35,18 +34,47 @@
   "name": "Analyst Solution",
   "url": "https://www.analystsolution.com/",
   "description": "White-label analytics, reporting and dashboards for digital marketing agencies.",
-  "areaServed": "Worldwide",
+  "areaServed": ["United States", "United Kingdom", "Australia"],
   "serviceType": [
-    "Marketing analytics",
-    "Advertising analytics",
-    "Website and conversion analytics",
-    "Reporting and dashboards",
-    "Business analytics"
+    "White-label reporting",
+    "Marketing dashboards",
+    "Campaign analysis",
+    "Conversion and funnel analysis",
+    "Analytics automation",
+    "Data consolidation"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "minPrice": 399,
+      "priceCurrency": "USD"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do you work directly with our clients?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. We operate entirely behind your agency. Your client keeps one point of contact — you." } },
+    { "@type": "Question", "name": "Will our clients know Analyst Solution is involved?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only if you choose to tell them. Everything is delivered in your template and branding, or completely unbranded." } },
+    { "@type": "Question", "name": "What platforms do you support?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google Ads, Meta Ads, GA4, Google Search Console, Looker Studio and Google Sheets as standard." } },
+    { "@type": "Question", "name": "How often do you report?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Monthly is standard. Weekly is available for high-spend accounts, and dashboards refresh continuously." } },
+    { "@type": "Question", "name": "Do you provide recommendations, or only reports?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Every deliverable states what changed, why it changed, and what should happen next, ranked by expected impact." } }
   ]
 }
 </script>
 
 <style>
+
 /* ============================================================
    DESIGN SYSTEM  —  edit tokens here, everything follows
    ============================================================ */
@@ -495,6 +523,153 @@ textarea{ min-height:124px; resize:vertical; }
   .foot__grid{ grid-template-columns:1fr 1fr; }
   .hero__cta .btn{ flex:1 1 100%; }
 }
+
+/* ============================================================
+   PLATFORM STRIP
+   ============================================================ */
+.plat{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface); }
+.plat__in{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 30px; padding-block:18px; }
+.plat__lab{ color:var(--ink-3); }
+.plat__list{ display:flex; flex-wrap:wrap; gap:10px 26px; }
+.plat__list span{ font-size:.9rem; font-weight:500; color:var(--ink-2); }
+
+/* ============================================================
+   PAIN POINTS
+   ============================================================ */
+.pain{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
+  border:1px solid var(--line); border-radius:var(--r); overflow:hidden; }
+.pain__i{ background:var(--surface); padding:22px 24px; display:grid; gap:8px; }
+.pain__i .n{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--ink-3); }
+.pain__i p{ font-size:.94rem; color:var(--ink-2); line-height:1.6; }
+.pain__i strong{ font-family:var(--display); font-size:1rem; font-weight:600; letter-spacing:-0.015em; color:var(--ink); }
+.answer{ margin-top:26px; border:1px solid var(--accent-tint); background:var(--accent-tint);
+  border-radius:var(--r); padding:24px 26px; display:grid; gap:8px; }
+.answer strong{ font-family:var(--display); font-size:1.12rem; font-weight:600;
+  letter-spacing:-0.02em; color:var(--accent-ink); }
+.answer p{ color:#3A4270; font-size:.97rem; line-height:1.65; }
+
+/* ============================================================
+   DIFFERENTIATION BAND
+   ============================================================ */
+.band{ background:var(--ink); color:#fff; }
+.band h2{ color:#fff; }
+.band .lead{ color:#B9BEC7; }
+.band__grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(30px,4.5vw,60px); align-items:center; }
+.band__cols{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#262B33;
+  border:1px solid #262B33; border-radius:var(--r); overflow:hidden; }
+.band__c{ background:#171A20; padding:22px; }
+.band__c h4{ color:#fff; font-size:.98rem; margin-bottom:7px; }
+.band__c p{ font-size:.9rem; color:#98A0AB; line-height:1.6; }
+.band__c--on h4{ color:#fff; }
+.band__c--on{ background:#1D2129; }
+.band__c .mono{ color:#6C757F; display:block; margin-bottom:10px; }
+
+/* ============================================================
+   SAMPLE DELIVERABLES
+   ============================================================ */
+.deliv{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.dcard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:border-color .22s var(--ease), box-shadow .28s var(--ease), transform .28s var(--ease); }
+.dcard:hover{ border-color:#D8D7D2; box-shadow:var(--shadow-lift); transform:translateY(-2px); }
+.dcard__vis{ background:var(--surface-2); border-bottom:1px solid var(--line); padding:18px; height:196px; }
+.dcard__body{ padding:20px 22px 24px; display:grid; gap:8px; }
+.sample-tag{ position:absolute; top:12px; right:14px; }
+.dwrap{ position:relative; }
+.sheet{ background:#fff; border:1px solid var(--line); border-radius:5px; height:100%; padding:12px; display:grid; gap:8px; }
+.sheet__h{ display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line-2); padding-bottom:8px; }
+.sheet__k{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.sheet__kb{ border:1px solid var(--line-2); border-radius:3px; padding:6px; }
+.sheet__kb b{ display:block; font-family:var(--display); font-size:.82rem; letter-spacing:-0.02em; }
+.sheet__kb span{ font-family:var(--mono); font-size:8px; letter-spacing:.08em; color:var(--ink-3); text-transform:uppercase; }
+.sheet__rows{ display:grid; gap:5px; }
+.sheet__r{ display:grid; grid-template-columns:1fr 34px; gap:8px; align-items:center; }
+.sheet__r i{ display:block; height:6px; border-radius:2px; background:var(--accent); }
+.sheet__r span{ font-family:var(--mono); font-size:8.5px; color:var(--ink-3); text-align:right; }
+.mini-bars{ display:flex; align-items:flex-end; gap:4px; height:52px; }
+.mini-bars i{ flex:1; background:#C9CCEF; border-radius:1.5px; display:block; }
+.mini-bars i.on{ background:var(--accent); }
+.note-lines{ display:grid; gap:6px; }
+.note-lines i{ display:block; height:5px; border-radius:2px; background:var(--surface-2); }
+.note-lines i.w1{ width:100% } .note-lines i.w2{ width:86% } .note-lines i.w3{ width:64% }
+.note-lines i.hot{ background:#C9CCEF; }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.price{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; }
+.plan{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:28px; display:flex; flex-direction:column; gap:14px;
+  transition:border-color .22s var(--ease), box-shadow .28s var(--ease), transform .28s var(--ease); }
+.plan:hover{ border-color:#D8D7D2; box-shadow:var(--shadow-lift); transform:translateY(-2px); }
+.plan--on{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; }
+.plan__top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.plan__amt{ font-family:var(--display); font-size:2rem; font-weight:600; letter-spacing:-0.035em; line-height:1; }
+.plan__amt small{ font-family:var(--body); font-size:.85rem; font-weight:400; color:var(--ink-2); letter-spacing:0; }
+.plan__from{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+.plan ul{ list-style:none; margin:6px 0 0; padding:0; display:grid; gap:9px; }
+.plan ul li{ position:relative; padding-left:20px; font-size:.92rem; color:var(--ink-2); line-height:1.55; }
+.plan ul li::before{ content:""; position:absolute; left:0; top:.52em; width:8px; height:8px;
+  border-radius:2px; border:1.5px solid var(--accent); }
+.plan .btn{ margin-top:auto; }
+.price-note{ margin-top:22px; border:1px solid var(--line); border-radius:var(--r);
+  background:var(--surface); padding:20px 24px; }
+
+/* ============================================================
+   TRUST GRID
+   ============================================================ */
+.trust{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line);
+  border:1px solid var(--line); border-radius:var(--r); overflow:hidden; }
+.trust__i{ background:var(--surface); padding:22px 24px; }
+.trust__i h4{ margin-bottom:6px; font-size:.98rem; }
+.trust__i p{ font-size:.9rem; color:var(--ink-2); line-height:1.6; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{ border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{
+  list-style:none; cursor:pointer; padding:22px 44px 22px 0; position:relative;
+  font-family:var(--display); font-size:1.05rem; font-weight:600; letter-spacing:-0.018em;
+  color:var(--ink); transition:color .18s var(--ease);
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent); }
+.faq summary::after{
+  content:""; position:absolute; right:6px; top:50%; width:11px; height:11px; margin-top:-7px;
+  border-right:1.8px solid var(--ink-3); border-bottom:1.8px solid var(--ink-3);
+  transform:rotate(45deg); transition:transform .24s var(--ease), border-color .18s var(--ease);
+}
+.faq details[open] summary::after{ transform:rotate(-135deg); margin-top:-3px; border-color:var(--accent); }
+.faq .ans{ padding:0 60px 24px 0; color:var(--ink-2); font-size:.98rem; line-height:1.7; max-width:74ch; }
+.faq .ans p + p{ margin-top:12px; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.finalcta{ background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.finalcta__in{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:32px; align-items:center; }
+
+/* ============================================================
+   RESPONSIVE ADDITIONS
+   ============================================================ */
+@media (max-width:940px){
+  .pain{ grid-template-columns:1fr 1fr; }
+  .deliv{ grid-template-columns:1fr; }
+  .price{ grid-template-columns:1fr; }
+  .band__grid{ grid-template-columns:1fr; }
+  .trust{ grid-template-columns:1fr; }
+  .finalcta__in{ grid-template-columns:1fr; gap:22px; }
+}
+@media (max-width:620px){
+  .pain{ grid-template-columns:1fr; }
+  .band__cols{ grid-template-columns:1fr; }
+  .plat__in{ flex-direction:column; align-items:flex-start; gap:10px; }
+  .faq summary{ font-size:1rem; padding-right:36px; }
+  .faq .ans{ padding-right:0; }
+  .finalcta__in .btn{ width:100%; }
+}
 </style>
 </head>
 <body>
@@ -515,13 +690,13 @@ textarea{ min-height:124px; resize:vertical; }
 
     <nav class="nav__links" aria-label="Primary">
       <a href="#services">Services</a>
-      <a href="#solutions">Solutions</a>
+      <a href="#process">How it works</a>
       <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#insights">Insights</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn btn--sm nav__cta" href="#contact">Let's work together</a>
+    <a class="btn btn--sm nav__cta js-book" href="#contact">Book a strategy call</a>
 
     <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu">
       <span></span>
@@ -529,12 +704,13 @@ textarea{ min-height:124px; resize:vertical; }
   </div>
   <div class="mnav" id="mnav">
     <a href="#services">Services</a>
-    <a href="#solutions">Solutions</a>
+    <a href="#process">How it works</a>
     <a href="#work">Work</a>
+    <a href="#pricing">Pricing</a>
     <a href="#about">About</a>
-    <a href="#insights">Insights</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
-    <a class="btn" href="#contact">Let's work together</a>
+    <a class="btn js-book" href="#contact">Book a strategy call</a>
   </div>
 </header>
 
@@ -545,39 +721,37 @@ textarea{ min-height:124px; resize:vertical; }
 <section class="section hero">
   <div class="wrap hero__grid">
     <div>
-      <span class="mono eyebrow reveal">Analytics partner for marketing agencies</span>
+      <span class="mono eyebrow reveal">White-label analytics for digital agencies</span>
       <h1 class="reveal" style="--d:70ms">
         The analytics team<br>behind your <span class="accent">agency</span>.
       </h1>
       <p class="lead hero__lead reveal" style="--d:140ms">
-        You keep the client, the strategy and the credit. We take the reporting,
-        the campaign analysis and the dashboards off your team's plate — delivered
-        under your brand, on your deadline.
+        We handle your client reporting, dashboards and campaign analysis under your brand,
+        so your team can stay on strategy, clients and growth.
       </p>
       <div class="hero__cta reveal" style="--d:210ms">
-        <a class="btn" href="#contact">Let's work together
+        <a class="btn js-book" href="#contact">Book a strategy call
           <svg class="arw" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn--ghost" href="#services">Explore services</a>
+        <a class="btn btn--ghost" href="#process">See how it works</a>
       </div>
       <p class="mono hero__note reveal" style="--d:270ms">
-        White-label by default · NDA on request · Fixed-scope or retainer
+        Your branding · NDA on request · Monthly retainer or per project
       </p>
     </div>
 
-    <!-- Signature visual: a real dashboard, drawn not photographed -->
     <div class="reveal" style="--d:180ms">
       <div class="dash" role="img"
-           aria-label="Illustrative agency reporting dashboard showing monthly spend, return on ad spend, cost per acquisition, a channel performance bar chart and channel share bars.">
+           aria-label="Sample multi-platform client dashboard showing tracked ad spend, return on ad spend, cost per acquisition, weekly conversions and channel split across Google Ads, Meta Ads and organic traffic.">
         <div class="dash__bar">
           <span class="dash__dot"></span><span class="dash__dot"></span><span class="dash__dot"></span>
-          <span class="dash__title">Client report · Q3</span>
+          <span class="dash__title">Sample client dashboard</span>
           <span class="dash__live"><i></i> Live</span>
         </div>
         <div class="dash__kpis">
-          <div class="kpi"><div class="kpi__l">Spend</div><div class="kpi__v">$214k</div><div class="kpi__d">Tracked</div></div>
+          <div class="kpi"><div class="kpi__l">Ad spend</div><div class="kpi__v">$214k</div><div class="kpi__d">Tracked</div></div>
           <div class="kpi"><div class="kpi__l">ROAS</div><div class="kpi__v">4.1×</div><div class="kpi__d">▲ vs. last period</div></div>
           <div class="kpi"><div class="kpi__l">CPA</div><div class="kpi__v">$48</div><div class="kpi__d">▼ vs. last period</div></div>
         </div>
@@ -607,9 +781,9 @@ textarea{ min-height:124px; resize:vertical; }
           </div>
         </div>
         <div class="dash__foot">
-          <div class="row"><span class="row__t">Paid search</span><span class="row__v">42%</span>
+          <div class="row"><span class="row__t">Google Ads</span><span class="row__v">42%</span>
             <span class="row__track"><span class="row__fill" data-w="42%"></span></span></div>
-          <div class="row"><span class="row__t">Paid social</span><span class="row__v">31%</span>
+          <div class="row"><span class="row__t">Meta Ads</span><span class="row__v">31%</span>
             <span class="row__track"><span class="row__fill" data-w="31%"></span></span></div>
           <div class="row"><span class="row__t">Organic &amp; referral</span><span class="row__v">27%</span>
             <span class="row__track"><span class="row__fill" data-w="27%"></span></span></div>
@@ -619,59 +793,47 @@ textarea{ min-height:124px; resize:vertical; }
   </div>
 </section>
 
-<!-- ══════════════════════ CAPABILITY STRIP ══════════════════ -->
-<div class="strip">
-  <div class="wrap strip__in">
-    <span class="mono strip__item">Marketing analytics</span>
-    <span class="mono strip__item">Ad performance</span>
-    <span class="mono strip__item">Website &amp; conversion</span>
-    <span class="mono strip__item">Dashboards</span>
-    <span class="mono strip__item">Client reporting</span>
+<!-- ══════════════════════ PLATFORM STRIP ════════════════════ -->
+<div class="plat">
+  <div class="wrap plat__in">
+    <span class="mono plat__lab">Platforms we work in</span>
+    <div class="plat__list">
+      <span>Google Ads</span><span>Meta Ads</span><span>GA4</span>
+      <span>Search Console</span><span>Looker Studio</span><span>Google Sheets</span>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════ VALUE PROPOSITION ════════════════ -->
-<section class="section">
-  <div class="wrap split">
-    <div class="reveal">
-      <div class="idx" style="display:flex;align-items:center;gap:14px;">
-        <span class="mono">01</span><span style="width:22px;height:1px;background:var(--line)"></span>
-        <span class="mono">Why agencies work with us</span>
-      </div>
-      <h2 style="margin-top:20px">Extend your agency without expanding your team.</h2>
-      <p class="lead" style="margin-top:20px">
-        Analytics work arrives in waves. A pitch needs a data story by Thursday, three
-        retainers need monthly reports in the same week, a client asks why conversions
-        dropped and nobody has time to look properly.
-      </p>
-      <p class="body-2" style="margin-top:16px">
-        We plug into that gap — as a standing part of your delivery, or only when the
-        month gets heavy.
-      </p>
-      <a class="tlink" style="margin-top:24px" href="#partnership">See how the partnership works
-        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+<!-- ══════════════════════ PAIN POINTS ═══════════════════════ -->
+<section class="section" id="problem">
+  <div class="wrap">
+    <header class="shead reveal">
+      <div class="idx"><span class="mono">01</span><span class="tick"></span><span class="mono">The problem</span></div>
+      <h2>Your team shouldn't spend Friday building reports.</h2>
+      <p class="lead">Reporting is the work that grows fastest with your client count and adds
+        the least to your margin. It's also the first thing that slips when the month gets busy.</p>
+    </header>
+
+    <div class="pain">
+      <div class="pain__i reveal"><span class="n">01</span><strong>Exporting from four platforms</strong>
+        <p>Google Ads, Meta, GA4 and Search Console, each with its own date logic and its own definition of a conversion.</p></div>
+      <div class="pain__i reveal" style="--d:50ms"><span class="n">02</span><strong>Cleaning the same spreadsheet</strong>
+        <p>Mismatched campaign names, duplicate rows and currency columns that break the moment someone renames an ad set.</p></div>
+      <div class="pain__i reveal" style="--d:100ms"><span class="n">03</span><strong>Rebuilding charts monthly</strong>
+        <p>The same slides remade from scratch every cycle because nothing was built to refresh.</p></div>
+      <div class="pain__i reveal" style="--d:50ms"><span class="n">04</span><strong>Writing the same commentary</strong>
+        <p>Account managers explaining performance in their own words, differently for every client.</p></div>
+      <div class="pain__i reveal" style="--d:100ms"><span class="n">05</span><strong>Senior time on repetitive work</strong>
+        <p>The people who should be planning next quarter are formatting tables instead.</p></div>
+      <div class="pain__i reveal" style="--d:150ms"><span class="n">06</span><strong>No analyst to hand it to</strong>
+        <p>A full-time analyst is a serious salary commitment for work that peaks a few days a month.</p></div>
     </div>
 
-    <div class="benefits reveal" style="--d:100ms">
-      <div class="benefit">
-        <h4>Capacity when you need it</h4>
-        <p class="small">Add analytical hands for one project or every month, without a hire, a laptop or a payroll line.</p>
-      </div>
-      <div class="benefit">
-        <h4>White-label by default</h4>
-        <p class="small">Deliverables arrive unbranded or in your template. Your client sees your agency's work.</p>
-      </div>
-      <div class="benefit">
-        <h4>Analysis, not just charts</h4>
-        <p class="small">Every report answers what happened, why it happened and what to do next — in language an account manager can present.</p>
-      </div>
-      <div class="benefit">
-        <h4>Predictable delivery</h4>
-        <p class="small">Agreed scope, agreed format, agreed date. Reporting cycles that don't depend on who's free that week.</p>
-      </div>
+    <div class="answer reveal">
+      <strong>So hand the whole cycle over.</strong>
+      <p>We collect the data, analyse it, build the report and write the recommendations —
+        delivered in your template, ready for your client meeting. Your team reviews it
+        instead of producing it.</p>
     </div>
   </div>
 </section>
@@ -683,117 +845,177 @@ textarea{ min-height:124px; resize:vertical; }
   <div class="wrap">
     <header class="shead reveal">
       <div class="idx"><span class="mono">02</span><span class="tick"></span><span class="mono">Services</span></div>
-      <h2>Analytics is the core of what we do.</h2>
-      <p class="lead">Four areas cover most of what agencies hand over. Everything else on this
-        page is built on top of them.</p>
+      <h2>An outsourced analytics department.</h2>
+      <p class="lead">Five services that cover the analytical work an agency either does badly
+        under time pressure or turns down entirely.</p>
     </header>
 
     <div class="svc-grid">
       <article class="card svc reveal">
         <div class="svc__ico" aria-hidden="true">
           <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
-            <path d="M3 16V9M8 16V4M13 16v-5M18 16V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <rect x="2.5" y="2.5" width="15" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M6 8h8M6 11.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         </div>
-        <h3>Marketing analytics</h3>
-        <p class="body-2">Performance across every channel a client runs, pulled into one view and read
-          properly — so the monthly conversation is about decisions, not screenshots.</p>
+        <h3>White-label reporting</h3>
+        <p class="body-2">Monthly client-ready reports delivered under your agency's brand — your
+          template, your fonts, your logo, or unbranded if you prefer to place it yourself.</p>
         <ul class="svc__list">
-          <li>Channel and campaign performance analysis</li>
-          <li>Budget efficiency and spend allocation</li>
-          <li>Period-over-period and cohort comparisons</li>
-          <li>Attribution sense-checks across sources</li>
+          <li>Monthly, quarterly or custom reporting cycles</li>
+          <li>Written commentary an account manager can present</li>
+          <li>Consistent format across your whole roster</li>
+          <li>Delivered before your client meeting, not on it</li>
         </ul>
       </article>
 
       <article class="card svc reveal" style="--d:80ms">
         <div class="svc__ico" aria-hidden="true">
           <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.7"/>
-            <circle cx="10" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/></svg>
+            <rect x="2.5" y="2.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.7"/>
+            <rect x="11" y="2.5" width="6.5" height="15" rx="1.5" stroke="currentColor" stroke-width="1.7"/>
+            <rect x="2.5" y="11" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.7"/></svg>
         </div>
-        <h3>Advertising analytics</h3>
-        <p class="body-2">Where the ad budget is working, where it is leaking, and which levers are
-          worth pulling next — across search, social and programmatic.</p>
+        <h3>Marketing dashboards</h3>
+        <p class="body-2">One live view combining every platform a client runs, so nobody has to
+          open four tabs to answer a question mid-call.</p>
         <ul class="svc__list">
-          <li>Campaign, ad set and creative breakdowns</li>
-          <li>ROAS, CPA and contribution analysis</li>
-          <li>Audience and placement performance</li>
-          <li>Creative fatigue and testing read-outs</li>
+          <li>Google Ads, Meta Ads, GA4 and Search Console in one place</li>
+          <li>CRM and sheet-based sources where they exist</li>
+          <li>Separate agency and client-facing views</li>
+          <li>Refreshes on schedule without manual rebuilds</li>
         </ul>
       </article>
 
       <article class="card svc reveal" style="--d:40ms">
         <div class="svc__ico" aria-hidden="true">
           <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
-            <rect x="2.5" y="3.5" width="15" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/>
-            <path d="M2.5 7.5h15M6 11h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="10" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/></svg>
         </div>
-        <h3>Website &amp; conversion analytics</h3>
-        <p class="body-2">What visitors actually do on the site, where the journey breaks, and what
-          the drop-off is costing the client each month.</p>
+        <h3>Campaign analysis</h3>
+        <p class="body-2">The part that goes past reporting the numbers: which campaigns are
+          losing money, why the CPA moved, and what to change before next month's spend.</p>
         <ul class="svc__list">
-          <li>Traffic quality and landing page analysis</li>
-          <li>Funnel and drop-off mapping</li>
-          <li>Form, checkout and lead-flow diagnostics</li>
-          <li>Tracking audits and event setup review</li>
+          <li>Inefficient campaigns and budget misallocation</li>
+          <li>CPA and ROAS movement, explained rather than noted</li>
+          <li>Audience, placement and creative performance</li>
+          <li>A ranked list of optimisation opportunities</li>
         </ul>
       </article>
 
       <article class="card svc reveal" style="--d:120ms">
         <div class="svc__ico" aria-hidden="true">
           <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
-            <rect x="2.5" y="2.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.7"/>
-            <rect x="11" y="2.5" width="6.5" height="15" rx="1.5" stroke="currentColor" stroke-width="1.7"/>
-            <rect x="2.5" y="11" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.7"/></svg>
+            <path d="M2.5 4h15l-5.6 6.6V16l-3.8 1.5v-6.9L2.5 4z" stroke="currentColor" stroke-width="1.7"
+                  stroke-linejoin="round"/></svg>
         </div>
-        <h3>Reporting &amp; dashboards</h3>
-        <p class="body-2">The recurring work, handled. Monthly client reports and live dashboards
-          that stay accurate without someone rebuilding them every cycle.</p>
+        <h3>Conversion &amp; funnel analysis</h3>
+        <p class="body-2">Where paid traffic stops converting once it lands, and which fix is
+          worth doing first based on the revenue behind it.</p>
         <ul class="svc__list">
-          <li>Monthly and quarterly client reporting</li>
-          <li>Live dashboards for agency and client views</li>
-          <li>Automated data collection and refresh</li>
-          <li>Templates standardised across your roster</li>
+          <li>Landing page and site journey analysis</li>
+          <li>Form, lead-flow and checkout drop-off mapping</li>
+          <li>Conversion rate by source, device and segment</li>
+          <li>Tracking audits where the data looks wrong</li>
+        </ul>
+      </article>
+
+      <article class="card svc reveal" style="--d:60ms">
+        <div class="svc__ico" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2.5v5M10 12.5v5M2.5 10h5M12.5 10h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            <circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.7"/></svg>
+        </div>
+        <h3>Analytics automation</h3>
+        <p class="body-2">The whole chain built once and left running: collection, processing,
+          dashboard, report, delivery. The monthly cycle stops depending on who has time.</p>
+        <ul class="svc__list">
+          <li>Scheduled pulls from ad platforms and analytics</li>
+          <li>Cleaning and consolidation into one dataset</li>
+          <li>Automated report generation and distribution</li>
+          <li>Alerts when a metric moves beyond a threshold</li>
+        </ul>
+      </article>
+
+      <article class="card svc reveal" style="--d:140ms">
+        <div class="svc__ico" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none">
+            <path d="M3 16V9M8 16V4M13 16v-5M18 16V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Data consolidation</h3>
+        <p class="body-2">For agencies sitting on years of inconsistent exports — one cleaned,
+          documented dataset with an automated refresh going forward.</p>
+        <ul class="svc__list">
+          <li>Historic export cleanup and deduplication</li>
+          <li>Standardised metric and campaign naming</li>
+          <li>Reconciliation between platform and analytics figures</li>
+          <li>A single source your reports can be built on</li>
         </ul>
       </article>
     </div>
+  </div>
+</section>
 
-    <div class="svc-grid svc-grid--sub">
-      <article class="card svc svc--sub reveal">
-        <h4>Data analysis</h4>
-        <p class="small">Messy exports, mismatched platforms and half-cleaned spreadsheets turned into
-          one reliable dataset you can actually report from.</p>
-      </article>
-      <article class="card svc svc--sub reveal" style="--d:60ms">
-        <h4>Conversion analysis</h4>
-        <p class="small">A focused look at where users leave and which fix is worth doing first, sized
-          by the revenue behind it.</p>
-      </article>
-      <article class="card svc svc--sub reveal" style="--d:120ms">
-        <h4>Business analytics</h4>
-        <p class="small">KPIs beyond the campaign — retention, repeat rate, margin and lifetime value —
-          for clients who ask what marketing is doing for the business.</p>
-      </article>
-    </div>
-
-    <div class="secondary">
-      <div class="idx reveal" style="display:flex;align-items:center;gap:14px;">
-        <span class="mono">Additional digital solutions</span>
-        <span style="flex:1;height:1px;background:var(--line)"></span>
-      </div>
-      <p class="body-2 reveal" style="max-width:62ch;margin-top:14px">
-        Secondary capabilities, usually taken on alongside an analytics engagement rather
-        than on their own.
+<!-- ═════════════════════ DIFFERENTIATION ════════════════════ -->
+<section class="section band">
+  <div class="wrap band__grid">
+    <div class="reveal">
+      <span class="mono eyebrow" style="color:#7B84F0">What you're actually buying</span>
+      <h2 style="margin-top:20px">A dashboard tells you what happened.<br>We tell you why, and what to do.</h2>
+      <p class="lead" style="margin-top:20px">
+        Reporting software can already draw the chart. The part that takes a person is reading
+        it against the client's objective and saying plainly what should change.
       </p>
-      <div class="secondary__grid">
-        <div class="mini reveal"><h4>Website creation</h4>
-          <p>Landing pages and small business sites, built to be measurable from day one.</p></div>
-        <div class="mini reveal" style="--d:60ms"><h4>Tracking &amp; tagging setup</h4>
-          <p>Analytics, events and conversion tracking implemented or repaired.</p></div>
-        <div class="mini reveal" style="--d:120ms"><h4>Data pipelines &amp; automation</h4>
-          <p>Scheduled pulls from ad platforms and sheets so reports build themselves.</p></div>
-        <div class="mini reveal" style="--d:180ms"><h4>Internal tools</h4>
-          <p>Small custom tools for the workflows your team repeats every month.</p></div>
+      <p style="color:#98A0AB;font-size:1rem;line-height:1.7;margin-top:16px">
+        Dashboards are how we deliver. Analysis and recommendations are the work.
+      </p>
+    </div>
+    <div class="band__cols reveal" style="--d:100ms">
+      <div class="band__c">
+        <span class="mono">Reporting tool</span>
+        <h4>CPA rose 18% this month</h4>
+        <p>Correct, visible on the chart, and leaves your account manager to work out the rest before the call.</p>
+      </div>
+      <div class="band__c band__c--on">
+        <span class="mono">Analyst Solution</span>
+        <h4>CPA rose because two ad sets absorbed 40% of budget after a bid change — pause them and the blended CPA returns to target</h4>
+        <p>The same data, read against the objective, with the next action already identified.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PROCESS ═══════════════════════ -->
+<section class="section" id="process">
+  <div class="wrap">
+    <header class="shead reveal">
+      <div class="idx"><span class="mono">03</span><span class="tick"></span><span class="mono">How it works</span></div>
+      <h2>Four steps. You're involved in the first and the last.</h2>
+    </header>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__n">01</div>
+        <h3>Connect</h3>
+        <p class="small">You grant read access to the required ad and analytics accounts, and tell us
+          what the client cares about. Usually one call and a permissions email.</p>
+      </div>
+      <div class="step reveal" style="--d:80ms">
+        <div class="step__n">02</div>
+        <h3>Analyze</h3>
+        <p class="small">We consolidate campaign, site and conversion data, reconcile the differences
+          between platforms, and work through what actually moved.</p>
+      </div>
+      <div class="step reveal" style="--d:160ms">
+        <div class="step__n">03</div>
+        <h3>Report</h3>
+        <p class="small">Branded dashboards and a client-ready report in your template, written so an
+          account manager can present it without translating anything.</p>
+      </div>
+      <div class="step reveal" style="--d:240ms">
+        <div class="step__n">04</div>
+        <h3>Recommend</h3>
+        <p class="small">What changed, why it changed, and what should happen next — ranked, so the
+          client conversation ends with a decision.</p>
       </div>
     </div>
   </div>
@@ -801,148 +1023,96 @@ textarea{ min-height:124px; resize:vertical; }
 
 <hr class="rule" />
 
-<!-- ══════════════════════════ PROCESS ═══════════════════════ -->
-<section class="section" id="process">
+<!-- ═════════════════ SAMPLE DELIVERABLES ════════════════════ -->
+<section class="section" id="deliverables">
   <div class="wrap">
     <header class="shead reveal">
-      <div class="idx"><span class="mono">03</span><span class="tick"></span><span class="mono">How we work</span></div>
-      <h2>Four steps, and you're only involved in two of them.</h2>
-    </header>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step__n">01</div>
-        <h3>Understand</h3>
-        <p class="small">A short brief on the client, the objective, the data available and what the
-          deliverable needs to look like. Usually one call.</p>
-      </div>
-      <div class="step reveal" style="--d:80ms">
-        <div class="step__n">02</div>
-        <h3>Analyse</h3>
-        <p class="small">We collect and clean the data, then work through it properly — looking for
-          the patterns that change a decision, not the ones that fill a slide.</p>
-      </div>
-      <div class="step reveal" style="--d:160ms">
-        <div class="step__n">03</div>
-        <h3>Deliver</h3>
-        <p class="small">Report, dashboard or recommendation set, in your format and your branding,
-          with the findings written in plain language.</p>
-      </div>
-      <div class="step reveal" style="--d:240ms">
-        <div class="step__n">04</div>
-        <h3>Support</h3>
-        <p class="small">Follow-up questions answered, dashboards kept running, and the next cycle
-          scheduled before you have to ask.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════════════════ PARTNERSHIP MODEL ══════════════════ -->
-<section class="section partner" id="partnership">
-  <div class="wrap split">
-    <div class="reveal">
-      <div class="idx" style="display:flex;align-items:center;gap:14px;">
-        <span class="mono">04</span><span style="width:22px;height:1px;background:var(--line)"></span>
-        <span class="mono">Partnership model</span>
-      </div>
-      <h2 style="margin-top:20px">Your agency. Your client.<br>Our analysis.</h2>
-      <p class="lead" style="margin-top:20px">
-        We work behind your team, not beside it. The relationship, the strategy and the
-        client contact stay exactly where they are — with you.
-      </p>
-      <p class="body-2" style="margin-top:16px">
-        The goal is simple: make your agency able to say yes to analytics work you'd
-        otherwise turn down or postpone.
-      </p>
-      <a class="btn" style="margin-top:28px" href="#contact">Discuss your requirement
-        <svg class="arw" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <div class="partner__panel reveal" style="--d:100ms">
-      <div class="pline">
-        <div class="pline__k">Contact</div>
-        <div class="pline__v"><strong>Your client only ever hears from you</strong>
-          <p>We don't contact, pitch or connect with your clients. If you'd prefer, we don't
-             know their name at all — anonymised data works fine.</p></div>
-      </div>
-      <div class="pline">
-        <div class="pline__k">Branding</div>
-        <div class="pline__v"><strong>Everything ships under your name</strong>
-          <p>Reports and dashboards are delivered unbranded or in your agency's template,
-             fonts and colours.</p></div>
-      </div>
-      <div class="pline">
-        <div class="pline__k">Confidence</div>
-        <div class="pline__v"><strong>NDAs signed as standard</strong>
-          <p>Non-disclosure and non-solicitation agreements on request, before any data is shared.</p></div>
-      </div>
-      <div class="pline">
-        <div class="pline__k">Commercials</div>
-        <div class="pline__v"><strong>Per project or monthly retainer</strong>
-          <p>Priced per deliverable so you can quote your client with a known cost, or
-             a fixed monthly block for ongoing reporting.</p></div>
-      </div>
-      <div class="pline">
-        <div class="pline__k">Working</div>
-        <div class="pline__v"><strong>On your tools and your calendar</strong>
-          <p>Slack, email, Drive, Notion, whatever your team already uses. Deadlines set to
-             land before your client meeting, not on it.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════════════════ SOLUTIONS & PRODUCTS ═══════════════ -->
-<section class="section" id="solutions">
-  <div class="wrap">
-    <header class="shead reveal">
-      <div class="idx"><span class="mono">05</span><span class="tick"></span><span class="mono">Solutions &amp; products</span></div>
-      <h2>Systems we've built, ready to adapt.</h2>
-      <p class="lead">Repeatable set-ups rather than one-off work — configured for your agency's
-        roster instead of built from scratch each time.</p>
+      <div class="idx"><span class="mono">04</span><span class="tick"></span><span class="mono">What you receive</span></div>
+      <h2>The deliverables, before you commit to anything.</h2>
+      <p class="lead">Demonstration formats built on sample data, so you can see the standard
+        rather than take a description on trust. Client work is confidential and isn't shown here.</p>
     </header>
 
-    <div class="sol-grid">
-      <!-- ▼ SOLUTION CARD — duplicate this block to add a product -->
-      <article class="card sol reveal">
-        <div class="sol__top"><h3>Agency reporting system</h3><span class="tag">Available</span></div>
-        <p class="body-2">One reporting pipeline across your whole client roster. Data is collected on
-          a schedule, cleaned, and rendered into a consistent monthly report per client.</p>
-        <div class="sol__meta"><span class="chip">Automated</span><span class="chip">Multi-client</span><span class="chip">White-label</span></div>
+    <div class="deliv">
+      <article class="dcard reveal">
+        <div class="dcard__vis dwrap">
+          <span class="tag tag--quiet sample-tag">Sample</span>
+          <div class="sheet" aria-hidden="true">
+            <div class="sheet__h"><span class="mono">Monthly report</span><span class="mono">Page 1</span></div>
+            <div class="sheet__k">
+              <div class="sheet__kb"><span>Spend</span><b>$18.2k</b></div>
+              <div class="sheet__kb"><span>Leads</span><b>384</b></div>
+              <div class="sheet__kb"><span>CPL</span><b>$47</b></div>
+            </div>
+            <div class="mini-bars">
+              <i style="height:38%"></i><i style="height:52%"></i><i style="height:44%"></i>
+              <i class="on" style="height:70%"></i><i class="on" style="height:61%"></i>
+              <i class="on" style="height:84%"></i><i class="on" style="height:76%"></i>
+            </div>
+            <div class="note-lines">
+              <i class="w1 hot"></i><i class="w2"></i><i class="w3"></i>
+            </div>
+          </div>
+        </div>
+        <div class="dcard__body">
+          <h3>Monthly client report</h3>
+          <p class="small">Performance summary, channel breakdown and written commentary in your
+            agency's template. The document you forward without editing.</p>
+        </div>
       </article>
 
-      <article class="card sol reveal" style="--d:70ms">
-        <div class="sol__top"><h3>Campaign performance dashboard</h3><span class="tag">Available</span></div>
-        <p class="body-2">A live view of spend, conversions and efficiency across a client's paid
-          channels, with the comparisons an account manager gets asked for mid-call.</p>
-        <div class="sol__meta"><span class="chip">Live data</span><span class="chip">Paid channels</span><span class="chip">Shareable</span></div>
+      <article class="dcard reveal" style="--d:80ms">
+        <div class="dcard__vis dwrap">
+          <span class="tag tag--quiet sample-tag">Sample</span>
+          <div class="sheet" aria-hidden="true">
+            <div class="sheet__h"><span class="mono">Live dashboard</span><span class="mono">Last 30d</span></div>
+            <div class="sheet__rows">
+              <div class="sheet__r"><i style="width:88%"></i><span>$9.4k</span></div>
+              <div class="sheet__r"><i style="width:64%"></i><span>$6.8k</span></div>
+              <div class="sheet__r"><i style="width:41%"></i><span>$4.3k</span></div>
+              <div class="sheet__r"><i style="width:27%"></i><span>$2.9k</span></div>
+            </div>
+            <svg viewBox="0 0 200 44" style="width:100%;height:44px" preserveAspectRatio="none">
+              <path d="M0 36 L33 28 L66 32 L100 18 L133 22 L166 10 L200 6" fill="none"
+                    stroke="#2F3AC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="dcard__body">
+          <h3>Multi-platform dashboard</h3>
+          <p class="small">Google Ads, Meta and GA4 in a single refreshing view, with agency and
+            client-facing versions of the same data.</p>
+        </div>
       </article>
 
-      <article class="card sol reveal" style="--d:140ms">
-        <div class="sol__top"><h3>Conversion analytics kit</h3><span class="tag">Available</span></div>
-        <p class="body-2">Funnel tracking, event mapping and a drop-off view for a client site,
-          set up once and reported on each cycle.</p>
-        <div class="sol__meta"><span class="chip">Funnels</span><span class="chip">Event tracking</span><span class="chip">Web</span></div>
+      <article class="dcard reveal" style="--d:160ms">
+        <div class="dcard__vis dwrap">
+          <span class="tag tag--quiet sample-tag">Sample</span>
+          <div class="sheet" aria-hidden="true">
+            <div class="sheet__h"><span class="mono">Recommendations</span><span class="mono">Ranked</span></div>
+            <div class="note-lines" style="gap:9px">
+              <div style="display:flex;gap:8px;align-items:center">
+                <span class="mono" style="font-size:8px">01</span><i class="w1 hot" style="flex:1"></i></div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <span class="mono" style="font-size:8px">02</span><i class="w1 hot" style="flex:1;opacity:.7"></i></div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <span class="mono" style="font-size:8px">03</span><i class="w2" style="flex:1"></i></div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <span class="mono" style="font-size:8px">04</span><i class="w3" style="flex:1"></i></div>
+            </div>
+            <div class="sheet__k" style="margin-top:auto">
+              <div class="sheet__kb"><span>Impact</span><b>High</b></div>
+              <div class="sheet__kb"><span>Effort</span><b>Low</b></div>
+              <div class="sheet__kb"><span>Owner</span><b>Agency</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="dcard__body">
+          <h3>Recommendation set</h3>
+          <p class="small">What to change, ranked by expected impact against effort, with the
+            reasoning attached so you can defend it to the client.</p>
+        </div>
       </article>
-
-      <article class="card sol reveal">
-        <div class="sol__top"><h3>Data cleanup &amp; pipeline</h3><span class="tag">Available</span></div>
-        <p class="body-2">For agencies sitting on years of inconsistent exports: one cleaned,
-          documented dataset with an automated refresh going forward.</p>
-        <div class="sol__meta"><span class="chip">Data engineering</span><span class="chip">Scheduled</span></div>
-      </article>
-
-      <article class="card sol reveal" style="--d:70ms">
-        <div class="sol__top"><h3>Client-facing report portal</h3><span class="tag tag--quiet">In development</span></div>
-        <p class="body-2">A branded page where your client logs in to see their current numbers
-          between reporting cycles, instead of emailing your account team.</p>
-        <div class="sol__meta"><span class="chip">Portal</span><span class="chip">Your branding</span></div>
-      </article>
-
-      <!-- ▲ end solution cards -->
     </div>
   </div>
 </section>
@@ -953,16 +1123,17 @@ textarea{ min-height:124px; resize:vertical; }
 <section class="section" id="work">
   <div class="wrap">
     <header class="shead reveal">
-      <div class="idx"><span class="mono">06</span><span class="tick"></span><span class="mono">Selected work</span></div>
-      <h2>Projects, and what they were actually for.</h2>
-      <p class="lead">Described by what was delivered. Performance figures are withheld until each client approves publication.</p>
+      <div class="idx"><span class="mono">05</span><span class="tick"></span><span class="mono">Demonstration projects</span></div>
+      <h2>How the analysis actually runs.</h2>
+      <p class="lead">Worked examples on representative data, showing the reasoning end to end.
+        These are demonstrations, not client case studies — no client results are published
+        here without written permission.</p>
     </header>
 
     <div class="work-grid">
-      <!-- ▼ PROJECT CARD — duplicate to add a project -->
       <article class="card proj reveal">
         <div class="proj__vis" aria-hidden="true">
-          <span class="mono vlabel">Dashboard</span>
+          <span class="mono vlabel">Meta Ads</span>
           <i style="flex:1;height:32%;background:#DCDEF6;border-radius:2px"></i>
           <i style="flex:1;height:52%;background:#DCDEF6;border-radius:2px"></i>
           <i style="flex:1;height:41%;background:#DCDEF6;border-radius:2px"></i>
@@ -971,21 +1142,22 @@ textarea{ min-height:124px; resize:vertical; }
           <i style="flex:1;height:80%;background:#2F3AC4;border-radius:2px"></i>
         </div>
         <div class="proj__body">
-          <span class="mono">Reporting &amp; dashboards</span>
-          <h3>Marketing performance dashboard</h3>
-          <p class="small">A single live dashboard covering paid, organic and on-site performance for
-            an agency's largest retainer client.</p>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span class="mono">Campaign analysis</span><span class="tag tag--quiet">Demonstration</span>
+          </div>
+          <h3>Meta Ads performance analysis</h3>
           <dl class="proj__pa">
-            <div class="pa"><dt>Problem</dt><dd>Four platforms, four exports, and a report rebuilt by hand every month.</dd></div>
-            <div class="pa"><dt>Approach</dt><dd>Unified the data sources, standardised the metric definitions, built one refreshing dashboard.</dd></div>
-            <div class="pa"><dt>Outcome</dt><dd>The monthly report now builds from a single source. The agency reviews it instead of rebuilding it.</dd></div>
+            <div class="pa"><dt>Challenge</dt><dd>Spend climbing month over month while purchases stayed flat, with no clear culprit.</dd></div>
+            <div class="pa"><dt>Analysis</dt><dd>Broke spend down by campaign, ad set, audience and creative, then compared delivery before and after the last bid strategy change.</dd></div>
+            <div class="pa"><dt>Insight</dt><dd>Two broad-audience ad sets absorbed most of the incremental budget at roughly double the account's blended cost per purchase.</dd></div>
+            <div class="pa"><dt>Recommendation</dt><dd>Cap the two ad sets, move budget to the three converting at target, and refresh creative on the fatigued set before scaling again.</dd></div>
           </dl>
         </div>
       </article>
 
       <article class="card proj reveal" style="--d:80ms">
         <div class="proj__vis" aria-hidden="true">
-          <span class="mono vlabel">Ad analysis</span>
+          <span class="mono vlabel">Google Ads</span>
           <svg viewBox="0 0 300 96" style="width:100%;height:86px" preserveAspectRatio="none">
             <path d="M0 76 L50 62 L100 68 L150 40 L200 47 L250 22 L300 14" fill="none"
                   stroke="#2F3AC4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -994,21 +1166,22 @@ textarea{ min-height:124px; resize:vertical; }
           </svg>
         </div>
         <div class="proj__body">
-          <span class="mono">Advertising analytics</span>
-          <h3>Advertising campaign analysis</h3>
-          <p class="small">A full read of a quarter's ad spend across search and social, done ahead
-            of the client's budget renewal.</p>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span class="mono">Campaign analysis</span><span class="tag tag--quiet">Demonstration</span>
+          </div>
+          <h3>Google Ads campaign analysis</h3>
           <dl class="proj__pa">
-            <div class="pa"><dt>Problem</dt><dd>Spend was rising, results weren't, and nobody could say which campaigns were responsible.</dd></div>
-            <div class="pa"><dt>Approach</dt><dd>Broke performance down by campaign, audience and creative, then ranked reallocation options by expected impact.</dd></div>
-            <div class="pa"><dt>Outcome</dt><dd>A ranked reallocation plan the agency took into its client’s budget renewal conversation.</dd></div>
+            <div class="pa"><dt>Challenge</dt><dd>A quarter of search spend under review ahead of a budget renewal conversation.</dd></div>
+            <div class="pa"><dt>Analysis</dt><dd>Compared campaign efficiency by match type, device and query intent, and reconciled platform conversions against GA4.</dd></div>
+            <div class="pa"><dt>Insight</dt><dd>Broad match was absorbing budget on informational queries, and platform-reported conversions were double-counting returning users.</dd></div>
+            <div class="pa"><dt>Recommendation</dt><dd>Tighten match types, add the negative list, and report on the reconciled figure so the client sees one consistent number.</dd></div>
           </dl>
         </div>
       </article>
 
       <article class="card proj reveal" style="--d:40ms">
         <div class="proj__vis" aria-hidden="true">
-          <span class="mono vlabel">Funnel</span>
+          <span class="mono vlabel">GA4 funnel</span>
           <div style="width:100%;display:grid;gap:7px">
             <div style="height:16px;width:100%;background:#2F3AC4;border-radius:2px;opacity:.9"></div>
             <div style="height:16px;width:72%;background:#2F3AC4;border-radius:2px;opacity:.7"></div>
@@ -1017,21 +1190,22 @@ textarea{ min-height:124px; resize:vertical; }
           </div>
         </div>
         <div class="proj__body">
-          <span class="mono">Conversion analytics</span>
-          <h3>Website conversion analysis</h3>
-          <p class="small">A drop-off study of an e-commerce checkout, commissioned by the agency
-            running the client's paid traffic.</p>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span class="mono">Conversion analysis</span><span class="tag tag--quiet">Demonstration</span>
+          </div>
+          <h3>GA4 conversion analysis</h3>
           <dl class="proj__pa">
-            <div class="pa"><dt>Problem</dt><dd>Traffic and add-to-carts were healthy; completed purchases were not.</dd></div>
-            <div class="pa"><dt>Approach</dt><dd>Mapped the funnel step by step, isolated the two stages losing most users, sized each fix.</dd></div>
-            <div class="pa"><dt>Outcome</dt><dd>A prioritised list of checkout fixes, ordered by the revenue sitting behind each drop-off point.</dd></div>
+            <div class="pa"><dt>Challenge</dt><dd>Healthy paid traffic and add-to-carts, but completed purchases well below the category norm.</dd></div>
+            <div class="pa"><dt>Analysis</dt><dd>Mapped the funnel step by step in GA4, split by device and traffic source, and checked event firing at each stage.</dd></div>
+            <div class="pa"><dt>Insight</dt><dd>Mobile users dropped disproportionately at the shipping step, and one checkout event wasn't firing at all — understating conversions.</dd></div>
+            <div class="pa"><dt>Recommendation</dt><dd>Fix the tracking first so the baseline is real, then address the mobile shipping step before spending more on traffic.</dd></div>
           </dl>
         </div>
       </article>
 
       <article class="card proj reveal" style="--d:120ms">
         <div class="proj__vis" aria-hidden="true">
-          <span class="mono vlabel">Reporting system</span>
+          <span class="mono vlabel">Reporting workflow</span>
           <div style="width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:7px">
             <div style="height:54px;background:#fff;border:1px solid #E5E4E0;border-radius:4px"></div>
             <div style="height:54px;background:#fff;border:1px solid #E5E4E0;border-radius:4px"></div>
@@ -1040,26 +1214,139 @@ textarea{ min-height:124px; resize:vertical; }
           </div>
         </div>
         <div class="proj__body">
-          <span class="mono">Systems</span>
-          <h3>Client reporting system</h3>
-          <p class="small">One monthly reporting process applied across an agency's full client
-            roster instead of per-account improvisation.</p>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span class="mono">Automation</span><span class="tag tag--quiet">Demonstration</span>
+          </div>
+          <h3>Monthly agency reporting workflow</h3>
           <dl class="proj__pa">
-            <div class="pa"><dt>Problem</dt><dd>Every account manager reported differently, and month-end took the team days.</dd></div>
-            <div class="pa"><dt>Approach</dt><dd>Set one template and metric standard, automated the collection, kept the commentary human.</dd></div>
-            <div class="pa"><dt>Outcome</dt><dd>One reporting standard and template now used across the roster, with collection automated.</dd></div>
+            <div class="pa"><dt>Challenge</dt><dd>Every account manager reporting differently, with month-end consuming several days across the team.</dd></div>
+            <div class="pa"><dt>Analysis</dt><dd>Documented what each report actually contained, which metrics were defined inconsistently, and where the manual hours went.</dd></div>
+            <div class="pa"><dt>Insight</dt><dd>Most of the effort was data collection and formatting, not analysis — the part clients valued was the smallest share of the time.</dd></div>
+            <div class="pa"><dt>Recommendation</dt><dd>Automate collection and formatting to one standard template, and redirect the recovered hours into commentary and recommendations.</dd></div>
           </dl>
         </div>
       </article>
-      <!-- ▲ end project cards -->
     </div>
+  </div>
+</section>
 
-    <div class="reveal" style="margin-top:34px">
-      <a class="tlink" href="#contact">Have something similar in mind? Start a conversation
-        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+<!-- ═════════════════════ WHITE-LABEL MODEL ══════════════════ -->
+<section class="section partner" id="whitelabel">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="idx" style="display:flex;align-items:center;gap:14px;">
+        <span class="mono">06</span><span style="width:22px;height:1px;background:var(--line)"></span>
+        <span class="mono">White-label model</span>
+      </div>
+      <h2 style="margin-top:20px">Your agency. Your client.<br>Our analysis.</h2>
+      <p class="lead" style="margin-top:20px">
+        We work behind your team, not beside it. The relationship, the strategy and the
+        client contact stay exactly where they are — with you.
+      </p>
+      <p class="body-2" style="margin-top:16px">
+        The point is to let your agency say yes to analytics work you'd otherwise turn down,
+        postpone, or hire for.
+      </p>
+      <a class="btn js-book" style="margin-top:28px" href="#contact">Book a strategy call
+        <svg class="arw" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
+    </div>
+
+    <div class="partner__panel reveal" style="--d:100ms">
+      <div class="pline">
+        <div class="pline__k">Contact</div>
+        <div class="pline__v"><strong>Your client only ever hears from you</strong>
+          <p>We don't contact, pitch or connect with your clients. If you prefer, we never learn
+             their name — anonymised account labels work fine.</p></div>
+      </div>
+      <div class="pline">
+        <div class="pline__k">Branding</div>
+        <div class="pline__v"><strong>Everything ships under your name</strong>
+          <p>Reports and dashboards arrive in your agency's template, fonts and colours, or
+             unbranded for you to place yourself.</p></div>
+      </div>
+      <div class="pline">
+        <div class="pline__k">Data</div>
+        <div class="pline__v"><strong>Read-only access, revocable any time</strong>
+          <p>We request the minimum permissions needed, work in your accounts rather than copying
+             data out where possible, and remove access on request.</p></div>
+      </div>
+      <div class="pline">
+        <div class="pline__k">Confidence</div>
+        <div class="pline__v"><strong>NDA and non-solicitation on request</strong>
+          <p>Signed before any account access is granted, covering both your agency and your
+             clients' data.</p></div>
+      </div>
+      <div class="pline">
+        <div class="pline__k">Working</div>
+        <div class="pline__v"><strong>On your tools and your calendar</strong>
+          <p>Slack, email, Drive, Notion — whatever your team already uses. Deadlines set to land
+             before your client meeting, not on it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PRICING ═══════════════════════ -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <header class="shead reveal">
+      <div class="idx"><span class="mono">07</span><span class="tick"></span><span class="mono">Pricing</span></div>
+      <h2>Priced per month, by client count.</h2>
+      <p class="lead">Starting points rather than fixed packages — the final figure depends on how
+        many clients, how many platforms each one runs, and how deep the analysis needs to go.</p>
+    </header>
+
+    <div class="price">
+      <article class="plan reveal">
+        <div class="plan__top"><h3>Starter</h3><span class="tag tag--quiet">1–2 clients</span></div>
+        <div><span class="plan__from">From</span>
+          <div class="plan__amt">$399<small> / month</small></div></div>
+        <ul>
+          <li>Monthly white-label report per client</li>
+          <li>Up to two ad platforms plus GA4</li>
+          <li>Written commentary and recommendations</li>
+          <li>One revision round per cycle</li>
+          <li>Email support</li>
+        </ul>
+        <a class="btn btn--ghost js-book" href="#contact">Get a custom quote</a>
+      </article>
+
+      <article class="plan plan--on reveal" style="--d:80ms">
+        <div class="plan__top"><h3>Growth</h3><span class="tag">Most agencies</span></div>
+        <div><span class="plan__from">From</span>
+          <div class="plan__amt">$699<small> / month</small></div></div>
+        <ul>
+          <li>Everything in Starter, up to five clients</li>
+          <li>Live dashboard per client, refreshing automatically</li>
+          <li>Campaign analysis, not reporting alone</li>
+          <li>Conversion and funnel review each quarter</li>
+          <li>Shared Slack or email channel</li>
+        </ul>
+        <a class="btn js-book" href="#contact">Get a custom quote</a>
+      </article>
+
+      <article class="plan reveal" style="--d:160ms">
+        <div class="plan__top"><h3>Agency</h3><span class="tag tag--quiet">Full roster</span></div>
+        <div><span class="plan__from">From</span>
+          <div class="plan__amt">$999<small> / month</small></div></div>
+        <ul>
+          <li>Everything in Growth, across your full client list</li>
+          <li>Automated collection and delivery pipeline</li>
+          <li>Standardised reporting template for the agency</li>
+          <li>Ad-hoc analysis for pitches and reviews</li>
+          <li>Priority turnaround</li>
+        </ul>
+        <a class="btn btn--ghost js-book" href="#contact">Get a custom quote</a>
+      </article>
+    </div>
+
+    <div class="price-note reveal">
+      <p class="body-2"><strong style="font-family:var(--display);font-weight:600;color:var(--ink)">One-off projects are quoted separately.</strong>
+        A single campaign audit, funnel analysis or dashboard build doesn't need a retainer —
+        tell us the scope and you'll get a fixed price for it.</p>
     </div>
   </div>
 </section>
@@ -1071,113 +1358,111 @@ textarea{ min-height:124px; resize:vertical; }
   <div class="wrap split">
     <div class="reveal">
       <div class="idx" style="display:flex;align-items:center;gap:14px;">
-        <span class="mono">07</span><span style="width:22px;height:1px;background:var(--line)"></span>
+        <span class="mono">08</span><span style="width:22px;height:1px;background:var(--line)"></span>
         <span class="mono">About</span>
       </div>
       <h2 style="margin-top:20px">Analytics is the whole job, not a side service.</h2>
       <p class="lead" style="margin-top:20px">
-        <!-- ▼ EDIT: your bio -->
-        Analyst Solution is a specialist analytics practice working exclusively with
-        digital marketing agencies — as the analysis layer behind their client work.
+        Analyst Solution is a specialist analytics practice working exclusively with digital
+        marketing agencies — as the analysis layer behind their client work.
       </p>
       <p class="body-2" style="margin-top:16px">
         The work comes out of years spent turning messy operational and marketing data into
-        systems people actually run decisions on — reporting pipelines, performance dashboards,
-        and the analysis underneath them. Agencies bring the client knowledge and the strategy;
-        we bring the part that takes time to do properly.
+        systems people actually run decisions on: reporting pipelines, performance dashboards,
+        and the analysis underneath them. Agencies bring the client knowledge and the strategy.
+        We bring the part that takes time to do properly.
       </p>
       <p class="body-2" style="margin-top:16px">
-        The principle is the same on every engagement: measure it honestly, say plainly what
+        The principle is the same on every engagement — measure it honestly, say plainly what
         the numbers show, and stop short of claiming more than the data supports.
       </p>
-      <!-- ▲ end bio -->
     </div>
 
     <div class="reveal" style="--d:100ms">
-      <dl class="about__facts">
-        <div class="fact"><dt>Coverage</dt><dd>US, UK and Australia business hours</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Marketing, advertising, web and business analytics</dd></div>
-        <div class="fact"><dt>Works with</dt><dd>Digital marketing, performance and SEO agencies</dd></div>
-        <div class="fact"><dt>Languages</dt><dd>English, Hindi, Spanish</dd></div>
-        <div class="fact"><dt>Tooling</dt><dd>GA4, Google Ads, Meta Ads Manager, Google Tag Manager, Looker Studio, Google Sheets, SQL, Python, n8n</dd></div>
-      </dl>
-      <a class="tlink" style="margin-top:22px" href="#contact">Start a conversation
-        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="trust">
+        <div class="trust__i"><h4>Platforms supported</h4>
+          <p>Google Ads, Meta Ads, GA4, Google Search Console, Looker Studio, Google Sheets. Other sources reviewed case by case.</p></div>
+        <div class="trust__i"><h4>Access and permissions</h4>
+          <p>Read-only wherever the platform allows it, requested per account and removed on request.</p></div>
+        <div class="trust__i"><h4>Confidentiality</h4>
+          <p>NDA and non-solicitation signed before access. Client data is never used as a portfolio piece without written permission.</p></div>
+        <div class="trust__i"><h4>Response expectations</h4>
+          <p>Enquiries answered within one business day. Reporting deadlines agreed at the start of each cycle and held to.</p></div>
+        <div class="trust__i"><h4>Coverage</h4>
+          <p>Working across US, UK and Australia business hours.</p></div>
+        <div class="trust__i"><h4>Where we stop</h4>
+          <p>We don't run campaigns, manage budgets or speak to your clients. Analysis and reporting only — that boundary is the point.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ══════════════════════════ INSIGHTS ══════════════════════ -->
-<section class="section" id="insights">
+<!-- ══════════════════════════ FAQ ═══════════════════════════ -->
+<section class="section" id="faq">
   <div class="wrap">
     <header class="shead reveal">
-      <div class="idx"><span class="mono">08</span><span class="tick"></span><span class="mono">Insights</span></div>
-      <h2>Notes on measuring marketing properly.</h2>
-      <p class="lead">Working notes, analysis breakdowns and things worth knowing before the next
-        client review.</p>
+      <div class="idx"><span class="mono">09</span><span class="tick"></span><span class="mono">FAQ</span></div>
+      <h2>The questions agencies ask first.</h2>
     </header>
 
-    <!-- ▼ LEAD ARTICLE -->
-    <article class="ins-lead reveal">
-      <div>
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px">
-          <span class="tag">Featured</span>
-          <span class="mono">Reporting</span>
-        </div>
-        <h3 style="font-size:clamp(1.35rem,2.4vw,1.75rem);letter-spacing:-0.025em;line-height:1.2">
-          The monthly report nobody reads — and what to send instead</h3>
-        <p class="body-2" style="margin-top:14px;max-width:52ch">
-          Most agency reports answer "what happened" and stop there. A short note on
-          restructuring the same data so the client arrives at the meeting already knowing
-          what they want to do next.</p>
-        <a class="tlink" style="margin-top:20px" href="#">Read the note
-          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div class="ins-lead__vis" aria-hidden="true">
-        <div class="mono" style="margin-bottom:12px">Report structure</div>
-        <div style="display:grid;gap:8px">
-          <div style="display:flex;gap:10px;align-items:center">
-            <span style="width:26px" class="mono">01</span>
-            <span style="flex:1;height:9px;background:#2F3AC4;border-radius:2px;opacity:.85"></span></div>
-          <div style="display:flex;gap:10px;align-items:center">
-            <span style="width:26px" class="mono">02</span>
-            <span style="flex:1;height:9px;background:#C9CCEF;border-radius:2px"></span></div>
-          <div style="display:flex;gap:10px;align-items:center">
-            <span style="width:26px" class="mono">03</span>
-            <span style="flex:1;height:9px;background:#C9CCEF;border-radius:2px"></span></div>
-          <div style="display:flex;gap:10px;align-items:center">
-            <span style="width:26px" class="mono">04</span>
-            <span style="flex:1;height:9px;background:#E5E4E0;border-radius:2px"></span></div>
-        </div>
-      </div>
-    </article>
-
-    <div class="ins-list">
-      <a class="ins reveal" href="#">
-        <div class="ins__meta"><span class="mono">Advertising</span></div>
-        <h3>Reading ROAS when the attribution window keeps moving</h3>
-        <p class="small">Why the same campaign looks profitable in one dashboard and not in another.</p>
-      </a>
-      <a class="ins reveal" style="--d:70ms" href="#">
-        <div class="ins__meta"><span class="mono">Conversion</span></div>
-        <h3>Sizing a funnel fix before you build it</h3>
-        <p class="small">A simple way to rank drop-off points by the revenue actually sitting behind them.</p>
-      </a>
-      <a class="ins reveal" style="--d:140ms" href="#">
-        <div class="ins__meta"><span class="mono">Data</span></div>
-        <h3>Cleaning three years of ad exports without losing the history</h3>
-        <p class="small">Notes from consolidating platform data where the metric definitions changed midway.</p>
-      </a>
+    <div class="faq reveal">
+      <details>
+        <summary>Do you work directly with our clients?</summary>
+        <div class="ans"><p>No. We operate entirely behind your agency. Your client keeps one point
+          of contact — you. We don't email them, join their calls or appear on their invoices, and
+          we never approach them independently.</p></div>
+      </details>
+      <details>
+        <summary>Will our clients know Analyst Solution is involved?</summary>
+        <div class="ans"><p>Only if you choose to tell them. Everything is delivered in your
+          template and branding, or completely unbranded so you can place it yourself. Nothing we
+          produce carries our name unless you ask it to.</p></div>
+      </details>
+      <details>
+        <summary>What platforms do you support?</summary>
+        <div class="ans"><p>Google Ads, Meta Ads, GA4, Google Search Console, Looker Studio and
+          Google Sheets as standard. CRM exports and other data sources are reviewed case by case
+          before we commit to them — we'll tell you honestly if something isn't a fit.</p></div>
+      </details>
+      <details>
+        <summary>Can you use our branding?</summary>
+        <div class="ans"><p>Yes. Send your template, logo, fonts and colours during onboarding and
+          reports arrive matching them. If you don't have a template, we'll build one to your
+          specification and it becomes your standard across every client.</p></div>
+      </details>
+      <details>
+        <summary>How often do you report?</summary>
+        <div class="ans"><p>Monthly is standard, because it matches most agency retainer cycles.
+          Weekly is available for high-spend accounts, and dashboards refresh continuously
+          regardless of the reporting cadence. Custom schedules are fine — tell us when your
+          client meetings fall and delivery lands before them.</p></div>
+      </details>
+      <details>
+        <summary>Do you provide recommendations, or only reports?</summary>
+        <div class="ans"><p>Recommendations are the point. Every deliverable states what changed,
+          why it changed, and what should happen next, ranked by expected impact. A report that
+          only shows numbers is something your reporting tool already does.</p></div>
+      </details>
+      <details>
+        <summary>Can you handle multiple clients at once?</summary>
+        <div class="ans"><p>Yes, and it gets more efficient as the count rises. Once one reporting
+          standard is built for your agency, adding a client is a configuration step rather than a
+          new build. Pricing reflects that.</p></div>
+      </details>
+      <details>
+        <summary>How quickly can we start?</summary>
+        <div class="ans"><p>A single audit or analysis can usually begin within a few days of
+          access being granted. A full reporting setup takes longer for the first cycle, since the
+          template and data connections are built once — after that it runs to schedule. You'll get
+          a specific timeline with your quote rather than a general promise.</p></div>
+      </details>
+      <details>
+        <summary>What if we only need help occasionally?</summary>
+        <div class="ans"><p>That's a project engagement rather than a retainer. A campaign audit, a
+          funnel analysis or a one-off dashboard build is quoted as a fixed price for the scope,
+          with no ongoing commitment.</p></div>
+      </details>
     </div>
-    <!-- ▲ end insights -->
   </div>
 </section>
 
@@ -1186,19 +1471,20 @@ textarea{ min-height:124px; resize:vertical; }
   <div class="wrap split">
     <div class="reveal">
       <div class="idx" style="display:flex;align-items:center;gap:14px;">
-        <span class="mono">09</span><span style="width:22px;height:1px;background:var(--line)"></span>
+        <span class="mono">10</span><span style="width:22px;height:1px;background:var(--line)"></span>
         <span class="mono">Contact</span>
       </div>
       <h2 style="margin-top:20px">Tell us what you need.</h2>
       <p class="lead" style="margin-top:20px">
-        A short description of the requirement is enough to start. You'll get a reply with
-        what's involved, what it would cost and how long it takes — no call needed unless
-        you want one.
+        A short description of the requirement is enough to start. You'll get a written reply
+        covering what's involved, what it would cost and how long it takes.
       </p>
-
       <p class="body-2" style="margin-top:18px">
-        Fill in the form and it comes straight to me. No forms routed to a sales team,
-        no automated sequence — you'll get a written reply from the person who'd do the work.
+        If a call is easier, say so in the message and we'll send times. Either way the reply
+        comes from the person who'd do the work, not a sales team.
+      </p>
+      <p class="body-2" style="margin-top:18px">
+        No client names needed at this stage, and nothing is shared with anyone.
       </p>
     </div>
 
@@ -1211,7 +1497,7 @@ textarea{ min-height:124px; resize:vertical; }
               <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
             </div>
             <div class="field">
-              <label for="f-company">Agency / company</label>
+              <label for="f-company">Agency</label>
               <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Agency name" />
             </div>
           </div>
@@ -1221,30 +1507,53 @@ textarea{ min-height:124px; resize:vertical; }
             <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@agency.com" />
           </div>
 
+          <div class="form__row">
+            <div class="field">
+              <label for="f-clients">Clients you manage</label>
+              <select id="f-clients" name="clients">
+                <option value="">Select</option>
+                <option>1–2</option>
+                <option>3–5</option>
+                <option>6–10</option>
+                <option>More than 10</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-offer">Services you offer</label>
+              <select id="f-offer" name="offer">
+                <option value="">Select</option>
+                <option>Paid media</option>
+                <option>SEO</option>
+                <option>Social media</option>
+                <option>Full service</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
           <div class="field">
             <label for="f-need">What do you need help with?</label>
             <select id="f-need" name="need">
-              <option value="">Select one</option>
-              <option>Monthly client reporting</option>
-              <option>Campaign / advertising analysis</option>
-              <option>Website &amp; conversion analysis</option>
-              <option>Dashboard build</option>
-              <option>Data cleanup or pipeline</option>
-              <option>Website creation</option>
-              <option>Something else</option>
+              <option value="">Select</option>
+              <option>Monthly white-label reporting</option>
+              <option>Marketing dashboards</option>
+              <option>Campaign analysis</option>
+              <option>Conversion &amp; funnel analysis</option>
+              <option>Analytics automation</option>
+              <option>Data consolidation</option>
+              <option>Not sure yet</option>
             </select>
           </div>
 
           <div class="field">
             <label for="f-msg">Message</label>
             <textarea id="f-msg" name="message" required
-              placeholder="The client, the objective, the data you have, and when you need it."></textarea>
-            <span class="hint">No client names needed at this stage.</span>
+              placeholder="What you need, roughly when, and anything that makes it unusual."></textarea>
           </div>
 
           <div class="form__msg" id="formMsg" role="status" aria-live="polite"></div>
 
-          <button class="btn" type="submit" style="justify-self:start">Start a conversation
+          <button class="btn" type="submit" id="formSubmit" style="justify-self:start">Book a strategy call
             <svg class="arw" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" stroke-width="1.5"
                     stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1272,59 +1581,80 @@ textarea{ min-height:124px; resize:vertical; }
           Analyst Solution
         </a>
         <p class="small" style="max-width:34ch;margin-top:12px">
-          Analytics, reporting and dashboards for digital marketing agencies — delivered
-          behind the scenes, under your brand.
+          White-label analytics, reporting and dashboards for digital marketing agencies.
+          Your agency keeps the client. We become the analytics team behind it.
         </p>
       </div>
       <div>
         <h4>Services</h4>
         <ul>
-          <li><a href="#services">Marketing analytics</a></li>
-          <li><a href="#services">Advertising analytics</a></li>
-          <li><a href="#services">Website &amp; conversion</a></li>
-          <li><a href="#services">Reporting &amp; dashboards</a></li>
+          <li><a href="#services">White-label reporting</a></li>
+          <li><a href="#services">Marketing dashboards</a></li>
+          <li><a href="#services">Campaign analysis</a></li>
+          <li><a href="#services">Conversion analysis</a></li>
+          <li><a href="#services">Analytics automation</a></li>
         </ul>
       </div>
       <div>
         <h4>Company</h4>
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#partnership">Partnership model</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#insights">Insights</a></li>
+          <li><a href="#whitelabel">White-label model</a></li>
+          <li><a href="#work">Demonstration projects</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h4>Get started</h4>
         <ul>
-          <li><a href="#contact">Start a conversation</a></li>
-          <li><a href="#contact">Discuss a requirement</a></li>
+          <li><a href="#contact">Book a strategy call</a></li>
+          <li><a href="#deliverables">See sample deliverables</a></li>
+          <li><a href="#process">How it works</a></li>
         </ul>
       </div>
     </div>
     <div class="foot__bot">
       <span class="mono">© <span id="yr">2026</span> Analyst Solution · analystsolution.com</span>
-      <span class="mono">Built for agencies, not for algorithms</span>
+      <span class="mono">White-label analytics for digital agencies</span>
     </div>
   </div>
 </footer>
+
 
 <script>
 (function(){
   "use strict";
 
-  /* ------------------------------------------------------------------
-     FORM ENDPOINT
-     Leave empty to fall back to the visitor's mail client.
-     Paste an n8n webhook / Formspree URL here to receive submissions.
-  ------------------------------------------------------------------ */
+  /* ==================================================================
+     CONFIGURATION — the only three lines you may need to change
+     ================================================================== */
+
+  // Where contact form submissions are sent (n8n webhook, Formspree, etc).
+  // Leave "" and the form falls back to opening the visitor's mail client.
   var FORM_ENDPOINT = "";
-  var FALLBACK_EMAIL = "[EMAIL ADDRESS]";
+
+  // Your email. Used as the fallback destination and shown in error messages.
+  var CONTACT_EMAIL = "marketing@analystsolution.com";
+
+  // Optional: a Cal.com / Calendly link. If set, every "Book a strategy call"
+  // button opens the booking page directly instead of scrolling to the form.
+  var BOOKING_URL = "";
+
+  /* ================================================================== */
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Year ---------- */
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  /* ---------- Booking links ---------- */
+  if(BOOKING_URL){
+    Array.prototype.forEach.call(document.querySelectorAll(".js-book"), function(a){
+      a.setAttribute("href", BOOKING_URL);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+    });
+  }
 
   /* ---------- Nav: stuck state ---------- */
   var nav = document.getElementById("nav");
@@ -1335,44 +1665,42 @@ textarea{ min-height:124px; resize:vertical; }
   /* ---------- Mobile menu ---------- */
   var burger = document.getElementById("burger");
   var mnav = document.getElementById("mnav");
+  var closeMenu = function(){
+    mnav.classList.remove("is-open");
+    burger.setAttribute("aria-expanded","false");
+    burger.setAttribute("aria-label","Open menu");
+  };
   burger.addEventListener("click", function(){
     var open = burger.getAttribute("aria-expanded") === "true";
-    burger.setAttribute("aria-expanded", String(!open));
-    burger.setAttribute("aria-label", open ? "Open menu" : "Close menu");
-    mnav.classList.toggle("is-open", !open);
+    if(open){ closeMenu(); return; }
+    burger.setAttribute("aria-expanded","true");
+    burger.setAttribute("aria-label","Close menu");
+    mnav.classList.add("is-open");
   });
   mnav.addEventListener("click", function(e){
-    if(e.target.tagName === "A"){
-      mnav.classList.remove("is-open");
-      burger.setAttribute("aria-expanded","false");
-      burger.setAttribute("aria-label","Open menu");
-    }
+    if(e.target.tagName === "A") closeMenu();
   });
   document.addEventListener("keydown", function(e){
-    if(e.key === "Escape" && mnav.classList.contains("is-open")){
-      mnav.classList.remove("is-open");
-      burger.setAttribute("aria-expanded","false");
-      burger.focus();
-    }
+    if(e.key === "Escape" && mnav.classList.contains("is-open")){ closeMenu(); burger.focus(); }
   });
 
   /* ---------- Scroll reveal ---------- */
   var revealables = document.querySelectorAll(".reveal");
   if(reduced || !("IntersectionObserver" in window)){
-    revealables.forEach(function(el){ el.classList.add("in"); });
+    Array.prototype.forEach.call(revealables, function(el){ el.classList.add("in"); });
   } else {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
       });
     }, { rootMargin:"0px 0px -8% 0px", threshold:0.06 });
-    revealables.forEach(function(el){ io.observe(el); });
+    Array.prototype.forEach.call(revealables, function(el){ io.observe(el); });
   }
 
-  /* ---------- Hero dashboard: one orchestrated entrance ---------- */
+  /* ---------- Hero dashboard entrance ---------- */
   window.requestAnimationFrame(function(){
     document.body.classList.add("is-ready");
-    document.querySelectorAll(".row__fill").forEach(function(el){
+    Array.prototype.forEach.call(document.querySelectorAll(".row__fill"), function(el){
       el.style.width = el.getAttribute("data-w");
     });
   });
@@ -1394,28 +1722,50 @@ textarea{ min-height:124px; resize:vertical; }
     sections.forEach(function(s){ spy.observe(s); });
   }
 
+  /* ---------- FAQ: only one open at a time ---------- */
+  var faqs = Array.prototype.slice.call(document.querySelectorAll(".faq details"));
+  faqs.forEach(function(d){
+    d.addEventListener("toggle", function(){
+      if(!d.open) return;
+      faqs.forEach(function(o){ if(o !== d) o.open = false; });
+    });
+  });
+
   /* ---------- Contact form ---------- */
   var form = document.getElementById("contactForm");
   var msg  = document.getElementById("formMsg");
+  var btn  = document.getElementById("formSubmit");
+  var btnHTML = btn.innerHTML;
+  var sending = false;
+  var sent = false;
 
   var setMsg = function(text, kind){
     msg.textContent = text;
     msg.className = "form__msg " + kind;
   };
+  var val = function(id){ return (document.getElementById(id).value || "").trim(); };
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    var val = function(id){ return (document.getElementById(id).value || "").trim(); };
+    if(sending) return;
+    if(sent){
+      setMsg("That's already been sent — you'll get a reply shortly.", "ok");
+      return;
+    }
+
     var data = {
       name:    val("f-name"),
       company: val("f-company"),
       email:   val("f-email"),
+      clients: val("f-clients"),
+      offer:   val("f-offer"),
       need:    val("f-need"),
-      message: val("f-msg")
+      message: val("f-msg"),
+      page:    window.location.href
     };
 
     if(!data.name || !data.email || !data.message){
-      setMsg("Add your name, email and a short message so we can reply.", "err");
+      setMsg("Add your name, work email and a short message so we can reply.", "err");
       return;
     }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)){
@@ -1423,22 +1773,31 @@ textarea{ min-height:124px; resize:vertical; }
       return;
     }
 
-    var btn = form.querySelector('button[type="submit"]');
-
+    /* No endpoint configured: hand off to the visitor's mail client */
     if(!FORM_ENDPOINT){
-      var subject = encodeURIComponent("New enquiry — " + (data.company || data.name));
+      if(!CONTACT_EMAIL){
+        setMsg("The form isn't connected yet. Please try again shortly.", "err");
+        return;
+      }
+      var subject = encodeURIComponent("Agency enquiry — " + (data.company || data.name));
       var body = encodeURIComponent(
-        "Name: " + data.name + "\nAgency: " + data.company + "\nEmail: " + data.email +
-        "\nNeeds help with: " + data.need + "\n\n" + data.message
+        "Name: " + data.name +
+        "\nAgency: " + data.company +
+        "\nEmail: " + data.email +
+        "\nClients managed: " + data.clients +
+        "\nServices offered: " + data.offer +
+        "\nNeeds help with: " + data.need +
+        "\n\n" + data.message
       );
-      window.location.href = "mailto:" + FALLBACK_EMAIL + "?subject=" + subject + "&body=" + body;
+      window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + subject + "&body=" + body;
       setMsg("Opening your email app with the message ready to send.", "ok");
       return;
     }
 
+    sending = true;
     btn.disabled = true;
-    var original = btn.innerHTML;
     btn.textContent = "Sending…";
+    setMsg("", "");
 
     fetch(FORM_ENDPOINT, {
       method: "POST",
@@ -1447,15 +1806,21 @@ textarea{ min-height:124px; resize:vertical; }
     })
     .then(function(res){
       if(!res.ok) throw new Error("Request failed");
+      sent = true;
       form.reset();
-      setMsg("Message received. You'll get a reply shortly.", "ok");
+      btn.innerHTML = "Message sent";
+      setMsg("Thanks — that's come through. You'll get a written reply within one business day.", "ok");
     })
     .catch(function(){
-      setMsg("That didn't send. Email " + FALLBACK_EMAIL + " directly and it'll get picked up.", "err");
+      btn.disabled = false;
+      btn.innerHTML = btnHTML;
+      setMsg(CONTACT_EMAIL
+        ? "That didn't send. Email " + CONTACT_EMAIL + " directly and it'll get picked up."
+        : "That didn't send — please try again in a moment.", "err");
     })
     .finally(function(){
-      btn.disabled = false;
-      btn.innerHTML = original;
+      sending = false;
+      if(!sent){ btn.disabled = false; }
     });
   });
 })();
