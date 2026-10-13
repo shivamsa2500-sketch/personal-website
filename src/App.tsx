@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 type Template = {
   id: number;
@@ -10,6 +10,9 @@ type Template = {
   textColor: string;
   pages: number;
   tag?: string;
+  /* Path to an exported standalone site under public/demos. When present the
+     card and the modal show the real thing instead of the mock preview. */
+  demo?: string;
 };
 
 const templates: Template[] = [
@@ -81,9 +84,54 @@ const templates: Template[] = [
     textColor: "#1e281b",
     pages: 8,
   },
+  {
+    id: 7,
+    title: "Clearflow Plumbing",
+    category: "Plumbing",
+    description: "Residential plumbing for San Francisco homes, with a service page for every job type.",
+    image: "/demos/clearflow/images/hero.jpg",
+    color: "#0f172a",
+    textColor: "#e2e8f0",
+    pages: 17,
+    tag: "New",
+    demo: "/demos/clearflow/",
+  },
+  {
+    id: 8,
+    title: "Editorial Plumbing",
+    category: "Plumbing",
+    description: "A magazine-styled take on a trade site, with long-form service pages and quote forms.",
+    image: "/demos/editorial/images/hero.jpg",
+    color: "#f5f1ea",
+    textColor: "#1c1917",
+    pages: 17,
+    demo: "/demos/editorial/",
+  },
+  {
+    id: 9,
+    title: "Glass Plumbing",
+    category: "Plumbing",
+    description: "Frosted-glass surfaces over a soft blueprint grid, built around the emergency call-out.",
+    image: "/demos/glass/images/leak-repair.jpg",
+    color: "#eef4ff",
+    textColor: "#10213f",
+    pages: 7,
+    demo: "/demos/glass/",
+  },
+  {
+    id: 10,
+    title: "Clearline Plumbing",
+    category: "Plumbing",
+    description: "Shows the system behind the wall, so the customer understands the job before the visit.",
+    image: "/demos/interactive3d/images/house-hero.png",
+    color: "#0b1220",
+    textColor: "#dbeafe",
+    pages: 7,
+    demo: "/demos/interactive3d/",
+  },
 ];
 
-const categories = ["All", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+const categories = ["All", "Plumbing", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
   name,
@@ -116,6 +164,37 @@ function Icon({
     >
       {paths[name]}
     </svg>
+  );
+}
+
+function DemoThumb({ src, title }: { src: string; title: string }) {
+  const [scale, setScale] = useState(0.3);
+  const hold = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = hold.current;
+    if (!el) return;
+    const fit = () => setScale(el.clientWidth / 1280);
+    fit();
+    if (!window.ResizeObserver) return;
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div ref={hold} className="pointer-events-none h-full w-full overflow-hidden">
+      <iframe
+        src={src}
+        title={`${title} preview`}
+        tabIndex={-1}
+        aria-hidden="true"
+        loading="lazy"
+        scrolling="no"
+        className="origin-top-left border-0"
+        style={{ width: 1280, height: 960, transform: `scale(${scale})` }}
+      />
+    </div>
   );
 }
 
@@ -159,6 +238,7 @@ function TemplateCard({
           onClick={onPreview}
           aria-label={`Preview ${item.title}`}
         >
+          {item.demo ? <DemoThumb src={item.demo} title={item.title} /> : (
           <div className="site-preview-page h-[175%]">
             <div className="flex h-[8%] items-center justify-between px-[5%]" style={{ color: item.textColor }}>
               <span className="text-[9px] font-black uppercase tracking-[0.12em] sm:text-[11px]">{item.title}</span>
@@ -186,6 +266,7 @@ function TemplateCard({
               </div>
             </div>
           </div>
+          )}
         </button>
       </div>
       <div className="flex items-start justify-between gap-4 px-1 pt-5">
@@ -224,10 +305,29 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
             <span className="h-2 w-2 rounded-full bg-[#66a875]" />
             <span className="text-sm font-semibold">{item.title} — Live demo</span>
           </div>
-          <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-white/10" aria-label="Close preview">
-            <Icon name="close" />
-          </button>
+          <div className="flex items-center gap-2">
+            {item.demo && (
+              <a
+                href={item.demo}
+                target="_blank"
+                rel="noopener"
+                className="rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold hover:bg-white/10"
+              >
+                Open full screen
+              </a>
+            )}
+            <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-white/10" aria-label="Close preview">
+              <Icon name="close" />
+            </button>
+          </div>
         </div>
+        {item.demo ? (
+          <iframe
+            src={item.demo}
+            title={`${item.title} live demo`}
+            className="min-h-0 w-full flex-1 border-0 bg-white"
+          />
+        ) : (
         <div className="min-h-0 flex-1 overflow-y-auto" style={{ backgroundColor: item.color, color: item.textColor }}>
           <nav className="flex items-center justify-between px-6 py-6 sm:px-12">
             <span className="text-lg font-black uppercase tracking-[0.12em]">{item.title}</span>
@@ -261,6 +361,7 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
             </div>
           </section>
         </div>
+        )}
       </div>
     </div>
   );

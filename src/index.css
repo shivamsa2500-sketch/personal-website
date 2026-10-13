@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
+/* The exported demo sites under public/demos are complete standalone builds
+   that ship their own CSS. Without this, Tailwind scans their HTML and bloats
+   the gallery stylesheet with classes nothing on the gallery uses. */
+@source not "../public/demos";
+
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
   /* Display face. Circular-geometric, matching the lowercase wordmark in the logo. */
