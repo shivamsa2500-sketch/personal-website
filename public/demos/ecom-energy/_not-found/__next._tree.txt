@@ -1,0 +1,4 @@
+:HL["/demos/ecom-energy/_next/static/chunks/1o8rd30qttiz8.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":64,"c":"$Q2"}]]
+0:{"b":"pRA98y3Ofz1Tcj_ugEeEm","t":{"t":{"s":"","h":16,"c":"$Q1"}}}

@@ -210,9 +210,28 @@ const templates: Template[] = [
       "Lighter build, quicker to get live",
     ],
   },
+  {
+    id: 13,
+    title: "Energy Drink Store",
+    category: "Ecom",
+    description: "A white-label storefront for a drinks brand: three flavours, three pack sizes, a basket that remembers you and a checkout that walks all the way through.",
+    image: "/demos/ecom-energy/icon.svg",
+    color: "#0a0d08",
+    textColor: "#e6ffd6",
+    pages: 11,
+    tag: "New",
+    demo: "/demos/ecom-energy/",
+    features: [
+      "Eleven pages including shop, cart and checkout",
+      "A product page for every flavour",
+      "Single, 6-pack and 12-pack pricing",
+      "Basket and demo checkout, no real payment",
+      "Athletes, our formula, FAQ and contact pages",
+    ],
+  },
 ];
 
-const categories = ["All", "Plumber", "Coffee house", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+const categories = ["All", "Plumber", "Coffee house", "Ecom", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
   name,
