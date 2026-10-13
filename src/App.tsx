@@ -221,6 +221,7 @@ const templates: Template[] = [
     pages: 11,
     tag: "New",
     demo: "/demos/ecom-energy/",
+    priceFrom: 1999,
     features: [
       "Eleven pages including shop, cart and checkout",
       "A product page for every flavour",
