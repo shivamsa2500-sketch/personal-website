@@ -182,6 +182,7 @@ const templates: Template[] = [
     pages: 6,
     tag: "New",
     demo: "/demos/coffee-premium/",
+    priceFrom: 1200,
     features: [
       "Six pages: home, menu, our story, visit, shop, contact",
       "Shop with a working basket and demo checkout",
@@ -200,6 +201,7 @@ const templates: Template[] = [
     textColor: "#1f2a2b",
     pages: 5,
     demo: "/demos/coffee-brochure/",
+    priceFrom: 900,
     features: [
       "Five pages: home, menu, our story, visit, contact",
       "Full menu with no ordering system to maintain",
@@ -387,9 +389,11 @@ function TemplateCard({
                 <span className="font-display text-[26px] font-bold tracking-[-0.03em] text-[#e9edfb]">
                   ${item.priceFrom.toLocaleString()}
                 </span>
-                <span className="text-sm text-[#8a93b0]">
-                  to ${item.priceTo?.toLocaleString()}
-                </span>
+                {item.priceTo && item.priceTo !== item.priceFrom && (
+                  <span className="text-sm text-[#8a93b0]">
+                    to ${item.priceTo.toLocaleString()}
+                  </span>
+                )}
               </div>
               <p className="mt-0.5 text-xs text-[#8a93b0]">One-time build. No monthly fee for the site itself.</p>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -397,7 +401,11 @@ function TemplateCard({
                   href={`mailto:hello@analystsolution.com?subject=${encodeURIComponent(
                     `I want the ${item.title} design`,
                   )}&body=${encodeURIComponent(
-                    `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: $${item.priceFrom} to $${item.priceTo}\n\nMy business:\nMy phone:\n`,
+                    `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: ${
+                      item.priceTo && item.priceTo !== item.priceFrom
+                        ? `$${item.priceFrom} to $${item.priceTo}`
+                        : `$${item.priceFrom}`
+                    }\n\nMy business:\nMy phone:\n`,
                   )}`}
                   className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
                 >
