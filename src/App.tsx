@@ -182,7 +182,7 @@ const templates: Template[] = [
     pages: 6,
     tag: "New",
     demo: "/demos/coffee-premium/",
-    priceFrom: 1200,
+    priceFrom: 1199,
     features: [
       "Six pages: home, menu, our story, visit, shop, contact",
       "Shop with a working basket and demo checkout",
@@ -201,7 +201,7 @@ const templates: Template[] = [
     textColor: "#1f2a2b",
     pages: 5,
     demo: "/demos/coffee-brochure/",
-    priceFrom: 900,
+    priceFrom: 999,
     features: [
       "Five pages: home, menu, our story, visit, contact",
       "Full menu with no ordering system to maintain",
