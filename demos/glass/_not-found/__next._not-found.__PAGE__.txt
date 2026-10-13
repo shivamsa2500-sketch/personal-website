@@ -1,0 +1,26 @@
+2:"$Sreact.fragment"
+3:"/demos/glass/_next/static/chunks/0z9nwkq6k9at6.js"
+4:I[39756,["$3"],"default"]
+5:I[37457,["$3"],"default"]
+a:I[22016,["$3"],""]
+b:I[97367,["$3"],"OutletBoundary"]
+c:"$Sreact.suspense"
+f:"ViewportBoundary"
+10:I[97367,["$3"],"$f"]
+11:"MetadataBoundary"
+12:I[97367,["$3"],"$11"]
+13:I[27201,["$3"],"IconMark"]
+7:X
+7:C
+8:X
+9:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[["$","section",null,{"className":"container-x section","children":["$","div",null,{"className":"glass mx-auto max-w-[36rem] rounded-[var(--radius-xl)] p-10 text-center","children":[["$","p",null,{"className":"text-brand","children":"404"}],["$","h1",null,{"className":"mt-2 text-[length:var(--step-4)]","children":"This pipe goes nowhere."}],["$","p",null,{"className":"mt-4 text-ink-soft","children":["The page you were after has been capped off. Head back to the start, or ",["$","$La",null,{"href":"/contact","className":"link-line text-ink","children":"get in touch"}],"."]}],["$","div",null,{"className":"mt-8","children":["$","$La",null,{"href":"/","className":"btn btn-primary","children":["$undefined",["$","span",null,{"children":"Back to home"}]]}]}]]}]}],null,["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]]}],"p":"$@e","v":null,"s":"$8"}}]]
+1:[["children",{"s":"/_not-found","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}],"p":"$@6","v":"$7","s":"$8"},"c":"$Q9"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L10",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#eef4fa"}]]}],["$","$L12",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$c",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Plumbing Co. — Leaks don't wait. Neither do we."}],["$","meta","1",{"name":"description","content":"Demonstration website for a local residential plumbing company. Burst pipes, blocked drains, water heaters and fixture repairs, handled with a clear plan and straight answers."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","meta","3",{"property":"og:title","content":"Plumbing Co. — Leaks don't wait. Neither do we."}],["$","meta","4",{"property":"og:description","content":"Demonstration website for a local residential plumbing company. Burst pipes, blocked drains, water heaters and fixture repairs, handled with a clear plan and straight answers."}],["$","meta","5",{"property":"og:site_name","content":"Plumbing Co."}],["$","meta","6",{"property":"og:locale","content":"en_US"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary"}],["$","meta","9",{"name":"twitter:title","content":"Plumbing Co. — Leaks don't wait. Neither do we."}],["$","meta","10",{"name":"twitter:description","content":"Demonstration website for a local residential plumbing company. Burst pipes, blocked drains, water heaters and fixture repairs, handled with a clear plan and straight answers."}],["$","link","11",{"rel":"icon","href":"/demos/glass/icon.svg?icon.06pzno2xsfu6_.svg","sizes":"any","type":"image/svg+xml"}],["$","$L13","12",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@14","v":null,"s":"$8"}},"a":"$@15","u":"$@16","b":"jIRIRZ6kLsFnQgf2f16Z5"}
+d:null
+16:true
+8:300
+8:C
+15:0
+6:"$undefined"
+14:"$undefined"
+e:"$undefined"

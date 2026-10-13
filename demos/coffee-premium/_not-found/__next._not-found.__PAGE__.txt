@@ -1,0 +1,27 @@
+2:"$Sreact.fragment"
+3:"/demos/coffee-premium/_next/static/chunks/0umf92h1sb77c.js"
+4:"/demos/coffee-premium/_next/static/chunks/3skb52f9jm1rf.js"
+5:I[39756,["$3","$4"],"default"]
+6:I[37457,["$3","$4"],"default"]
+b:I[22016,["$3","$4"],""]
+c:I[97367,["$3","$4"],"OutletBoundary"]
+d:"$Sreact.suspense"
+10:"ViewportBoundary"
+11:I[97367,["$3","$4"],"$10"]
+12:"MetadataBoundary"
+13:I[97367,["$3","$4"],"$12"]
+14:I[27201,["$3","$4"],"IconMark"]
+8:X
+8:C
+9:X
+a:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[["$","section",null,{"className":"container-x section min-h-[60vh]","children":["$","div",null,{"className":"glass mx-auto max-w-lg rounded-[var(--radius-xl)] p-10 text-center","children":[["$","svg",null,{"viewBox":"0 0 60 60","className":"steam mx-auto h-16 w-16 text-copper","aria-hidden":"true","children":[["$","path",null,{"d":"M18 50c-6-8 6-12 0-22 4-6 0-10 2-16"}],["$","path",null,{"d":"M30 52c-6-8 6-12 0-22 4-6 0-10 2-16"}],["$","path",null,{"d":"M42 50c-6-8 6-12 0-22 4-6 0-10 2-16"}]]}],["$","p",null,{"className":"eyebrow","children":"404"}],["$","h1",null,{"className":"mt-2 text-[length:var(--step-4)]","children":"That page has gone cold."}],["$","p",null,{"className":"mt-3 text-ink-soft","children":"The link may be out of date. Head back to the menu, or start from the top."}],["$","div",null,{"className":"mt-6 flex justify-center gap-3","children":[["$","$Lb",null,{"href":"/","className":"btn btn-primary","children":"Home"}],["$","$Lb",null,{"href":"/menu","className":"btn glass btn-glass","children":"Menu"}]]}]]}]}],null,["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]]}],"p":"$@f","v":null,"s":"$9"}}]]
+1:[["children",{"s":"/_not-found","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L11",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#fbf7f0"}]]}],["$","$L13",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$d",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Coffee House — Coffee, with intention."}],["$","meta","1",{"name":"description","content":"A warm, design-led neighbourhood coffee house for carefully prepared coffee, pastries, slower mornings and good conversation. Demo website."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","meta","3",{"property":"og:title","content":"Coffee House — Coffee, with intention."}],["$","meta","4",{"property":"og:description","content":"A warm, design-led neighbourhood coffee house for carefully prepared coffee, pastries, slower mornings and good conversation. Demo website."}],["$","meta","5",{"property":"og:site_name","content":"Coffee House"}],["$","meta","6",{"property":"og:locale","content":"en_US"}],["$","meta","7",{"property":"og:image","content":"https://coffee-house-demo.example/images/interior-lounge.jpg"}],["$","meta","8",{"property":"og:type","content":"website"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Coffee House — Coffee, with intention."}],["$","meta","11",{"name":"twitter:description","content":"A warm, design-led neighbourhood coffee house for carefully prepared coffee, pastries, slower mornings and good conversation. Demo website."}],["$","meta","12",{"name":"twitter:image","content":"https://coffee-house-demo.example/images/interior-lounge.jpg"}],["$","link","13",{"rel":"icon","href":"/demos/coffee-premium/icon.svg?icon.1aoc0pugv02y1.svg","sizes":"any","type":"image/svg+xml"}],["$","$L14","14",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@15","v":null,"s":"$9"}},"a":"$@16","u":"$@17","b":"F8VgctuJFGkLmSdOydytU"}
+e:null
+17:true
+9:300
+9:C
+16:0
+7:"$undefined"
+15:"$undefined"
+f:"$undefined"
