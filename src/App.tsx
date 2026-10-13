@@ -418,7 +418,7 @@ function TemplateCard({
               <p className="mt-0.5 text-xs text-[#8a93b0]">One-time build. No monthly fee for the site itself.</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <a
-                  href={`mailto:hello@analystsolution.com?subject=${encodeURIComponent(
+                  href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
                     `I want the ${item.title} design`,
                   )}&body=${encodeURIComponent(
                     `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: ${
@@ -448,7 +448,7 @@ function TemplateCard({
                 <p className="mt-0.5 text-xs text-[#8a93b0]">Built and ready. Ask and we will quote it.</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <a
-                    href={`mailto:hello@analystsolution.com?subject=${encodeURIComponent(
+                    href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
                       `Price for the ${item.title} design`,
                     )}&body=${encodeURIComponent(
                       `Hi - what would this design cost for my business?\n\nDesign: ${item.title}\n\nMy business:\nMy phone:\n`,
