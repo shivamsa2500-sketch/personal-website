@@ -547,7 +547,6 @@ export default function App() {
   const [preview, setPreview] = useState<Template | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [emailMessage, setEmailMessage] = useState("");
-  const [reelPaused, setReelPaused] = useState(false);
 
   const visible = useMemo(
     () =>
@@ -623,15 +622,10 @@ export default function App() {
                 <span className="h-2 w-2 rounded-full bg-white/25" />
               </div>
               <span className="text-[9px] font-bold uppercase tracking-[0.18em] sm:text-[10px]">Template showreel</span>
-              <button
-                onClick={() => setReelPaused((current) => !current)}
-                className="grid h-8 w-8 place-items-center rounded-full border border-white/20 text-white transition-colors hover:bg-white hover:text-[#05060e]"
-                aria-label={reelPaused ? "Play website showreel" : "Pause website showreel"}
-              >
-                <Icon name={reelPaused ? "play" : "pause"} size={15} />
-              </button>
+              {/* balances the traffic-light dots so the label stays centred */}
+              <span className="h-8 w-8" aria-hidden="true" />
             </div>
-            <div className={`website-reel grid aspect-[16/9] grid-cols-3 gap-1.5 overflow-hidden rounded-[15px] bg-[#05060e] p-1.5 sm:gap-3 sm:rounded-[20px] sm:p-3 ${reelPaused ? "is-paused" : ""}`}>
+            <div className={`website-reel grid aspect-[16/9] grid-cols-3 gap-1.5 overflow-hidden rounded-[15px] bg-[#05060e] p-1.5 sm:gap-3 sm:rounded-[20px] sm:p-3`}>
               {templates.slice(0, 3).map((item, index) => (
                 <div key={item.id} className="hero-site-window relative overflow-hidden bg-white">
                   <div

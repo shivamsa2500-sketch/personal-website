@@ -107,10 +107,6 @@ a {
   animation-name: hero-scroll-down;
 }
 
-.website-reel.is-paused .hero-site-page {
-  animation-play-state: paused;
-}
-
 @keyframes hero-scroll-up {
   0%,
   8% {
