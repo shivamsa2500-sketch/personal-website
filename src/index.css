@@ -1,9 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "DM Sans", sans-serif;
-  --font-serif: "DM Serif Display", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  /* Display face. Circular-geometric, matching the lowercase wordmark in the logo. */
+  --font-display: "Poppins", "Inter", system-ui, sans-serif;
+}
+
+/* Brand palette, sampled directly from the Analyst Solution logo.
+   Ground #010109 is 37% of the mark; the gradient runs violet -> blue -> cyan. */
+:root {
+  --ground: #05060e;
+  --surface: #0b0e1c;
+  --surface-2: #11152a;
+  --line: rgba(125, 150, 255, 0.15);
+  --line-strong: rgba(125, 150, 255, 0.3);
+  --chalk: #e9edfb;
+  --dim: #8a93b0;
+  --brand-blue: #2557f4;
+  --brand-blue-lit: #4290f5;
+  --brand-cyan: #6bc7f8;
+  --brand-violet: #7359ef;
+}
+
+.brand-grad-text {
+  background: linear-gradient(100deg, var(--brand-violet), var(--brand-blue) 45%, var(--brand-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Surfaces that carry text stop at blue: the cyan end is too light for white
+   text to pass AA, and too light for dark text to pass either. */
+.brand-grad-bg {
+  background: linear-gradient(100deg, var(--brand-violet), var(--brand-blue) 70%, #1E4FE8);
+}
+
+/* Decorative only - no text sits on this. */
+.brand-grad-full {
+  background: linear-gradient(100deg, var(--brand-violet), var(--brand-blue) 45%, var(--brand-cyan));
 }
 
 html {
@@ -13,7 +48,8 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #f7f5ef;
+  background: var(--ground);
+  color: var(--chalk);
 }
 
 button,
@@ -121,6 +157,6 @@ a {
 }
 
 ::selection {
-  background: #d8533c;
-  color: white;
+  background: var(--brand-blue);
+  color: #fff;
 }

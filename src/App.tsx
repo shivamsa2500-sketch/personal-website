@@ -119,6 +119,10 @@ function Icon({
   );
 }
 
+function Wordmark({ className = "h-7" }: { className?: string }) {
+  return <img src="/logo.png" alt="Analyst Solution" className={`${className} w-auto`} />;
+}
+
 function TemplateCard({
   item,
   saved,
@@ -133,7 +137,7 @@ function TemplateCard({
   return (
     <article className="group min-w-0">
       <div
-        className="relative aspect-[4/3] overflow-hidden rounded-[22px] border border-black/5 p-3 transition-transform duration-300 group-hover:-translate-y-1"
+        className="relative aspect-[4/3] overflow-hidden rounded-[22px] border border-white/10 p-3 transition-transform duration-300 group-hover:-translate-y-1"
         style={{ backgroundColor: item.color }}
       >
         {item.tag && (
@@ -146,7 +150,7 @@ function TemplateCard({
           className="absolute right-6 top-6 z-10 grid h-9 w-9 place-items-center rounded-full bg-[#f7f5ef] text-[#24231e] transition-transform hover:scale-105"
           aria-label={saved ? `Remove ${item.title} from saved` : `Save ${item.title}`}
         >
-          <span className={saved ? "fill-current text-[#d8533c]" : ""}>
+          <span className={saved ? "fill-current text-[#2557f4]" : ""}>
             <Icon name="heart" size={17} />
           </span>
         </button>
@@ -166,7 +170,7 @@ function TemplateCard({
               className="h-[45%] w-full object-cover"
             />
             <div className="flex h-[18%] items-center justify-between px-[7%]" style={{ backgroundColor: "#fff", color: item.textColor }}>
-              <span className="max-w-[65%] text-left font-serif text-sm leading-tight sm:text-lg">
+              <span className="max-w-[65%] text-left font-display text-sm leading-tight sm:text-lg">
                 Designed for a life well lived.
               </span>
               <span className="text-[7px] font-bold uppercase tracking-wider sm:text-[8px]">Explore →</span>
@@ -174,7 +178,7 @@ function TemplateCard({
             <div className="grid h-[29%] grid-cols-2 gap-px bg-black/10 text-left" style={{ color: item.textColor }}>
               <div className="flex flex-col justify-between bg-[#f8f7f2] p-[10%]">
                 <span className="text-[7px] font-bold uppercase tracking-[0.16em]">Our story</span>
-                <p className="font-serif text-xs leading-tight sm:text-base">A thoughtful approach to the everyday.</p>
+                <p className="font-display text-xs leading-tight sm:text-base">A thoughtful approach to the everyday.</p>
                 <span className="text-[7px] font-bold uppercase tracking-wider">Discover more →</span>
               </div>
               <div className="overflow-hidden">
@@ -187,13 +191,13 @@ function TemplateCard({
       <div className="flex items-start justify-between gap-4 px-1 pt-5">
         <div>
           <button onClick={onPreview} className="text-left">
-            <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#20201c] hover:underline">{item.title}</h3>
+            <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#e9edfb] hover:underline">{item.title}</h3>
           </button>
-          <p className="mt-1 text-sm text-[#74736d]">{item.category} · {item.pages} pages</p>
+          <p className="mt-1 text-sm text-[#8a93b0]">{item.category} · {item.pages} pages</p>
         </div>
         <button
           onClick={onPreview}
-          className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#d7d4ca] text-[#24231f] transition-colors hover:bg-[#24231f] hover:text-white"
+          className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-[#e9edfb] transition-colors hover:bg-white hover:text-[#05060e]"
           aria-label={`Open ${item.title}`}
         >
           <Icon name="arrow" size={16} />
@@ -213,14 +217,14 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#171714]/70 p-2 backdrop-blur-sm sm:p-6" role="dialog" aria-modal="true">
-      <div className="mx-auto flex h-full max-w-[1440px] flex-col overflow-hidden rounded-[20px] bg-[#f9f8f3] shadow-2xl">
-        <div className="flex h-14 shrink-0 items-center justify-between border-b border-black/10 px-4 sm:px-6">
+    <div className="fixed inset-0 z-50 bg-[#05060e]/80 p-2 backdrop-blur-sm sm:p-6" role="dialog" aria-modal="true">
+      <div className="mx-auto flex h-full max-w-[1440px] flex-col overflow-hidden rounded-[20px] bg-[#0b0e1c] shadow-2xl ring-1 ring-white/10">
+        <div className="flex h-14 shrink-0 items-center justify-between border-b border-white/10 px-4 sm:px-6">
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-[#66a875]" />
             <span className="text-sm font-semibold">{item.title} — Live demo</span>
           </div>
-          <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-black/5" aria-label="Close preview">
+          <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-white/10" aria-label="Close preview">
             <Icon name="close" />
           </button>
         </div>
@@ -235,14 +239,14 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
             </button>
           </nav>
           {notice && (
-            <button onClick={() => setNotice("")} className="mx-auto mb-2 block rounded-full bg-[#20201c] px-5 py-2 text-xs font-semibold text-white">
+            <button onClick={() => setNotice("")} className="mx-auto mb-2 block rounded-full bg-[#05060e] px-5 py-2 text-xs font-semibold text-white">
               {notice} ×
             </button>
           )}
           <section className="grid min-h-[calc(100%-88px)] items-center gap-8 px-6 pb-10 sm:grid-cols-2 sm:px-12 sm:pb-12">
             <div className="order-2 max-w-xl sm:order-1">
               <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em]">Independent · Thoughtful · Modern</p>
-              <h2 className="font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl lg:text-8xl">
+              <h2 className="font-display text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl lg:text-8xl">
                 Made for the<br />curious at heart.
               </h2>
               <p className="mt-7 max-w-md text-base leading-7 opacity-75">
@@ -289,27 +293,27 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f5ef] text-[#24231f]">
-      <header className="border-b border-[#dcd9cf]">
+    <div className="min-h-screen bg-[#05060e] text-[#e9edfb]">
+      <header className="border-b border-white/10">
         <div className="mx-auto flex h-[76px] max-w-[1420px] items-center justify-between px-5 sm:px-8">
-          <a href="#" className="text-[21px] font-black tracking-[-0.04em]">Canvas<span className="text-[#d8533c]">.</span></a>
+          <a href="#" aria-label="Analyst Solution home"><Wordmark className="h-7 sm:h-8" /></a>
           <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-            <a href="#templates" className="hover:text-[#d8533c]">Templates</a>
-            <a href="#about" className="hover:text-[#d8533c]">How it works</a>
-            <a href="#journal" className="hover:text-[#d8533c]">Journal</a>
+            <a href="#templates" className="hover:text-[#6bc7f8]">Templates</a>
+            <a href="#about" className="hover:text-[#6bc7f8]">How it works</a>
+            <a href="#journal" className="hover:text-[#6bc7f8]">Journal</a>
           </nav>
           <div className="hidden items-center gap-3 md:flex">
-            <button onClick={() => setQuery("")} className="grid h-10 w-10 place-items-center rounded-full border border-[#d7d4ca]" aria-label="Search templates">
+            <button onClick={() => setQuery("")} className="grid h-10 w-10 place-items-center rounded-full border border-white/15 hover:border-[#6bc7f8]" aria-label="Search templates">
               <Icon name="search" />
             </button>
-            <a href="#templates" className="rounded-full bg-[#24231f] px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-[#d8533c]">Browse all</a>
+            <a href="#templates" className="brand-grad-bg rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90">Browse all</a>
           </div>
           <button onClick={() => setMobileOpen(!mobileOpen)} className="grid h-10 w-10 place-items-center md:hidden" aria-label="Toggle menu">
             <Icon name={mobileOpen ? "close" : "menu"} />
           </button>
         </div>
         {mobileOpen && (
-          <nav className="flex flex-col gap-4 border-t border-[#dcd9cf] px-5 py-5 text-lg font-semibold md:hidden">
+          <nav className="flex flex-col gap-4 border-t border-white/10 px-5 py-5 text-lg font-semibold md:hidden">
             <a href="#templates" onClick={() => setMobileOpen(false)}>Templates</a>
             <a href="#about" onClick={() => setMobileOpen(false)}>How it works</a>
             <a href="#journal" onClick={() => setMobileOpen(false)}>Journal</a>
@@ -321,23 +325,23 @@ export default function App() {
         <section className="mx-auto flex max-w-[1420px] flex-col px-5 pb-16 pt-6 sm:px-8 sm:pb-24 sm:pt-8">
           <div className="order-2 mt-14 grid items-end gap-10 sm:mt-20 lg:grid-cols-[1fr_370px]">
             <div>
-              <p className="mb-7 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#d8533c]">
+              <p className="mb-7 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#6bc7f8]">
                 <Icon name="spark" size={15} /> Thoughtful websites, ready to make yours
               </p>
-              <h1 className="max-w-5xl font-serif text-[clamp(3.8rem,8vw,8rem)] leading-[0.86] tracking-[-0.055em]">
-                Good design,<br /><span className="italic text-[#d8533c]">ready to go.</span>
+              <h1 className="max-w-5xl font-display text-[clamp(3.8rem,8vw,8rem)] leading-[0.86] tracking-[-0.055em]">
+                Good design,<br /><span className="brand-grad-text italic">ready to go.</span>
               </h1>
             </div>
             <div className="pb-2">
-              <p className="text-lg leading-8 text-[#69675f]">
+              <p className="text-lg leading-8 text-[#8a93b0]">
                 A considered collection of fully functional website templates for people building something meaningful.
               </p>
-              <a href="#templates" className="mt-7 inline-flex items-center gap-3 border-b border-[#24231f] pb-2 text-sm font-bold uppercase tracking-[0.12em]">
+              <a href="#templates" className="mt-7 inline-flex items-center gap-3 border-b border-[#6bc7f8] pb-2 text-sm font-bold uppercase tracking-[0.12em] text-[#e9edfb]">
                 Explore templates <Icon name="arrow" />
               </a>
             </div>
           </div>
-          <div className="order-1 relative overflow-hidden rounded-[22px] bg-[#20201c] p-2 shadow-[0_35px_80px_rgba(36,35,31,0.18)] sm:rounded-[30px] sm:p-3">
+          <div className="order-1 relative overflow-hidden rounded-[22px] bg-[#0b0e1c] p-2 shadow-[0_40px_110px_-30px_rgba(37,87,244,0.55)] ring-1 ring-white/10 sm:rounded-[30px] sm:p-3">
             <div className="flex h-9 items-center justify-between px-2 text-white/60 sm:h-11 sm:px-3">
               <div className="flex gap-1.5">
                 <span className="h-2 w-2 rounded-full bg-white/25" />
@@ -347,13 +351,13 @@ export default function App() {
               <span className="text-[9px] font-bold uppercase tracking-[0.18em] sm:text-[10px]">Template showreel</span>
               <button
                 onClick={() => setReelPaused((current) => !current)}
-                className="grid h-8 w-8 place-items-center rounded-full border border-white/20 text-white transition-colors hover:bg-white hover:text-[#24231f]"
+                className="grid h-8 w-8 place-items-center rounded-full border border-white/20 text-white transition-colors hover:bg-white hover:text-[#05060e]"
                 aria-label={reelPaused ? "Play website showreel" : "Pause website showreel"}
               >
                 <Icon name={reelPaused ? "play" : "pause"} size={15} />
               </button>
             </div>
-            <div className={`website-reel grid aspect-[16/9] grid-cols-3 gap-1.5 overflow-hidden rounded-[15px] bg-[#11110f] p-1.5 sm:gap-3 sm:rounded-[20px] sm:p-3 ${reelPaused ? "is-paused" : ""}`}>
+            <div className={`website-reel grid aspect-[16/9] grid-cols-3 gap-1.5 overflow-hidden rounded-[15px] bg-[#05060e] p-1.5 sm:gap-3 sm:rounded-[20px] sm:p-3 ${reelPaused ? "is-paused" : ""}`}>
               {templates.slice(0, 3).map((item, index) => (
                 <div key={item.id} className="hero-site-window relative overflow-hidden bg-white">
                   <div
@@ -368,21 +372,21 @@ export default function App() {
                       <img src={item.image} alt={`${item.title} website moving ${index === 1 ? "down" : "up"}`} className="h-full w-full object-cover" />
                       <div className="absolute inset-x-0 bottom-[8%] px-[7%] text-white drop-shadow-md">
                         <span className="text-[5px] font-bold uppercase tracking-[0.2em] sm:text-[8px]">The latest edition</span>
-                        <p className="mt-1 font-serif text-[clamp(.8rem,2.5vw,2.7rem)] leading-[0.9] tracking-[-0.04em]">
+                        <p className="mt-1 font-display text-[clamp(.8rem,2.5vw,2.7rem)] leading-[0.9] tracking-[-0.04em]">
                           {index === 0 ? "Gather & stay." : index === 1 ? "Soft structure." : "Space to live."}
                         </p>
                       </div>
                     </div>
                     <div className="flex h-[19%] flex-col items-center justify-center px-[9%] text-center">
                       <span className="text-[5px] font-bold uppercase tracking-[0.2em] sm:text-[8px]">Our point of view</span>
-                      <p className="mt-[5%] font-serif text-[clamp(.7rem,1.8vw,1.8rem)] leading-tight">Thoughtful design for<br />the way we live now.</p>
+                      <p className="mt-[5%] font-display text-[clamp(.7rem,1.8vw,1.8rem)] leading-tight">Thoughtful design for<br />the way we live now.</p>
                       <span className="mt-[6%] border-b border-current pb-1 text-[4px] font-bold uppercase tracking-wider sm:text-[7px]">Discover the story</span>
                     </div>
                     <div className="grid h-[27%] grid-cols-2 gap-px bg-black/10">
                       <img src={templates[(index + 3) % templates.length].image} alt="" className="h-full w-full object-cover" />
                       <div className="flex flex-col justify-between bg-[#f7f5ef] p-[10%]">
                         <span className="text-[4px] font-bold uppercase tracking-[0.18em] sm:text-[7px]">Selected journal</span>
-                        <p className="font-serif text-[clamp(.6rem,1.5vw,1.45rem)] leading-tight">A slower, more considered approach.</p>
+                        <p className="font-display text-[clamp(.6rem,1.5vw,1.45rem)] leading-tight">A slower, more considered approach.</p>
                         <span className="text-[4px] font-bold uppercase sm:text-[7px]">Read more →</span>
                       </div>
                     </div>
@@ -400,16 +404,16 @@ export default function App() {
           </div>
         </section>
 
-        <section id="templates" className="border-t border-[#dcd9cf]">
+        <section id="templates" className="border-t border-white/10">
           <div className="mx-auto max-w-[1420px] px-5 py-14 sm:px-8 sm:py-20">
             <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#89877f]">The collection</p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#8a93b0]">The collection</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Find your starting point.</h2>
               </div>
-              <label className="flex h-12 w-full items-center gap-3 rounded-full border border-[#d7d4ca] bg-white px-5 lg:w-[320px]">
+              <label className="flex h-12 w-full items-center gap-3 rounded-full border border-white/15 bg-[#11152a] px-5 lg:w-[320px]">
                 <Icon name="search" size={17} />
-                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search templates" className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[#96938a]" />
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search templates" className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-[#8a93b0]" />
               </label>
             </div>
             <div className="no-scrollbar mb-10 flex gap-2 overflow-x-auto pb-2">
@@ -417,7 +421,7 @@ export default function App() {
                 <button
                   key={item}
                   onClick={() => setCategory(item)}
-                  className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${category === item ? "bg-[#24231f] text-white" : "border border-[#d7d4ca] hover:border-[#24231f]"}`}
+                  className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${category === item ? "brand-grad-bg text-white" : "border border-white/15 text-[#8a93b0] hover:border-[#6bc7f8] hover:text-[#e9edfb]"}`}
                 >
                   {item}
                 </button>
@@ -436,7 +440,7 @@ export default function App() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-[22px] border border-dashed border-[#c9c6bc] py-20 text-center">
+              <div className="rounded-[22px] border border-dashed border-white/15 py-20 text-center">
                 <p className="text-xl font-semibold">No templates found.</p>
                 <button onClick={() => { setQuery(""); setCategory("All"); }} className="mt-3 text-sm underline">Clear filters</button>
               </div>
@@ -444,11 +448,11 @@ export default function App() {
           </div>
         </section>
 
-        <section id="about" className="bg-[#24231f] text-[#f7f5ef]">
+        <section id="about" className="bg-[#0b0e1c] text-[#e9edfb]">
           <div className="mx-auto grid max-w-[1420px] gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.2fr_1fr]">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.17em] text-[#d78977]">Built to be used</p>
-              <h2 className="mt-6 max-w-2xl font-serif text-5xl leading-[0.98] tracking-[-0.045em] sm:text-7xl">Not just pretty pictures.</h2>
+              <p className="text-xs font-bold uppercase tracking-[0.17em] text-[#6bc7f8]">Built to be used</p>
+              <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[0.98] tracking-[-0.045em] sm:text-7xl">Not just pretty pictures.</h2>
             </div>
             <div className="grid gap-8 sm:grid-cols-2">
               {[
@@ -458,9 +462,9 @@ export default function App() {
                 ["04", "Accessible by default", "Thoughtful contrast, focus states, and keyboard support."],
               ].map(([number, title, body]) => (
                 <div key={number} className="border-t border-white/20 pt-5">
-                  <span className="text-xs text-[#aaa79e]">{number}</span>
+                  <span className="text-xs text-[#8a93b0]">{number}</span>
                   <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#aaa79e]">{body}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#8a93b0]">{body}</p>
                 </div>
               ))}
             </div>
@@ -468,24 +472,24 @@ export default function App() {
         </section>
 
         <section id="journal" className="mx-auto max-w-[1420px] px-5 py-20 sm:px-8 sm:py-28">
-          <div className="rounded-[28px] bg-[#d8dfb6] px-6 py-14 text-center text-[#233017] sm:px-12 sm:py-20">
+          <div className="brand-grad-bg rounded-[28px] px-6 py-14 text-center text-white sm:px-12 sm:py-20">
             <p className="text-xs font-bold uppercase tracking-[0.18em]">New templates, occasionally</p>
-            <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl tracking-[-0.04em] sm:text-6xl">Fresh ideas for your next thing.</h2>
+            <h2 className="mx-auto mt-5 max-w-3xl font-display text-4xl tracking-[-0.04em] sm:text-6xl">Fresh ideas for your next thing.</h2>
             {emailMessage ? (
               <p className="mt-8 text-base font-semibold">{emailMessage}</p>
             ) : (
               <form onSubmit={subscribe} className="mx-auto mt-9 flex max-w-md flex-col gap-3 sm:flex-row">
-                <input type="email" name="email" required placeholder="Your email address" className="h-13 min-w-0 flex-1 rounded-full bg-[#f7f5ef] px-5 text-sm text-[#24231f] outline-none focus:ring-2 focus:ring-[#233017]" />
-                <button className="h-13 rounded-full bg-[#233017] px-7 text-xs font-bold uppercase tracking-wider text-white">Join the list</button>
+                <input type="email" name="email" required placeholder="Your email address" className="h-13 min-w-0 flex-1 rounded-full bg-white/90 px-5 text-sm text-[#05060e] outline-none focus:ring-2 focus:ring-[#05060e]" />
+                <button className="h-13 rounded-full bg-[#05060e] px-7 text-xs font-bold uppercase tracking-wider text-white">Join the list</button>
               </form>
             )}
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-[#dcd9cf]">
-        <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#77756d] sm:flex-row sm:px-8">
-          <span className="font-bold text-[#24231f]">Canvas<span className="text-[#d8533c]">.</span></span>
+      <footer className="border-t border-white/10">
+        <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#8a93b0] sm:flex-row sm:px-8">
+          <Wordmark className="h-6" />
           <span>Demo templates for real ideas. © 2025</span>
           <div className="flex gap-5"><a href="#">Instagram</a><a href="#">Pinterest</a></div>
         </div>

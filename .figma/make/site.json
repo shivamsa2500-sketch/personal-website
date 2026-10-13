@@ -1,11 +1,11 @@
 {
-  "title": "Analyst Solution — website templates for local business",
+  "title": "Analyst Solution \u2014 website templates for local business",
   "description": "Browse finished website designs for local businesses. Open any one as a working demo and ask for it as your own.",
   "robots": {
     "index": true
   },
   "icons": {
-    "icon": "/favicon.svg"
+    "icon": "/favicon.png"
   },
   "accessibility": {
     "addBypassLinks": true,
