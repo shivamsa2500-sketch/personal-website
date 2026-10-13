@@ -171,9 +171,46 @@ const templates: Template[] = [
       "Answers what is actually wrong, before the visit",
     ],
   },
+  {
+    id: 11,
+    title: "Coffee House — Atmosphere",
+    category: "Coffee house",
+    description: "Photography is the room and the interface sits on it like glass on a table. For a cafe that sells the feeling before the flat white.",
+    image: "/demos/coffee-premium/images/hero-espresso.jpg",
+    color: "#f3ece2",
+    textColor: "#2a211b",
+    pages: 6,
+    tag: "New",
+    demo: "/demos/coffee-premium/",
+    features: [
+      "Six pages: home, menu, our story, visit, shop, contact",
+      "Shop with a working basket and demo checkout",
+      "Product dialog for every item on the menu",
+      "Frosted glass panels over full-bleed photography",
+      "Parallax bands, drifting light and steam",
+    ],
+  },
+  {
+    id: 12,
+    title: "Coffee House — Brochure",
+    category: "Coffee house",
+    description: "The same cafe, the same words, the same menu, without the shop. For a place that wants to be found, read and phoned.",
+    image: "/demos/coffee-brochure/images/hero-espresso.jpg",
+    color: "#f7f4ee",
+    textColor: "#1f2a2b",
+    pages: 5,
+    demo: "/demos/coffee-brochure/",
+    features: [
+      "Five pages: home, menu, our story, visit, contact",
+      "Full menu with no ordering system to maintain",
+      "Call and directions as the primary actions",
+      "Soft light pools over warm white",
+      "Lighter build, quicker to get live",
+    ],
+  },
 ];
 
-const categories = ["All", "Plumber", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+const categories = ["All", "Plumber", "Coffee house", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
   name,
@@ -375,13 +412,40 @@ function TemplateCard({
               </div>
             </>
           ) : (
-            <>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
-                In progress
-              </span>
-              <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Priced once the full build is finished.</p>
-            </>
+            item.demo ? (
+              <>
+                <div className="font-display text-[20px] font-bold tracking-[-0.02em] text-[#e9edfb]">
+                  Price on request
+                </div>
+                <p className="mt-0.5 text-xs text-[#8a93b0]">Built and ready. Ask and we will quote it.</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href={`mailto:hello@analystsolution.com?subject=${encodeURIComponent(
+                      `Price for the ${item.title} design`,
+                    )}&body=${encodeURIComponent(
+                      `Hi - what would this design cost for my business?\n\nDesign: ${item.title}\n\nMy business:\nMy phone:\n`,
+                    )}`}
+                    className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
+                  >
+                    Ask the price
+                  </a>
+                  <button
+                    onClick={onPreview}
+                    className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]"
+                  >
+                    Preview
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
+                  In progress
+                </span>
+                <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Priced once the full build is finished.</p>
+              </>
+            )
           )}
         </div>
       </div>

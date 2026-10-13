@@ -1,0 +1,29 @@
+2:"$Sreact.fragment"
+3:"/demos/coffee-premium/_next/static/chunks/0umf92h1sb77c.js"
+4:"/demos/coffee-premium/_next/static/chunks/3skb52f9jm1rf.js"
+5:I[39756,["$3","$4"],"default"]
+6:I[37457,["$3","$4"],"default"]
+b:"/demos/coffee-premium/_next/static/chunks/3ilvtixargzz6.js"
+c:I[5500,["$3","$4","$b"],"Image"]
+d:I[31894,["$3","$4","$b"],"MenuBrowser"]
+e:I[97367,["$3","$4"],"OutletBoundary"]
+f:"$Sreact.suspense"
+12:"ViewportBoundary"
+13:I[97367,["$3","$4"],"$12"]
+14:"MetadataBoundary"
+15:I[97367,["$3","$4"],"$14"]
+16:I[27201,["$3","$4"],"IconMark"]
+8:X
+8:C
+9:X
+a:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[[["$","section",null,{"className":"dark relative isolate overflow-hidden bg-espresso text-cream","children":[["$","div",null,{"className":"absolute -inset-y-[14%] inset-x-0","data-parallax":"0.12","children":["$","$Lc",null,{"src":"/demos/coffee-premium/images/interior-counter.jpg","alt":"Coffee counter with espresso machine, pastry case and brass pendant lights","fill":true,"priority":true,"sizes":"100vw","className":"object-cover","style":{"objectPosition":"50% 55%"}}]}],["$","div",null,{"className":"absolute inset-0 bg-gradient-to-t from-espresso via-espresso/55 to-espresso/25","aria-hidden":"true"}],["$","div",null,{"className":"container-x relative py-[clamp(5rem,4rem+8vw,10rem)]","children":["$","div",null,{"className":"glass glass-dark max-w-3xl rounded-[var(--radius-xl)] p-7 sm:p-10","children":[["$","div",null,{"className":"reveal  max-w-2xl ","children":[["$","p",null,{"className":"eyebrow mb-3 text-caramel","children":"Sample menu"}],["$","h1",null,{"className":"text-[length:var(--step-5)] text-cream","children":["Everything on the ",["$","span",null,{"className":"display-italic text-caramel","children":"bar."}]]}],["$","p",null,{"className":"mt-4 text-[length:var(--step-1)] text-cream/75","children":"Filter by category or dietary need, search by name, and add to a demo order. Prices are sample USD values for this demo."}]]}],"$undefined"]}]}]]}],["$","div",null,{"className":"py-8 lg:py-12","children":["$","$Ld",null,{}]}]],[["$","script","script-0",{"src":"/demos/coffee-premium/_next/static/chunks/3ilvtixargzz6.js","async":true}]],["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]]}],"p":"$@11","v":null,"s":"$9"}}]]
+1:[["children",{"s":"menu","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[null,["$","$L13",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#fbf7f0"}]]}],["$","$L15",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$f",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Menu — Coffee House"}],["$","meta","1",{"name":"description","content":"Espresso bar, cold coffee, tea, pastries and beans to take home. Sample menu with demo prices."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","meta","3",{"property":"og:title","content":"Menu — Coffee House"}],["$","meta","4",{"property":"og:description","content":"Espresso bar, cold coffee, tea, pastries and beans to take home. Sample menu with demo prices."}],["$","meta","5",{"property":"og:site_name","content":"Coffee House"}],["$","meta","6",{"property":"og:locale","content":"en_US"}],["$","meta","7",{"property":"og:image","content":"https://coffee-house-demo.example/images/interior-lounge.jpg"}],["$","meta","8",{"property":"og:type","content":"website"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Menu — Coffee House"}],["$","meta","11",{"name":"twitter:description","content":"Espresso bar, cold coffee, tea, pastries and beans to take home. Sample menu with demo prices."}],["$","meta","12",{"name":"twitter:image","content":"https://coffee-house-demo.example/images/interior-lounge.jpg"}],["$","link","13",{"rel":"icon","href":"/demos/coffee-premium/icon.svg?icon.1aoc0pugv02y1.svg","sizes":"any","type":"image/svg+xml"}],["$","$L16","14",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@17","v":null,"s":"$9"}},"a":"$@18","u":"$@19","b":"F8VgctuJFGkLmSdOydytU"}
+10:null
+19:true
+9:300
+9:C
+18:0
+7:"$undefined"
+17:"$undefined"
+11:"$undefined"
