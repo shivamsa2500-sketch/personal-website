@@ -13,6 +13,12 @@ type Template = {
   /* Path to an exported standalone site under public/demos. When present the
      card and the modal show the real thing instead of the mock preview. */
   demo?: string;
+  /* One-time build price, in whole dollars. Templates without a price are not
+     yet buildable and show as "In progress" instead. */
+  priceFrom?: number;
+  priceTo?: number;
+  /* What the buyer actually gets. Only written for templates whose pages exist. */
+  features?: string[];
 };
 
 const templates: Template[] = [
@@ -87,51 +93,87 @@ const templates: Template[] = [
   {
     id: 7,
     title: "Clearflow Plumbing",
-    category: "Plumbing",
+    category: "Plumber",
     description: "Residential plumbing for San Francisco homes, with a service page for every job type.",
     image: "/demos/clearflow/images/hero.jpg",
     color: "#0f172a",
     textColor: "#e2e8f0",
-    pages: 17,
+    pages: 15,
     tag: "New",
     demo: "/demos/clearflow/",
+    priceFrom: 500,
+    priceTo: 700,
+    features: [
+      "Nine individual service pages",
+      "Reviews page with testimonials",
+      "Quote request form",
+      "About, contact and privacy pages",
+      "Tap-to-call number in the header",
+    ],
   },
   {
     id: 8,
     title: "Editorial Plumbing",
-    category: "Plumbing",
+    category: "Plumber",
     description: "A magazine-styled take on a trade site, with long-form service pages and quote forms.",
     image: "/demos/editorial/images/hero.jpg",
     color: "#f5f1ea",
     textColor: "#1c1917",
-    pages: 17,
+    pages: 15,
     demo: "/demos/editorial/",
+    priceFrom: 550,
+    priceTo: 750,
+    features: [
+      "Eight long-form service pages",
+      "Service-areas page by suburb",
+      "Reviews page",
+      "Quote request form",
+      "Editorial layout that reads like articles",
+    ],
   },
   {
     id: 9,
     title: "Glass Plumbing",
-    category: "Plumbing",
+    category: "Plumber",
     description: "Frosted-glass surfaces over a soft blueprint grid, built around the emergency call-out.",
     image: "/demos/glass/images/leak-repair.jpg",
     color: "#eef4ff",
     textColor: "#10213f",
-    pages: 7,
+    pages: 5,
     demo: "/demos/glass/",
+    priceFrom: 700,
+    priceTo: 900,
+    features: [
+      "Emergency call-out hero",
+      "Services and service-areas pages",
+      "Price agreed before work starts",
+      "Tap-to-call from every screen",
+      "Frosted glass over a blueprint grid",
+    ],
   },
   {
     id: 10,
     title: "Clearline Plumbing",
-    category: "Plumbing",
+    category: "Plumber",
     description: "Shows the system behind the wall, so the customer understands the job before the visit.",
     image: "/demos/interactive3d/images/house-hero.png",
     color: "#0b1220",
     textColor: "#dbeafe",
-    pages: 7,
+    pages: 5,
     demo: "/demos/interactive3d/",
+    priceFrom: 700,
+    priceTo: 900,
+    features: [
+      "Interactive cutaway of the house",
+      "Services and service-areas pages",
+      "Visual explainer for each job",
+      "About and contact pages",
+      "Answers what is actually wrong, before the visit",
+    ],
   },
 ];
 
-const categories = ["All", "Plumbing", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+const categories = ["All", "Plumber", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
   name,
@@ -214,7 +256,7 @@ function TemplateCard({
   onPreview: () => void;
 }) {
   return (
-    <article className="group min-w-0">
+    <article className="group flex min-w-0 flex-col">
       <div
         className="relative aspect-[4/3] overflow-hidden rounded-[22px] border border-white/10 p-3 transition-transform duration-300 group-hover:-translate-y-1"
         style={{ backgroundColor: item.color }}
@@ -269,20 +311,79 @@ function TemplateCard({
           )}
         </button>
       </div>
-      <div className="flex items-start justify-between gap-4 px-1 pt-5">
-        <div>
-          <button onClick={onPreview} className="text-left">
-            <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#e9edfb] hover:underline">{item.title}</h3>
+      <div className="flex flex-1 flex-col px-1 pt-5">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <button onClick={onPreview} className="text-left">
+              <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#e9edfb] hover:underline">{item.title}</h3>
+            </button>
+            <p className="mt-1 text-sm text-[#8a93b0]">
+              {item.category} · {item.pages} pages
+            </p>
+          </div>
+          <button
+            onClick={onPreview}
+            className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-[#e9edfb] transition-colors hover:bg-white hover:text-[#05060e]"
+            aria-label={`Open ${item.title}`}
+          >
+            <Icon name="arrow" size={16} />
           </button>
-          <p className="mt-1 text-sm text-[#8a93b0]">{item.category} · {item.pages} pages</p>
         </div>
-        <button
-          onClick={onPreview}
-          className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-[#e9edfb] transition-colors hover:bg-white hover:text-[#05060e]"
-          aria-label={`Open ${item.title}`}
-        >
-          <Icon name="arrow" size={16} />
-        </button>
+
+        <p className="mt-3 text-sm leading-6 text-[#8a93b0]">{item.description}</p>
+
+        {item.features && (
+          <ul className="mt-4 space-y-2">
+            {item.features.map((f) => (
+              <li key={f} className="flex gap-2.5 text-sm leading-6 text-[#c3cbe4]">
+                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#6bc7f8]" aria-hidden="true" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="mt-auto pt-5">
+          {item.priceFrom ? (
+            <>
+              <div className="flex items-baseline gap-2">
+                <span className="font-display text-[26px] font-bold tracking-[-0.03em] text-[#e9edfb]">
+                  ${item.priceFrom.toLocaleString()}
+                </span>
+                <span className="text-sm text-[#8a93b0]">
+                  to ${item.priceTo?.toLocaleString()}
+                </span>
+              </div>
+              <p className="mt-0.5 text-xs text-[#8a93b0]">One-time build. No monthly fee for the site itself.</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a
+                  href={`mailto:hello@analystsolution.com?subject=${encodeURIComponent(
+                    `I want the ${item.title} design`,
+                  )}&body=${encodeURIComponent(
+                    `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: $${item.priceFrom} to $${item.priceTo}\n\nMy business:\nMy phone:\n`,
+                  )}`}
+                  className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
+                >
+                  Get this design
+                </a>
+                <button
+                  onClick={onPreview}
+                  className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]"
+                >
+                  Preview
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
+                In progress
+              </span>
+              <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Priced once the full build is finished.</p>
+            </>
+          )}
+        </div>
       </div>
     </article>
   );
