@@ -1,4 +1,4 @@
-:HL["/demos/f1-pitlane/_next/static/chunks/39-aw2-knnlkz.css","style"]
+:HL["/demos/f1-pitlane/_next/static/chunks/1u1fsylu7qej1.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"5iDd8dOIN1yoioWditCia","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"8jRG1xf689dJF5zJDJA7W","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

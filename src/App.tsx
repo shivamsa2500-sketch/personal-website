@@ -13,6 +13,9 @@ type Template = {
   /* Path to an exported standalone site under public/demos. When present the
      card and the modal show the real thing instead of the mock preview. */
   demo?: string;
+  /* Optional lighter page for the small card preview (e.g. a poster instead of a live 3D scene),
+     so a grid of previews stays light on phones. The modal and "Preview" still open `demo`. */
+  previewSrc?: string;
   /* One-time build price, in whole dollars. Templates without a price are not
      yet buildable and show as "In progress" instead. */
   priceFrom?: number;
@@ -281,6 +284,7 @@ const templates: Template[] = [
     pages: 2,
     tag: "New",
     demo: "/demos/f1-pitlane/",
+    previewSrc: "/demos/f1-pitlane/preview.html",
     features: [
       "Single-screen 3D garage: real photo cut-outs of every car, ranked by standings",
       "Hover-to-rotate cars, camera fly-in and a hex-lit garage intro",
@@ -398,7 +402,7 @@ function TemplateCard({
           onClick={onPreview}
           aria-label={`Preview ${item.title}`}
         >
-          {item.demo ? <DemoThumb src={item.demo} title={item.title} /> : (
+          {item.demo ? <DemoThumb src={item.previewSrc ?? item.demo} title={item.title} /> : (
           <div className="site-preview-page h-[175%]">
             <div className="flex h-[8%] items-center justify-between px-[5%]" style={{ color: item.textColor }}>
               <span className="text-[9px] font-black uppercase tracking-[0.12em] sm:text-[11px]">{item.title}</span>
