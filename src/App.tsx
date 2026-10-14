@@ -270,9 +270,28 @@ const templates: Template[] = [
       "Self-hosted fonts and scripts, no outside requests",
     ],
   },
+  {
+    id: 17,
+    title: "PITLANE/26 F1 Showroom",
+    category: "Automotive",
+    description: "An interactive 3D garage with all eleven 2026 Formula 1 cars parked in championship order. Hover to turn a car, click to fly into a 360° studio that names every external part as you rotate it.",
+    image: "/demos/f1-pitlane/thumb.jpg",
+    color: "#0a0a0c",
+    textColor: "#ffffff",
+    pages: 2,
+    tag: "New",
+    demo: "/demos/f1-pitlane/",
+    features: [
+      "Single-screen 3D garage: real photo cut-outs of every car, ranked by standings",
+      "Hover-to-rotate cars, camera fly-in and a hex-lit garage intro",
+      "Real-time 360° studio with 16 part callouts that follow the camera",
+      "Per-car stats, spec, features, FIA 2026 rules and photo tabs",
+      "Self-hosted 3D model, fonts and scripts, no outside requests",
+    ],
+  },
 ];
 
-const categories = ["All", "Plumber", "Coffee house", "Ecom", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
   name,
