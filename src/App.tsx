@@ -250,6 +250,26 @@ const templates: Template[] = [
       "Flavours and copy in one config file",
     ],
   },
+  {
+    id: 16,
+    title: "AURENNE Serum Collection",
+    category: "Ecom",
+    description: "A luxury skincare launch for a three-serum range: a turn-the-bottle showcase, an ingredient story, a serum finder quiz and a shop section, all in warm cream and gold.",
+    image: "/demos/ecom-aurenne/thumb.jpg",
+    color: "#f6efe4",
+    textColor: "#1d1611",
+    pages: 1,
+    tag: "New",
+    demo: "/demos/ecom-aurenne/",
+    priceFrom: 2499,
+    features: [
+      "Single page: hero, serums, ingredients, shop, finder, ritual, reviews",
+      "Scroll-driven bottle showcase for each serum",
+      "Three-question serum finder that recommends one product",
+      "4K product and texture imagery throughout",
+      "Self-hosted fonts and scripts, no outside requests",
+    ],
+  },
 ];
 
 const categories = ["All", "Plumber", "Coffee house", "Ecom", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
