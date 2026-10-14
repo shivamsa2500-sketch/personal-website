@@ -1,0 +1,332 @@
+<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NITRO Energy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Layout: full-screen scroll-scrubbed film, then glass panels on a black ground lit by drifting colour. Dark-only by design. */
+:root{
+  --void:#070707; --coal:#121212; --line:#2a2a2a; --bone:#f3efe6; --mute:#9a9a94;
+  --coral:#f04b33; --cobalt:#2d6be4; --pink:#f3a6c8; --mustard:#f5c542;
+  --display:"Archivo","Arial Black",Impact,sans-serif; --sans:"Archivo",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1); --gutter:clamp(16px,5vw,80px); --max:1400px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--void);scroll-behavior:smooth;scroll-padding-top:110px;overscroll-behavior-y:none}
+body{margin:0;background:var(--void);color:var(--bone);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.02em;text-wrap:balance;margin:0}
+p{margin:0;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--mustard);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mustard)}
+.btn{display:inline-block;border-radius:999px;padding:.85rem 1.75rem;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.08em;transition:background .3s,color .3s,transform .3s var(--ease);cursor:pointer;border:0}
+.btn-coral{background:var(--coral);color:#fff}.btn-coral:hover{background:var(--bone);color:var(--void)}
+.btn-bone{background:var(--bone);color:var(--void)}.btn-bone:hover{background:var(--mustard)}
+
+/* ambient light + glass */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:var(--void);transition:opacity .5s}
+html[data-film] .ambient{opacity:0}
+.ambient span{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.6;animation:drift 26s ease-in-out infinite alternate}
+.ambient span:nth-child(1){left:-20vmax;top:-10vmax;background:radial-gradient(circle,var(--coral),transparent 65%)}
+.ambient span:nth-child(2){right:-25vmax;top:30vh;background:radial-gradient(circle,var(--cobalt),transparent 65%);animation-delay:-9s}
+.ambient span:nth-child(3){left:20vw;bottom:-30vmax;background:radial-gradient(circle,var(--pink),transparent 65%);animation-delay:-18s;opacity:.35}
+@keyframes drift{to{transform:translate(8vw,6vh) scale(1.15)}}
+.glass{position:relative;isolation:isolate;border-radius:28px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.05) 55%,rgba(255,255,255,.09));-webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),inset 0 -1px 0 rgba(0,0,0,.45),0 30px 70px -30px rgba(0,0,0,.9)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:radial-gradient(120% 60% at 10% 0%,rgba(255,255,255,.22),transparent 55%)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.05) 40%,rgba(240,75,51,.35));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.glass-bar{background:linear-gradient(180deg,rgba(20,20,20,.72),rgba(20,20,20,.5));-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 20px 50px -30px rgba(0,0,0,.9)}
+.glass-btn{background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 10px 30px -14px rgba(0,0,0,.8);color:var(--bone)}
+.glass-btn:hover{background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.14));transform:translateY(-1px)}
+
+/* header */
+.site-header{position:fixed;inset-inline:0;top:0;z-index:50;transition:opacity .4s,transform .4s var(--ease);padding-top:env(safe-area-inset-top,0px)}
+html[data-film] .site-header{opacity:0;transform:translateY(-12px);pointer-events:none}
+.banner{background:rgba(240,75,51,.9);text-align:center;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;padding:.3rem var(--gutter)}
+.bar{margin-top:12px;height:56px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:0 .5rem 0 1.5rem}
+.logo{font-family:var(--display);font-weight:900;font-size:1.5rem;text-transform:uppercase;letter-spacing:-.02em}
+.logo b{color:var(--coral)}
+.nav{display:none;gap:1.75rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(243,239,230,.8)}
+.nav a:hover{color:var(--bone)}
+@media(min-width:768px){.nav{display:flex}}
+.bar .btn{padding:.6rem 1.25rem;font-size:.85rem}
+
+/* film */
+#film{position:relative;height:380svh}
+#film .pin{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--void)}
+.film-backdrop{position:absolute;left:-15%;top:-15%;width:130%;height:130%;filter:blur(56px) saturate(1.5) brightness(.5)}
+#film video,#film .fallback{position:absolute;left:50%;top:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);object-fit:contain}
+main{position:relative;z-index:1}
+/* flow mode: frame is stretched to content height (no pinning possible) */
+html.flow #film{height:auto;padding-top:calc(env(safe-area-inset-top,0px) + 96px)}
+html.flow #film .pin{position:relative;height:125vw;border-radius:24px;margin-inline:var(--gutter)}
+html.flow .site-header{position:absolute;opacity:1!important;transform:none!important;pointer-events:auto!important}
+html.flow .ambient{position:absolute;min-height:100%}
+
+/* sections */
+.section{padding-block:clamp(4rem,10vw,9rem)}
+.h2{font-size:clamp(2.4rem,6vw,5rem)}
+.intro{padding-block:1.5rem 2.5rem}
+.intro .glass{display:flex;flex-direction:column;gap:1.5rem;padding:2rem}
+.intro h1{font-size:clamp(3rem,8vw,7rem)}
+.intro h1 b{color:var(--coral);font-weight:inherit}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+@media(min-width:768px){.intro .glass{flex-direction:row;align-items:flex-end;justify-content:space-between;padding:3rem}}
+.head{display:flex;flex-direction:column;gap:1rem;margin-bottom:3.5rem}
+@media(min-width:768px){.head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.mute{color:var(--mute)}
+.cards{list-style:none;margin:0;padding:0;display:grid;gap:1.5rem}
+@media(min-width:768px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{overflow:hidden;padding:1.75rem}
+.card .glow{position:absolute;inset:0;opacity:0;transition:opacity .7s;pointer-events:none}
+.card:hover .glow{opacity:1}
+.card .stage{position:relative;display:flex;justify-content:center;padding:1.5rem 0;perspective:1200px}
+.card h3{font-size:1.9rem}
+.card .row{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.price{font-family:var(--display);font-weight:900;font-size:1.25rem}
+.sub{margin-top:.25rem;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.blurb{margin-top:1rem;color:var(--mute)}
+.notes{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:1.25rem 0 0}
+.notes li{border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);padding:.25rem .75rem;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(243,239,230,.8)}
+.buy{margin-top:1.75rem;display:flex;align-items:center;gap:.75rem}
+.buy .btn{flex:1;padding:.8rem 1rem;font-size:.85rem}
+.buy small{color:var(--mute);font-size:.75rem}
+
+/* spinning can */
+.can{--h:420px;--tile-w:calc(var(--h) * .7628);position:relative;width:calc(var(--h) * .448);height:calc(var(--h) * 1.14);filter:var(--flavour,none);transform-style:preserve-3d;transition:transform .6s var(--ease)}
+.can-lid{position:absolute;left:6%;right:6%;top:0;height:9%;border-radius:50%/40%;background:radial-gradient(ellipse at 50% 35%,#3a3a3a,#151515 55%,#000);box-shadow:inset 0 -3px 6px #000,0 2px 0 #333}
+.can-neck{position:absolute;left:3%;right:3%;top:5%;height:8%;background:linear-gradient(90deg,#050505,#2a2a2a 20%,#4a4a4a 42%,#1a1a1a 70%,#050505);border-radius:40% 40% 10% 10%/60% 60% 10% 10%}
+.can-body{position:absolute;left:0;right:0;top:11%;bottom:0;border-radius:10%/3.5%;overflow:hidden;background-image:url("img/label-tile.jpg");background-size:var(--tile-w) 100%;background-repeat:repeat-x;background-position:0 0;animation:can-spin 1.8s linear infinite;animation-play-state:paused}
+.can-body::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.25) 12%,rgba(255,255,255,.1) 30%,rgba(255,255,255,.16) 38%,rgba(0,0,0,0) 55%,rgba(0,0,0,.35) 82%,rgba(0,0,0,.8))}
+.can-body::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 -18px 28px rgba(0,0,0,.7),inset 0 12px 16px rgba(0,0,0,.5)}
+.can-shadow{position:absolute;left:-10%;right:-10%;bottom:-5%;height:12%;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.75),transparent 70%);filter:blur(6px)}
+@keyframes can-spin{to{background-position-x:calc(var(--tile-w) * -1)}}
+.card:hover .can-body,.can:hover .can-body,.can.spin .can-body{animation-play-state:running}
+.card:hover .can,.can:hover{transform:rotateY(-10deg) translateY(-10px) scale(1.04)}
+
+/* why / lineup / faq / cta / footer */
+.why{display:grid;gap:2.5rem}
+@media(min-width:768px){.why{grid-template-columns:.8fr 1.2fr;align-items:center}}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0}
+.facts div{padding:1.5rem}
+.facts dt{font-family:var(--display);font-weight:900;font-size:2.25rem;color:var(--mustard)}
+.facts dd{margin:.5rem 0 0;font-size:.85rem;color:var(--mute)}
+.lineup{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:2.5rem;padding:3.5rem 1.5rem;perspective:1400px}
+.lineup figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.lineup figcaption{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.faq{display:grid;gap:2.5rem}
+@media(min-width:768px){.faq{grid-template-columns:.8fr 1.2fr}}
+.faq .glass{padding:0 1.75rem}
+.faq details{padding:1.25rem 0;border-top:1px solid rgba(255,255,255,.1)}
+.faq details:first-child{border-top:0}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;list-style:none;cursor:pointer;font-weight:700;font-size:1.1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary span{color:var(--coral);transition:transform .3s}
+.faq details[open] summary span{transform:rotate(45deg)}
+.faq details p{margin-top:.75rem;max-width:36rem;color:var(--mute)}
+.cta{padding-bottom:2.5rem}
+.cta .glass{display:flex;flex-direction:column;align-items:flex-start;gap:1.5rem;padding:2.5rem}
+.cta h2{font-size:clamp(2rem,5vw,3.6rem)}
+@media(min-width:768px){.cta .glass{flex-direction:row;align-items:center;justify-content:space-between}}
+footer{padding:1rem var(--gutter) 2rem;position:relative;z-index:1;max-width:var(--max);margin-inline:auto}
+footer .glass{display:flex;flex-direction:column;gap:1.5rem;padding:2rem;font-size:.9rem}
+@media(min-width:768px){footer .glass{flex-direction:row;align-items:center;justify-content:space-between}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.ambient span{animation:none}.can-body{animation:none}}
+</style>
+
+<div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<header class="site-header">
+  <p class="banner">Demo website · fictional brand · nothing is for sale</p>
+  <div class="wrap">
+    <div class="bar glass-bar">
+      <a href="#top" class="logo">NITRO<b>.</b></a>
+      <nav class="nav" aria-label="Primary"><a href="#flavours">Flavours</a><a href="#why">Why nitro</a><a href="#faq">FAQ</a></nav>
+      <a href="#flavours" class="btn btn-bone">Shop</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section id="film" aria-label="Product film, plays as you scroll">
+    <div class="pin">
+      <canvas class="film-backdrop" width="180" height="225" aria-hidden="true"></canvas>
+      <video id="scrub" data-src="video/can-scrub.mp4" poster="video/poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+    </div>
+  </section>
+
+  <section class="wrap intro">
+    <div class="glass">
+      <div>
+        <p class="eyebrow" style="margin-bottom:.75rem">Nitro-charged cold brew energy</p>
+        <h1>Dark. Cold. <b>Charged.</b></h1>
+      </div>
+      <div class="actions">
+        <a href="#flavours" class="btn btn-coral">Shop flavours</a>
+        <a href="#why" class="btn glass-btn">Why nitro</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="flavours" class="section">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow" style="margin-bottom:.75rem">The line-up</p><h2 class="h2">Three flavours.</h2></div>
+        <p class="mute" style="max-width:20rem">Hover a can to spin it.</p>
+      </div>
+      <ul class="cards" id="cards"></ul>
+    </div>
+  </section>
+
+  <section id="why" class="section">
+    <div class="wrap why">
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:.75rem">Why nitro</p>
+        <h2 class="h2">Energy that pours slow.</h2>
+        <p class="mute" style="margin-top:1.25rem;max-width:24rem">Steeped 18 hours, then nitrogen-infused. A texture you drink, not gulp.</p>
+      </div>
+      <dl class="facts">
+        <div class="glass reveal" style="--d:0ms"><dt>160 mg</dt><dd>caffeine from cold brew</dd></div>
+        <div class="glass reveal" style="--d:100ms"><dt>0 g</dt><dd>sugar, zero sweetener aftertaste</dd></div>
+        <div class="glass reveal" style="--d:200ms"><dt>12 oz</dt><dd>widget can, nitro pour</dd></div>
+        <div class="glass reveal" style="--d:300ms"><dt>45 kcal</dt><dd>per can</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-block:1.5rem">
+    <div class="glass lineup" id="lineup"></div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="wrap faq">
+      <div class="reveal"><p class="eyebrow" style="margin-bottom:.75rem">FAQ</p><h2 class="h2" style="font-size:clamp(2.4rem,6vw,4.5rem)">Straight answers.</h2></div>
+      <div class="glass">
+        <details><summary>Coffee or energy drink?<span>+</span></summary><p>Both. Cold-brewed coffee is the base; the lift is its natural caffeine plus B-vitamins. No added sugar.</p></details>
+        <details><summary>Why does it pour like a stout?<span>+</span></summary><p>A nitrogen widget releases on opening. Tiny bubbles give the cascading head and creamy body.</p></details>
+        <details><summary>How much caffeine?<span>+</span></summary><p>160 mg per can, about two espressos. Two cans a day at most.</p></details>
+        <details><summary>Do you ship?<span>+</span></summary><p>This is a demo website. No orders are taken.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap cta">
+    <div class="glass">
+      <h2>Night shift pack.</h2>
+      <a href="#flavours" class="btn btn-coral">Build a 12-pack</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="glass">
+    <div><p class="logo" style="font-size:1.9rem">NITRO<b>.</b></p><p class="mute" style="font-size:.85rem">Nitro-charged cold brew energy</p></div>
+    <div class="mute"><p style="color:var(--bone)">(555) 014-2700 · hello@nitro.example</p><p>Demo site. Brand, product and claims are fictional. Not for sale.</p></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var flavours = [
+    { name: "Origin", sub: "Dark roast · the original", blurb: "Slow-steeped cold brew, nitro-charged. Cocoa-deep, zero sugar.", notes: ["Cocoa", "Toasted oat", "Velvet finish"], filter: "none", accent: "#f04b33" },
+    { name: "Blood Orange", sub: "Citrus volt", blurb: "The nitro base cut with blood-orange peel and a pinch of sea salt.", notes: ["Blood orange", "Sea salt", "Bitter peel"], filter: "hue-rotate(-28deg) saturate(1.2) brightness(1.05)", accent: "#ff7a2a" },
+    { name: "Glacier Berry", sub: "Blueberry · mint ice", blurb: "Wild blueberry and a cold mint snap over the nitro base.", notes: ["Blueberry", "Mint", "Ice-cold snap"], filter: "hue-rotate(195deg) saturate(1.15)", accent: "#39b7ff" }
+  ];
+  function can(h, filter, label) {
+    return '<div class="can" style="--h:' + h + 'px;--flavour:' + filter + '" role="img" aria-label="' + label + '"><div class="can-shadow"></div><div class="can-neck"></div><div class="can-body"></div><div class="can-lid"></div></div>';
+  }
+  var cards = document.getElementById("cards"), lineup = document.getElementById("lineup");
+  flavours.forEach(function (f, i) {
+    var li = document.createElement("li");
+    li.className = "glass card reveal"; li.style.setProperty("--d", (i * 120) + "ms");
+    li.innerHTML = '<div class="glow" style="background:radial-gradient(60% 50% at 50% 40%,' + f.accent + '33,transparent 70%)"></div>' +
+      '<div class="stage">' + can(300, f.filter, f.name + " can") + '</div>' +
+      '<div class="row"><h3>' + f.name + '</h3><p class="price">$3.49</p></div>' +
+      '<p class="sub" style="color:' + f.accent + '">' + f.sub + '</p><p class="blurb">' + f.blurb + '</p>' +
+      '<ul class="notes">' + f.notes.map(function (n) { return "<li>" + n + "</li>"; }).join("") + '</ul>' +
+      '<div class="buy"><button type="button" class="btn glass-btn" id="add-' + i + '">Add to cart</button><small>12-pack $36</small></div>';
+    cards.appendChild(li);
+    var btn = li.querySelector("button");
+    btn.addEventListener("click", function () { btn.textContent = "Added (demo)"; setTimeout(function () { btn.textContent = "Add to cart"; }, 1600); });
+    var fig = document.createElement("figure"); fig.className = "reveal";
+    fig.innerHTML = can(220, f.filter, f.name + " can") + '<figcaption style="color:' + f.accent + '">' + f.name + '</figcaption>';
+    lineup.appendChild(fig);
+  });
+
+  // reveal on scroll (content is visible at rest for reduced-motion users via CSS)
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+  // ---------- scroll-scrubbed film ----------
+  var wrap = document.getElementById("film"), pin = wrap.firstElementChild, video = document.getElementById("scrub"), canvas = document.querySelector(".film-backdrop");
+  var ctx = canvas.getContext("2d"), target = 0, current = 0, flow = false;
+  video.src = video.dataset.src;
+  video.load();
+  // iOS only downloads enough of a video to seek after a play(); muted inline play is allowed without a tap.
+  var primed = false;
+  function prime() {
+    if (primed) return; primed = true;
+    var p = video.play(); if (p && p.then) p.then(function () { video.pause(); }).catch(function () { primed = false; });
+  }
+  video.addEventListener("loadedmetadata", prime);
+  ["touchstart", "pointerdown", "scroll"].forEach(function (e) { window.addEventListener(e, prime, { passive: true, once: true }); });
+  video.addEventListener("playing", function () { video.pause(); });
+  video.addEventListener("seeked", function () { if (video.videoWidth) ctx.drawImage(video, 0, 0, canvas.width, canvas.height); });
+  video.addEventListener("error", function () {
+    var img = document.createElement("img"); img.src = video.poster; img.alt = ""; img.className = "fallback"; video.replaceWith(img);
+    wrap.style.height = "100svh";
+  });
+
+  // Some hosts (notably phones) stretch the page's frame to its full content height, so nothing can pin
+  // and the page itself never scrolls. Detect that and fall back to an in-flow film that scrubs as it passes.
+  function vh() { return window.innerHeight || document.documentElement.clientHeight; }
+  function detectFlow() {
+    var de = document.documentElement, se = document.scrollingElement || de;
+    var next = se.scrollHeight - se.clientHeight < 40;   // page cannot scroll on its own => frame is content-sized
+    if (next !== flow) { flow = next; de.classList.toggle("flow", flow); if (flow) { de.removeAttribute("data-film"); startFlowObserver(); } }
+    // in flow mode make the film taller than the phone screen so it is never fully visible (progress stays continuous)
+    pin.style.height = flow && screen && screen.height ? Math.round(screen.height * 1.1) + "px" : "";
+  }
+  var io = null, maxSeen = 0.01;
+  function startFlowObserver() {
+    if (io || !("IntersectionObserver" in window)) return;
+    var steps = []; for (var i = 0; i <= 50; i++) steps.push(i / 50);
+    io = new IntersectionObserver(function (entries) {
+      var e = entries[entries.length - 1], b = e.boundingClientRect, r = e.intersectionRect, ratio = e.intersectionRatio;
+      if (!e.isIntersecting) { target = b.top > 0 ? 0 : 1; return; }
+      maxSeen = Math.max(maxSeen, ratio);                     // ~ viewport height / film height (rootBounds is hidden cross-origin)
+      var leaving = r.top > b.top + 1;                       // top edge clipped => scrolling out at the top
+      target = leaving ? 1 - 0.5 * ratio / maxSeen : 0.5 * ratio / maxSeen;
+    }, { threshold: steps });
+    io.observe(pin);
+  }
+  function onScroll() {
+    if (flow) return;
+    var rect = wrap.getBoundingClientRect(), total = Math.max(1, wrap.offsetHeight - vh());
+    target = Math.min(1, Math.max(0, -rect.top / total));
+    var pinned = rect.top <= 1 && rect.bottom >= vh() - 1;
+    if (pinned) document.documentElement.setAttribute("data-film", ""); else document.documentElement.removeAttribute("data-film");
+  }
+  function tick() {
+    onScroll();
+    current += (target - current) * 0.18;
+    if (Math.abs(target - current) < 0.0005) current = target;
+    if (video.isConnected && !video.seeking && video.readyState >= 1 && isFinite(video.duration)) {
+      var t = current * (video.duration - 0.05);
+      if (Math.abs(video.currentTime - t) > 1 / 90) video.currentTime = t;
+    }
+    requestAnimationFrame(tick);
+  }
+  detectFlow(); onScroll();
+  window.addEventListener("load", detectFlow);
+  window.addEventListener("resize", function () { detectFlow(); onScroll(); });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  requestAnimationFrame(tick);
+})();
+</script>

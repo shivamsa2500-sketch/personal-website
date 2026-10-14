@@ -230,6 +230,25 @@ const templates: Template[] = [
       "Athletes, our formula, FAQ and contact pages",
     ],
   },
+  {
+    id: 14,
+    title: "Nitro — Video Launch",
+    category: "Ecom",
+    description: "A single scrolling page carried by film. One product, three flavours, and a can that turns as you scroll — for a launch that needs to be felt before it is read.",
+    image: "/demos/ecom-video/video/poster.jpg",
+    color: "#07080a",
+    textColor: "#f2f4f7",
+    pages: 1,
+    tag: "New",
+    demo: "/demos/ecom-video/",
+    features: [
+      "One long page: film, flavours, why and FAQ",
+      "Full-bleed product film as the hero",
+      "Scroll-driven can animation",
+      "Three flavour panels",
+      "FAQ and a pack offer to close",
+    ],
+  },
 ];
 
 const categories = ["All", "Plumber", "Coffee house", "Ecom", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
