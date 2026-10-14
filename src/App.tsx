@@ -250,6 +250,25 @@ const templates: Template[] = [
       "FAQ and a pack offer to close",
     ],
   },
+  {
+    id: 15,
+    title: "Nitro Energy Site",
+    category: "Ecom",
+    description: "The Nitro launch page as a standalone build: scroll-scrubbed can film, three hover-spin flavours and dark liquid-glass styling on one page.",
+    image: "/demos/ecom-nitro/video/poster.jpg",
+    color: "#07080a",
+    textColor: "#f2f4f7",
+    pages: 1,
+    demo: "/demos/ecom-nitro/",
+    priceFrom: 2499,
+    features: [
+      "Single page: film, flavours, why and FAQ",
+      "Scroll-scrubbed can film",
+      "Hover-spin cans for each flavour",
+      "Dark liquid-glass styling",
+      "Flavours and copy in one config file",
+    ],
+  },
 ];
 
 const categories = ["All", "Plumber", "Coffee house", "Ecom", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
