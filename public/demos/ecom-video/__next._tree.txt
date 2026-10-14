@@ -1,4 +1,0 @@
-:HL["/demos/ecom-video/_next/static/chunks/30uc_akz-7z_7.css","style"]
-:HL["/demos/ecom-video/_next/static/media/75affa71d1e2f6a7-s.p.17-aodiw50953.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"mZhltz0Z4Vck6DFeYsb49","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
