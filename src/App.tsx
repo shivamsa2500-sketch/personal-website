@@ -241,6 +241,7 @@ const templates: Template[] = [
     pages: 1,
     tag: "New",
     demo: "/demos/ecom-video/",
+    priceFrom: 2499,
     features: [
       "One long page: film, flavours, why and FAQ",
       "Full-bleed product film as the hero",
