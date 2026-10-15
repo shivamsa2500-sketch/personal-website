@@ -15,7 +15,7 @@ const BRAND = 'Analyst Solution'
 const OG_IMAGE = `${SITE}/og-image.png`
 const EMAIL = 'analyst2sales@gmail.com'
 
-const { render, templatePages, templatePath, formatPrice, socialLinks } = await import(
+const { render, templatePages, templatePath, socialLinks } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 )
 
@@ -37,7 +37,7 @@ const organization = {
   url: `${SITE}/`,
   logo: `${SITE}/logo.png`,
   email: EMAIL,
-  description: 'Finished website designs for local businesses, built for the buyer for a one-time price.',
+  description: 'Finished website designs for local businesses, built as the buyer\'s own site. Quotes on request.',
   areaServed: [
     { '@type': 'Country', name: 'United States' },
     { '@type': 'State', name: 'California' },
@@ -53,21 +53,12 @@ const organization = {
   sameAs: socialLinks.map((link) => link.href),
 }
 
-function offerFor(item) {
-  if (!item.priceFrom) return undefined
-  if (item.priceTo && item.priceTo !== item.priceFrom) {
-    return { '@type': 'AggregateOffer', priceCurrency: 'USD', lowPrice: item.priceFrom, highPrice: item.priceTo }
-  }
-  return { '@type': 'Offer', priceCurrency: 'USD', price: item.priceFrom }
-}
-
 function homePage() {
-  const priced = templatePages.filter((t) => t.priceFrom)
   return {
     route: '/',
     title: `Done-for-You Websites for Local Businesses | ${BRAND}`,
     description:
-      'Finished website designs for US plumbers, cafes and shops. Open any one as a working demo, then we build it as yours from $500. One-time price, no monthly fee.',
+      'Finished website designs for US plumbers, cafes and shops. Open any one as a working demo, then we build it as your own site. Contact us for a quote.',
     jsonLd: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -81,13 +72,14 @@ function homePage() {
           inLanguage: 'en-US',
         },
         {
-          '@type': 'OfferCatalog',
-          '@id': `${SITE}/#catalog`,
+          '@type': 'ItemList',
+          '@id': `${SITE}/#designs`,
           name: 'Website designs for local businesses',
-          itemListElement: priced.map((t) => ({
-            ...offerFor(t),
+          itemListElement: templatePages.map((t, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
             url: `${SITE}${templatePath(t)}`,
-            itemOffered: { '@type': 'Service', name: `${t.title} website build`, category: `${t.category} website design` },
+            name: `${t.title}: ${t.category} website design`,
           })),
         },
       ],
@@ -97,7 +89,6 @@ function homePage() {
 
 function templatePage(item) {
   const url = `${SITE}${templatePath(item)}`
-  const price = formatPrice(item)
   const service = {
     '@type': 'Service',
     '@id': `${url}#service`,
@@ -108,15 +99,13 @@ function templatePage(item) {
     provider: { '@id': `${SITE}/#organization` },
     areaServed: { '@type': 'Country', name: 'United States' },
   }
-  const offer = offerFor(item)
-  if (offer) service.offers = { ...offer, url }
-  const baseTitle = `${item.title}: ${item.category} Website Design${item.priceFrom ? ` from $${item.priceFrom.toLocaleString('en-US')}` : ''}`
+  const baseTitle = `${item.title}: ${item.category} Website Design`
   return {
     route: templatePath(item),
     // Keep titles inside what Google shows; the brand suffix is the first thing to go.
     title: baseTitle.length + BRAND.length + 3 <= 70 ? `${baseTitle} | ${BRAND}` : baseTitle,
     description: clip(
-      `${item.description}${price ? ` One-time build, ${price}, no monthly fee.` : ' Built and ready; ask for a quote.'}`,
+      `${item.description} Built and ready; contact us for a quote.`,
     ),
     jsonLd: {
       '@context': 'https://schema.org',
@@ -197,16 +186,16 @@ const webPage = (route, type, title, description) => ({
 })
 
 const staticPageMeta = [
-  webPage('/pricing/', 'WebPage', 'Website Pricing & How It Works',
-    'One-time website builds for local businesses from $500. 50% to start, 50% at launch, a preview in 5-7 business days, 2 rounds of changes included.'),
+  webPage('/how-it-works/', 'WebPage', 'How It Works',
+    'How a website build works: pick a design, contact us for a quote, pay 50% to start and 50% at launch. A preview in 5-7 business days, 2 rounds of changes included.'),
   webPage('/about/', 'AboutPage', 'About Us',
-    'Analyst Solution is a small remote studio in India building finished, fixed-price websites for US local businesses such as plumbers, cafes and online shops.'),
+    'Analyst Solution is a small remote studio in India building finished websites for US local businesses such as plumbers, cafes and online shops.'),
   webPage('/contact/', 'ContactPage', 'Contact',
-    `Ask about a website for your business. Email ${EMAIL} or use the contact form, and we reply with the scope and a fixed price.`),
+    `Ask about a website for your business. Email ${EMAIL} or use the contact form, and we reply with a quote.`),
   webPage('/privacy/', 'WebPage', 'Privacy Policy',
     'What information Analyst Solution collects on this website, by email, from clients and through YouTube API Services, and how to ask us to delete it.'),
   webPage('/terms/', 'WebPage', 'Terms of Service',
-    'Terms for website builds from Analyst Solution: pricing and payment, timeline, changes, refunds, ownership and hosting.'),
+    'Terms for website builds from Analyst Solution: quotes and payment, timeline, changes, refunds, ownership and hosting.'),
 ]
 
 const pages = [homePage(), ...staticPageMeta, ...templatePages.map(templatePage)]
@@ -247,11 +236,11 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)
 
 const llms = `# ${BRAND}
 
-> ${BRAND} sells finished website designs for local businesses such as plumbers, cafes and online shops, mainly in the United States. Every design is a working demo you can open; the buyer gets it built as their own site for a one-time price with no monthly fee for the site itself. Orders and questions go by email to ${EMAIL}.
+> ${BRAND} sells finished website designs for local businesses such as plumbers, cafes and online shops, mainly in the United States. Every design is a working demo you can open; the buyer gets it built as their own site. Every project is quoted by email. Orders and questions go by email to ${EMAIL}.
 
 ## About the business
 
-- [Pricing and how it works](${SITE}/pricing/): one-time prices, 50% deposit and 50% at launch, preview in 5-7 business days, 2 rounds of changes, refund before work starts
+- [How it works](${SITE}/how-it-works/): contact for quotation, 50% deposit and 50% at launch, preview in 5-7 business days, 2 rounds of changes, refund before work starts
 - [About](${SITE}/about/): remote studio in India building websites for US local businesses
 - [Contact](${SITE}/contact/): email ${EMAIL}
 - [Terms](${SITE}/terms/) and [Privacy policy](${SITE}/privacy/)
@@ -259,7 +248,7 @@ const llms = `# ${BRAND}
 ## Website designs
 
 ${templatePages
-  .map((t) => `- [${t.title}](${SITE}${templatePath(t)}): ${t.category}, ${t.pages} ${t.pages === 1 ? 'page' : 'pages'}${t.priceFrom ? `, ${formatPrice(t)} one-time` : ', price on request'}. ${t.description}`)
+  .map((t) => `- [${t.title}](${SITE}${templatePath(t)}): ${t.category}, ${t.pages} ${t.pages === 1 ? 'page' : 'pages'}. ${t.description}`)
   .join('\n')}
 
 ## Contact

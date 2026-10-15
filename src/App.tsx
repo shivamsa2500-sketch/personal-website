@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useMemo, useState } from "react";
-import { AboutPage, ContactPage, PricingPage, PrivacyPage, TermsPage } from "./TrustPages";
+import { AboutPage, ContactPage, HowItWorksPage, PrivacyPage, TermsPage } from "./TrustPages";
 
 type Template = {
   id: number;
@@ -14,10 +14,6 @@ type Template = {
   /* Path to an exported standalone site under public/demos. When present the card shows
      its static poster (public/posters/<slug>.webp) and the modal opens the real thing. */
   demo?: string;
-  /* One-time build price, in whole dollars. Templates without a price are not
-     yet buildable and show as "In progress" instead. */
-  priceFrom?: number;
-  priceTo?: number;
   /* What the buyer actually gets. Only written for templates whose pages exist. */
   features?: string[];
 };
@@ -102,8 +98,6 @@ export const templates: Template[] = [
     pages: 15,
     tag: "New",
     demo: "/demos/clearflow/",
-    priceFrom: 500,
-    priceTo: 700,
     features: [
       "Nine individual service pages",
       "Reviews page with testimonials",
@@ -122,8 +116,6 @@ export const templates: Template[] = [
     textColor: "#1c1917",
     pages: 15,
     demo: "/demos/editorial/",
-    priceFrom: 550,
-    priceTo: 750,
     features: [
       "Eight long-form service pages",
       "Service-areas page by suburb",
@@ -142,12 +134,10 @@ export const templates: Template[] = [
     textColor: "#10213f",
     pages: 5,
     demo: "/demos/glass/",
-    priceFrom: 700,
-    priceTo: 900,
     features: [
       "Emergency call-out hero",
       "Services and service-areas pages",
-      "Price agreed before work starts",
+      "Quote agreed before work starts",
       "Tap-to-call from every screen",
       "Frosted glass over a blueprint grid",
     ],
@@ -162,8 +152,6 @@ export const templates: Template[] = [
     textColor: "#dbeafe",
     pages: 5,
     demo: "/demos/interactive3d/",
-    priceFrom: 700,
-    priceTo: 900,
     features: [
       "Interactive cutaway of the house",
       "Services and service-areas pages",
@@ -183,7 +171,6 @@ export const templates: Template[] = [
     pages: 6,
     tag: "New",
     demo: "/demos/coffee-premium/",
-    priceFrom: 1199,
     features: [
       "Six pages: home, menu, our story, visit, shop, contact",
       "Shop with a working basket and demo checkout",
@@ -202,7 +189,6 @@ export const templates: Template[] = [
     textColor: "#1f2a2b",
     pages: 5,
     demo: "/demos/coffee-brochure/",
-    priceFrom: 999,
     features: [
       "Five pages: home, menu, our story, visit, contact",
       "Full menu with no ordering system to maintain",
@@ -222,7 +208,6 @@ export const templates: Template[] = [
     pages: 11,
     tag: "New",
     demo: "/demos/ecom-energy/",
-    priceFrom: 1999,
     features: [
       "Eleven pages including shop, cart and checkout",
       "A product page for every flavour",
@@ -242,7 +227,6 @@ export const templates: Template[] = [
     pages: 1,
     tag: "New",
     demo: "/demos/ecom-nitro/",
-    priceFrom: 2499,
     features: [
       "Single page: film, flavours, why and FAQ",
       "Scroll-scrubbed can film",
@@ -262,7 +246,6 @@ export const templates: Template[] = [
     pages: 1,
     tag: "New",
     demo: "/demos/ecom-aurenne/",
-    priceFrom: 2499,
     features: [
       "Single page: hero, serums, ingredients, shop, finder, ritual, reviews",
       "Scroll-driven bottle showcase for each serum",
@@ -325,14 +308,6 @@ export function templatePath(item: Template): string {
 
 /* Only templates with a finished demo get their own page; previews would be thin pages. */
 export const templatePages = templates.filter((item) => item.demo);
-
-export function formatPrice(item: Template): string {
-  if (!item.priceFrom) return "";
-  const from = `$${item.priceFrom.toLocaleString("en-US")}`;
-  return item.priceTo && item.priceTo !== item.priceFrom
-    ? `${from} to $${item.priceTo.toLocaleString("en-US")}`
-    : from;
-}
 
 export type { Template };
 
@@ -502,99 +477,55 @@ function TemplateCard({
         )}
 
         <div className="mt-auto pt-5">
-          <PriceBlock item={item} onPreview={onPreview} />
+          <QuoteBlock item={item} onPreview={onPreview} />
         </div>
       </div>
     </article>
   );
 }
 
-/* Price, terms and the buy / preview actions. Shared by the card and the template page. */
-function PriceBlock({ item, onPreview }: { item: Template; onPreview?: () => void }) {
+/* Quote request and preview actions. Shared by the card and the template page.
+   The site lists no prices: every finished design is quoted by email. */
+function QuoteBlock({ item, onPreview }: { item: Template; onPreview?: () => void }) {
+  if (!item.demo) {
+    return (
+      <>
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
+          In progress
+        </span>
+        <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Available once the full build is finished.</p>
+      </>
+    );
+  }
+
+  const secondary =
+    "rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]";
   return (
     <>
-    {item.priceFrom ? (
-      <>
-        <div className="flex items-baseline gap-2">
-          <span className="font-display text-[26px] font-bold tracking-[-0.03em] text-[#e9edfb]">
-            ${item.priceFrom.toLocaleString("en-US")}
-          </span>
-          {item.priceTo && item.priceTo !== item.priceFrom && (
-            <span className="text-sm text-[#8a93b0]">
-              to ${item.priceTo.toLocaleString("en-US")}
-            </span>
-          )}
-        </div>
-        <p className="mt-0.5 text-xs text-[#8a93b0]">One-time build. No monthly fee for the site itself.</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <a
-            href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
-              `I want the ${item.title} design`,
-            )}&body=${encodeURIComponent(
-              `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: ${
-                item.priceTo && item.priceTo !== item.priceFrom
-                  ? `$${item.priceFrom} to $${item.priceTo}`
-                  : `$${item.priceFrom}`
-              }\n\nMy business:\nMy phone:\n`,
-            )}`}
-            className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-          >
-            Get this design
+      <div className="font-display text-[20px] font-bold tracking-[-0.02em] text-[#e9edfb]">Contact for quotation</div>
+      <p className="mt-0.5 text-xs text-[#8a93b0]">Built and ready. Tell us about your business and we will send a quote.</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <a
+          href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
+            `Quote for the ${item.title} design`,
+          )}&body=${encodeURIComponent(
+            `Hi - I would like a quote for this design for my business.\n\nDesign: ${item.title}\n\nMy business:\nMy phone:\n`,
+          )}`}
+          className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
+        >
+          Get a quote
+        </a>
+        {onPreview ? (
+          <button onClick={onPreview} className={secondary}>
+            Preview
+          </button>
+        ) : (
+          <a href={item.demo} target="_blank" rel="noopener" className={secondary}>
+            Open live demo
           </a>
-          {onPreview ? (
-            <button onClick={onPreview} className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
-              Preview
-            </button>
-          ) : (
-            item.demo && (
-              <a href={item.demo} target="_blank" rel="noopener" className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
-                Open live demo
-              </a>
-            )
-          )}
-        </div>
-      </>
-    ) : (
-      item.demo ? (
-        <>
-          <div className="font-display text-[20px] font-bold tracking-[-0.02em] text-[#e9edfb]">
-            Price on request
-          </div>
-          <p className="mt-0.5 text-xs text-[#8a93b0]">Built and ready. Ask and we will quote it.</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <a
-              href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
-                `Price for the ${item.title} design`,
-              )}&body=${encodeURIComponent(
-                `Hi - what would this design cost for my business?\n\nDesign: ${item.title}\n\nMy business:\nMy phone:\n`,
-              )}`}
-              className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-            >
-              Ask the price
-            </a>
-            {onPreview ? (
-              <button onClick={onPreview} className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
-                Preview
-              </button>
-            ) : (
-              item.demo && (
-                <a href={item.demo} target="_blank" rel="noopener" className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
-                  Open live demo
-                </a>
-              )
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
-            In progress
-          </span>
-          <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Priced once the full build is finished.</p>
-        </>
-      )
-    )}
+        )}
+      </div>
     </>
   );
 }
@@ -680,13 +611,13 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
 
 const navLinks = [
   ["/#templates", "Templates"],
-  ["/pricing/", "Pricing"],
+  ["/how-it-works/", "How it works"],
   ["/about/", "About"],
   ["/contact/", "Contact"],
 ] as const;
 
 const footerLinks = [
-  ["/pricing/", "Pricing & how it works"],
+  ["/how-it-works/", "How it works"],
   ["/about/", "About"],
   ["/contact/", "Contact"],
   ["/privacy/", "Privacy"],
@@ -1034,7 +965,7 @@ function TemplatePage({ item }: { item: Template }) {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#8a93b0]">{item.description}</p>
           </div>
           <div className="rounded-[22px] border border-white/10 bg-[#0b0e1c] p-6">
-            <PriceBlock item={item} />
+            <QuoteBlock item={item} />
           </div>
         </div>
 
@@ -1079,7 +1010,7 @@ function TemplatePage({ item }: { item: Template }) {
                   <a href={templatePath(t)} className="block rounded-[18px] border border-white/10 p-5 hover:border-[#6bc7f8]">
                     <span className="text-lg font-semibold">{t.title}</span>
                     <span className="mt-1 block text-sm text-[#8a93b0]">
-                      {t.category}{t.priceFrom ? ` · from $${t.priceFrom.toLocaleString("en-US")}` : ""}
+                      {t.category} · {t.pages} {t.pages === 1 ? "page" : "pages"}
                     </span>
                   </a>
                 </li>
@@ -1101,7 +1032,7 @@ function TemplatePage({ item }: { item: Template }) {
 export const staticPages: Record<string, () => React.JSX.Element> = {
   "/about/": AboutPage,
   "/contact/": ContactPage,
-  "/pricing/": PricingPage,
+  "/how-it-works/": HowItWorksPage,
   "/privacy/": PrivacyPage,
   "/terms/": TermsPage,
 };

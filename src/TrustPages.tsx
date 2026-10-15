@@ -1,7 +1,7 @@
 import { FormEvent, ReactNode, useState } from "react";
-import { Icon, SiteFooter, SiteHeader, SocialLinks, formatPrice, templatePages, templatePath } from "./App";
+import { Icon, SiteFooter, SiteHeader, SocialLinks, templatePages } from "./App";
 
-/* Business facts shared by the About, Contact, Pricing, Privacy and Terms pages.
+/* Business facts shared by the About, Contact, How it works, Privacy and Terms pages.
    Change them here and every page (and the prerendered HTML) follows. */
 export const business = {
   email: "analyst2sales@gmail.com",
@@ -71,7 +71,7 @@ export function AboutPage() {
         <p>
           Analyst Solution designs complete websites for local businesses such as plumbers, cafes and online shops.
           Every design on this site is a working demo you can click through before you buy. When you choose one, we
-          build it as your own site, with your business name, services, photos and contact details, for a one-time price.
+          build it as your own site, with your business name, services, photos and contact details.
         </p>
       }
     >
@@ -85,17 +85,10 @@ export function AboutPage() {
         <h2>How we are different</h2>
         <ul>
           <li>You see the finished design working before you pay anything. No mock-ups, no guessing.</li>
-          <li>One fixed price, agreed up front, with no monthly fee for the site itself.</li>
+          <li>A written quote for your project, agreed before any work starts.</li>
           <li>Your site is ready in {business.deliveryDays}, with {business.revisionRounds} rounds of changes included.</li>
           <li>You own your domain name. We host the site for you.</li>
         </ul>
-
-        <h2>Why our prices are lower</h2>
-        <p>
-          A website from a US agency usually costs several thousand dollars. Our costs in India are lower, and we start
-          from designs that are already built and tested, so a finished site starts at{" "}
-          <a href="/pricing/">$500</a>. You still get a site made for your business, not a template you have to fill in yourself.
-        </p>
 
         <h2>Find us</h2>
         <p>
@@ -167,7 +160,7 @@ export function ContactPage() {
               <option value="">Not sure yet</option>
               {templatePages.map((t) => (
                 <option key={t.id} value={t.title}>
-                  {t.title}{t.priceFrom ? ` (${formatPrice(t)})` : ""}
+                  {t.title}
                 </option>
               ))}
             </select>
@@ -191,13 +184,13 @@ export function ContactPage() {
         <aside className="h-fit rounded-[22px] border border-white/10 bg-[#0b0e1c] p-6">
           <h2 className="text-lg font-semibold">What happens next</h2>
           <ol className="mt-4 space-y-3 text-sm leading-6 text-[#c3cbe4]">
-            <li>1. We reply by email to confirm what you need and the price.</li>
+            <li>1. We reply by email to confirm what you need and send you a quote.</li>
             <li>2. You pay a {business.deposit} deposit and send your text and photos.</li>
             <li>3. We build your site in {business.deliveryDays} and send you a preview.</li>
             <li>4. You ask for changes ({business.revisionRounds} rounds included), pay the rest, and we launch.</li>
           </ol>
-          <a href="/pricing/" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#6bc7f8] hover:underline">
-            Pricing and full process <Icon name="arrow" size={16} />
+          <a href="/how-it-works/" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#6bc7f8] hover:underline">
+            How it works, step by step <Icon name="arrow" size={16} />
           </a>
         </aside>
       </div>
@@ -205,10 +198,10 @@ export function ContactPage() {
   );
 }
 
-export const pricingFaq: [string, string][] = [
+export const howItWorksFaq: [string, string][] = [
   [
     "How much does a website cost?",
-    "Our finished designs cost from $500 to $2,499 as a one-time build, depending on the design and number of pages. Each design shows its price on its page. There is no monthly fee for the site itself.",
+    "Every business needs something a little different, so we quote each project. Contact us with the design you like and what you need, and we reply with a quote.",
   ],
   [
     "How long does it take?",
@@ -228,54 +221,36 @@ export const pricingFaq: [string, string][] = [
   ],
   [
     "Where are you based?",
-    "We are a remote team in India working with US businesses. Everything runs by email, and prices are in US dollars.",
+    "We are a remote team in India working with US businesses. Everything runs by email, and quotes are in US dollars.",
   ],
 ];
 
-export function PricingPage() {
-  const priced = templatePages.filter((t) => t.priceFrom);
-  const onRequest = templatePages.filter((t) => !t.priceFrom);
-
+export function HowItWorksPage() {
   return (
     <PageShell
-      eyebrow="Pricing & how it works"
-      title={`One fixed price. A preview in ${business.deliveryDays}.`}
+      eyebrow="How it works"
+      title={`Pick a design. A preview in ${business.deliveryDays}.`}
       intro={
         <p>
-          Pick a finished design, and we build it as your business&apos;s website for a one-time price, with no monthly fee
-          for the site itself. You pay {business.deposit} to start and the rest at launch.
+          Choose a finished design, and we build it as your business&apos;s website. Contact us for a quotation: you pay{" "}
+          {business.deposit} to start and the rest at launch.
         </p>
       }
     >
-      <section aria-labelledby="prices">
-        <h2 id="prices" className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">Prices</h2>
-        <div className="mt-6 overflow-x-auto rounded-[18px] border border-white/10">
-          <table className="w-full min-w-[560px] text-left text-sm">
-            <thead className="bg-[#0b0e1c] text-xs uppercase tracking-[0.12em] text-[#8a93b0]">
-              <tr>
-                <th className="px-5 py-3 font-semibold">Design</th>
-                <th className="px-5 py-3 font-semibold">For</th>
-                <th className="px-5 py-3 font-semibold">Pages</th>
-                <th className="px-5 py-3 font-semibold">One-time price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...priced, ...onRequest].map((t) => (
-                <tr key={t.id} className="border-t border-white/10">
-                  <td className="px-5 py-3.5 font-semibold">
-                    <a href={templatePath(t)} className="hover:text-[#6bc7f8] hover:underline">{t.title}</a>
-                  </td>
-                  <td className="px-5 py-3.5 text-[#c3cbe4]">{t.category}</td>
-                  <td className="px-5 py-3.5 text-[#c3cbe4]">{t.pages}</td>
-                  <td className="px-5 py-3.5 text-[#e9edfb]">{t.priceFrom ? formatPrice(t) : "Price on request"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-3 text-sm text-[#8a93b0]">
-          Where a price is a range, it depends on how many pages and features you need. We confirm the exact price by email before you pay.
+      <section className="max-w-3xl rounded-[22px] border border-white/10 bg-[#0b0e1c] p-6 sm:p-8" aria-labelledby="quote">
+        <h2 id="quote" className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">Contact for quotation</h2>
+        <p className="mt-3 leading-7 text-[#c3cbe4]">
+          Tell us which design you like and what your business needs, and we reply by email with a quote. Nothing is
+          charged until you have agreed to it.
         </p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <a href="/contact/" className="brand-grad-bg rounded-full px-6 py-3.5 text-xs font-bold uppercase tracking-[0.12em] text-white hover:opacity-90">
+            Ask for a quote
+          </a>
+          <a href={mailto} className="rounded-full border border-white/15 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.12em] hover:border-[#6bc7f8]">
+            {business.email}
+          </a>
+        </div>
       </section>
 
       <div className="mt-16 grid gap-12 lg:grid-cols-2">
@@ -284,7 +259,7 @@ export function PricingPage() {
           <ol className="mt-6 space-y-5">
             {[
               ["Pick a design", "Open any design as a working demo and choose the one that fits your business."],
-              ["Email us", "Tell us your business name, services and what you need. We reply to confirm the scope and price."],
+              ["Ask for a quote", "Tell us your business name, services and what you need. We reply with a quote."],
               [`Pay a ${business.deposit} deposit`, "We email an invoice in US dollars. You send your text, photos and logo."],
               ["We build your site", `Your site is ready to preview in ${business.deliveryDays}.`],
               ["Review and change", `${business.revisionRounds} rounds of changes are included.`],
@@ -312,7 +287,7 @@ export function PricingPage() {
               `${business.revisionRounds} rounds of changes after the first preview`,
               "Hosting by us, so there is nothing for you to set up",
               "Your own domain name, which stays in your name",
-              "A fixed price agreed before any work starts",
+              "A written quote agreed before any work starts",
             ].map((line) => (
               <li key={line} className="flex gap-3 leading-7">
                 <span className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#6bc7f8]" aria-hidden="true" />
@@ -331,7 +306,7 @@ export function PricingPage() {
       <section className="mt-16 max-w-3xl" aria-labelledby="faq">
         <h2 id="faq" className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">Questions</h2>
         <dl className="mt-6 divide-y divide-white/10 border-y border-white/10">
-          {pricingFaq.map(([q, a]) => (
+          {howItWorksFaq.map(([q, a]) => (
             <div key={q} className="py-5">
               <dt className="font-semibold">{q}</dt>
               <dd className="mt-2 leading-7 text-[#c3cbe4]">{a}</dd>
@@ -380,7 +355,7 @@ export function PrivacyPage() {
 
         <h2>How we use it</h2>
         <ul>
-          <li>To answer your questions and give you a price.</li>
+          <li>To answer your questions and send you a quote.</li>
           <li>To build, host and maintain the website you order.</li>
           <li>To send invoices and keep business records.</li>
           <li>To read and reply to comments and messages on our own videos and posts.</li>
@@ -458,11 +433,10 @@ export function TermsPage() {
           names, reviews, numbers and contact details in them are sample content and are replaced with yours.
         </p>
 
-        <h2>2. Price and payment</h2>
+        <h2>2. Quotes and payment</h2>
         <ul>
-          <li>Prices are in US dollars and are confirmed by email before you pay.</li>
-          <li>You pay {business.deposit} of the price up front to start the work, and the remaining {business.deposit} before the site goes live.</li>
-          <li>The build is a one-time price. There is no monthly fee for the site itself.</li>
+          <li>Every project is quoted by email in US dollars, and you agree to the quote before you pay anything.</li>
+          <li>You pay {business.deposit} of the quoted amount up front to start the work, and the remaining {business.deposit} before the site goes live.</li>
         </ul>
 
         <h2>3. Timeline</h2>
@@ -481,8 +455,8 @@ export function TermsPage() {
         <h2>5. Your content</h2>
         <p>
           You confirm that you have the right to use the text, photos, logos and other material you send us, and that it
-          is accurate. You are responsible for the claims your website makes about your business, including licenses and
-          prices.
+          is accurate. You are responsible for the claims your website makes about your business, including licenses and the services
+          you advertise.
         </p>
 
         <h2>6. Cancellations and refunds</h2>
