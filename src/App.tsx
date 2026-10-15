@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
 type Template = {
   id: number;
@@ -10,12 +10,9 @@ type Template = {
   textColor: string;
   pages: number;
   tag?: string;
-  /* Path to an exported standalone site under public/demos. When present the
-     card and the modal show the real thing instead of the mock preview. */
+  /* Path to an exported standalone site under public/demos. When present the card shows
+     its static poster (public/posters/<slug>.webp) and the modal opens the real thing. */
   demo?: string;
-  /* Optional lighter page for the small card preview (e.g. a poster instead of a live 3D scene),
-     so a grid of previews stays light on phones. The modal and "Preview" still open `demo`. */
-  previewSrc?: string;
   /* One-time build price, in whole dollars. Templates without a price are not
      yet buildable and show as "In progress" instead. */
   priceFrom?: number;
@@ -31,7 +28,7 @@ export const templates: Template[] = [
     category: "Restaurant",
     description: "An intimate neighborhood restaurant with seasonal menus and reservations.",
     image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=crop&fm=webp&q=60&w=720",
     color: "#f0e8da",
     textColor: "#2a281f",
     pages: 5,
@@ -43,7 +40,7 @@ export const templates: Template[] = [
     category: "Fashion",
     description: "A refined editorial storefront for independent fashion labels.",
     image:
-      "https://images.unsplash.com/photo-1664076458686-3449062080ac?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
+      "https://images.unsplash.com/photo-1664076458686-3449062080ac?crop=entropy&cs=tinysrgb&fit=crop&fm=webp&q=60&w=720",
     color: "#d8d9d3",
     textColor: "#181915",
     pages: 7,
@@ -55,7 +52,7 @@ export const templates: Template[] = [
     category: "Architecture",
     description: "A spacious project-led portfolio for studios and interior designers.",
     image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?crop=entropy&cs=tinysrgb&fit=crop&fm=webp&q=60&w=720",
     color: "#bec9cc",
     textColor: "#132326",
     pages: 6,
@@ -66,7 +63,7 @@ export const templates: Template[] = [
     category: "Restaurant",
     description: "A bright, confident hospitality site built for lively all-day dining.",
     image:
-      "https://images.unsplash.com/photo-1687945512099-400cbe94460c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
+      "https://images.unsplash.com/photo-1687945512099-400cbe94460c?crop=entropy&cs=tinysrgb&fit=crop&fm=webp&q=60&w=720",
     color: "#d8dfb6",
     textColor: "#233017",
     pages: 5,
@@ -77,7 +74,7 @@ export const templates: Template[] = [
     category: "Portfolio",
     description: "A bold portfolio for artists, photographers, and creative directors.",
     image:
-      "https://images.unsplash.com/photo-1603189343302-e603f7add05a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
+      "https://images.unsplash.com/photo-1603189343302-e603f7add05a?crop=entropy&cs=tinysrgb&fit=crop&fm=webp&q=60&w=720",
     color: "#d6c8e4",
     textColor: "#21162b",
     pages: 4,
@@ -88,7 +85,7 @@ export const templates: Template[] = [
     category: "Real Estate",
     description: "A calm, premium property showcase for modern homes and developments.",
     image:
-      "https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400",
+      "https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?crop=entropy&cs=tinysrgb&fit=crop&fm=webp&q=60&w=720",
     color: "#c9d2bf",
     textColor: "#1e281b",
     pages: 8,
@@ -284,7 +281,6 @@ export const templates: Template[] = [
     pages: 2,
     tag: "New",
     demo: "/demos/f1-pitlane/",
-    previewSrc: "/demos/f1-pitlane/preview.html",
     features: [
       "Single-screen 3D garage: real photo cut-outs of every car, ranked by standings",
       "Hover-to-rotate cars, camera fly-in and a hex-lit garage intro",
@@ -304,7 +300,6 @@ export const templates: Template[] = [
     pages: 1,
     tag: "New",
     demo: "/demos/sill/",
-    previewSrc: "/demos/sill/preview.html",
     features: [
       "Single page: hero, collection, rooms, delivery steps, FAQ, showroom booking",
       "Arched-window hero with a piece picker and floating photo tiles",
@@ -376,39 +371,24 @@ function Icon({
   );
 }
 
-function DemoThumb({ src, title }: { src: string; title: string }) {
-  const [scale, setScale] = useState(0.3);
-  const hold = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const el = hold.current;
-    if (!el) return;
-    const fit = () => setScale(el.clientWidth / 1280);
-    fit();
-    if (!window.ResizeObserver) return;
-    const ro = new ResizeObserver(fit);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
+/* A screenshot of the demo instead of a live iframe: a grid of iframes booted every demo
+   site on page load and made the homepage slow on phones. Posters are 720x540 WebP. */
+function DemoPoster({ item }: { item: Template }) {
   return (
-    <div ref={hold} className="pointer-events-none h-full w-full overflow-hidden">
-      <iframe
-        src={src}
-        title={`${title} preview`}
-        tabIndex={-1}
-        aria-hidden="true"
-        loading="lazy"
-        scrolling="no"
-        className="origin-top-left border-0"
-        style={{ width: 1280, height: 960, transform: `scale(${scale})` }}
-      />
-    </div>
+    <img
+      src={`/posters/${templateSlug(item)}.webp`}
+      alt={`${item.title} website design`}
+      width={720}
+      height={540}
+      loading="lazy"
+      decoding="async"
+      className="h-full w-full object-cover object-top"
+    />
   );
 }
 
 function Wordmark({ className = "h-7" }: { className?: string }) {
-  return <img src="/logo.png" alt="Analyst Solution" className={`${className} w-auto`} />;
+  return <img src="/logo.webp" alt="Analyst Solution" width={379} height={64} className={`${className} w-auto`} />;
 }
 
 function TemplateCard({
@@ -447,7 +427,7 @@ function TemplateCard({
           onClick={onPreview}
           aria-label={`Preview ${item.title}`}
         >
-          {item.demo ? <DemoThumb src={item.previewSrc ?? item.demo} title={item.title} /> : (
+          {item.demo ? <DemoPoster item={item} /> : (
           <div className="site-preview-page h-[175%]">
             <div className="flex h-[8%] items-center justify-between px-[5%]" style={{ color: item.textColor }}>
               <span className="text-[9px] font-black uppercase tracking-[0.12em] sm:text-[11px]">{item.title}</span>
@@ -455,7 +435,11 @@ function TemplateCard({
             </div>
             <img
               src={item.image}
-              alt={`${item.category} website preview`}
+              alt={`${item.title}, ${item.category.toLowerCase()} website design`}
+              width={720}
+              height={480}
+              loading="lazy"
+              decoding="async"
               className="h-[45%] w-full object-cover"
             />
             <div className="flex h-[18%] items-center justify-between px-[7%]" style={{ backgroundColor: "#fff", color: item.textColor }}>
@@ -471,7 +455,7 @@ function TemplateCard({
                 <span className="text-[7px] font-bold uppercase tracking-wider">Discover more →</span>
               </div>
               <div className="overflow-hidden">
-                <img src={item.image} alt="" className="h-full w-full scale-125 object-cover" />
+                <img src={item.image} alt="" width={720} height={480} loading="lazy" decoding="async" className="h-full w-full scale-125 object-cover" />
               </div>
             </div>
           </div>
@@ -874,7 +858,7 @@ function HomePage() {
                       <span className="text-[4px] font-bold uppercase tracking-wider sm:text-[7px]">Work &nbsp; About &nbsp; Menu</span>
                     </div>
                     <div className="relative h-[36%] overflow-hidden">
-                      <img src={item.image} alt={`${item.title} website moving ${index === 1 ? "down" : "up"}`} className="h-full w-full object-cover" />
+                      <img src={item.image} alt={`${item.title}, ${item.category.toLowerCase()} website design`} width={720} height={480} decoding="async" fetchPriority="low" className="h-full w-full object-cover" />
                       <div className="absolute inset-x-0 bottom-[8%] px-[7%] text-white drop-shadow-md">
                         <span className="text-[5px] font-bold uppercase tracking-[0.2em] sm:text-[8px]">The latest edition</span>
                         <p className="mt-1 font-display text-[clamp(.8rem,2.5vw,2.7rem)] leading-[0.9] tracking-[-0.04em]">
@@ -888,7 +872,7 @@ function HomePage() {
                       <span className="mt-[6%] border-b border-current pb-1 text-[4px] font-bold uppercase tracking-wider sm:text-[7px]">Discover the story</span>
                     </div>
                     <div className="grid h-[27%] grid-cols-2 gap-px bg-black/10">
-                      <img src={templates[(index + 3) % templates.length].image} alt="" className="h-full w-full object-cover" />
+                      <img src={templates[(index + 3) % templates.length].image} alt="" width={720} height={480} decoding="async" fetchPriority="low" className="h-full w-full object-cover" />
                       <div className="flex flex-col justify-between bg-[#f7f5ef] p-[10%]">
                         <span className="text-[4px] font-bold uppercase tracking-[0.18em] sm:text-[7px]">Selected journal</span>
                         <p className="font-display text-[clamp(.6rem,1.5vw,1.45rem)] leading-tight">A slower, more considered approach.</p>

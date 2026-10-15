@@ -156,8 +156,14 @@ function headFor(page) {
   ].join('\n    ')
 }
 
+// The two faces the first screen paints with (hero H1 and body text); see @font-face in src/index.css.
+const fontPreloads = ['/fonts/poppins-400.woff2', '/fonts/inter-latin-var.woff2']
+  .map((href) => `<link rel="preload" href="${href}" as="font" type="font/woff2" crossorigin>`)
+  .join('\n    ')
+
 // Drop the generic tags the Figma site plugin injects; each page gets its own set below.
 const baseShell = shell
+  .replace(/(<meta name="viewport"[^>]*>)/, `$1\n    ${fontPreloads}`)
   .replace(/<title>[\s\S]*?<\/title>\s*/, '')
   .replace(/<meta name="description"[^>]*>\s*/g, '')
   .replace(/<meta property="og:(title|description|image)"[^>]*>\s*/g, '')
