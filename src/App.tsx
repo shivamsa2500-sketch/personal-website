@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import React, { FormEvent, useEffect, useMemo, useState } from "react";
+import { AboutPage, ContactPage, PricingPage, PrivacyPage, TermsPage } from "./TrustPages";
 
 type Template = {
   id: number;
@@ -337,7 +338,7 @@ export type { Template };
 
 const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Furniture", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
-function Icon({
+export function Icon({
   name,
   size = 18,
 }: {
@@ -677,16 +678,31 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
   );
 }
 
-function SiteHeader() {
+const navLinks = [
+  ["/#templates", "Templates"],
+  ["/pricing/", "Pricing"],
+  ["/about/", "About"],
+  ["/contact/", "Contact"],
+] as const;
+
+const footerLinks = [
+  ["/pricing/", "Pricing & how it works"],
+  ["/about/", "About"],
+  ["/contact/", "Contact"],
+  ["/privacy/", "Privacy"],
+  ["/terms/", "Terms"],
+] as const;
+
+export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <header className="border-b border-white/10">
       <div className="mx-auto flex h-[76px] max-w-[1420px] items-center justify-between px-5 sm:px-8">
         <a href="/" aria-label="Analyst Solution home"><Wordmark className="h-7 sm:h-8" /></a>
         <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-          <a href="/#templates" className="hover:text-[#6bc7f8]">Templates</a>
-          <a href="/#about" className="hover:text-[#6bc7f8]">How it works</a>
-          <a href="/#journal" className="hover:text-[#6bc7f8]">Journal</a>
+          {navLinks.map(([href, label]) => (
+            <a key={href} href={href} className="hover:text-[#6bc7f8]">{label}</a>
+          ))}
         </nav>
         <div className="hidden items-center gap-3 md:flex">
           <a href="/#templates" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 hover:border-[#6bc7f8]" aria-label="Search templates">
@@ -700,9 +716,9 @@ function SiteHeader() {
       </div>
       {mobileOpen && (
         <nav className="flex flex-col gap-4 border-t border-white/10 px-5 py-5 text-lg font-semibold md:hidden">
-          <a href="/#templates" onClick={() => setMobileOpen(false)}>Templates</a>
-          <a href="/#about" onClick={() => setMobileOpen(false)}>How it works</a>
-          <a href="/#journal" onClick={() => setMobileOpen(false)}>Journal</a>
+          {navLinks.map(([href, label]) => (
+            <a key={href} href={href} onClick={() => setMobileOpen(false)}>{label}</a>
+          ))}
         </nav>
       )}
     </header>
@@ -749,7 +765,7 @@ export const socialLinks = [
   },
 ];
 
-function SocialLinks() {
+export function SocialLinks() {
   return (
     <ul className="flex gap-2" aria-label="Analyst Solution on social media">
       {socialLinks.map((link) => (
@@ -772,7 +788,7 @@ function SocialLinks() {
   );
 }
 
-function SiteFooter() {
+export function SiteFooter() {
   return (
     <footer className="border-t border-white/10">
       <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#8a93b0] sm:flex-row sm:items-center sm:px-8">
@@ -783,6 +799,11 @@ function SiteFooter() {
           <a href="mailto:analyst2sales@gmail.com" className="hover:text-[#e9edfb]">analyst2sales@gmail.com</a>
         </div>
       </div>
+      <nav aria-label="Footer" className="mx-auto flex max-w-[1420px] flex-wrap gap-x-6 gap-y-2 px-5 pb-8 text-sm text-[#8a93b0] sm:px-8">
+        {footerLinks.map(([href, label]) => (
+          <a key={href} href={href} className="py-1 hover:text-[#e9edfb]">{label}</a>
+        ))}
+      </nav>
     </footer>
   );
 }
@@ -804,10 +825,15 @@ function HomePage() {
     [category, query],
   );
 
+  /* There is no mailing-list service behind this form, so it writes the sign-up email for the
+     visitor to send rather than claiming they are already subscribed. */
   const subscribe = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setEmailMessage(`You're on the list, ${data.get("email")}.`);
+    const email = String(new FormData(event.currentTarget).get("email") ?? "");
+    window.location.href = `mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
+      "Add me to the new templates list",
+    )}&body=${encodeURIComponent(`Please email me when new templates are added: ${email}`)}`;
+    setEmailMessage("Your email app should now be open. Press send to join the list.");
     event.currentTarget.reset();
   };
 
@@ -1071,8 +1097,19 @@ function TemplatePage({ item }: { item: Template }) {
 }
 
 /* `path` comes from window.location in the browser and from the prerender script at build time. */
+/* Fixed pages, keyed by path. scripts/prerender.mjs writes one HTML file for each. */
+export const staticPages: Record<string, () => React.JSX.Element> = {
+  "/about/": AboutPage,
+  "/contact/": ContactPage,
+  "/pricing/": PricingPage,
+  "/privacy/": PrivacyPage,
+  "/terms/": TermsPage,
+};
+
 export default function App({ path = "/" }: { path?: string }) {
   const normalized = path.endsWith("/") ? path : `${path}/`;
+  const Page = staticPages[normalized];
+  if (Page) return <Page />;
   const item = templatePages.find((t) => templatePath(t) === normalized);
   return item ? <TemplatePage item={item} /> : <HomePage />;
 }

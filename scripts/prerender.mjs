@@ -173,7 +173,43 @@ if (!baseShell.includes('<div id="root"></div>')) {
   throw new Error('dist/index.html has no empty #root to prerender into')
 }
 
-const pages = [homePage(), ...templatePages.map(templatePage)]
+// Fixed pages from src/TrustPages.tsx; routes must match `staticPages` in src/App.tsx.
+const webPage = (route, type, title, description) => ({
+  route,
+  title: `${title} | ${BRAND}`,
+  description,
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      organization,
+      {
+        '@type': type,
+        '@id': `${SITE}${route}#webpage`,
+        url: `${SITE}${route}`,
+        name: title,
+        description,
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#organization` },
+        inLanguage: 'en-US',
+      },
+    ],
+  },
+})
+
+const staticPageMeta = [
+  webPage('/pricing/', 'WebPage', 'Website Pricing & How It Works',
+    'One-time website builds for local businesses from $500. 50% to start, 50% at launch, a preview in 5-7 business days, 2 rounds of changes included.'),
+  webPage('/about/', 'AboutPage', 'About Us',
+    'Analyst Solution is a small remote studio in India building finished, fixed-price websites for US local businesses such as plumbers, cafes and online shops.'),
+  webPage('/contact/', 'ContactPage', 'Contact',
+    `Ask about a website for your business. Email ${EMAIL} or use the contact form, and we reply with the scope and a fixed price.`),
+  webPage('/privacy/', 'WebPage', 'Privacy Policy',
+    'What information Analyst Solution collects on this website, by email, from clients and through YouTube API Services, and how to ask us to delete it.'),
+  webPage('/terms/', 'WebPage', 'Terms of Service',
+    'Terms for website builds from Analyst Solution: pricing and payment, timeline, changes, refunds, ownership and hosting.'),
+]
+
+const pages = [homePage(), ...staticPageMeta, ...templatePages.map(templatePage)]
 for (const page of pages) {
   const html = baseShell
     .replace('</head>', `    ${headFor(page)}\n  </head>`)
@@ -183,6 +219,23 @@ for (const page of pages) {
   fs.writeFileSync(file, html)
   console.log(`prerendered ${page.route}`)
 }
+
+// The old static site published its privacy policy at /privacy.html (linked from the YouTube API
+// app). Keep that URL working by sending visitors and crawlers to /privacy/.
+fs.writeFileSync(
+  path.join(dist, 'privacy.html'),
+  `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Privacy Policy | ${BRAND}</title>
+<link rel="canonical" href="${SITE}/privacy/">
+<meta http-equiv="refresh" content="0; url=/privacy/">
+</head>
+<body><p>This page has moved to <a href="/privacy/">${SITE}/privacy/</a>.</p></body>
+</html>
+`,
+)
 
 const today = new Date().toISOString().slice(0, 10)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -195,6 +248,13 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)
 const llms = `# ${BRAND}
 
 > ${BRAND} sells finished website designs for local businesses such as plumbers, cafes and online shops, mainly in the United States. Every design is a working demo you can open; the buyer gets it built as their own site for a one-time price with no monthly fee for the site itself. Orders and questions go by email to ${EMAIL}.
+
+## About the business
+
+- [Pricing and how it works](${SITE}/pricing/): one-time prices, 50% deposit and 50% at launch, preview in 5-7 business days, 2 rounds of changes, refund before work starts
+- [About](${SITE}/about/): remote studio in India building websites for US local businesses
+- [Contact](${SITE}/contact/): email ${EMAIL}
+- [Terms](${SITE}/terms/) and [Privacy policy](${SITE}/privacy/)
 
 ## Website designs
 
