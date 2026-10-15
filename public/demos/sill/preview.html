@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sill preview</title>
+<style>
+  /* Lightweight card preview for template galleries: a still of the arched-window hero with a
+     slow drift. No scripts and one image, so a page full of these stays light on phones. */
+  html, body { margin: 0; height: 100%; background: #ffffff; overflow: hidden; }
+  .frame { position: absolute; inset: 0; overflow: hidden; }
+  .frame img { position: absolute; inset: -3%; width: 106%; height: 106%; object-fit: cover; object-position: 70% 50%;
+    animation: drift 14s ease-in-out infinite alternate; }
+  @keyframes drift { from { transform: scale(1) translate3d(0, 0, 0); } to { transform: scale(1.05) translate3d(-1.5%, -1%, 0); } }
+  @media (prefers-reduced-motion: reduce) { .frame img { animation: none; } }
+</style>
+</head>
+<body>
+  <div class="frame"><img src="thumb.jpg" alt="Sill: furniture shop with an arched window holding a rattan chair"></div>
+</body>
+</html>

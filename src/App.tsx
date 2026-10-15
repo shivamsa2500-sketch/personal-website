@@ -293,9 +293,29 @@ const templates: Template[] = [
       "Self-hosted 3D model, fonts and scripts, no outside requests",
     ],
   },
+  {
+    id: 18,
+    title: "Sill Furniture Shop",
+    category: "Furniture",
+    description: "A calm furniture store for chairs, stools, tables and lamps: an arched-window hero that cycles through pieces, a catalogue you filter by the width of your room, and an order bag that collects pieces as you browse.",
+    image: "/demos/sill/thumb.jpg",
+    color: "#ffffff",
+    textColor: "#151413",
+    pages: 1,
+    tag: "New",
+    demo: "/demos/sill/",
+    previewSrc: "/demos/sill/preview.html",
+    features: [
+      "Single page: hero, collection, rooms, delivery steps, FAQ, showroom booking",
+      "Arched-window hero with a piece picker and floating photo tiles",
+      "\"Will it fit?\" slider that dims every piece wider than your room",
+      "Order bag with a running total that sends the order by email",
+      "Self-hosted fonts and scripts, no outside requests",
+    ],
+  },
 ];
 
-const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Furniture", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
   name,
