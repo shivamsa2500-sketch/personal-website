@@ -1,8 +1,8 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import App, { formatPrice, templatePages, templatePath, templates, type Template } from './App'
+import App, { formatPrice, socialLinks, templatePages, templatePath, templates, type Template } from './App'
 
-export { formatPrice, templatePages, templatePath, templates }
+export { formatPrice, socialLinks, templatePages, templatePath, templates }
 export type { Template }
 
 export function render(path: string): string {

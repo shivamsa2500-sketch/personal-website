@@ -725,13 +725,79 @@ function SiteHeader() {
   );
 }
 
+/* Official profiles. Also listed as `sameAs` in the JSON-LD written by scripts/prerender.mjs. */
+export const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/analystsolution/",
+    icon: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </>
+    ),
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/1312597425265084",
+    icon: <path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4a21 21 0 0 0-2.4-.1c-2.4 0-4 1.4-4 4.1v2.1H8.6v3h2.7V21" />,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@analystsolution",
+    icon: (
+      <>
+        <rect x="2.5" y="5.5" width="19" height="13" rx="4" />
+        <path d="m10 9.5 5 2.5-5 2.5Z" fill="currentColor" />
+      </>
+    ),
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/analyst-solution-717052430/",
+    icon: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="3" />
+        <path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5c0-2 1.2-3 2.6-3S17 11.4 17 13.5V17" />
+      </>
+    ),
+  },
+];
+
+function SocialLinks() {
+  return (
+    <ul className="flex gap-2" aria-label="Analyst Solution on social media">
+      {socialLinks.map((link) => (
+        <li key={link.name}>
+          <a
+            href={link.href}
+            target="_blank"
+            rel="me noopener"
+            aria-label={`Analyst Solution on ${link.name}`}
+            title={link.name}
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-[#c3cbe4] transition-colors hover:border-[#6bc7f8] hover:text-[#6bc7f8]"
+          >
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              {link.icon}
+            </svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function SiteFooter() {
   return (
     <footer className="border-t border-white/10">
-      <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#8a93b0] sm:flex-row sm:px-8">
+      <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#8a93b0] sm:flex-row sm:items-center sm:px-8">
         <Wordmark className="h-6" />
         <span>Finished website designs for local businesses. © 2026</span>
-        <div className="flex gap-5"><a href="https://www.youtube.com/@analystsolution" rel="me noopener" target="_blank">YouTube</a><a href="mailto:analyst2sales@gmail.com">analyst2sales@gmail.com</a></div>
+        <div className="flex flex-wrap items-center gap-5">
+          <SocialLinks />
+          <a href="mailto:analyst2sales@gmail.com" className="hover:text-[#e9edfb]">analyst2sales@gmail.com</a>
+        </div>
       </div>
     </footer>
   );

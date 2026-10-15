@@ -14,9 +14,8 @@ const SITE = 'https://www.analystsolution.com'
 const BRAND = 'Analyst Solution'
 const OG_IMAGE = `${SITE}/og-image.png`
 const EMAIL = 'analyst2sales@gmail.com'
-const YOUTUBE = 'https://www.youtube.com/@analystsolution'
 
-const { render, templatePages, templatePath, formatPrice } = await import(
+const { render, templatePages, templatePath, formatPrice, socialLinks } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 )
 
@@ -51,7 +50,7 @@ const organization = {
     availableLanguage: 'English',
     areaServed: 'US',
   },
-  sameAs: [YOUTUBE],
+  sameAs: socialLinks.map((link) => link.href),
 }
 
 function offerFor(item) {
@@ -200,7 +199,7 @@ ${templatePages
 ## Contact
 
 - Email: ${EMAIL}
-- YouTube: ${YOUTUBE}
+${socialLinks.map((link) => `- ${link.name}: ${link.href}`).join('\n')}
 `
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms)
 
