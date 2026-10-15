@@ -103,7 +103,7 @@ function templatePage(item) {
   return {
     route: templatePath(item),
     // Keep titles inside what Google shows; the brand suffix is the first thing to go.
-    title: baseTitle.length + BRAND.length + 3 <= 70 ? `${baseTitle} | ${BRAND}` : baseTitle,
+    title: baseTitle.length + BRAND.length + 3 <= 60 ? `${baseTitle} | ${BRAND}` : baseTitle,
     description: clip(
       `${item.description} Built and ready; contact us for a quote.`,
     ),

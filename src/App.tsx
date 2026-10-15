@@ -311,7 +311,8 @@ export const templatePages = templates.filter((item) => item.demo);
 
 export type { Template };
 
-const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Furniture", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
+/* Only categories that have a finished design; "in progress" previews are kept off the home page. */
+const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Furniture"];
 
 export function Icon({
   name,
@@ -431,7 +432,7 @@ function TemplateCard({
                 <span className="text-[7px] font-bold uppercase tracking-wider">Discover more →</span>
               </div>
               <div className="overflow-hidden">
-                <img src={item.image} alt="" width={720} height={480} loading="lazy" decoding="async" className="h-full w-full scale-125 object-cover" />
+                <img src={item.image} alt={`${item.title} website, detail view`} width={720} height={480} loading="lazy" decoding="async" className="h-full w-full scale-125 object-cover" />
               </div>
             </div>
           </div>
@@ -599,7 +600,7 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
               </button>
             </div>
             <div className="order-1 h-[42vh] overflow-hidden rounded-[2px] sm:order-2 sm:h-[68vh]">
-              <img src={item.image} alt="" className="h-full w-full object-cover" />
+              <img src={item.image} alt={`${item.title} website hero image`} className="h-full w-full object-cover" />
             </div>
           </section>
         </div>
@@ -748,7 +749,7 @@ function HomePage() {
 
   const visible = useMemo(
     () =>
-      templates.filter(
+      templatePages.filter(
         (item) =>
           (category === "All" || item.category === category) &&
           `${item.title} ${item.category} ${item.description}`.toLowerCase().includes(query.toLowerCase()),
@@ -779,8 +780,8 @@ function HomePage() {
               <p className="mb-7 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#6bc7f8]">
                 <Icon name="spark" size={15} /> Thoughtful websites, ready to make yours
               </p>
-              <h1 className="max-w-5xl font-display text-[clamp(3.8rem,8vw,8rem)] leading-[0.86] tracking-[-0.055em]">
-                Good design,<br /><span className="brand-grad-text italic">ready to go.</span>
+              <h1 className="max-w-5xl font-display text-[clamp(3.2rem,7vw,7rem)] leading-[0.9] tracking-[-0.055em]">
+                Done-for-you websites<br /><span className="brand-grad-text italic pr-[0.12em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">for local businesses.</span>
               </h1>
             </div>
             <div className="pb-2">
@@ -829,7 +830,7 @@ function HomePage() {
                       <span className="mt-[6%] border-b border-current pb-1 text-[4px] font-bold uppercase tracking-wider sm:text-[7px]">Discover the story</span>
                     </div>
                     <div className="grid h-[27%] grid-cols-2 gap-px bg-black/10">
-                      <img src={templates[(index + 3) % templates.length].image} alt="" width={720} height={480} decoding="async" fetchPriority="low" className="h-full w-full object-cover" />
+                      <img src={templates[(index + 3) % templates.length].image} alt={`${templates[(index + 3) % templates.length].title}, ${templates[(index + 3) % templates.length].category.toLowerCase()} website design`} width={720} height={480} decoding="async" fetchPriority="low" className="h-full w-full object-cover" />
                       <div className="flex flex-col justify-between bg-[#f7f5ef] p-[10%]">
                         <span className="text-[4px] font-bold uppercase tracking-[0.18em] sm:text-[7px]">Selected journal</span>
                         <p className="font-display text-[clamp(.6rem,1.5vw,1.45rem)] leading-tight">A slower, more considered approach.</p>
