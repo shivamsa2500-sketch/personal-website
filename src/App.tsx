@@ -24,7 +24,7 @@ type Template = {
   features?: string[];
 };
 
-const templates: Template[] = [
+export const templates: Template[] = [
   {
     id: 1,
     title: "Maison Rue",
@@ -315,6 +315,31 @@ const templates: Template[] = [
   },
 ];
 
+/* URL slug for a template's own page, e.g. "Coffee House — Brochure" -> "coffee-house-brochure". */
+export function templateSlug(item: Template): string {
+  return item.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function templatePath(item: Template): string {
+  return `/templates/${templateSlug(item)}/`;
+}
+
+/* Only templates with a finished demo get their own page; previews would be thin pages. */
+export const templatePages = templates.filter((item) => item.demo);
+
+export function formatPrice(item: Template): string {
+  if (!item.priceFrom) return "";
+  const from = `$${item.priceFrom.toLocaleString("en-US")}`;
+  return item.priceTo && item.priceTo !== item.priceFrom
+    ? `${from} to $${item.priceTo.toLocaleString("en-US")}`
+    : from;
+}
+
+export type { Template };
+
 const categories = ["All", "Plumber", "Coffee house", "Ecom", "Automotive", "Furniture", "Restaurant", "Fashion", "Architecture", "Portfolio", "Real Estate"];
 
 function Icon({
@@ -456,9 +481,15 @@ function TemplateCard({
       <div className="flex flex-1 flex-col px-1 pt-5">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <button onClick={onPreview} className="text-left">
-              <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#e9edfb] hover:underline">{item.title}</h3>
-            </button>
+            {item.demo ? (
+              <a href={templatePath(item)} className="text-left">
+                <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#e9edfb] hover:underline">{item.title}</h3>
+              </a>
+            ) : (
+              <button onClick={onPreview} className="text-left">
+                <h3 className="text-[19px] font-semibold tracking-[-0.025em] text-[#e9edfb] hover:underline">{item.title}</h3>
+              </button>
+            )}
             <p className="mt-1 text-sm text-[#8a93b0]">
               {item.category} · {item.pages} pages
             </p>
@@ -486,81 +517,100 @@ function TemplateCard({
         )}
 
         <div className="mt-auto pt-5">
-          {item.priceFrom ? (
-            <>
-              <div className="flex items-baseline gap-2">
-                <span className="font-display text-[26px] font-bold tracking-[-0.03em] text-[#e9edfb]">
-                  ${item.priceFrom.toLocaleString()}
-                </span>
-                {item.priceTo && item.priceTo !== item.priceFrom && (
-                  <span className="text-sm text-[#8a93b0]">
-                    to ${item.priceTo.toLocaleString()}
-                  </span>
-                )}
-              </div>
-              <p className="mt-0.5 text-xs text-[#8a93b0]">One-time build. No monthly fee for the site itself.</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <a
-                  href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
-                    `I want the ${item.title} design`,
-                  )}&body=${encodeURIComponent(
-                    `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: ${
-                      item.priceTo && item.priceTo !== item.priceFrom
-                        ? `$${item.priceFrom} to $${item.priceTo}`
-                        : `$${item.priceFrom}`
-                    }\n\nMy business:\nMy phone:\n`,
-                  )}`}
-                  className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-                >
-                  Get this design
-                </a>
-                <button
-                  onClick={onPreview}
-                  className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]"
-                >
-                  Preview
-                </button>
-              </div>
-            </>
-          ) : (
-            item.demo ? (
-              <>
-                <div className="font-display text-[20px] font-bold tracking-[-0.02em] text-[#e9edfb]">
-                  Price on request
-                </div>
-                <p className="mt-0.5 text-xs text-[#8a93b0]">Built and ready. Ask and we will quote it.</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <a
-                    href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
-                      `Price for the ${item.title} design`,
-                    )}&body=${encodeURIComponent(
-                      `Hi - what would this design cost for my business?\n\nDesign: ${item.title}\n\nMy business:\nMy phone:\n`,
-                    )}`}
-                    className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-                  >
-                    Ask the price
-                  </a>
-                  <button
-                    onClick={onPreview}
-                    className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]"
-                  >
-                    Preview
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
-                  In progress
-                </span>
-                <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Priced once the full build is finished.</p>
-              </>
-            )
-          )}
+          <PriceBlock item={item} onPreview={onPreview} />
         </div>
       </div>
     </article>
+  );
+}
+
+/* Price, terms and the buy / preview actions. Shared by the card and the template page. */
+function PriceBlock({ item, onPreview }: { item: Template; onPreview?: () => void }) {
+  return (
+    <>
+    {item.priceFrom ? (
+      <>
+        <div className="flex items-baseline gap-2">
+          <span className="font-display text-[26px] font-bold tracking-[-0.03em] text-[#e9edfb]">
+            ${item.priceFrom.toLocaleString("en-US")}
+          </span>
+          {item.priceTo && item.priceTo !== item.priceFrom && (
+            <span className="text-sm text-[#8a93b0]">
+              to ${item.priceTo.toLocaleString("en-US")}
+            </span>
+          )}
+        </div>
+        <p className="mt-0.5 text-xs text-[#8a93b0]">One-time build. No monthly fee for the site itself.</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <a
+            href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
+              `I want the ${item.title} design`,
+            )}&body=${encodeURIComponent(
+              `Hi - I would like this design for my business.\n\nDesign: ${item.title}\nIndicative price: ${
+                item.priceTo && item.priceTo !== item.priceFrom
+                  ? `$${item.priceFrom} to $${item.priceTo}`
+                  : `$${item.priceFrom}`
+              }\n\nMy business:\nMy phone:\n`,
+            )}`}
+            className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
+          >
+            Get this design
+          </a>
+          {onPreview ? (
+            <button onClick={onPreview} className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
+              Preview
+            </button>
+          ) : (
+            item.demo && (
+              <a href={item.demo} target="_blank" rel="noopener" className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
+                Open live demo
+              </a>
+            )
+          )}
+        </div>
+      </>
+    ) : (
+      item.demo ? (
+        <>
+          <div className="font-display text-[20px] font-bold tracking-[-0.02em] text-[#e9edfb]">
+            Price on request
+          </div>
+          <p className="mt-0.5 text-xs text-[#8a93b0]">Built and ready. Ask and we will quote it.</p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a
+              href={`mailto:analyst2sales@gmail.com?subject=${encodeURIComponent(
+                `Price for the ${item.title} design`,
+              )}&body=${encodeURIComponent(
+                `Hi - what would this design cost for my business?\n\nDesign: ${item.title}\n\nMy business:\nMy phone:\n`,
+              )}`}
+              className="brand-grad-bg rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
+            >
+              Ask the price
+            </a>
+            {onPreview ? (
+              <button onClick={onPreview} className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
+                Preview
+              </button>
+            ) : (
+              item.demo && (
+                <a href={item.demo} target="_blank" rel="noopener" className="rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-[#e9edfb] hover:border-[#6bc7f8]">
+                  Open live demo
+                </a>
+              )
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-[#8a93b0]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#8a93b0]" aria-hidden="true" />
+            In progress
+          </span>
+          <p className="mt-2.5 text-xs text-[#8a93b0]">Preview only for now. Priced once the full build is finished.</p>
+        </>
+      )
+    )}
+    </>
   );
 }
 
@@ -643,12 +693,55 @@ function PreviewModal({ item, onClose }: { item: Template; onClose: () => void }
   );
 }
 
-export default function App() {
+function SiteHeader() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  return (
+    <header className="border-b border-white/10">
+      <div className="mx-auto flex h-[76px] max-w-[1420px] items-center justify-between px-5 sm:px-8">
+        <a href="/" aria-label="Analyst Solution home"><Wordmark className="h-7 sm:h-8" /></a>
+        <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
+          <a href="/#templates" className="hover:text-[#6bc7f8]">Templates</a>
+          <a href="/#about" className="hover:text-[#6bc7f8]">How it works</a>
+          <a href="/#journal" className="hover:text-[#6bc7f8]">Journal</a>
+        </nav>
+        <div className="hidden items-center gap-3 md:flex">
+          <a href="/#templates" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 hover:border-[#6bc7f8]" aria-label="Search templates">
+            <Icon name="search" />
+          </a>
+          <a href="/#templates" className="brand-grad-bg rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90">Browse all</a>
+        </div>
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="grid h-10 w-10 place-items-center md:hidden" aria-label="Toggle menu">
+          <Icon name={mobileOpen ? "close" : "menu"} />
+        </button>
+      </div>
+      {mobileOpen && (
+        <nav className="flex flex-col gap-4 border-t border-white/10 px-5 py-5 text-lg font-semibold md:hidden">
+          <a href="/#templates" onClick={() => setMobileOpen(false)}>Templates</a>
+          <a href="/#about" onClick={() => setMobileOpen(false)}>How it works</a>
+          <a href="/#journal" onClick={() => setMobileOpen(false)}>Journal</a>
+        </nav>
+      )}
+    </header>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="border-t border-white/10">
+      <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#8a93b0] sm:flex-row sm:px-8">
+        <Wordmark className="h-6" />
+        <span>Finished website designs for local businesses. © 2026</span>
+        <div className="flex gap-5"><a href="https://www.youtube.com/@analystsolution" rel="me noopener" target="_blank">YouTube</a><a href="mailto:analyst2sales@gmail.com">analyst2sales@gmail.com</a></div>
+      </div>
+    </footer>
+  );
+}
+
+function HomePage() {
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [saved, setSaved] = useState<number[]>([]);
   const [preview, setPreview] = useState<Template | null>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [emailMessage, setEmailMessage] = useState("");
 
   const visible = useMemo(
@@ -670,32 +763,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#05060e] text-[#e9edfb]">
-      <header className="border-b border-white/10">
-        <div className="mx-auto flex h-[76px] max-w-[1420px] items-center justify-between px-5 sm:px-8">
-          <a href="#" aria-label="Analyst Solution home"><Wordmark className="h-7 sm:h-8" /></a>
-          <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
-            <a href="#templates" className="hover:text-[#6bc7f8]">Templates</a>
-            <a href="#about" className="hover:text-[#6bc7f8]">How it works</a>
-            <a href="#journal" className="hover:text-[#6bc7f8]">Journal</a>
-          </nav>
-          <div className="hidden items-center gap-3 md:flex">
-            <button onClick={() => setQuery("")} className="grid h-10 w-10 place-items-center rounded-full border border-white/15 hover:border-[#6bc7f8]" aria-label="Search templates">
-              <Icon name="search" />
-            </button>
-            <a href="#templates" className="brand-grad-bg rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90">Browse all</a>
-          </div>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="grid h-10 w-10 place-items-center md:hidden" aria-label="Toggle menu">
-            <Icon name={mobileOpen ? "close" : "menu"} />
-          </button>
-        </div>
-        {mobileOpen && (
-          <nav className="flex flex-col gap-4 border-t border-white/10 px-5 py-5 text-lg font-semibold md:hidden">
-            <a href="#templates" onClick={() => setMobileOpen(false)}>Templates</a>
-            <a href="#about" onClick={() => setMobileOpen(false)}>How it works</a>
-            <a href="#journal" onClick={() => setMobileOpen(false)}>Journal</a>
-          </nav>
-        )}
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="mx-auto flex max-w-[1420px] flex-col px-5 pb-16 pt-6 sm:px-8 sm:pb-24 sm:pt-8">
@@ -858,15 +926,103 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1420px] flex-col justify-between gap-5 px-5 py-8 text-sm text-[#8a93b0] sm:flex-row sm:px-8">
-          <Wordmark className="h-6" />
-          <span>Demo templates for real ideas. © 2025</span>
-          <div className="flex gap-5"><a href="#">Instagram</a><a href="#">Pinterest</a></div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {preview && <PreviewModal item={preview} onClose={() => setPreview(null)} />}
     </div>
   );
+}
+
+function TemplatePage({ item }: { item: Template }) {
+  const related = templatePages.filter((t) => t.category === item.category && t.id !== item.id);
+  const others = templatePages.filter((t) => t.category !== item.category).slice(0, 3);
+
+  return (
+    <div className="min-h-screen bg-[#05060e] text-[#e9edfb]">
+      <SiteHeader />
+      <main className="mx-auto max-w-[1420px] px-5 pb-20 pt-8 sm:px-8 sm:pt-12">
+        <nav aria-label="Breadcrumb" className="text-sm text-[#8a93b0]">
+          <a href="/" className="hover:text-[#e9edfb]">Home</a>
+          <span aria-hidden="true"> / </span>
+          <a href="/#templates" className="hover:text-[#e9edfb]">Templates</a>
+          <span aria-hidden="true"> / </span>
+          <span className="text-[#c3cbe4]">{item.title}</span>
+        </nav>
+
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_380px]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#6bc7f8]">
+              {item.category} website design · {item.pages} {item.pages === 1 ? "page" : "pages"}
+            </p>
+            <h1 className="mt-4 font-display text-4xl leading-[1] tracking-[-0.04em] sm:text-6xl">{item.title}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#8a93b0]">{item.description}</p>
+          </div>
+          <div className="rounded-[22px] border border-white/10 bg-[#0b0e1c] p-6">
+            <PriceBlock item={item} />
+          </div>
+        </div>
+
+        {item.demo && (
+          <section className="mt-12" aria-label="Live demo">
+            <div className="overflow-hidden rounded-[22px] ring-1 ring-white/10">
+              <iframe
+                src={item.demo}
+                title={`${item.title} live demo`}
+                loading="lazy"
+                className="h-[70vh] w-full border-0 bg-white"
+              />
+            </div>
+            <a href={item.demo} target="_blank" rel="noopener" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#6bc7f8] hover:underline">
+              Open the live demo full screen <Icon name="arrow" size={16} />
+            </a>
+          </section>
+        )}
+
+        {item.features && (
+          <section className="mt-16 max-w-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">What you get</h2>
+            <ul className="mt-6 space-y-3">
+              {item.features.map((f) => (
+                <li key={f} className="flex gap-3 text-base leading-7 text-[#c3cbe4]">
+                  <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#6bc7f8]" aria-hidden="true" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {(related.length > 0 || others.length > 0) && (
+          <section className="mt-16 border-t border-white/10 pt-10">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em]">
+              {related.length ? `More ${item.category.toLowerCase()} designs` : "More designs"}
+            </h2>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {(related.length ? related : others).map((t) => (
+                <li key={t.id}>
+                  <a href={templatePath(t)} className="block rounded-[18px] border border-white/10 p-5 hover:border-[#6bc7f8]">
+                    <span className="text-lg font-semibold">{t.title}</span>
+                    <span className="mt-1 block text-sm text-[#8a93b0]">
+                      {t.category}{t.priceFrom ? ` · from $${t.priceFrom.toLocaleString("en-US")}` : ""}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href="/#templates" className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-[#e9edfb]">
+              See all templates <Icon name="arrow" size={16} />
+            </a>
+          </section>
+        )}
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
+
+/* `path` comes from window.location in the browser and from the prerender script at build time. */
+export default function App({ path = "/" }: { path?: string }) {
+  const normalized = path.endsWith("/") ? path : `${path}/`;
+  const item = templatePages.find((t) => templatePath(t) === normalized);
+  return item ? <TemplatePage item={item} /> : <HomePage />;
 }
