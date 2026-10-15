@@ -1,20 +1,27 @@
 # Analyst Solution
 
-> Analyst Solution sells finished website designs for local businesses such as plumbers, cafes and online shops, mainly in the United States. Every design is a working demo you can open; the buyer gets it built as their own site for a one-time price with no monthly fee for the site itself. Orders and questions go by email to analyst2sales@gmail.com.
+> Analyst Solution sells finished website designs for local businesses such as plumbers, cafes and online shops, mainly in the United States. Every design is a working demo you can open; the buyer gets it built as their own site. Every project is quoted by email. Orders and questions go by email to analyst2sales@gmail.com.
+
+## About the business
+
+- [How it works](https://www.analystsolution.com/how-it-works/): contact for quotation, 50% deposit and 50% at launch, preview in 5-7 business days, 2 rounds of changes, refund before work starts
+- [About](https://www.analystsolution.com/about/): remote studio in India building websites for US local businesses
+- [Contact](https://www.analystsolution.com/contact/): email analyst2sales@gmail.com
+- [Terms](https://www.analystsolution.com/terms/) and [Privacy policy](https://www.analystsolution.com/privacy/)
 
 ## Website designs
 
-- [Clearflow Plumbing](https://www.analystsolution.com/templates/clearflow-plumbing/): Plumber, 15 pages, $500 to $700 one-time. Residential plumbing for San Francisco homes, with a service page for every job type.
-- [Editorial Plumbing](https://www.analystsolution.com/templates/editorial-plumbing/): Plumber, 15 pages, $550 to $750 one-time. A magazine-styled take on a trade site, with long-form service pages and quote forms.
-- [Glass Plumbing](https://www.analystsolution.com/templates/glass-plumbing/): Plumber, 5 pages, $700 to $900 one-time. Frosted-glass surfaces over a soft blueprint grid, built around the emergency call-out.
-- [Clearline Plumbing](https://www.analystsolution.com/templates/clearline-plumbing/): Plumber, 5 pages, $700 to $900 one-time. Shows the system behind the wall, so the customer understands the job before the visit.
-- [Coffee House — Atmosphere](https://www.analystsolution.com/templates/coffee-house-atmosphere/): Coffee house, 6 pages, $1,199 one-time. Photography is the room and the interface sits on it like glass on a table. For a cafe that sells the feeling before the flat white.
-- [Coffee House — Brochure](https://www.analystsolution.com/templates/coffee-house-brochure/): Coffee house, 5 pages, $999 one-time. The same cafe, the same words, the same menu, without the shop. For a place that wants to be found, read and phoned.
-- [Energy Drink Store](https://www.analystsolution.com/templates/energy-drink-store/): Ecom, 11 pages, $1,999 one-time. A white-label storefront for a drinks brand: three flavours, three pack sizes, a basket that remembers you and a checkout that walks all the way through.
-- [Nitro Energy Site](https://www.analystsolution.com/templates/nitro-energy-site/): Ecom, 1 page, $2,499 one-time. The Nitro launch page as a standalone build: scroll-scrubbed can film, three hover-spin flavours and dark liquid-glass styling on one page.
-- [AURENNE Serum Collection](https://www.analystsolution.com/templates/aurenne-serum-collection/): Ecom, 1 page, $2,499 one-time. A luxury skincare launch for a three-serum range: a turn-the-bottle showcase, an ingredient story, a serum finder quiz and a shop section, all in warm cream and gold.
-- [PITLANE/26 F1 Showroom](https://www.analystsolution.com/templates/pitlane-26-f1-showroom/): Automotive, 2 pages, price on request. An interactive 3D garage with all eleven 2026 Formula 1 cars parked in championship order. Hover to turn a car, click to fly into a 360° studio that names every external part as you rotate it.
-- [Sill Furniture Shop](https://www.analystsolution.com/templates/sill-furniture-shop/): Furniture, 1 page, price on request. A calm furniture store for chairs, stools, tables and lamps: an arched-window hero that cycles through pieces, a catalogue you filter by the width of your room, and an order bag that collects pieces as you browse.
+- [Clearflow Plumbing](https://www.analystsolution.com/templates/clearflow-plumbing/): Plumber, 15 pages. Residential plumbing for San Francisco homes, with a service page for every job type.
+- [Editorial Plumbing](https://www.analystsolution.com/templates/editorial-plumbing/): Plumber, 15 pages. A magazine-styled take on a trade site, with long-form service pages and quote forms.
+- [Glass Plumbing](https://www.analystsolution.com/templates/glass-plumbing/): Plumber, 5 pages. Frosted-glass surfaces over a soft blueprint grid, built around the emergency call-out.
+- [Clearline Plumbing](https://www.analystsolution.com/templates/clearline-plumbing/): Plumber, 5 pages. Shows the system behind the wall, so the customer understands the job before the visit.
+- [Coffee House — Atmosphere](https://www.analystsolution.com/templates/coffee-house-atmosphere/): Coffee house, 6 pages. Photography is the room and the interface sits on it like glass on a table. For a cafe that sells the feeling before the flat white.
+- [Coffee House — Brochure](https://www.analystsolution.com/templates/coffee-house-brochure/): Coffee house, 5 pages. The same cafe, the same words, the same menu, without the shop. For a place that wants to be found, read and phoned.
+- [Energy Drink Store](https://www.analystsolution.com/templates/energy-drink-store/): Ecom, 11 pages. A white-label storefront for a drinks brand: three flavours, three pack sizes, a basket that remembers you and a checkout that walks all the way through.
+- [Nitro Energy Site](https://www.analystsolution.com/templates/nitro-energy-site/): Ecom, 1 page. The Nitro launch page as a standalone build: scroll-scrubbed can film, three hover-spin flavours and dark liquid-glass styling on one page.
+- [AURENNE Serum Collection](https://www.analystsolution.com/templates/aurenne-serum-collection/): Ecom, 1 page. A luxury skincare launch for a three-serum range: a turn-the-bottle showcase, an ingredient story, a serum finder quiz and a shop section, all in warm cream and gold.
+- [PITLANE/26 F1 Showroom](https://www.analystsolution.com/templates/pitlane-26-f1-showroom/): Automotive, 2 pages. An interactive 3D garage with all eleven 2026 Formula 1 cars parked in championship order. Hover to turn a car, click to fly into a 360° studio that names every external part as you rotate it.
+- [Sill Furniture Shop](https://www.analystsolution.com/templates/sill-furniture-shop/): Furniture, 1 page. A calm furniture store for chairs, stools, tables and lamps: an arched-window hero that cycles through pieces, a catalogue you filter by the width of your room, and an order bag that collects pieces as you browse.
 
 ## Contact
 
