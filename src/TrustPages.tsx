@@ -119,6 +119,10 @@ export function ContactPage() {
       `Design: ${design || "Not sure yet"}`,
       "",
       field("message"),
+      "",
+      "Consent:",
+      "- I agree that Analyst Solution may use the information I send to reply, prepare a quote and build my website, as described in the privacy policy: Yes",
+      `- My finished website may be shown in the Analyst Solution portfolio: ${data.get("portfolio") ? "Yes" : "No"}`,
     ].join("\n");
     window.location.href = `${mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSent(true);
@@ -169,6 +173,26 @@ export function ContactPage() {
             What do you need?
             <textarea name="message" rows={5} required placeholder="Pages, services, deadline, anything we should know" className={input} />
           </label>
+          <fieldset className="rounded-[18px] border border-white/10 bg-[#0b0e1c] p-5">
+            <legend className="px-2 text-sm font-semibold">Your consent</legend>
+            <label className="flex gap-3 text-sm leading-6 text-[#c3cbe4]">
+              <input name="consent" type="checkbox" required className="mt-1 h-5 w-5 shrink-0 accent-[#4290f5]" />
+              <span>
+                I agree that Analyst Solution may use the information I send, including my name, email, business details,
+                text and photos, to reply to me, prepare a quote and build my website, as described in the{" "}
+                <a href="/privacy/" className="text-[#6bc7f8] underline">privacy policy</a>. (Required)
+              </span>
+            </label>
+            <label className="mt-4 flex gap-3 text-sm leading-6 text-[#c3cbe4]">
+              <input name="portfolio" type="checkbox" className="mt-1 h-5 w-5 shrink-0 accent-[#4290f5]" />
+              <span>
+                You may show my finished website, with my business name, in your portfolio and on social media. (Optional)
+              </span>
+            </label>
+            <p className="mt-4 text-xs leading-5 text-[#8a93b0]">
+              You can withdraw your consent at any time by emailing {business.email}. We never sell your information.
+            </p>
+          </fieldset>
           <div>
             <button className="brand-grad-bg rounded-full px-7 py-3.5 text-xs font-bold uppercase tracking-[0.12em] text-white hover:opacity-90">
               Write the email
@@ -391,6 +415,18 @@ export function PrivacyPage() {
           twice, then deleted. Channel statistics are kept as long as they are useful for tracking our growth.
         </p>
 
+        <h2>Your consent</h2>
+        <p>
+          When you contact us through the form, you agree that we may use the information you send to reply to you,
+          prepare a quote and, if you go ahead, build and host your website. We only use your details for these purposes.
+        </p>
+        <p>
+          We show a client&apos;s finished website in our portfolio or on social media only if they have said yes to that,
+          either on the contact form or by email. You can withdraw either consent at any time by emailing{" "}
+          <a href={mailto}>{business.email}</a>, and we will stop using your information for that purpose, except
+          where we must keep records for tax or legal reasons.
+        </p>
+
         <h2>Your choices and rights</h2>
         <p>
           You can ask us what information we hold about you, ask us to correct it, or ask us to delete it, by emailing{" "}
@@ -465,7 +501,14 @@ export function TermsPage() {
           refundable.
         </p>
 
-        <h2>7. Ownership and hosting</h2>
+        <h2>7. Use of your information</h2>
+        <p>
+          We use the information and content you send only to quote, build and host your website, as described in our{" "}
+          <a href="/privacy/">privacy policy</a>. We show your finished website in our portfolio or on social media only
+          with your consent, which you can withdraw at any time by email.
+        </p>
+
+        <h2>8. Ownership and hosting</h2>
         <ul>
           <li>Your domain name is registered and owned by you.</li>
           <li>We host your website for you after launch.</li>
@@ -475,25 +518,25 @@ export function TermsPage() {
           </li>
         </ul>
 
-        <h2>8. Third-party services</h2>
+        <h2>9. Third-party services</h2>
         <p>
           Your website may rely on services we do not control, such as domain registrars, hosting platforms, email
           providers and map or booking tools. We are not responsible for their outages or changes to their terms.
         </p>
 
-        <h2>9. Limitation of liability</h2>
+        <h2>10. Limitation of liability</h2>
         <p>
           We build every site with care, but we cannot guarantee that it will be free of every error or produce a
           particular amount of business. To the extent the law allows, our total liability for any claim about a project
           is limited to the amount you paid us for that project.
         </p>
 
-        <h2>10. Changes to these terms</h2>
+        <h2>11. Changes to these terms</h2>
         <p>
           We may update these terms. The version that applies to your project is the one in place when you paid your deposit.
         </p>
 
-        <h2>11. Contact</h2>
+        <h2>12. Contact</h2>
         <p>
           Questions about these terms: <a href={mailto}>{business.email}</a>
         </p>
