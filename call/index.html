@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Free homepage demo | analystsolution.com</title>
+  <meta name="description" content="You commented CALL. Tell us four things about your business and we'll design a new homepage for it, free. Like it? We build the full site and go live in 14 days.">
+  <link rel="canonical" href="https://www.analystsolution.com/call/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="analystsolution.com">
+  <meta property="og:url" content="https://www.analystsolution.com/call/">
+  <meta property="og:title" content="Free homepage demo | analystsolution.com">
+  <meta property="og:description" content="Tell us four things about your business and get a new homepage designed for it, free.">
+  <meta property="og:image" content="https://www.analystsolution.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/as/home-hero.css?v=20261018b">
+  <style>
+    @font-face{font-family:Inter;font-style:normal;font-weight:400 600;font-display:swap;src:url(/fonts/inter-latin-var.woff2) format("woff2")}
+    @font-face{font-family:Poppins;font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/poppins-500.woff2) format("woff2")}
+    @font-face{font-family:Poppins;font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/poppins-600.woff2) format("woff2")}
+    @font-face{font-family:Poppins;font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/poppins-700.woff2) format("woff2")}
+    html,body{margin:0;background:#05060e}
+    body{-webkit-font-smoothing:antialiased}
+    .ash-sticky{display:none!important}
+    .cl-hero .ash-copy{display:grid!important}
+    .cl-hero .ash-copy > *{order:0!important}
+    .cl-hero .ash-wrap{display:grid;gap:36px;padding-block:40px 64px}
+    @media (min-width:1024px){.cl-hero .ash-wrap{grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:64px;padding-block:64px 96px;align-items:start}}
+    .cl-before{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;max-width:560px}
+    .cl-before figure{margin:0;position:relative;border-radius:14px;overflow:hidden;outline:1px solid rgba(255,255,255,.1);aspect-ratio:16/10;background:#111}
+    .cl-before img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+    .cl-before figcaption{position:absolute;left:8px;top:8px}
+    /* form card */
+    .cl-card{background:#0b0e1c;border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:26px;box-shadow:0 40px 100px -40px rgba(37,87,244,.7);display:grid;gap:16px;min-width:0}
+    .cl-card h2{margin:0;font:600 26px/1.15 Poppins,Inter,system-ui,sans-serif;letter-spacing:-.02em}
+    .cl-card p.lead{margin:0;color:#8a93b0;font-size:15px;line-height:1.5}
+    .cl-f{display:grid;gap:7px}
+    .cl-f label{font:600 14px Inter,system-ui,sans-serif;color:#e9edfb}
+    .cl-f input[type=text],.cl-f input[type=email],.cl-f input[type=url],.cl-f select{width:100%;font:500 16px Inter,system-ui,sans-serif;color:#e9edfb;background:#05060e;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:13px 14px;min-height:48px}
+    .cl-f input:focus,.cl-f select:focus{outline:2px solid #6bc7f8;outline-offset:1px;border-color:transparent}
+    .cl-f small{color:#8a93b0;font-size:13px}
+    .cl-check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#c3cbe4;line-height:1.45}
+    .cl-check input{width:18px;height:18px;margin-top:2px;accent-color:#4290f5;flex:none}
+    .cl-check a{color:#6bc7f8;text-decoration:underline}
+    .cl-submit{width:100%;border:0;cursor:pointer;font-size:16px;padding:16px 24px}
+    .cl-msg{border-radius:12px;padding:14px 16px;font-size:15px;line-height:1.5}
+    .cl-msg.ok{background:rgba(59,224,160,.12);color:#3be0a0;border:1px solid rgba(59,224,160,.4)}
+    .cl-msg.err{background:rgba(240,107,96,.12);color:#ff8f86;border:1px solid rgba(240,107,96,.4)}
+    /* sections */
+    .cl-sec{border-top:1px solid rgba(255,255,255,.08)}
+    .cl-sec .ash-wrap{padding-block:56px;display:grid;gap:28px}
+    .cl-sec h2{margin:0;font:600 clamp(28px,3.4vw,40px)/1.1 Poppins,Inter,system-ui,sans-serif;letter-spacing:-.03em;text-wrap:balance}
+    .cl-steps{display:grid;gap:16px;margin:0;padding:0;list-style:none}
+    @media (min-width:768px){.cl-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .cl-steps li{background:#0b0e1c;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;display:grid;gap:8px}
+    .cl-steps b{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#2557f4,#6bc7f8);font:700 17px Poppins,system-ui,sans-serif;color:#fff}
+    .cl-steps h3{margin:6px 0 0;font:600 19px Poppins,Inter,system-ui,sans-serif}
+    .cl-steps p{margin:0;color:#8a93b0;line-height:1.55}
+    .cl-cards{display:grid;gap:16px}
+    @media (min-width:768px){.cl-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .cl-cards a{display:grid;gap:12px;background:#0b0e1c;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:12px 12px 18px;transition:border-color .15s}
+    .cl-cards a:hover,.cl-cards a:focus-visible{border-color:#6bc7f8;outline:none}
+    .cl-cards img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:12px;display:block;max-width:100%}
+    .cl-cards span{padding:0 6px;font:600 17px Poppins,Inter,system-ui,sans-serif}
+    .cl-cards small{padding:0 6px;color:#8a93b0;font-size:14px}
+    .cl-faq{display:grid;gap:10px;max-width:820px}
+    .cl-faq details{background:#0b0e1c;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:4px 20px}
+    .cl-faq summary{cursor:pointer;padding:16px 0;font:600 17px Poppins,Inter,system-ui,sans-serif;list-style:none}
+    .cl-faq summary::-webkit-details-marker{display:none}
+    .cl-faq summary::after{content:"+";float:right;color:#6bc7f8}
+    .cl-faq details[open] summary::after{content:"−"}
+    .cl-faq p{margin:0 0 18px;color:#c3cbe4;line-height:1.6}
+    .cl-foot{border-top:1px solid rgba(255,255,255,.08)}
+    .cl-foot .ash-wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:#8a93b0;font-size:14px}
+    .cl-foot nav{display:flex;gap:18px;flex-wrap:wrap}
+    .cl-foot a:hover{color:#6bc7f8}
+    .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="ash">
+  <header class="ash-head">
+    <div class="ash-wrap">
+      <a href="/" class="ash-logo" aria-label="analystsolution.com home"><img src="/logo.webp" alt="analystsolution.com" width="379" height="64"></a>
+      <nav class="ash-nav" aria-label="Main"><a href="/#templates">Designs</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a><a href="/contact/">Contact</a></nav>
+      <a href="#demo-form" class="ash-btn primary small ash-headcta">Get my demo</a>
+      <details class="ash-menu">
+        <summary aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>
+        <nav aria-label="Mobile"><a href="/#templates">Designs</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a><a href="/contact/">Contact</a></nav>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="ash-hero cl-hero" aria-labelledby="cl-title">
+      <div class="ash-wrap">
+        <div class="ash-copy">
+          <span class="ash-eyebrow"><i></i>Free homepage demo</span>
+          <h1 id="cl-title">You asked for a demo. <span class="grad">Here's how it works.</span></h1>
+          <p class="ash-sub">Tell us four things about your business. We design a new homepage for it and email it to you, <b>free and with no obligation</b>. Like it? We build the full site and go live in 14 days.</p>
+          <div class="cl-before" aria-label="The same plumbing website before and after">
+            <figure><img src="/assets/as/compare-old-1440.webp" alt="Before: a cluttered 2008-style website" width="1440" height="900" loading="lazy"><figcaption class="ash-tag old" style="position:absolute">Before</figcaption></figure>
+            <figure><img src="/assets/as/compare-new-1440.webp" alt="After: the Clearflow Plumbing homepage" width="1440" height="900" loading="lazy"><figcaption class="ash-tag new" style="position:absolute;left:8px;right:auto">After</figcaption></figure>
+          </div>
+        </div>
+
+        <form class="cl-card" id="demo-form" action="https://formspree.io/f/FORMSPREE_ID" method="POST" novalidate>
+          <h2>Get my free demo</h2>
+          <p class="lead">Takes about a minute. We reply by email.</p>
+          <div class="cl-f"><label for="f-biz">Business name and city</label><input id="f-biz" name="business" type="text" autocomplete="organization" placeholder="e.g. Clearflow Plumbing, San Diego" required></div>
+          <div class="cl-f"><label for="f-site">Your current website</label><input id="f-site" name="website" type="text" inputmode="url" placeholder="yourbusiness.com, or “none”"><small>No website yet? Just write “none”.</small></div>
+          <div class="cl-f"><label for="f-type">Type of business</label>
+            <select id="f-type" name="business_type" required>
+              <option value="">Choose one</option>
+              <option>Plumber</option><option>HVAC</option><option>Roofer</option><option>Electrician</option><option>Contractor / builder</option>
+              <option>Café or coffee shop</option><option>Restaurant</option><option>Online store</option><option>Other</option>
+            </select></div>
+          <div class="cl-f"><label for="f-email">Your email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" required></div>
+          <label class="cl-check"><input type="checkbox" name="consent" value="yes" required> <span>I agree that analystsolution.com may use these details to reply and prepare my demo, as described in the <a href="/privacy/">privacy policy</a>.</span></label>
+          <input type="hidden" name="_subject" value="New free demo request (analystsolution.com/call)">
+          <input type="hidden" name="source" id="f-source" value="">
+          <input type="text" name="_gotcha" class="vh" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="ash-btn primary cl-submit" id="f-btn">Send me my demo</button>
+          <div id="f-msg" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="cl-sec" aria-labelledby="cl-how">
+      <div class="ash-wrap">
+        <h2 id="cl-how">What happens next</h2>
+        <ol class="cl-steps">
+          <li><b>1</b><h3>We look at your current site</h3><p>Or your Google listing and Instagram if you don't have one. We note what costs you calls on a phone.</p></li>
+          <li><b>2</b><h3>You get a homepage demo</h3><p>A new homepage designed for your business, sent to your email as a link you can open on your phone.</p></li>
+          <li><b>3</b><h3>You decide</h3><p>No obligation. If you want it, we send a written quote, build the full site and go live in 14 days.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cl-sec" aria-labelledby="cl-work">
+      <div class="ash-wrap">
+        <h2 id="cl-work">Finished designs you can open right now</h2>
+        <div class="cl-cards">
+          <a href="/templates/clearflow-plumbing/"><img src="/posters/clearflow-plumbing.webp" alt="Clearflow Plumbing website design" loading="lazy" width="800" height="600"><span>Clearflow Plumbing</span><small>Plumber · 15 pages · tap-to-call header</small></a>
+          <a href="/templates/coffee-house-atmosphere/"><img src="/posters/coffee-house-atmosphere.webp" alt="Coffee House Atmosphere website design" loading="lazy" width="800" height="600"><span>Coffee House — Atmosphere</span><small>Café · 6 pages · menu and shop</small></a>
+          <a href="/templates/nitro-energy-site/"><img src="/posters/nitro-energy-site.webp" alt="Nitro energy drink website design" loading="lazy" width="800" height="600"><span>Nitro Energy</span><small>Online store · 3D product on scroll</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cl-sec" aria-labelledby="cl-faq">
+      <div class="ash-wrap">
+        <h2 id="cl-faq">Questions</h2>
+        <div class="cl-faq">
+          <details><summary>Is the demo really free?</summary><p>Yes. The homepage demo costs nothing and you don't have to buy anything. It's how we show you what your site could look like.</p></details>
+          <details><summary>How long does a full site take?</summary><p>14 days from when we receive your deposit and your text and photos. Two rounds of changes are included.</p></details>
+          <details><summary>What does a full site cost?</summary><p>Every site gets a written quote, agreed before any work starts. You pay 50% to start and 50% at launch.</p></details>
+          <details><summary>What do I need to send?</summary><p>Just the four answers above for the demo. If you go ahead, we'll ask for your logo, photos and the details you want on the site.</p></details>
+          <details><summary>I don't have a website yet. Can you still help?</summary><p>Yes. Write “none” in the website box and we'll design from your business name, your city and what you do.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cl-foot">
+    <div class="ash-wrap">
+      <img src="/logo.webp" alt="analystsolution.com" width="379" height="64" style="height:24px;width:auto">
+      <nav aria-label="Footer"><a href="/how-it-works/">How it works</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav>
+      <span>© 2026 analystsolution.com</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // Formspree: replace FORMSPREE_ID in the form action with the real form ID (e.g. "xyzabcd").
+  var form=document.getElementById('demo-form'), msg=document.getElementById('f-msg'), btn=document.getElementById('f-btn');
+  var p=new URLSearchParams(location.search);
+  document.getElementById('f-source').value=[p.get('utm_source')||'direct',p.get('utm_medium')||'',p.get('utm_campaign')||''].filter(Boolean).join(' / ');
+  function show(cls,html){ msg.className='cl-msg '+cls; msg.innerHTML=html; }
+  function mailFallback(d){
+    var body=['Business: '+d.get('business'),'Website: '+(d.get('website')||'none'),'Type: '+d.get('business_type'),'Email: '+d.get('email'),'Source: '+d.get('source')].join('\n');
+    return 'mailto:analyst2sales@gmail.com?subject='+encodeURIComponent('Free demo request')+'&body='+encodeURIComponent(body);
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ show('err','Please fill in your business, type of business and email, and tick the consent box.'); form.reportValidity&&form.reportValidity(); return; }
+    var d=new FormData(form);
+    if(form.action.indexOf('FORMSPREE_ID')>-1){
+      show('err','Our form is being set up. <a href="'+mailFallback(d)+'" style="color:inherit;text-decoration:underline">Send it by email instead</a> to analyst2sales@gmail.com.'); return;
+    }
+    btn.disabled=true; btn.textContent='Sending…';
+    fetch(form.action,{method:'POST',body:d,headers:{Accept:'application/json'}}).then(function(r){
+      if(r.ok){ form.querySelectorAll('.cl-f,.cl-check,#f-btn').forEach(function(el){el.hidden=true;}); show('ok','Got it. Your demo request is in, and we’ll email you within 2 business days.'); }
+      else throw new Error('bad');
+    }).catch(function(){
+      btn.disabled=false; btn.textContent='Send me my demo';
+      show('err','That didn’t go through. <a href="'+mailFallback(d)+'" style="color:inherit;text-decoration:underline">Send it by email instead</a>.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
