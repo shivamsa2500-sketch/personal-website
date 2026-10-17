@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en-IN" data-storage-prefix="hn-">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(h){h.classList.add('js');var p=h.getAttribute('data-storage-prefix')||'';try{if(localStorage.getItem(p+'transparency')==='reduced'){h.dataset.transparency='reduced';h.dataset.glass='off'}if(sessionStorage.getItem(p+'announce')==='off')h.classList.add('announce-off')}catch(e){}var n=navigator,c=n.connection;if((n.deviceMemory&&n.deviceMemory<=2)||(c&&c.saveData))h.classList.add('glass-lite')})(document.documentElement);
+</script>
+<title>Hillnote Coffee Roasters | Fresh specialty coffee</title>
+<meta name="description" content="Specialty coffee from Indian hills and beyond, roasted every week and ground for your brewer. Pick French press, pour-over or espresso and we'll match it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Coffee roasted this week, ground for your brewer">
+<meta property="og:description" content="Specialty coffee from Indian hills and beyond, roasted every week and ground for your brewer.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hillnote Coffee Roasters: coffee roasted this week, ground for your brewer. Three coffee bags in amber, plum and teal.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E8">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Figtree:wght@400..600&display=swap">
+<link rel="preload" href="assets/img/bag.svg" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/glass.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="home">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce" data-shell="announce" data-zone="dark" role="region" aria-label="Announcement">
+  <p data-announcement></p>
+  <button type="button" class="announce__close" data-announce-close aria-label="Dismiss announcement"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+</div>
+
+<!-- Shell header: shell.js replaces this no-JS fallback with the full capsule (same geometry). -->
+<header class="site-header" data-shell="header">
+  <div class="capsule glass-chrome">
+    <div class="capsule__bar">
+      <span></span>
+      <a class="capsule__logo plate" href="index.html" aria-label="Home"><svg viewBox="0 0 204 40" width="112" height="22" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#logo"/></svg></a>
+      <nav class="capsule__nav plate" aria-label="Main"><ul>
+        <li><a class="capsule__link" href="shop.html">Shop coffee</a></li>
+        <li><a class="capsule__link" href="index.html#finder">Find your coffee</a></li>
+        <li><a class="capsule__link" href="guides/index.html">Brew guides</a></li>
+        <li><a class="capsule__link" href="cafes.html">Cafés</a></li>
+        <li><a class="capsule__link" href="about.html">Our story</a></li>
+      </ul></nav>
+      <a class="capsule__cart plate" href="cart.html" aria-label="Cart"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-bag"/></svg></a>
+    </div>
+  </div>
+</header>
+<noscript><p class="nojs">This shop needs JavaScript for the cart and filters. You can still read the guides and find a café.</p></noscript>
+
+<main id="main" tabindex="-1">
+
+  <!-- No. 01 · Hero ("Light table") -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="marker">No. 01 · Fresh from the hills</p>
+        <h1 id="hero-title">Coffee roasted <em>this</em> week.</h1>
+        <p class="lead hero__lead">Specialty coffee from Indian hill estates and a few farms abroad, ground for the brewer you own and shipped within 48 hours.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--lg lacquer squish hero__shop" href="shop.html">Shop coffee</a>
+          <a class="link link--arrow" href="#finder">Find your coffee <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="hero__proof"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><span><span class="visually-hidden">Rated </span>4.8 from 2,000+ home brewers</span></p>
+        <p class="margin-note hero__note">roast date on every bag</p>
+      </div>
+
+      <div class="hero__finder" id="finder">
+        <p class="hero__chip-label" id="tray-label">What do you brew with?</p>
+        <nav class="chip-tray glass-baked" aria-label="Find coffee by brewer">
+          <span class="lens" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+          <ul class="chip-tray__scroller" role="list">
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=french-press"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-french-press"/></svg><span>French press</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=pour-over"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-pour-over"/></svg><span>Pour-over</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=moka-pot"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-moka-pot"/></svg><span>Moka pot</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=south-indian-filter"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-south-indian-filter"/></svg><span>South Indian filter</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=espresso"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-espresso"/></svg><span>Espresso</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=aeropress"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-aeropress"/></svg><span>AeroPress</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=cold-brew"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-cold-brew"/></svg><span>Cold brew</span></a></li>
+            <li><a class="brew-chip brew-chip--plate squish" href="shop.html?brew=whole-bean"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-whole-bean"/></svg><span>Whole bean</span></a></li>
+          </ul>
+        </nav>
+        <div class="hero__finder-foot">
+          <p class="margin-note hero__finder-note">beginners: a French press is the easiest start</p>
+          <a class="link link--arrow" href="guides/index.html">No brewer yet? Start here <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="hero__panel bag-scope" data-zone-glass>
+        <div class="hero__topo" data-hero-topo aria-hidden="true"></div>
+        <div class="hero__bags" data-hero-bags role="img" aria-label="Three coffee bags"></div>
+        <p class="slip hero__slip">this batch: roasted Monday</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- No. 02 · Bestsellers -->
+  <section class="section" aria-labelledby="best-title" style="padding-block-start: 0" data-reveal>
+    <div class="container">
+      <div class="section-head">
+        <p class="marker">No. 02 · Bestsellers</p>
+        <h2 id="best-title">The bags we refill most</h2>
+        <p class="section-head__intro">Our most-ordered coffees this season, from a bright washed Chikmagalur to a dark espresso blend that holds up in milk.</p>
+      </div>
+      <div class="best__list" data-bestsellers><p class="muted">Loading coffees…</p></div>
+      <p class="best__more"><a class="link link--arrow" href="shop.html">Shop all coffee <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <!-- No. 03 · Freshness strip -->
+  <section class="band fresh-strip" aria-labelledby="fresh-title" data-reveal>
+    <div class="container">
+      <p class="marker">No. 03 · Freshness</p>
+      <h2 id="fresh-title">How we keep it fresh</h2>
+      <ul class="fresh-strip__grid" role="list">
+        <li class="fresh-strip__item"><svg class="icon" width="32" height="32" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-bag"/></svg><strong>Roast date on every bag.</strong><p>Printed by hand, not a best-before guess.</p></li>
+        <li class="fresh-strip__item"><svg class="icon" width="32" height="32" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-check"/></svg><strong>Roasted every week.</strong><p>Small batches, sized to the week's orders.</p></li>
+        <li class="fresh-strip__item"><svg class="icon" width="32" height="32" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-clock"/></svg><strong>Ships within 48 hours.</strong><p>From the roaster to the courier, usually the next day.</p></li>
+        <li class="fresh-strip__item"><svg class="icon" width="32" height="32" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-map-pin"/></svg><strong>Traceable to the farm.</strong><p>Every single origin names its estate, altitude and process.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- No. 04 · Shop by taste -->
+  <section class="section" aria-labelledby="taste-title" data-reveal>
+    <div class="container">
+      <div class="section-head">
+        <p class="marker">No. 04 · Shop by taste</p>
+        <h2 id="taste-title">Start with the taste you like</h2>
+        <p class="section-head__intro">No need to know regions or processes. Pick a flavour and we'll narrow the shelf.</p>
+      </div>
+      <ul class="taste-tiles taste__tiles" role="list">
+        <li><a class="taste-tile bag-scope" data-family="fruity" href="shop.html?notes=fruity" aria-label="Shop Fruity &amp; bright coffees"><span class="taste-tile__swatch" aria-hidden="true"></span><span class="taste-tile__body"><span class="taste-tile__title">Fruity &amp; bright</span><span class="taste-tile__line">Citrus, berries and stone fruit. Light and lively, best black.</span></span></a></li>
+        <li><a class="taste-tile bag-scope" data-family="chocolatey" href="shop.html?notes=chocolatey" aria-label="Shop Chocolatey &amp; nutty coffees"><span class="taste-tile__swatch" aria-hidden="true"></span><span class="taste-tile__body"><span class="taste-tile__title">Chocolatey &amp; nutty</span><span class="taste-tile__line">Cocoa, almond and hazelnut. Round and comforting, lovely with milk.</span></span></a></li>
+        <li><a class="taste-tile bag-scope" data-family="caramel" href="shop.html?notes=caramel" aria-label="Shop Caramel &amp; sweet coffees"><span class="taste-tile__swatch" aria-hidden="true"></span><span class="taste-tile__body"><span class="taste-tile__title">Caramel &amp; sweet</span><span class="taste-tile__line">Jaggery, toffee and brown sugar. Smooth enough for every morning.</span></span></a></li>
+        <li><a class="taste-tile bag-scope" data-family="bold" href="shop.html?notes=bold" aria-label="Shop Bold &amp; strong coffees"><span class="taste-tile__swatch" aria-hidden="true"></span><span class="taste-tile__body"><span class="taste-tile__title">Bold &amp; strong</span><span class="taste-tile__line">Dark, heavy and low in acidity. Built for milk and moka pots.</span></span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- No. 05 · From the farm -->
+  <section class="section" aria-labelledby="farm-title" style="padding-block-start: 0" data-reveal>
+    <div class="container farm__grid">
+      <div class="farm__text">
+        <p class="marker">No. 05 · From the farm</p>
+        <h2 id="farm-title" style="margin-block-start: var(--space-4)">Grown on hills you can name</h2>
+        <p class="farm__body">Most of our coffee comes from four growing regions in South India, where arabica grows under shade trees between 950 and 1,500 metres. We buy from estates we've visited, pay for the lots we cup best, and print the farm, altitude and process on every single-origin bag. A few coffees come from Ethiopia, Colombia and Brazil, chosen for flavours our hills don't produce.</p>
+        <p class="farm__alt" data-farm-alt>Altitude range: 950–1,500 m</p>
+        <div class="farm__links">
+          <p class="margin-note">higher farms, slower cherries, sweeter cups</p>
+          <a class="link link--arrow" href="about.html">Read our story <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="farm__map" role="img" aria-label="Map of South India's coffee regions with pins on Chikmagalur, Kodagu, Biligiri Hills and Araku Valley" data-farm-map data-label-sides="Biligiri Hills, Karnataka:r|Shevaroy Hills, Tamil Nadu:bl" data-regions="Chikmagalur, Karnataka|Kodagu (Coorg), Karnataka|Biligiri Hills, Karnataka|Araku Valley, Andhra Pradesh|Shevaroy Hills, Tamil Nadu"></div>
+    </div>
+  </section>
+
+  <!-- No. 06 · Reviews [DEMO] -->
+  <section class="section band" aria-labelledby="reviews-title" data-reveal>
+    <div class="container">
+      <div class="reviews__head">
+        <div class="section-head">
+          <p class="marker">No. 06 · Reviews</p>
+          <h2 id="reviews-title">Notes from people who brew it</h2>
+        </div>
+        <p class="reviews__label">Demo reviews for illustration</p>
+      </div>
+      <ul class="reviews__row" role="list" data-reviews tabindex="0" aria-label="Reviews">
+        <li><figure class="review">
+          <p class="review__stars"><span class="visually-hidden">Rated 5 out of 5</span><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg></p>
+          <blockquote class="review__quote"><p>“I only own a French press and was scared of ‘specialty’. Picked my brewer, got Shade Line ground coarse, and it's the first coffee I don't add sugar to.”</p></blockquote>
+          <figcaption class="review__who"><strong>Riya S., Pune</strong><span>bought Shade Line</span></figcaption>
+        </figure></li>
+        <li><figure class="review">
+          <p class="review__stars"><span class="visually-hidden">Rated 5 out of 5</span><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg></p>
+          <blockquote class="review__quote"><p>“The roast date was five days before it arrived. Paper Lantern tastes like blueberries through my V60. My flatmate didn't believe me until she tried it.”</p></blockquote>
+          <figcaption class="review__who"><strong>Karthik M., Bengaluru</strong><span>bought Paper Lantern</span></figcaption>
+        </figure></li>
+        <li><figure class="review">
+          <p class="review__stars"><span class="visually-hidden">Rated 4 out of 5</span><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon star" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg><svg class="icon is-off" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-star"/></svg></p>
+          <blockquote class="review__quote"><p>“Night Shift is my moka pot coffee now. Strong, chocolatey, no burnt edge. I'd love a 2 kg bag.”</p></blockquote>
+          <figcaption class="review__who"><strong>Farah A., New Delhi</strong><span>bought Night Shift</span></figcaption>
+        </figure></li>
+      </ul>
+      <div class="reviews__nav">
+        <button type="button" class="icon-btn squish" data-reviews-prev aria-label="Previous review"><svg class="icon icon--flip" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-chevron-right"/></svg></button>
+        <p class="reviews__pos" data-reviews-pos>1 of 3</p>
+        <button type="button" class="icon-btn squish" data-reviews-next aria-label="Next review"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-chevron-right"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- No. 07 · Brew guides teaser -->
+  <section class="section" aria-labelledby="guides-title" data-reveal>
+    <div class="container">
+      <div class="section-head">
+        <p class="marker">No. 07 · Brew guides</p>
+        <h2 id="guides-title">Brew it well at home</h2>
+        <p class="section-head__intro">Two full recipes with timings, plus a grind chart for every brewer.</p>
+      </div>
+      <ul class="guide-cards guides__cards" role="list">
+        <li><article class="guide-card">
+          <a class="guide-card__media" href="guides/pour-over.html" tabindex="-1" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=72" srcset="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=360&amp;h=240&amp;q=72 360w, https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=72 720w, https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=1080&amp;h=720&amp;q=72 1080w" sizes="(min-width: 768px) 560px, 100vw" width="720" height="480" loading="lazy" decoding="async" alt="A gooseneck kettle pouring water into a pour-over cone on a glass server">
+          </a>
+          <p class="guide-card__meta">3 min · Easy-ish · 1 cup</p>
+          <h3 class="guide-card__title"><a href="guides/pour-over.html">How to brew pour-over</a></h3>
+          <p class="guide-card__line">A clean, bright cup with a cone, a filter and a slow spiral pour.</p>
+          <a class="link link--arrow" href="guides/pour-over.html" aria-label="Read the pour-over guide">Read the guide <span aria-hidden="true">→</span></a>
+        </article></li>
+        <li><article class="guide-card">
+          <a class="guide-card__media" href="guides/french-press.html" tabindex="-1" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1519082274554-1ca37fb8abb7?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=72" srcset="https://images.unsplash.com/photo-1519082274554-1ca37fb8abb7?auto=format&amp;fit=crop&amp;w=360&amp;h=240&amp;q=72 360w, https://images.unsplash.com/photo-1519082274554-1ca37fb8abb7?auto=format&amp;fit=crop&amp;w=720&amp;h=480&amp;q=72 720w, https://images.unsplash.com/photo-1519082274554-1ca37fb8abb7?auto=format&amp;fit=crop&amp;w=1080&amp;h=720&amp;q=72 1080w" sizes="(min-width: 768px) 560px, 100vw" width="720" height="480" loading="lazy" decoding="async" alt="A glass French press of steeping coffee beside a mug on a wooden counter">
+          </a>
+          <p class="guide-card__meta">5 min · Easy · 2 cups</p>
+          <h3 class="guide-card__title"><a href="guides/french-press.html">How to brew French press</a></h3>
+          <p class="guide-card__line">Full-bodied coffee without the sludge. Four minutes and one good trick.</p>
+          <a class="link link--arrow" href="guides/french-press.html" aria-label="Read the French press guide">Read the guide <span aria-hidden="true">→</span></a>
+        </article></li>
+      </ul>
+      <div class="guides__more">
+        <a class="btn btn--ghost squish" href="guides/index.html">All brew guides</a>
+        <a class="link link--arrow" href="guides/index.html#grind-chart">See the grind size chart <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- No. 08 · Cafés teaser: one glass object over the photo -->
+  <section class="section" aria-labelledby="cafes-title" style="padding-block-start: 0" data-reveal>
+    <div class="container">
+      <p class="marker" style="margin-block-end: var(--space-5)">No. 08 · Cafés</p>
+      <div class="cafes-band">
+        <div class="cafes-band__media" data-zone="dark">
+          <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&amp;fit=crop&amp;w=1440&amp;h=617&amp;q=72" srcset="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=72 600w, https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&amp;fit=crop&amp;w=1440&amp;h=617&amp;q=72 1440w, https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&amp;fit=crop&amp;w=2400&amp;h=1029&amp;q=70 2400w" sizes="(min-width: 1248px) 1200px, calc(100vw - 32px)" width="1440" height="617" loading="lazy" decoding="async" alt="A sunlit café counter with a brew bar, glass jars of coffee beans and a barista pouring milk">
+        </div>
+        <div class="cafes-band__panel glass-baked glass--dark">
+          <span class="lens" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+          <div class="cafes-band__plate plate">
+            <h2 id="cafes-title">Drink it where we pour it</h2>
+            <p data-cafes-line>Every one of our cafés has a brew bar, beans to take home, and someone happy to talk you through a grind.</p>
+            <ul class="cafes-band__cities" role="list" data-cafes-cities aria-label="Cities"></ul>
+            <a class="btn lacquer squish" href="cafes.html">Find a café</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="band cta-band home-cta" aria-labelledby="cta-title" data-reveal>
+    <div class="zone-field" aria-hidden="true"><svg><use href="#field"/></svg></div>
+    <div class="container cta-band__inner">
+      <div class="cta-band__copy">
+        <h2 id="cta-title">Ready when your <em>kettle</em> is.</h2>
+        <p class="cta-band__line" style="margin-block-start: var(--space-4)">Pick a brewer and we'll grind this week's roast to match.</p>
+      </div>
+      <ul class="chip-row" role="list">
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=french-press"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-french-press"/></svg><span>French press</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=pour-over"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-pour-over"/></svg><span>Pour-over</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=moka-pot"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-moka-pot"/></svg><span>Moka pot</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=south-indian-filter"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-south-indian-filter"/></svg><span>South Indian filter</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=espresso"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-espresso"/></svg><span>Espresso</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=aeropress"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-aeropress"/></svg><span>AeroPress</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=cold-brew"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-cold-brew"/></svg><span>Cold brew</span></a></li>
+        <li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=whole-bean"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-whole-bean"/></svg><span>Whole bean</span></a></li>
+      </ul>
+      <p><a class="btn btn--lg lacquer squish" href="shop.html">Shop coffee</a></p>
+    </div>
+  </section>
+</main>
+
+<!-- Shell footer: shell.js replaces this no-JS fallback. -->
+<footer class="footer" data-shell="footer" data-zone="dark">
+  <div class="container footer__static">
+    <nav aria-label="Footer"><ul>
+      <li><a href="shop.html">All coffee</a></li>
+      <li><a href="guides/index.html">Brew guides</a></li>
+      <li><a href="cafes.html">Cafés</a></li>
+      <li><a href="about.html">Our story</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul></nav>
+    <p>Demo store. No real orders or payments.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/main.js"></script>
+<script type="module" src="assets/js/pages/home.js"></script>
+</body>
+</html>

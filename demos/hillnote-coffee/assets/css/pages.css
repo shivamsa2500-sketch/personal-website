@@ -1,0 +1,244 @@
+/* ==========================================================================
+   PAGES · page-specific layout. Tokens only.
+   Each page gets its own block, scoped by body[data-page] or a page-only
+   class. Append new pages below; don't restyle shared components here
+   (they live in components.css).
+   ========================================================================== */
+
+
+/* ==========================================================================
+   HOME  (Frontend Dev #1 · DESIGN §8.1)
+   ========================================================================== */
+
+/* ---- 1. Hero "Light table" ------------------------------------------------ */
+.hero { padding-block: var(--space-6) var(--section-y-tight); }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+.hero__copy { display: grid; justify-items: start; }
+.hero__copy h1 { margin-block-start: var(--space-3); max-inline-size: 11ch; }
+.hero__lead { margin-block-start: var(--space-4); }
+.hero__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-5); margin-block-start: var(--space-5); inline-size: 100%; }
+@media (max-width: 399.98px) { .hero__shop { inline-size: 100%; } }
+.hero__proof { display: inline-flex; align-items: center; gap: var(--space-1); margin-block-start: var(--space-3); font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.hero__proof .icon { color: var(--saffron); inline-size: var(--icon-sm); block-size: var(--icon-sm); }
+.hero__note { margin-block-start: var(--space-4); }
+.hero__finder { position: relative; z-index: var(--z-raised); margin-block-start: var(--space-6); min-inline-size: 0; }
+.hero__chip-label { margin-block-end: var(--space-2); font-size: var(--fs-label); font-weight: var(--fw-strong); color: var(--muted); }
+/* under the tray: the beginners' note + the "no brewer yet" route (D-02) */
+.hero__finder-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-5); margin-block-start: var(--space-3); }
+.hero__finder-note { margin: 0; }
+
+/* panel: an Oat glass zone holding the fanned bags. Mobile: a 180 px strip
+   rising behind the lower 60 px of the chip tray. */
+.hero__panel {
+  position: relative;
+  isolation: isolate;
+  block-size: var(--hero-strip-h);
+  margin-block-start: calc(var(--hero-strip-under) * -1);
+  border-radius: var(--r-panel);
+  background:
+    radial-gradient(closest-side at 50% 62%, color-mix(in oklab, var(--bag-light) calc(var(--pool-max-a) * var(--pool-o)), transparent), transparent 100%),
+    var(--oat);
+}
+.hero__topo {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: -1;
+  color: color-mix(in oklab, var(--bag-dark) var(--zone-glass-a), transparent);
+  -webkit-mask: linear-gradient(90deg, transparent, #000 var(--zone-feather));
+          mask: linear-gradient(90deg, transparent, #000 var(--zone-feather));
+}
+.hero__topo svg { inline-size: 100%; block-size: 100%; }
+.hero__bags { position: absolute; inset: 0; }
+.hero__bag { position: absolute; inset-block-end: 4%; inline-size: min(29%, 110px); block-size: auto; margin: 0; filter: drop-shadow(0 10px 14px color-mix(in oklab, var(--ink) 18%, transparent)); }
+.hero__bag--l { inset-inline-start: 10%; rotate: -8deg; transform-origin: bottom center; }
+.hero__bag--m { inset-inline-start: 50%; translate: -50% 0; inline-size: min(33%, 128px); z-index: 1; }
+.hero__bag--r { inset-inline-end: 10%; rotate: 7deg; transform-origin: bottom center; }
+/* 2-coffee catalogue: two bags either side of centre; 1 coffee: .hero__bag--m alone */
+.hero__bag--l2 { inset-inline-end: 51%; rotate: -5deg; transform-origin: bottom center; }
+.hero__bag--r2 { inset-inline-start: 51%; rotate: 4deg; transform-origin: bottom center; }
+.hero__slip { display: none; }
+html:not(.js) .hero__panel { display: none; }
+/* < 600: the bags come first, the tray sits under them on Paper (D-08) */
+@media (max-width: 599.98px) {
+  .hero__panel { order: 1; margin-block-start: var(--space-6); }
+  .hero__finder { order: 2; margin-block-start: var(--space-5); }
+}
+
+@media (min-width: 600px) {
+  .hero__panel { block-size: 260px; }
+  .hero__bag { inline-size: min(29%, 150px); }
+  .hero__bag--m { inline-size: min(33%, 170px); }
+}
+@media (min-width: 1024px) {
+  .hero { padding-block: var(--space-7) var(--section-y-tight); }
+  .hero__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    column-gap: var(--gutter);
+  }
+  .hero__copy { grid-column: 1 / span 6; grid-row: 1; padding-block-start: var(--space-6); }
+  .hero__copy h1 { margin-block-start: var(--space-4); }
+  .hero__lead { max-inline-size: var(--measure-lead); }
+  .hero__finder { grid-column: 1 / span 9; grid-row: 2; align-self: end; margin-block-start: var(--space-7); }
+  /* one row (D-03): scrolls sideways, the right edge fades until the end */
+  .hero__finder .chip-tray { --r: var(--r-pill); inline-size: fit-content; max-inline-size: 100%; }
+  .hero__finder .chip-tray__scroller {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--space-7)), transparent);
+            mask-image: linear-gradient(90deg, #000 calc(100% - var(--space-7)), transparent);
+  }
+  .hero__finder .chip-tray__scroller[data-end="true"] { -webkit-mask-image: none; mask-image: none; }
+  .hero__panel {
+    grid-column: 7 / -1; grid-row: 1 / span 2;
+    block-size: auto;
+    min-block-size: 560px;
+    margin-block: 0 var(--space-7);
+    margin-inline-end: calc(min(0px, (var(--container) + var(--page-x) * 2 - 100vw) / 2) - var(--page-x));
+    border-start-end-radius: 0; border-end-end-radius: 0;
+  }
+  .hero__bag { inline-size: 31%; inset-block-end: 16%; }
+  .hero__bag--l { inset-inline-start: 5%; }
+  .hero__bag--m { inline-size: 36%; inset-block-end: 13%; inset-inline-start: 48%; }
+  .hero__bag--r { inset-inline-end: 7%; }
+  .hero__slip {
+    display: block;
+    position: absolute;
+    inset-block-start: 9%;
+    inset-inline-start: 52%;
+    z-index: 2;
+  }
+}
+@media (min-width: 1440px) {
+  .hero__panel { min-block-size: 620px; }
+}
+
+/* ---- 2. Bestsellers ------------------------------------------------------- */
+.best__list { margin-block-start: var(--space-6); }
+/* 4 bestsellers: never leave an orphan card (2-up → 4-up) */
+@media (min-width: 600px) { .best__list .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) {
+  .best__list .pgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .best__list:is([data-count="1"], [data-count="3"]) .pgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.best__more { margin-block-start: var(--space-4); }
+
+/* ---- 3. Freshness strip: Oat band (component .fresh-strip) ---------------- */
+.fresh-strip h2 { font-size: var(--fs-h3); line-height: var(--lh-h3); margin-block-start: var(--space-4); }
+
+/* ---- 4. Taste --------------------------------------------------------------- */
+.taste__tiles { margin-block-start: var(--space-6); }
+/* < 600: a 2×2 grid of short tiles: 64 px flood strip + title (D-06); the
+   one-line descriptions live on Shop */
+@media (max-width: 599.98px) {
+  .taste__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .taste__tiles .taste-tile { grid-template-rows: var(--space-8) auto; }
+  .taste__tiles .taste-tile__body { padding: var(--space-3) var(--space-4) var(--space-4); }
+  .taste__tiles .taste-tile__title { font-size: var(--fs-body); line-height: 1.3; }
+  .taste__tiles .taste-tile__line { display: none; }
+}
+
+/* ---- 5. From the farm ------------------------------------------------------ */
+.farm__grid { display: grid; gap: var(--space-6); }
+.farm__body { margin-block-start: var(--space-4); max-inline-size: var(--measure); }
+.farm__alt { display: flex; align-items: center; gap: var(--space-2); margin-block-start: var(--space-4); font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.farm__alt::before { content: ""; inline-size: var(--space-5); block-size: 2px; background: var(--ink); border-radius: 1px; }
+.farm__links { display: grid; gap: var(--space-4); justify-items: start; margin-block-start: var(--space-4); }
+.farm__map {
+  position: relative;
+  aspect-ratio: 400 / 440;
+  max-inline-size: 30rem;
+  border-radius: var(--r-card);
+  background: var(--oat);
+  overflow: hidden;
+}
+.farm__terrain { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; color: color-mix(in oklab, var(--pine) 32%, transparent); }
+.farm__pin { position: absolute; display: block; inline-size: 0; block-size: 0; }
+.farm__dot {
+  position: absolute; inset: -6px auto auto -6px;
+  inline-size: 12px; block-size: 12px;
+  border-radius: 50%;
+  background: var(--pine);
+  box-shadow: 0 0 0 3px var(--paper);
+}
+/* map labels (Home farm map + Cafés map, D-04): Paper plates at 92 % with a
+   2 px halo, placed in px by placeLabels(); a hairline leader joins a plate
+   that had to sit away from its pin */
+.map-label {
+  position: absolute; inset: 0 auto auto 0;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--r-slip);
+  background: color-mix(in oklab, var(--paper) 92%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--paper) 60%, transparent), var(--shadow-1);
+  font-size: var(--fs-mini); line-height: 1.2; font-weight: var(--fw-strong); color: var(--ink);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.map-lead {
+  position: absolute; inset: 0 auto auto 0;
+  block-size: 1px;
+  background: color-mix(in oklab, var(--ink) 55%, transparent);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.map-lead[hidden] { display: none; }
+.farm__map-tag { position: absolute; inset: auto auto var(--space-3) var(--space-3); font-size: var(--fs-micro); font-weight: var(--fw-strong); color: var(--muted); }
+@media (min-width: 1024px) {
+  .farm__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: center; }
+  .farm__text { grid-column: 1 / span 6; }
+  .farm__map { grid-column: 7 / -1; justify-self: end; inline-size: 100%; }
+}
+
+/* ---- 6. Reviews ------------------------------------------------------------ */
+.reviews__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); }
+.reviews__row { margin-block-start: var(--space-5); }
+
+/* ---- 7. Guides teaser ------------------------------------------------------ */
+.guides__cards { margin-block-start: var(--space-6); }
+.guides__more { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-block-start: var(--space-6); }
+
+/* ---- 8. Cafés teaser: photo band + one T3 .glass--dark panel --------------- */
+.cafes-band { position: relative; }
+.cafes-band__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-panel);
+  overflow: hidden;            /* image wrapper, not glass */
+  background: var(--ink);
+}
+.cafes-band__media img { inline-size: 100%; block-size: 100%; object-fit: cover; object-position: 60% 50%; }
+.cafes-band__panel {
+  --r: var(--r-sheet);
+  position: relative;
+  margin: calc(var(--space-9) * -1) var(--space-3) 0;
+  display: grid; gap: var(--plate-inset);
+}
+.cafes-band__plate { padding: var(--space-5); display: grid; gap: var(--space-3); justify-items: start; }
+.cafes-band__plate h2 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+.cafes-band__cities { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); list-style: none; padding: 0; margin: 0; font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.cafes-band__cities li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.cafes-band__cities li::before { content: ""; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--pine); }
+@media (min-width: 768px) {
+  .cafes-band__media { aspect-ratio: 21 / 9; }
+  .cafes-band__panel {
+    position: absolute;
+    inset: auto auto var(--space-6) var(--space-6);
+    margin: 0;
+    inline-size: min(30rem, 50%);
+  }
+}
+
+/* ---- 9. Closing CTA ------------------------------------------------------- */
+.home-cta { padding-block: var(--section-y); }
+.home-cta h2 { max-inline-size: 14ch; }
+@media (min-width: 1024px) { .home-cta .cta-band__copy { max-inline-size: calc((100% - var(--gutter) * 11) / 12 * 7 + var(--gutter) * 6); } }
+.home + .footer, main + .footer { margin-block-start: 0; }
+
+/* R2-3: stylised India outline under the map contours (Home farm map, Cafés map) */
+.map-india {
+  position: absolute; inset: 0; inline-size: 100%; block-size: 100%;
+  color: color-mix(in oklab, var(--ink) 35%, transparent);
+  fill: color-mix(in oklab, var(--ink) 6%, transparent);
+  pointer-events: none;
+}

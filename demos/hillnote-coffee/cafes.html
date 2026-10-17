@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en-IN" data-storage-prefix="hn-">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(h){h.classList.add('js');var p=h.getAttribute('data-storage-prefix')||'';try{if(localStorage.getItem(p+'transparency')==='reduced'){h.dataset.transparency='reduced';h.dataset.glass='off'}if(sessionStorage.getItem(p+'announce')==='off')h.classList.add('announce-off')}catch(e){}var n=navigator,c=n.connection;if((n.deviceMemory&&n.deviceMemory<=2)||(c&&c.saveData))h.classList.add('glass-lite')})(document.documentElement);
+</script>
+<title>Visit our cafés | Hillnote Coffee Roasters</title>
+<meta name="description" content="Find a Hillnote café in Bengaluru, Mumbai, New Delhi or Pune. Opening hours, addresses and directions, plus a brew bar and fresh beans at every one.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Visit a Hillnote café">
+<meta property="og:description" content="Find a Hillnote café in Bengaluru, Mumbai, New Delhi or Pune. Opening hours, addresses and directions, plus a brew bar and fresh beans at every one.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hillnote Coffee Roasters: coffee roasted this week, ground for your brewer. Three coffee bags in amber, plum and teal.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E8">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Figtree:wght@400..600&display=swap">
+<link rel="preload" href="assets/img/bag.svg" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/glass.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/pages-content.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="cafes">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce" data-shell="announce" data-zone="dark" role="region" aria-label="Announcement">
+  <p data-announcement></p>
+  <button type="button" class="announce__close" data-announce-close aria-label="Dismiss announcement"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+</div>
+
+<!-- Shell header: shell.js replaces this no-JS fallback with the full capsule (same geometry). -->
+<header class="site-header" data-shell="header">
+  <div class="capsule glass-chrome">
+    <div class="capsule__bar">
+      <span></span>
+      <a class="capsule__logo plate" href="index.html" aria-label="Home"><svg viewBox="0 0 204 40" width="112" height="22" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#logo"/></svg></a>
+      <nav class="capsule__nav plate" aria-label="Main"><ul>
+        <li><a class="capsule__link" href="shop.html">Shop coffee</a></li>
+        <li><a class="capsule__link" href="index.html#finder">Find your coffee</a></li>
+        <li><a class="capsule__link" href="guides/index.html">Brew guides</a></li>
+        <li><a class="capsule__link" href="cafes.html" aria-current="page">Cafés</a></li>
+        <li><a class="capsule__link" href="about.html">Our story</a></li>
+      </ul></nav>
+      <a class="capsule__cart plate" href="cart.html" aria-label="Cart"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-bag"/></svg></a>
+    </div>
+  </div>
+</header>
+<noscript><p class="nojs">This shop needs JavaScript for the cart and filters. You can still read the guides and find a café.</p></noscript>
+
+<main id="main" tabindex="-1">
+
+  <section class="page-head" aria-labelledby="cafes-title">
+    <div class="container page-head__inner">
+      <p class="marker">No. 01 · Cafés</p>
+      <h1 id="cafes-title">Visit a <em>café</em></h1>
+      <p class="lead">Every café has a brew bar, beans to take home, and someone who can talk you through a grind.</p>
+      <p class="cafes__count" data-cafe-count></p>
+    </div>
+  </section>
+
+  <section class="section section--flush cafes" aria-label="Café list and map">
+    <div class="container cafes__grid">
+      <div class="cafes__list">
+        <div class="city-strip" data-city-strip hidden>
+          <div class="city-strip__zone zone-field" aria-hidden="true"><svg><use href="#field"/></svg></div>
+          <div class="city-tray glass-baked" role="group" aria-labelledby="city-label">
+            <span class="lens lens--thin" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+            <span class="visually-hidden" id="city-label">Filter by city</span>
+            <ul class="city-tray__row" role="list" data-city-chips></ul>
+          </div>
+        </div>
+        <p class="visually-hidden" aria-live="polite" data-city-live></p>
+        <p class="margin-note cafes__note">hours shown in local time</p>
+        <ul class="cafe-grid" role="list" data-cafe-list>
+          <li class="cafe-empty"><p>Café details load with JavaScript. Write to us on the <a class="link" href="contact.html">contact page</a> for addresses and hours.</p></li>
+        </ul>
+        <div class="cafe-empty" data-cafe-empty hidden>
+          <p data-cafe-empty-text></p>
+          <a class="btn lacquer squish" href="shop.html">Shop coffee</a>
+        </div>
+      </div>
+
+      <div class="cafes__mapcol">
+        <figure class="cafe-map" data-cafe-map>
+          <figcaption class="cafe-map__label">Map (illustrative)</figcaption>
+          <div class="cafe-map__frame">
+            <div class="cafe-map__terrain" data-map-terrain></div>
+            <div class="cafe-map__pins" data-map-pins></div>
+          </div>
+          <p class="cafe-map__note">Pins are approximate. Use "Get directions" for the exact spot.</p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-label="Tastings and wholesale" data-reveal>
+    <div class="container wholesale">
+      <p class="wholesale__line">Hosting a tasting or stocking our beans at your café? We'd love to hear about it.</p>
+      <a class="btn btn--ghost squish" href="contact.html">Contact us</a>
+    </div>
+  </section>
+
+  <section class="band cta-band content-cta" aria-labelledby="cta-title" data-reveal>
+    <div class="zone-field" aria-hidden="true"><svg><use href="#field"/></svg></div>
+    <div class="container cta-band__inner">
+      <div class="cta-band__copy">
+        <h2 id="cta-title">Can't make it? We'll <em>ship</em> it.</h2>
+        <p class="cta-band__line">Same beans, roasted this week and ground for your brewer.</p>
+      </div>
+      <p><a class="btn btn--lg lacquer squish" href="shop.html">Shop coffee</a></p>
+    </div>
+  </section>
+</main>
+
+<!-- Shell footer: shell.js replaces this no-JS fallback. -->
+<footer class="footer" data-shell="footer" data-zone="dark">
+  <div class="container footer__static">
+    <nav aria-label="Footer"><ul>
+      <li><a href="shop.html">All coffee</a></li>
+      <li><a href="guides/index.html">Brew guides</a></li>
+      <li><a href="cafes.html">Cafés</a></li>
+      <li><a href="about.html">Our story</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul></nav>
+    <p>Demo store. No real orders or payments.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/main.js"></script>
+<script type="module" src="assets/js/pages/cafes.js"></script>
+</body>
+</html>

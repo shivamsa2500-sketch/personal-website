@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260" style="--bag:#D9822B">
+<!-- Hillnote bag template (GRAPHICS.md §3). Inline once per page inside a 0x0 sprite <svg>, then
+     <svg viewBox="0 0 200 260"><use href="#bag"/><svg class="bag__topo" x="54" y="112" width="92" height="50" viewBox="0 0 92 50">contours()</svg></svg>
+     Colour comes only from the bag custom property on the <use> or an ancestor. Name/roast are live HTML over the label, never SVG text. -->
+<defs>
+<linearGradient id="bag-gloss" x1="0" y1="0" x2="1" y2=".27">
+<stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset=".46" stop-color="#fff" stop-opacity=".22"/><stop offset=".54" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="bag-clip"><path d="M30 34h140l6 202q0 14-14 14H38q-14 0-14-14z"/></clipPath>
+<symbol id="bag" viewBox="0 0 200 260">
+<path d="M30 34h140l6 202q0 14-14 14H38q-14 0-14-14z" style="fill:var(--bag,#A86B3C)"/>
+<g clip-path="url(#bag-clip)" style="fill:color-mix(in oklch,var(--bag,#A86B3C) 70%,var(--ink,#2A1F17))">
+<path d="M24 34h18l-4 216H18z" opacity=".38"/><path d="M158 34h18l6 216h-20z" opacity=".22"/>
+<path d="M24 236h156v20H24z" opacity=".18"/>
+</g>
+<rect x="28" y="12" width="144" height="26" rx="3" style="fill:color-mix(in oklch,var(--bag,#A86B3C) 70%,var(--ink,#2A1F17))"/>
+<path d="M36 20h128M36 25h128M36 30h128" fill="none" stroke-width="1.5" style="stroke:color-mix(in oklch,var(--bag,#A86B3C) 55%,var(--paper,#F7F2E8))" opacity=".45"/>
+<path d="M28 44l7 4-7 4z" style="fill:color-mix(in oklch,var(--bag,#A86B3C) 70%,var(--ink,#2A1F17))"/>
+<circle cx="148" cy="64" r="8" style="fill:color-mix(in oklch,var(--bag,#A86B3C) 70%,var(--ink,#2A1F17))"/>
+<circle cx="148" cy="64" r="3.5" style="fill:color-mix(in oklch,var(--bag,#A86B3C) 55%,var(--paper,#F7F2E8))"/>
+<g fill="none" stroke-width="2.6" style="stroke:color-mix(in oklch,var(--bag,#A86B3C) 55%,var(--paper,#F7F2E8))">
+<ellipse cx="100" cy="76" rx="12.4" ry="9.8" transform="rotate(-18 100 76)"/><ellipse cx="101" cy="75.2" rx="7.6" ry="5.6" transform="rotate(-18 101 75.2)"/>
+</g>
+<ellipse cx="101.9" cy="74.6" rx="3.4" ry="2.4" transform="rotate(-18 101.9 74.6)" style="fill:color-mix(in oklch,var(--bag,#A86B3C) 55%,var(--paper,#F7F2E8))"/>
+<rect x="24" y="34" width="160" height="216" fill="url(#bag-gloss)" clip-path="url(#bag-clip)"/>
+<path d="M31 35.5h138" stroke="#fff" stroke-opacity=".5" stroke-width="1"/>
+</symbol>
+<!-- Paper label, drawn over the bag by components/bag.js (A-06):
+     #bag-label  full label (contour window + name area + hairline), >= 160 px wide with a live HTML label
+     #bag-window contour window only (y 104-166), for label:false and every bag < 160 px wide -->
+<symbol id="bag-label" viewBox="0 0 200 260">
+<rect x="46" y="104" width="108" height="118" rx="6" style="fill:var(--paper,#F7F2E8)"/>
+<path d="M54 166h92" stroke-width="1" style="stroke:color-mix(in oklch,var(--bag,#A86B3C) 70%,var(--ink,#2A1F17))" opacity=".5"/>
+</symbol>
+<symbol id="bag-window" viewBox="0 0 200 260">
+<rect x="46" y="104" width="108" height="62" rx="6" style="fill:var(--paper,#F7F2E8)"/>
+</symbol>
+<!-- Rim for dark bags (OKLCH L < 0.4, A-07): 1 px outline + a warm top-left specular, constant 1 px at any size -->
+<symbol id="bag-rim" viewBox="0 0 200 260" overflow="visible">
+<path d="M31 12h138q3 0 3 3v23h-2l6 198q0 14-14 14H38q-14 0-14-14l6-198h-2V15q0-3 3-3z" fill="none" stroke-width="1" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="stroke:color-mix(in oklch,var(--ink,#2A1F17) 30%,var(--paper,#F7F2E8))"/>
+<path d="M24.6 200L30 38h-2V15q0-3 3-3h92" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="stroke:var(--rim-warm,#FCF5E6)"/>
+</symbol>
+<style><![CDATA[
+/* Bag label switching (A-06). .bag is an inline-size container (components.css). */
+.bag__lab--full { display: inline; }
+@container (inline-size < 160px) { .bag__lab--full { display: none; } }
+/* label:'micro' (A-06): 120-159 px bags keep the full label and a 2-line name at >= 8 px */
+@container (120px <= inline-size < 160px) {
+  .bag--micro .bag__lab--full { display: inline; }
+  .bag--micro .bag__label { display: grid; inset-block: 65.4% 16.1%; }
+  .bag--micro .bag__name { font-size: max(8px, 7.4cqi); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .bag--micro .bag__roast { display: none; }
+}
+]]></style>
+</defs>
+<use href="#bag"/>
+<use href="#bag-label"/>
+</svg>

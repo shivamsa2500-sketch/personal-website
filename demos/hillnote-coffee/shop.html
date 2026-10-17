@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en-IN" data-storage-prefix="hn-">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(h){h.classList.add('js');var p=h.getAttribute('data-storage-prefix')||'';try{if(localStorage.getItem(p+'transparency')==='reduced'){h.dataset.transparency='reduced';h.dataset.glass='off'}if(sessionStorage.getItem(p+'announce')==='off')h.classList.add('announce-off')}catch(e){}var n=navigator,c=n.connection;if((n.deviceMemory&&n.deviceMemory<=2)||(c&&c.saveData))h.classList.add('glass-lite')})(document.documentElement);
+</script>
+<title>Shop specialty coffee | Hillnote Coffee Roasters</title>
+<meta name="description" content="Shop single-origin coffees and blends by brewer, roast, taste and price. Every bag roasted weekly, ground to order and shipped within 48 hours.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shop specialty coffee">
+<meta property="og:description" content="Shop single-origin coffees and blends by brewer, roast, taste and price. Every bag roasted weekly, ground to order and shipped within 48 hours.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hillnote Coffee Roasters: coffee roasted this week, ground for your brewer. Three coffee bags in amber, plum and teal.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E8">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Figtree:wght@400..600&display=swap">
+<link rel="preload" href="assets/img/bag.svg" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/glass.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/pages-shop.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="shop">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce" data-shell="announce" data-zone="dark" role="region" aria-label="Announcement">
+  <p data-announcement></p>
+  <button type="button" class="announce__close" data-announce-close aria-label="Dismiss announcement"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+</div>
+
+<!-- Shell header: shell.js replaces this no-JS fallback with the full capsule (same geometry). -->
+<header class="site-header" data-shell="header">
+  <div class="capsule glass-chrome">
+    <div class="capsule__bar">
+      <span></span>
+      <a class="capsule__logo plate" href="index.html" aria-label="Home"><svg viewBox="0 0 204 40" width="112" height="22" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#logo"/></svg></a>
+      <nav class="capsule__nav plate" aria-label="Main"><ul>
+        <li><a class="capsule__link" href="shop.html">Shop coffee</a></li>
+        <li><a class="capsule__link" href="index.html#finder">Find your coffee</a></li>
+        <li><a class="capsule__link" href="guides/index.html">Brew guides</a></li>
+        <li><a class="capsule__link" href="cafes.html">Cafés</a></li>
+        <li><a class="capsule__link" href="about.html">Our story</a></li>
+      </ul></nav>
+      <a class="capsule__cart plate" href="cart.html" aria-label="Cart"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-bag"/></svg></a>
+    </div>
+  </div>
+</header>
+<noscript><p class="nojs">This shop needs JavaScript for the cart and filters. You can still read the guides and find a café.</p></noscript>
+
+<main id="main" tabindex="-1">
+  <div class="container shop" data-shop>
+
+    <!-- Compact page header on paper (DESIGN §8.2): products must show above the fold -->
+    <header class="shop-head">
+      <p class="marker">No. 01 · Shop coffee</p>
+      <h1 class="shop-head__title" id="shop-title" data-shop-title>All coffee</h1>
+      <p class="shop-head__intro" data-shop-intro>Twelve coffees, roasted weekly. Filter by brewer, roast or taste, or just tap "Add" and pick your grind.</p>
+
+      <!-- Brew banner: a 2-facet sentence (DESIGN-DECISIONS 5, §7.14). Paper, not glass. -->
+      <div class="brew-banner" data-brew-banner hidden>
+        <span class="brew-banner__word" aria-hidden="true">For</span>
+        <span class="bb-control" data-bb="brew">
+          <span class="bb-control__cap" id="bb-brew-cap">Brewer</span>
+          <button type="button" class="bb-control__btn" id="bb-brew-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="bb-brew-list" aria-labelledby="bb-brew-cap bb-brew-btn"><span class="bb-control__value" data-bb-value>any brewer</span><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-chevron-down"/></svg></button>
+          <ul class="bb-list" id="bb-brew-list" role="listbox" aria-labelledby="bb-brew-cap" tabindex="-1" hidden></ul>
+        </span>
+        <span class="brew-banner__word" aria-hidden="true">·</span>
+        <span class="bb-control" data-bb="milk">
+          <span class="bb-control__cap" id="bb-milk-cap">Milk</span>
+          <button type="button" class="bb-control__btn" id="bb-milk-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="bb-milk-list" aria-labelledby="bb-milk-cap bb-milk-btn"><span class="bb-control__value" data-bb-value>black or with milk</span><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-chevron-down"/></svg></button>
+          <ul class="bb-list" id="bb-milk-list" role="listbox" aria-labelledby="bb-milk-cap" tabindex="-1" hidden></ul>
+        </span>
+      </div>
+
+      <!-- Desktop (≥ 1024): the brew notice folds into one line under the banner (C-09) -->
+      <p class="brew-grindline" data-brew-grindline hidden></p>
+
+      <!-- Brew context notice (COPY §3.2), only when ?brew is set -->
+      <div class="brew-context" data-brew-context hidden></div>
+    </header>
+
+    <!-- Brewer chip row (COPY §3.3): single-select fast path, mirrors ?brew -->
+    <div class="shop-chips" role="group" aria-labelledby="shop-chips-label" data-shop-chips>
+      <span class="visually-hidden" id="shop-chips-label">Filter by brewer</span>
+      <ul class="shop-chips__row" role="list" data-chip-row></ul>
+    </div>
+
+    <div class="shop-layout">
+      <!-- Desktop sidebar (≥ 1024): Paper, no glass; facets apply instantly -->
+      <aside class="shop-side" aria-labelledby="side-title" data-shop-side>
+        <div class="shop-side__head">
+          <h2 class="shop-side__title" id="side-title">Filters</h2>
+          <button type="button" class="text-btn text-btn--clay" data-clear-all hidden>Clear all</button>
+        </div>
+        <form class="facets facets--side" data-facets="side" aria-labelledby="side-title" novalidate></form>
+      </aside>
+
+      <section class="shop-main" aria-labelledby="results-title">
+        <h2 class="visually-hidden" id="results-title">Coffees</h2>
+        <!-- Toolbar (§7.14): Filter · Sort · count. The compact capsule absorbs Filter + Sort on scroll (mobile). -->
+        <div class="shop-toolbar" data-toolbar>
+          <button type="button" class="btn btn--ghost btn--sm squish shop-toolbar__filter" data-open-filters aria-haspopup="dialog" aria-controls="filter-sheet"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-filter"/></svg><span data-filter-label>Filter</span></button>
+          <button type="button" class="btn btn--ghost btn--sm squish shop-toolbar__sort" data-open-sort aria-haspopup="dialog" aria-controls="sort-sheet"><span data-sort-label>Sort: Featured</span><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-chevron-down"/></svg></button>
+          <p class="shop-toolbar__count" data-count aria-hidden="true">12 coffees</p>
+          <div class="shop-sort">
+            <label class="shop-sort__label" for="sort-select">Sort by</label>
+            <select class="select select--sm shop-sort__select" id="sort-select" data-sort-select></select>
+          </div>
+        </div>
+
+        <!-- Active filter chips (removable) -->
+        <div class="active-chips" data-active-chips hidden>
+          <p class="visually-hidden" id="active-label">Active filters</p>
+          <ul class="active-chips__row" role="list" aria-labelledby="active-label" data-active-list></ul>
+        </div>
+
+        <div class="shop-results" data-results aria-busy="true">
+          <p class="shop-results__loading">Loading coffees…</p>
+        </div>
+
+        <!-- Empty state (§7.14 / COPY §3.7): never a dead end -->
+        <div class="shop-empty" data-empty hidden>
+          <h2 class="shop-empty__title" id="empty-title" tabindex="-1">No coffees match all of those.</h2>
+          <p class="shop-empty__line">Try removing a filter. These two come closest:</p>
+          <div class="shop-empty__actions">
+            <button type="button" class="btn btn--ghost btn--md squish" data-undo-last>Clear the last filter</button>
+            <button type="button" class="text-btn text-btn--clay" data-clear-all>Clear filters</button>
+          </div>
+          <ul class="chip-row shop-empty__chips" role="list" data-empty-chips></ul>
+          <div class="shop-empty__near" data-empty-near></div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+<!-- "Not sure which grind?" helper (COPY §3.8). Outside the .shop grid (C-05), so it can never paint over the sticky sidebar. -->
+  <section class="container grind-help" aria-labelledby="grind-help-title" data-reveal>
+    <div class="grind-help__card">
+      <div class="grind-help__copy">
+        <p class="marker">No. 02 · Grind sizes</p>
+        <h2 class="grind-help__title" id="grind-help-title">Which grind for your brewer?</h2>
+        <p class="grind-help__intro">Pick by the gadget you own. We grind to order, so you never need to know microns.</p>
+        <a class="link link--arrow" href="guides/index.html#grind-chart">See the full grind chart <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="grind-help__side">
+      <table class="grind-table" data-grind-table>
+        <caption class="visually-hidden">Grind size by brewer</caption>
+        <thead><tr><th scope="col">Brewer</th><th scope="col">Grind</th><th scope="col">Feels like</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="margin-note grind-help__note">we grind after you order, not before</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Shell footer: shell.js replaces this no-JS fallback. -->
+<footer class="footer" data-shell="footer" data-zone="dark">
+  <div class="container footer__static">
+    <nav aria-label="Footer"><ul>
+      <li><a href="shop.html">All coffee</a></li>
+      <li><a href="guides/index.html">Brew guides</a></li>
+      <li><a href="cafes.html">Cafés</a></li>
+      <li><a href="about.html">Our story</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul></nav>
+    <p>Demo store. No real orders or payments.</p>
+  </div>
+</footer>
+
+<!-- Filter sheet (T2 bottom sheet, §7.14). Top-level <dialog>, so it lives outside <main>. -->
+<dialog class="sheet sheet--bottom glass-sheet filter-sheet" id="filter-sheet" aria-labelledby="filter-sheet-title">
+  <span class="lens" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+  <span class="sheet__handle" aria-hidden="true"></span>
+  <div class="sheet__head plate plate--solid">
+    <h2 class="sheet__title" id="filter-sheet-title">Filters</h2>
+    <button type="button" class="text-btn text-btn--clay filter-sheet__clear" data-clear-all>Clear all</button>
+    <button type="button" class="plate--btn plate squish sheet__close" data-sheet-close aria-label="Close filters"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+  </div>
+  <div class="sheet__body">
+    <form class="facets facets--sheet" data-facets="sheet" aria-labelledby="filter-sheet-title" novalidate></form>
+  </div>
+  <div class="sheet__toasts"></div>
+  <div class="sheet__foot plate plate--solid">
+    <button type="button" class="btn btn--md btn--block lacquer squish" data-sheet-close data-show-count>Show 12 coffees</button>
+  </div>
+  <p class="sheet__live visually-hidden" aria-live="polite"></p>
+</dialog>
+
+<!-- Sort sheet: radio list, applies and closes on select -->
+<dialog class="sheet sheet--bottom glass-sheet sort-sheet" id="sort-sheet" aria-labelledby="sort-sheet-title">
+  <span class="lens" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+  <span class="sheet__handle" aria-hidden="true"></span>
+  <div class="sheet__head plate plate--solid">
+    <h2 class="sheet__title" id="sort-sheet-title">Sort by</h2>
+    <button type="button" class="plate--btn plate squish sheet__close" data-sheet-close aria-label="Close sort"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+  </div>
+  <div class="sheet__body">
+    <fieldset class="sort-list" data-sort-list>
+      <legend class="visually-hidden">Sort coffees by</legend>
+    </fieldset>
+  </div>
+  <div class="sheet__toasts"></div>
+  <p class="sheet__live visually-hidden" aria-live="polite"></p>
+</dialog>
+
+<script type="module" src="assets/js/main.js"></script>
+<script type="module" src="assets/js/pages/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+/* ==========================================================================
+   motion.css (Motion Dev). DESIGN §2.8 durations table + §9 principles.
+   Loaded on every page after components.css (and after any page CSS).
+   - Only transform and opacity animate. Tokens (tokens.css) zero every scale
+     and translate under prefers-reduced-motion; the rules below that hide or
+     move content are additionally scoped to (prefers-reduced-motion:
+     no-preference), so reduced motion shows everything instantly.
+   - Every hidden/pre-animation state is gated on html.motion, which motion.js
+     adds. No JS = no hidden content.
+   Existing hooks kept where they live: .squish (glass.css; .is-pressed here), sheets
+   (--sheet-from / .is-closing), .capsule__cart.is-stretch, .addbar.is-visible,
+   .cart-bar.is-tucked, tube sweep keyframes (components.css / page CSS).
+   ========================================================================== */
+
+/* 1. Press squish coverage (NON-CUTTABLE). glass.css owns .squish; make sure
+   every Pine button and every tap-to-pick card squishes even when a template
+   forgot the class. Same tokens: 120 ms press, 380 ms spring release. */
+:where(.lacquer:not(.squish), .grind-pill, .size-card) {
+  transition: transform var(--t-spring) var(--ease-spring);
+  -webkit-tap-highlight-color: transparent;
+}
+:where(.lacquer:not(.squish), .grind-pill, .size-card):active:not([aria-disabled="true"]) {
+  transform: scale(var(--press-scale));
+  transition: transform var(--t-press) var(--ease-out);
+}
+
+/* 1b. Pressed state driven by motion.js (R1 B-02 / D1). Blink only applies
+   :active on touch after the finger lifts, and iOS Safari not at all without
+   a touchstart listener, so a delegated pointerdown adds .is-pressed to the
+   closest .squish (and the coverage set above) for the whole hold.
+   aria-disabled controls DO squish (Director, via Fixer A: the "Choose a
+   grind" CTA responds on press); [data-soldout] and :disabled do not. Same
+   tokens as glass.css .squish:active; reduced motion zeroes --press-scale. */
+.squish.is-pressed:not([data-soldout], :disabled),
+:where(.lacquer:not(.squish), .grind-pill, .size-card).is-pressed:not([data-soldout], :disabled) {
+  --lip-a: 1;
+  transform: scale(var(--press-scale));
+  transition: transform var(--t-press) var(--ease-out);
+}
+.squish.is-pressed::after { --sx: 38%; }
+
+/* 2. Section entry (§2.8 "Section entry"): 8 px rise + fade, 200 ms, once.
+   Never on the hero: [data-reveal] is not placed on above-the-fold sections,
+   and motion.js shows anything already in view at boot without animating. */
+@media (prefers-reduced-motion: no-preference) {
+  html.motion :is([data-reveal], .co-done__panel) {
+    transition:
+      opacity var(--t-reveal) var(--ease-out) var(--rd, 0ms),
+      transform var(--t-reveal) var(--ease-out) var(--rd, 0ms);
+  }
+  html.motion :is([data-reveal], .co-done__panel):not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--rise));
+  }
+  /* Item lists inside a revealed section: opacity-only stagger, ≤ 3 steps of
+     60 ms (no second translate on top of the section's rise). */
+  html.motion [data-reveal] :is(.pgrid, .guide-cards, .taste-tiles, .brew-tiles, .reviews__row, .stats, .team, .timeline) > * {
+    transition: opacity var(--t-reveal) var(--ease-out);
+  }
+  html.motion [data-reveal]:not(.is-in) :is(.pgrid, .guide-cards, .taste-tiles, .brew-tiles, .reviews__row, .stats, .team, .timeline) > * { opacity: 0; }
+  html.motion [data-reveal].is-in :is(.pgrid, .guide-cards, .taste-tiles, .brew-tiles, .reviews__row, .stats, .team, .timeline) > :nth-child(2) { transition-delay: calc(var(--rd, 0ms) + 60ms); }
+  html.motion [data-reveal].is-in :is(.pgrid, .guide-cards, .taste-tiles, .brew-tiles, .reviews__row, .stats, .team, .timeline) > :nth-child(n + 3) { transition-delay: calc(var(--rd, 0ms) + 120ms); }
+}
+
+/* 3. Capsule: compaction after 64 px of scroll. [data-compact] stays as a
+   state hook (shadow lift in components.css); the 92 % wordmark scale was
+   dropped by the CD (R1 B-12 / D4): it read as a rendering wobble. */
+
+/* Capsule -> island morph: motion.js runs a spring FLIP (scaleY on the shell,
+   inverse on the content, content fades in from 40 %). Scale from the top
+   edge so the shell grows downwards from where the bar sits, and replace the
+   old CSS pop on the island so the two don't stack. */
+.capsule { transform-origin: 50% 0; }
+:is(.capsule__bar, .capsule__island) { transform-origin: 50% 0; }
+html.motion .capsule[data-state="island"] .capsule__island { animation: none; }
+
+/* 5. Add-to-cart ghost: a 36 px Pine bag disc flown with WAAPI (transform
+   and opacity only), fixed at 0,0 so it never touches layout. */
+.fly-ghost {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: calc(var(--z-chrome) + 1);
+  display: grid;
+  place-items: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border-radius: var(--r-pill);
+  background: var(--pine);
+  color: var(--on-pine);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .35), 0 8px 20px -8px var(--pine);
+  pointer-events: none;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) { .fly-ghost { display: none; } }
+
+/* 6. Liquid tube. The fill is FLIP-animated with scaleX from the left edge
+   (motion.js). The 600 ms specular sweep plays ONCE, only when the threshold
+   is crossed (.is-sweep), not on every re-render of an already-full tube.
+   Without motion.js the components.css behaviour is unchanged. */
+.tube__fill { transform-origin: 0 50%; }
+html.motion .tube.is-full:not(.is-sweep) .tube__fill::after { animation: none; transform: translateX(100%); }
+html.motion .tube.is-full:not(.is-sweep) .tube__tick { animation: none; }
+
+/* 7. Home hero: the bags rise behind the chip tray once on load (≤ 700 ms
+   in total: 480 ms + 2 × 80 ms stagger). Transform + opacity only; the
+   bags keep their individual `rotate`/`translate` fan, which composes with
+   `transform`. The H1 (LCP) and the tray never move. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .hero__bag { animation: hero-bag-rise 480ms var(--ease-out) both; }
+  html.js .hero__bag--m { animation-delay: 80ms; }
+  html.js .hero__bag--r { animation-delay: 160ms; }
+}
+@keyframes hero-bag-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  40%  { opacity: 1; }
+}
+
+/* 8. Sheets: will-change only while a sheet is moving (§9.3). */
+dialog.sheet.is-closing { will-change: transform, opacity; }
+
+/* 9. Reduced motion / forced colours: belt and braces for anything above. */
+@media (prefers-reduced-motion: reduce) {
+  :where(.lacquer:not(.squish), .grind-pill, .size-card):active { transform: none; }
+  .hero__bag { animation: none; }
+}
+@media (forced-colors: active) { .fly-ghost { display: none; } }

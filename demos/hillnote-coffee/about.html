@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en-IN" data-storage-prefix="hn-">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(h){h.classList.add('js');var p=h.getAttribute('data-storage-prefix')||'';try{if(localStorage.getItem(p+'transparency')==='reduced'){h.dataset.transparency='reduced';h.dataset.glass='off'}if(sessionStorage.getItem(p+'announce')==='off')h.classList.add('announce-off')}catch(e){}var n=navigator,c=n.connection;if((n.deviceMemory&&n.deviceMemory<=2)||(c&&c.saveData))h.classList.add('glass-lite')})(document.documentElement);
+</script>
+<title>Our story | Hillnote Coffee Roasters</title>
+<meta name="description" content="How Hillnote buys coffee from estates in Karnataka, Andhra Pradesh and Tamil Nadu, roasts it every week in small batches, and prints the date on each bag.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good coffee should tell you where it's from">
+<meta property="og:description" content="How Hillnote buys coffee from estates in Karnataka, Andhra Pradesh and Tamil Nadu, roasts it every week in small batches, and prints the date on each bag.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hillnote Coffee Roasters: coffee roasted this week, ground for your brewer. Three coffee bags in amber, plum and teal.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E8">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Figtree:wght@400..600&display=swap">
+<link rel="preload" href="assets/img/bag.svg" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/glass.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/pages-content.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="about">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce" data-shell="announce" data-zone="dark" role="region" aria-label="Announcement">
+  <p data-announcement></p>
+  <button type="button" class="announce__close" data-announce-close aria-label="Dismiss announcement"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+</div>
+
+<!-- Shell header: shell.js replaces this no-JS fallback with the full capsule (same geometry). -->
+<header class="site-header" data-shell="header">
+  <div class="capsule glass-chrome">
+    <div class="capsule__bar">
+      <span></span>
+      <a class="capsule__logo plate" href="index.html" aria-label="Home"><svg viewBox="0 0 204 40" width="112" height="22" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#logo"/></svg></a>
+      <nav class="capsule__nav plate" aria-label="Main"><ul>
+        <li><a class="capsule__link" href="shop.html">Shop coffee</a></li>
+        <li><a class="capsule__link" href="index.html#finder">Find your coffee</a></li>
+        <li><a class="capsule__link" href="guides/index.html">Brew guides</a></li>
+        <li><a class="capsule__link" href="cafes.html">Cafés</a></li>
+        <li><a class="capsule__link" href="about.html" aria-current="page">Our story</a></li>
+      </ul></nav>
+      <a class="capsule__cart plate" href="cart.html" aria-label="Cart"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-bag"/></svg></a>
+    </div>
+  </div>
+</header>
+<noscript><p class="nojs">This shop needs JavaScript for the cart and filters. You can still read the guides and find a café.</p></noscript>
+
+<main id="main" tabindex="-1">
+
+  <!-- Hero: hillside art (photo slot) + H1 on paper (mobile) / on a dark baked slab (desktop) -->
+  <section class="about-hero" aria-labelledby="about-title">
+    <div class="container about-hero__wrap">
+      <div class="about-hero__media" data-zone="dark">
+        <!-- Pine glass-zone panel; about.js draws the contour hills with contours() (D-07). -->
+        <div class="about-hero__art" data-about-topo role="img" aria-label="Contour lines of coffee-growing hills (illustration)"></div>
+      </div>
+      <div class="about-hero__slab glass-baked glass--dark glass--panel">
+        <span class="lens" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+        <div class="about-hero__plate plate">
+          <p class="marker">Our story</p>
+          <h1 id="about-title">Good coffee should tell you where it's <em>from</em>.</h1>
+          <p class="lead">We buy from hill estates we can name and roast every week. Then we print the farm, the altitude and the roast date on the bag, so you never have to guess.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- No. 01 · Origin story -->
+  <section class="section" aria-labelledby="origin-title" data-reveal>
+    <div class="container content-grid">
+      <div class="content-grid__main prose-block">
+        <p class="marker">No. 01 · How it started</p>
+        <h2 id="origin-title">It started with a stale bag</h2>
+        <p><span data-brand="shortName">Hillnote</span> began in 2019 in a rented shed in Bengaluru with a 5 kg roaster and a complaint. Most of the coffee we could buy in the city couldn't tell us when it was roasted or which farm grew it, and its flavour had faded long before it reached us.</p>
+        <p>So we went to the source. We drove to estates in Chikmagalur and Coorg, cupped dozens of lots, and bought the ones that made us stop talking. We roasted them in small batches, wrote the date on the bag in pen, and sold them to friends, then to friends of friends.</p>
+        <figure class="pull">
+          <blockquote><p>“If we can't tell you which hill it grew on, we don't sell it.”</p></blockquote>
+          <figcaption>Meera Kulkarni, co-founder</figcaption>
+        </figure>
+        <p>We've grown since, but the rules haven't changed. We roast every week, to the week's orders. Every single-origin bag names its estate, and we grind to order for whichever brewer you own.</p>
+      </div>
+      <p class="margin-note margin-note--aside content-grid__note">the first roaster still sits by the door</p>
+    </div>
+  </section>
+
+  <!-- By the numbers [DEMO] -->
+  <section class="section--tight stats-band" aria-labelledby="numbers-title" data-reveal>
+    <div class="container">
+      <h2 id="numbers-title" class="visually-hidden">Hillnote in numbers</h2>
+      <p class="stats__label">Demo figures</p>
+      <dl class="stats">
+        <div><dt>partner estates</dt><dd>14</dd></div>
+        <div><dt>cities with a café</dt><dd data-stat="cities">4</dd></div>
+        <div><dt>coffees on the menu</dt><dd data-stat="coffees">12</dd></div>
+        <div><dt>days from roaster to doorstep</dt><dd>3–5</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- No. 02 · How we source -->
+  <section class="section" aria-labelledby="source-title" data-reveal>
+    <div class="container">
+      <div class="section-head">
+        <p class="marker">No. 02 · How we source</p>
+        <h2 id="source-title">From farm to your cup in three steps</h2>
+      </div>
+      <ol class="timeline" role="list">
+        <li class="timeline__step">
+          <svg class="timeline__icon" viewBox="0 0 48 48" width="64" height="64" role="img" aria-label="Ripe red coffee cherries on a branch" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14c10-2 22 0 36 8"/><path d="M18 14c0 6-2 10-6 12M30 17c1 5 0 9-3 12"/><circle cx="12" cy="30" r="5" style="stroke:var(--illo-accent)"/><circle cx="26" cy="33" r="5" style="stroke:var(--illo-accent)"/><path d="M36 20c4-6 8-6 10-4-2 4-6 6-10 4z"/></svg>
+          <h3 class="timeline__title"><span class="timeline__n" aria-hidden="true">1</span>Farm</h3>
+          <p>We cup samples from each harvest and buy the lots we'd happily drink every day. We pay per lot, agreed before harvest.</p>
+        </li>
+        <li class="timeline__step">
+          <svg class="timeline__icon" viewBox="0 0 48 48" width="64" height="64" role="img" aria-label="Coffee beans tumbling out of a drum roaster into a cooling tray" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="24" height="18" rx="9"/><path d="M30 19h6l4 6"/><path d="M14 4v6M22 4v6"/><ellipse cx="34" cy="38" rx="10" ry="3"/><path d="M38 28l-2 4M34 30v3" style="stroke:var(--illo-accent)"/><path d="M10 28v10h10"/></svg>
+          <h3 class="timeline__title"><span class="timeline__n" aria-hidden="true">2</span>Roastery</h3>
+          <p>Green coffee rests in our Bengaluru roastery until its roast day. Each coffee has its own profile, adjusted batch by batch.</p>
+        </li>
+        <li class="timeline__step">
+          <svg class="timeline__icon" viewBox="0 0 48 48" width="64" height="64" role="img" aria-label="A sealed coffee bag next to a cup of black coffee" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10h16l2 30H4z"/><path d="M6 15h16"/><path d="M8 28c3-2 7-2 12 0" style="stroke:var(--illo-accent)"/><path d="M28 26h14v8a7 7 0 0 1-14 0z"/><path d="M42 28h2a3 3 0 0 1 0 6h-2"/><path d="M32 18c0-2 2-2 2-4M37 18c0-2 2-2 2-4"/></svg>
+          <h3 class="timeline__title"><span class="timeline__n" aria-hidden="true">3</span>Your cup</h3>
+          <p>We grind to order, seal the bag, and hand it to the courier within 48 hours of roasting.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- No. 03 · How we roast -->
+  <section class="section section--flush" aria-labelledby="roast-title" data-reveal>
+    <div class="container about-roast">
+      <figure class="about-roast__media">
+        <!-- Placeholder for the roastery photo (GRAPHICS §10 "roastery"): line drawing on Oat. -->
+        <svg viewBox="0 0 360 240" width="720" height="480" role="img" aria-label="A roaster checking a handful of freshly roasted beans beside a small drum roaster (illustration)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 214h320" stroke-opacity=".4"/>
+          <rect x="60" y="92" width="120" height="76" rx="38"/>
+          <circle cx="120" cy="130" r="22"/><path d="M120 108v44M98 130h44" stroke-opacity=".5"/>
+          <path d="M84 92V60h72v32"/><path d="M96 60l8-20h32l8 20"/>
+          <path d="M70 168v46M170 168v46"/>
+          <path d="M180 130h28l14 22"/>
+          <ellipse cx="236" cy="190" rx="44" ry="10"/><path d="M192 190v10c0 6 20 10 44 10s44-4 44-10v-10"/>
+          <g style="stroke:var(--illo-accent)"><path d="M226 186c3-2 6-2 8 0M244 184c3-2 6-2 8 0M234 192c3-2 6-2 8 0"/></g>
+          <path d="M264 128c10-8 26-8 34 2l10 14c2 4-2 8-6 6l-6-4c-10 6-26 6-32-4"/>
+          <g style="stroke:var(--illo-accent)"><ellipse cx="282" cy="128" rx="4" ry="2.5"/><ellipse cx="292" cy="130" rx="4" ry="2.5"/><ellipse cx="286" cy="122" rx="4" ry="2.5"/></g>
+          <path d="M298 140l22 40"/>
+        </svg>
+      </figure>
+      <div class="about-roast__text">
+        <p class="marker">No. 03 · How we roast</p>
+        <h2 id="roast-title">Small batches, every single week</h2>
+        <p>We roast in 12 kg batches, Monday to Thursday, and only as much as the week's orders need. Light roasts get a short, gentle profile to keep their fruit. Darker roasts go slower so they turn chocolatey instead of burnt. Every bag leaves with its roast date printed on the front, and a "best from" day so you know when it will taste its best.</p>
+        <p class="margin-note">we taste every batch before it's bagged</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team [DEMO] -->
+  <section class="section" aria-labelledby="team-title" data-reveal>
+    <div class="container">
+      <div class="section-head">
+        <p class="marker">No. 04 · Team</p>
+        <h2 id="team-title">The people behind the bags</h2>
+        <p class="stats__label">Fictional team for this demo</p>
+      </div>
+      <ul class="team" role="list">
+        <li class="person" style="--tone: var(--clay)">
+          <div class="person__mono bag-scope" style="--bag: var(--clay)" data-mono="Meera Kulkarni" role="img" aria-label="Monogram for Meera Kulkarni"><span class="person__topo" aria-hidden="true"></span><span class="person__initials" aria-hidden="true">MK</span></div>
+          <h3 class="person__name">Meera Kulkarni</h3>
+          <p class="person__role">Co-founder, head roaster</p>
+          <p class="person__bio">Spends Monday mornings at the roaster and Monday afternoons arguing about it.</p>
+        </li>
+        <li class="person" style="--tone: var(--pine)">
+          <div class="person__mono bag-scope" style="--bag: var(--pine)" data-mono="Arjun Pillai" role="img" aria-label="Monogram for Arjun Pillai"><span class="person__topo" aria-hidden="true"></span><span class="person__initials" aria-hidden="true">AP</span></div>
+          <h3 class="person__name">Arjun Pillai</h3>
+          <p class="person__role">Co-founder, green coffee buyer</p>
+          <p class="person__bio">Visits every partner estate at least once a harvest, and drives most of the way.</p>
+        </li>
+        <li class="person" style="--tone: var(--muted)">
+          <div class="person__mono bag-scope" style="--bag: var(--muted)" data-mono="Tanvi Rao" role="img" aria-label="Monogram for Tanvi Rao"><span class="person__topo" aria-hidden="true"></span><span class="person__initials" aria-hidden="true">TR</span></div>
+          <h3 class="person__name">Tanvi Rao</h3>
+          <p class="person__role">Cafés and training</p>
+          <p class="person__bio">Teaches every new barista to dial in a pour-over before they touch the espresso machine.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Credits -->
+  <section class="section section--flush credits" id="credits" aria-labelledby="credits-title">
+    <div class="container content-grid">
+      <div class="content-grid__main">
+        <details class="credits__details" data-credits>
+        <summary class="credits__summary"><h2 id="credits-title" class="credits__title">Photo credits</h2></summary>
+        <p class="credits__intro">Photos on this site come from Unsplash and are used under the <a class="link" href="https://unsplash.com/license" rel="noopener">Unsplash License</a>. Thank you to:</p>
+        <ul class="credits__list" role="list">
+          <li><span>Pour-over cone and gooseneck kettle (Home, Brew guides): <a class="link" href="https://images.unsplash.com/photo-1442512595331-e89e73853f31" rel="noopener">photo on Unsplash</a></span><span class="credits__id">photo-1442512595331-e89e73853f31</span></li>
+          <li><span>French press on a wooden counter (Home, Brew guides): <a class="link" href="https://images.unsplash.com/photo-1519082274554-1ca37fb8abb7" rel="noopener">photo on Unsplash</a></span><span class="credits__id">photo-1519082274554-1ca37fb8abb7</span></li>
+          <li><span>Café counter with a brew bar (Home, Cafés): <a class="link" href="https://images.unsplash.com/photo-1453614512568-c4024d13c247" rel="noopener">photo on Unsplash</a></span><span class="credits__id">photo-1453614512568-c4024d13c247</span></li>
+          <li><span>Freshly roasted coffee beans, close up (Product pages, gallery): <a class="link" href="https://images.unsplash.com/photo-1447933601403-0c6688de566e" rel="noopener">photo on Unsplash</a></span><span class="credits__id">photo-1447933601403-0c6688de566e</span></li>
+        </ul>
+        <p class="credits__intro">Illustrations, bag art and maps are original to this template. A few interface icons are adapted from <a class="link" href="https://lucide.dev/license" rel="noopener">Lucide</a> (ISC licence).</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="band cta-band content-cta" aria-labelledby="cta-title" data-reveal>
+    <div class="zone-field" aria-hidden="true"><svg><use href="#field"/></svg></div>
+    <div class="container cta-band__inner">
+      <div class="cta-band__copy">
+        <h2 id="cta-title">Taste the <em>difference</em> yourself</h2>
+        <p class="cta-band__line">Start with your brewer. We'll handle the grind.</p>
+      </div>
+      <ul class="chip-row" role="list"><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=espresso"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-espresso"/></svg><span>Espresso</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=moka-pot"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-moka-pot"/></svg><span>Moka pot</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=aeropress"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-aeropress"/></svg><span>AeroPress</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=pour-over"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-pour-over"/></svg><span>Pour-over</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=south-indian-filter"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-south-indian-filter"/></svg><span>South Indian filter</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=french-press"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-french-press"/></svg><span>French press</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=cold-brew"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-cold-brew"/></svg><span>Cold brew</span></a></li><li><a class="brew-chip brew-chip--paper squish" href="shop.html?brew=whole-bean"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-whole-bean"/></svg><span>Whole bean</span></a></li></ul>
+      <p><a class="btn btn--lg lacquer squish" href="shop.html">Shop coffee</a></p>
+    </div>
+  </section>
+</main>
+
+<!-- Shell footer: shell.js replaces this no-JS fallback. -->
+<footer class="footer" data-shell="footer" data-zone="dark">
+  <div class="container footer__static">
+    <nav aria-label="Footer"><ul>
+      <li><a href="shop.html">All coffee</a></li>
+      <li><a href="guides/index.html">Brew guides</a></li>
+      <li><a href="cafes.html">Cafés</a></li>
+      <li><a href="about.html">Our story</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul></nav>
+    <p>Demo store. No real orders or payments.</p>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/main.js"></script>
+<script type="module" src="assets/js/pages/about.js"></script>
+</body>
+</html>

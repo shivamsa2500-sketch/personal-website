@@ -1,0 +1,440 @@
+/* ==========================================================================
+   TOKENS  ·  REBRAND FILE 2 of 2
+   Hillnote Coffee Roasters · Direction A "Field Notes" + liquid glass
+   --------------------------------------------------------------------------
+   Source of truth: _studio/DESIGN.md (which implements
+   _studio/council/DESIGN-DECISIONS.md item 0 verbatim).
+
+   RULES
+   - A rebrand edits ONLY the block marked "REBRAND HERE" (+ the Google Fonts
+     <link> in each page <head> if the families change). Every other value,
+     including every glass tint, rim, hairline and shadow, is DERIVED from it
+     with color-mix(), so the glass re-tints itself.
+   - No colour, glass value, radius, duration or easing may be hard-coded in
+     any other CSS file. Use these properties.
+   - Custom properties resolve where they are DECLARED. Anything derived from
+     a value that changes per element (--bag, --shell-a, --plate-a, --sat)
+     is recomputed on that element (see .bag-scope below and glass.css).
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   Registered properties (so the dark-zone thickening can transition, and so
+   the fixed-chrome lens can follow scroll with a scroll-driven animation)
+   -------------------------------------------------------------------------- */
+@property --shell-a   { syntax: '<percentage>'; inherits: true; initial-value: 38%; }
+@property --sheet-a   { syntax: '<percentage>'; inherits: true; initial-value: 46%; }
+@property --plate-a   { syntax: '<percentage>'; inherits: true; initial-value: 92%; }
+@property --sat       { syntax: '<percentage>'; inherits: true; initial-value: 160%; }
+@property --bright    { syntax: '<number>';     inherits: true; initial-value: 1.04; }
+@property --lens-o    { syntax: '<number>';     inherits: true; initial-value: 1; }
+@property --fy-scroll { syntax: '<length>';     inherits: true; initial-value: 0px; }
+
+
+:root {
+  /* ========================================================================
+     REBRAND HERE  (edit these 7 colours + 2 font stacks; nothing else)
+     Contrast is verified for these defaults (DESIGN.md §3). After a rebrand
+     re-check: ink/paper >= 7, muted/paper and muted/oat >= 4.5,
+     on-primary/primary >= 4.5, link/paper >= 4.5, link/oat >= 4.5,
+     ink/accent >= 4.5, on-saffron/saffron >= 4.5.
+     ======================================================================== */
+  --paper:   #F7F2E8;   /* page + glass tint source                         */
+  --oat:     #EDE3D1;   /* bands, wells, slips, tracks                      */
+  --ink:     #2A1F17;   /* all text on light; footer + announcement ground  */
+  --muted:   #6B5D50;   /* secondary text; REQUIRED 3:1 boundaries          */
+  --pine:    #24493D;   /* PRIMARY: buttons, selected, focus, "open" dot    */
+  --clay:    #A3462A;   /* italic headline word, inline links, sale, rules  */
+  --saffron: #E9B949;   /* stars, "New", success flash, "now" tick. Never text */
+  --on-pine: #FFFFFF;   /* text on the primary (set to var(--ink) if a light primary) */
+  --on-saffron: var(--ink); /* text on Saffron grounds; must be >= 4.5:1 against --saffron */
+
+  --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-body:    'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* ======================== end REBRAND HERE ============================== */
+
+
+  /* ---- Semantic colour roles (do not edit for a rebrand) ---------------- */
+  --color-bg:          var(--paper);
+  --color-band:        var(--oat);
+  --color-text:        var(--ink);
+  --color-text-muted:  var(--muted);
+  --color-primary:     var(--pine);
+  --color-on-primary:  var(--on-pine);
+  --color-link:        var(--clay);
+  --color-accent:      var(--saffron);
+  --color-danger:      var(--clay);        /* errors: Clay text + icon + 2px left rule */
+
+  --pine-hover:   color-mix(in oklab, var(--pine) 86%, var(--ink));
+  --pine-press:   color-mix(in oklab, var(--pine) 76%, var(--ink));
+  --pine-tint:    color-mix(in oklab, var(--pine) 10%, var(--paper));  /* active filter chips (Ink text) */
+  --clay-hover:   color-mix(in oklab, var(--clay) 82%, var(--ink));
+  --saffron-tint: color-mix(in oklab, var(--saffron) 22%, var(--paper));
+
+  --rule:         color-mix(in oklab, var(--ink) 14%, transparent);   /* hairline rules (decorative) */
+  --rule-strong:  var(--muted);                                        /* 5.69:1 on Paper */
+  --track-empty:  color-mix(in oklab, var(--ink) 16%, transparent);   /* roast meter empty segments */
+
+  /* Dark grounds (footer, announcement bar): Paper on Ink 14.4:1 */
+  --on-ink:        var(--paper);
+  --on-ink-muted:  color-mix(in oklab, var(--paper) 72%, var(--ink)); /* ~7.6:1 on Ink */
+
+  --scrim:         color-mix(in oklab, var(--ink) 32%, transparent);
+
+  /* ---- Per-product colour (set --bag on the element + add .bag-scope) --- */
+  --bag: #8E5B3A;                        /* fallback only; products set their own */
+
+
+  /* ========================================================================
+     LIQUID GLASS (DESIGN-DECISIONS 0.1, verbatim values)
+     ======================================================================== */
+  --glass-base: var(--paper);            /* tint source; rebrands follow Paper */
+
+  /* tier tints */
+  --shell-a: 38%;   --shell-a-dark: 56%;            /* T1 chrome + T3 baked */
+  --sheet-a: 46%;                                   /* T2 sheets (always over scrim) */
+  --plate-a: 92%;   --plate-a-dark: 100%;           /* T4 plates */
+  --glass-shell: color-mix(in oklab, var(--glass-base) var(--shell-a), transparent);
+  --glass-sheet: color-mix(in oklab, var(--glass-base) var(--sheet-a), transparent);
+  --glass-plate: color-mix(in oklab, var(--glass-base) var(--plate-a), transparent);
+  --glass-solid: var(--glass-base);
+
+  /* fallback tints (0.11) */
+  --shell-a-nofilter: 90%;  --sheet-a-nofilter: 94%;
+  --shell-a-lite:     84%;  --sheet-a-lite:     94%;
+
+  /* blur (live tiers only) */
+  --blur-chrome: 6px;  --blur-sheet: 10px;  --sat: 160%;  --sat-dark: 130%;  --bright: 1.04;
+
+  /* light */
+  --rim-warm:   color-mix(in oklab, white 88%, var(--saffron));        /* warm-white, never yellow */
+  --rim-mid:    rgb(255 250 240 / .15);
+  --rim-end:    rgb(255 250 240 / .45);
+  --lip-a:      .85;
+  --lip-top:    inset 0 1px 0 rgb(255 250 240 / var(--lip-a));
+  --lip-bottom: inset 0 -1px 0 color-mix(in oklab, var(--ink) 12%, transparent);
+  --inner-glow: inset 0 0 20px rgb(255 250 240 / .16);
+  --sheen:      rgb(255 250 240 / .35);
+  --edge-soft:   1px solid color-mix(in oklab, var(--ink) 14%, transparent); /* decorative glare edge */
+  --edge-strong: 1px solid var(--muted);                                     /* 5.7:1: required 3:1 boundaries */
+  --edge: var(--edge-soft);              /* swapped to --edge-strong in reduced transparency */
+  --shadow-float: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent),
+                  0 12px 32px -10px color-mix(in oklab, var(--ink) 22%, transparent);
+
+  /* lens */
+  --lens-rim: 8px;  --lens-scale: 1.06;  --lens-dy: 2px;  --lens-blur: 1.5;
+  --lens-o: 1;                           /* 0 in dark zones / reduced transparency */
+  --plate-inset: 6px;                    /* plate inset AND min glass padding (focus halo fits) */
+  --clear-min: 30%;                      /* clear shell area per glass object (test 6) */
+
+  /* lacquer: solid Pine buttons with a gloss lip */
+  --lacquer-lip: inset 0 1px 0 rgb(255 255 255 / .35), inset 0 -1px 0 rgb(0 0 0 / .12);
+  --lacquer-shadow: 0 8px 20px -8px color-mix(in oklab, var(--pine) 70%, transparent);
+
+
+  /* ========================================================================
+     BACKDROP: contour zoning (0.6). Graphics' field SVG reads these.
+     ======================================================================== */
+  --zone-quiet-a: 6%;     --zone-quiet-w: 1px;      /* where text lives */
+  --zone-glass-a: 18%;    --zone-glass-w: 1.5px;    /* capsule lane, hero panel, PDP band, map */
+  --zone-well-a:  12%;    --zone-well-w:  1.5px;    /* card wells, ledger thumbnails */
+  --zone-band-a:  20%;                              /* PDP flood band (Paper or Ink, whichever contrasts) */
+  --zone-feather: 48px;   --zone-text-clear: 24px;
+  --pool-max-a:   22%;    --pool-o: 1;              /* pools: <= 2 per viewport, anchored */
+  --grain-a:      4%;
+  --zone-line:    var(--pine);                      /* non-product pages; .bag-scope overrides */
+
+
+  /* ========================================================================
+     TYPE  (Fraunces display + Figtree UI/body; scale 1.25)
+     Desktop 96 / 64 / 44 / 30 / 24; mobile H1 44, H2 32, H3 24.
+     rem-based clamps so Larger Text / zoom scale them.
+     ======================================================================== */
+  --fs-display: clamp(2.75rem, 4.2vw + 1.75rem, 6rem);      /* H1  44 -> 96 */
+  --fs-h2:      clamp(2rem,    2.8vw + 1.3rem,  4rem);      /* H2  32 -> 64 */
+  --fs-h3:      clamp(1.5rem,  1.9vw + 0.95rem, 2.75rem);   /* H3  24 -> 44 */
+  --fs-h4:      clamp(1.25rem, 0.95vw + 0.95rem, 1.875rem); /* H4  20 -> 30 */
+  --fs-h5:      clamp(1.125rem, 0.55vw + 0.98rem, 1.5rem);  /* H5  18 -> 24 */
+  --fs-lead:    clamp(1.0625rem, 0.3vw + 1rem, 1.1875rem);  /* subline 17 -> 19 */
+  --fs-body:    clamp(1rem, 0.1vw + 0.95rem, 1.0625rem);    /* body 16 -> 17 */
+  --fs-ui:      0.9375rem;    /* 15: buttons, chips, nav, text on plates (min) */
+  --fs-label:   0.875rem;     /* 14: labels, markers, captions, margin notes */
+  --fs-numeral: 1.75rem;      /* 28: recipe numerals, dial, flavour numbers */
+  --fs-step:    2.75rem;      /* 44: guide step numerals */
+
+  --lh-display: 0.98;  --lh-h2: 1.04;  --lh-h3: 1.12;  --lh-h4: 1.2;
+  --lh-body: 1.6;      /* 16/26, 17/27 */
+  --lh-ui: 1.4667;     /* 15/22 */
+  --lh-label: 1.4286;  /* 14/20 */
+
+  --tr-display: -0.02em;  --tr-h2: -0.015em;  --tr-h3: -0.01em;  --tr-label: 0.02em;
+
+  --fw-body: 400;  --fw-ui: 500;  --fw-strong: 600;   /* Figtree */
+  --fw-display: 500;  --fw-display-strong: 600;       /* Fraunces */
+  --soft: 50;                                         /* Fraunces SOFT axis */
+
+  --measure: 66ch;  --measure-lead: 34ch;  --measure-note: 24ch;
+
+
+  /* ========================================================================
+     SPACE (4 px base)
+     ======================================================================== */
+  --space-1: 0.25rem;  /* 4  */
+  --space-2: 0.5rem;   /* 8  */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+  --space-10: 8rem;    /* 128 */
+  --section-y: clamp(4rem, 6vw + 1.75rem, 8rem);     /* 64 -> 128 between sections */
+  --section-y-tight: clamp(2.5rem, 3vw + 1.5rem, 4.5rem);
+  --stack: var(--space-5);
+
+  /* layout */
+  --container: 75rem;           /* 1200 */
+  --container-wide: 90rem;      /* bleeds (hero panel, PDP band) */
+  --gutter: 1.5rem;             /* 24, 12-col grid gap */
+  --page-x: clamp(1rem, 3.5vw + 0.25rem, 3rem);   /* 16 at 375 -> 48 */
+  --tap: 44px;                  /* min target */
+
+  /* chrome geometry */
+  --capsule-h: 56px;  --capsule-h-compact: 48px;
+  --capsule-top: 8px; --capsule-x: 8px;
+  --island-h: 88px;   --addbar-h: 64px;
+  --announce-h: 40px;
+  --chrome-clear: calc(var(--capsule-top) + var(--capsule-h) + 16px); /* scroll-padding-top */
+  --addbar-clear: calc(var(--addbar-h) + 16px);                       /* scroll-padding-bottom (PDP) */
+
+
+  /* ========================================================================
+     RADII (0.2)
+     ======================================================================== */
+  --r-pill: 999px;   /* capsule, chips, pills, + Add, Pine buttons */
+  --r-island: 28px;  /* capsule radius in island state */
+  --r-sheet: 28px;   /* sheets, PDP buy slab (top corners only on mobile bottom sheets) */
+  --r-panel: 32px;   /* hero Oat panel */
+  --r-card: 22px;    /* cards, pocket, café card */
+  --r-well: 14px;    /* ledger thumbnail well, drawer thumbs */
+  --r-input: 12px;   /* inputs, selects, radio cards, quick contact cards */
+  --r-check: 4px;    /* checkboxes */
+  --r-slip: 4px;     /* paper slips */
+  /* plates: calc(<parent radius> - var(--plate-inset)) via --r in glass.css */
+
+
+  /* ========================================================================
+     SHADOWS (warm, Ink-derived; light from the top-left)
+     ======================================================================== */
+  --shadow-1: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, var(--ink) 5%, transparent),
+                 0 10px 28px -14px color-mix(in oklab, var(--ink) 20%, transparent);
+  --shadow-lift: 0 2px 4px color-mix(in oklab, var(--ink) 6%, transparent),
+                 0 18px 36px -16px color-mix(in oklab, var(--ink) 26%, transparent);
+  --shadow-sheet: 0 -1px 0 color-mix(in oklab, var(--ink) 6%, transparent),
+                  0 24px 64px -12px color-mix(in oklab, var(--ink) 34%, transparent);
+  --shadow-slip: 2px 2px 0 color-mix(in oklab, var(--ink) 10%, transparent);
+
+
+  /* ========================================================================
+     FOCUS (0.5): Pine 2px outer ring + Paper 2px inner halo, offset 2px
+     ======================================================================== */
+  --focus-ring: var(--pine);
+  --focus-halo: var(--paper);
+  --focus-w: 2px;  --focus-offset: 2px;
+  --focus-shadow: 0 0 0 2px var(--focus-halo);
+
+
+  /* ========================================================================
+     Z-INDEX (two elevations only: chrome = 1, sheets = 2; dialogs use the
+     top layer and ignore z-index, these are for non-dialog fallbacks)
+     ======================================================================== */
+  --z-field: -1;     /* page backdrop SVG */
+  --z-base: 0;
+  --z-raised: 1;     /* card hover, pocket over well */
+  --z-sticky: 10;    /* desktop filter sidebar, PDP buy box, guide recipe card */
+  --z-chrome: 100;   /* capsule / island / add bar (Level 1) */
+  --z-scrim: 200;
+  --z-sheet: 210;    /* Level 2 */
+  --z-toast: 220;    /* toasts live INSIDE the open sheet when one is open */
+  --z-skip: 300;
+
+
+  /* ========================================================================
+     MOTION (0.8). Only transform, opacity and registered properties animate.
+     ======================================================================== */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-sheet:  cubic-bezier(.32, .72, 0, 1);
+  --ease-out:    cubic-bezier(.2, .7, .2, 1);
+  --ease-in:     cubic-bezier(.4, 0, 1, 1);
+  --ease-std:    cubic-bezier(.4, 0, .2, 1);
+
+  --t-press: 120ms;  --t-spring: 380ms;  --t-zone: 240ms;
+  --t-sheet-in: 320ms;  --t-sheet-out: 220ms;  --t-scrim: 200ms;
+  --t-hide: 240ms;      /* capsule translateY(-120%) */
+  --t-stretch: 300ms;   /* cart pill scaleX 1 -> 1.18 -> 1 */
+  --t-roll: 200ms;      /* count digit roll */
+  --t-sweep: 600ms;     /* shipping success specular sweep */
+  --t-fast: 150ms;      /* hovers, colour changes, reduced-motion fades */
+  --t-reveal: 200ms;    /* section entry fade */
+  --t-morph-fade-at: 40%;
+
+  --press-scale: .97;
+  --stretch-scale: 1.18;
+  --rise: 8px;          /* section entry rise */
+  --lift: -2px;         /* card hover lift */
+  --sheet-shift: 100%;  /* sheet travel */
+  --hide-shift: -120%;  /* capsule hide */
+  --addbar-shift: 110%;
+
+  /* ========================================================================
+     COMPONENT GEOMETRY (added by Frontend Dev #1, logged in REVIEWS.md).
+     Sizes straight from DESIGN.md §7, named so component CSS has no magic
+     numbers. Not part of a rebrand.
+     ======================================================================== */
+  --chip-h: 44px;              /* brewer chips, note pills use --pill-h */
+  --pill-h: 32px;              /* note pills (non-interactive) */
+  --badge-h: 24px;  --ribbon-h: 28px;
+  --tile-h: 4.5rem;            /* 72: solid brewer tiles (menu, finder); rem so 130 % text grows them */
+  --btn-h: 44px;  --btn-h-md: 52px;  --btn-h-lg: 56px;  --btn-h-sm: 40px;
+  --input-h: 48px;  --row-h: 52px;
+  --icon-sm: 16px;  --icon-md: 20px;  --icon-lg: 24px;  --icon-xl: 28px;  --icon-xxl: 32px;
+  --pocket-overlap: 28px;      /* pocket glass overlaps the well */
+  --ledger-well-w: 72px;  --ledger-min-h: 112px;  --ledger-stripe: 4px;
+  --rail-card-w: 220px;
+  --thumb: 64px;               /* drawer line thumbs */
+  --tube-h: 12px;  --tube-h-mini: 8px;
+  --switch-w: 52px;  --switch-h: 32px;  --switch-thumb: 24px;
+  --drawer-w: 420px;  --menu-w: min(88vw, 400px);  --finder-w: 640px;
+  --hero-strip-h: 180px;       /* mobile hero bag strip */
+  --hero-strip-under: 60px;    /* how far the strip rises behind the chip tray */
+  --band-contour-h: 48px;      /* footer contour band */
+  --swatch-h: 96px;            /* taste tile colour band */
+  --badge-dot: 20px;           /* cart count badge */
+  --slip-rotate: -1.5deg;
+  --rule-w: 32px;              /* section marker hairline */
+  --r-tile: 16px;              /* brewer tiles, drawer line cards, facet groups */
+  --fs-mini: 0.8125rem;        /* 13: badges, count badge, sub-labels, grind words */
+  --fs-micro: 0.75rem;         /* 12: "Recommended" tag, field captions, hour labels */
+  --fs-btn-lg: 1.0625rem;      /* 17: label on 56 px primary buttons */
+  --fs-slip: 0.9375rem;        /* 15: slips + pull quotes (Fraunces italic) */
+
+  /* Page geometry promoted from pages-*.css at Tech Lead integration
+     (2026-10-17). One home for every px value DESIGN states. */
+  --logo-h: 22px;              /* capsule wordmark height = monogram size */
+  --form-w: 35rem;             /* 560: checkout + contact form column (§7.16, §7.17) */
+  /* Shop + PDP (§7.12–7.14) */
+  --band-h: 240px;             /* PDP flood band (520 ≥ 1024) */
+  --slab-overlap: 56px;        /* buy slab over the band (140 ≥ 1024) */
+  --bb-size: 1.375rem;         /* brew banner sentence, Fraunces 22 (20 < 600) */
+  --facet-row-h: 48px;  --check: 22px;
+  --dial: 120px;               /* freshness dial */
+  --fbar-w: 28px;  --fbar-h: 8px;   /* flavour bar segment */
+  --origin-art: 280px;         /* PDP origin contour graphic */
+  /* Content pages (§7.22, §7.23, §8.7–8.10) */
+  --timer-btn-h: 64px;         /* guide timer "Start 4:00" */
+  --map-h: 280px;  --map-h-lg: 420px;   /* cafés map mobile / desktop (R2-3: taller so the India outline reads) */
+  --cafe-min: 280px;           /* cafés grid minmax */
+  --pin-hit: 44px;  --pin: 28px;  --pin-core: 12px;
+  --hours-h: 6px;              /* cafés hours bar */
+  --illo-max: 320px;           /* guide step illustration */
+  --qc-icon: 44px;             /* contact quick-card icon circle */
+  --qa-min: 56px;              /* FAQ summary min height */
+  --stat-size: clamp(2.75rem, 2.4vw + 2rem, 4rem);  /* About numeral 44 → 64 */
+  --pull-size: clamp(1.5rem, 1.2vw + 1.2rem, 2rem); /* pull quote 24 → 32 */
+  --err-illo: clamp(240px, 30vw, 320px);            /* 404 illustration */
+
+  /* Capsule-lane tint (R1 B-01 / D1): the colour band behind the capsule so
+     the glass has something to bend on the first frame. Fixer A styles
+     .lane-tint in glass.css; pages may set these on :root. */
+  --lane-tint: var(--pine);
+  --lane-tint-2: var(--clay);
+  --well-fade: 12px;           /* pocket well bottom feather (B-24) */
+}
+@media (max-width: 599.98px) {
+  :root { --bb-size: 1.25rem; }
+}
+
+
+/* ---- Desktop overrides (0.1) ------------------------------------------- */
+@media (min-width: 1024px) {
+  :root {
+    --blur-chrome: 8px;  --blur-sheet: 14px;  --lens-rim: 10px;
+    --capsule-top: 12px; --capsule-x: 12px;
+    --band-h: 520px;  --slab-overlap: 140px;
+  }
+}
+
+/* ---- Per-product scope ---------------------------------------------------
+   Any element that sets --bag (inline style or data) must also match this,
+   so the derived tones are computed from ITS --bag, not the root fallback. */
+.bag-scope,
+:where([style*="--bag:"], [style*="--bag :"]) {
+  --bag-dark:  color-mix(in oklch, var(--bag) 70%, var(--ink));
+  --bag-light: color-mix(in oklch, var(--bag) 55%, var(--paper));
+  --zone-line: var(--bag-dark);
+}
+
+
+/* ==========================================================================
+   MODE OVERRIDES
+   ========================================================================== */
+
+/* ---- Reduced transparency (0.11) ----------------------------------------
+   Triggered by the OS, by prefers-contrast: more, or by the visible
+   "Reduce transparency" switch, which sets html[data-glass="off"]
+   (alias html[data-transparency="reduced"], the name used in the council
+   spec; the head script sets both). Plates do not move: no layout shift. */
+:root[data-glass="off"],
+:root[data-transparency="reduced"] {
+  --shell-a: 100%;  --shell-a-dark: 100%;  --sheet-a: 100%;
+  --plate-a: 100%;  --plate-a-dark: 100%;
+  --shell-a-nofilter: 100%;  --sheet-a-nofilter: 100%;  --shell-a-lite: 100%;  --sheet-a-lite: 100%;
+  --blur-chrome: 0px;  --blur-sheet: 0px;  --sat: 100%;  --bright: 1;
+  --lens-o: 0;  --pool-o: 0;
+  --zone-glass-a: var(--zone-quiet-a);  --zone-well-a: var(--zone-quiet-a);
+  --edge: var(--edge-strong);
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :root {
+    --shell-a: 100%;  --shell-a-dark: 100%;  --sheet-a: 100%;
+    --plate-a: 100%;  --plate-a-dark: 100%;
+    --shell-a-nofilter: 100%;  --sheet-a-nofilter: 100%;  --shell-a-lite: 100%;  --sheet-a-lite: 100%;
+    --blur-chrome: 0px;  --blur-sheet: 0px;  --sat: 100%;  --bright: 1;
+    --lens-o: 0;  --pool-o: 0;
+    --zone-glass-a: var(--zone-quiet-a);  --zone-well-a: var(--zone-quiet-a);
+    --edge: var(--edge-strong);
+  }
+}
+@media (prefers-contrast: more) {
+  :root { --muted: color-mix(in oklab, var(--muted) 70%, var(--ink)); --rule: color-mix(in oklab, var(--ink) 40%, transparent); }
+}
+
+/* ---- Reduced motion (0.8 / 0.11) ----------------------------------------
+   No scale, no translate, no sweep; 150 ms fades; dark-zone 0 ms. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --press-scale: 1;  --stretch-scale: 1;
+    --t-press: 0ms;    --t-spring: var(--t-fast);
+    --t-sheet-in: var(--t-fast);  --t-sheet-out: var(--t-fast);  --t-scrim: var(--t-fast);
+    --t-hide: var(--t-fast);  --t-stretch: 0ms;  --t-roll: 0ms;  --t-sweep: 0ms;
+    --t-zone: 0ms;  --t-reveal: var(--t-fast);
+    --rise: 0px;  --lift: 0px;  --sheet-shift: 0%;  --hide-shift: 0%;  --addbar-shift: 0%;
+    --ease-spring: linear;  --ease-sheet: linear;
+  }
+}
+
+/* ---- Forced colours (0.11) ---------------------------------------------
+   Component rules live in glass.css; tokens collapse to system colours. */
+@media (forced-colors: active) {
+  :root {
+    --glass-shell: Canvas;  --glass-sheet: Canvas;  --glass-plate: Canvas;  --glass-solid: Canvas;
+    --edge-soft: 1px solid CanvasText;  --edge-strong: 1px solid CanvasText;  --edge: 1px solid CanvasText;
+    --shadow-float: none;  --shadow-card: none;  --shadow-lift: none;  --shadow-sheet: none;  --shadow-slip: none;
+    --lacquer-lip: none;  --lacquer-shadow: none;
+    --lip-top: 0 0 0 transparent;  --lip-bottom: 0 0 0 transparent;  --inner-glow: 0 0 0 transparent;
+    --focus-ring: Highlight;  --focus-shadow: none;
+    --lens-o: 0;  --pool-o: 0;
+  }
+}

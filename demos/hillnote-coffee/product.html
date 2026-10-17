@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-IN" data-storage-prefix="hn-">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(h){h.classList.add('js');var p=h.getAttribute('data-storage-prefix')||'';try{if(localStorage.getItem(p+'transparency')==='reduced'){h.dataset.transparency='reduced';h.dataset.glass='off'}if(sessionStorage.getItem(p+'announce')==='off')h.classList.add('announce-off')}catch(e){}var n=navigator,c=n.connection;if((n.deviceMemory&&n.deviceMemory<=2)||(c&&c.saveData))h.classList.add('glass-lite')})(document.documentElement);
+</script>
+<title>Coffee | Hillnote Coffee Roasters</title>
+<meta name="description" content="Specialty coffee roasted every week and ground to order for your brewer.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Coffee | Hillnote">
+<meta property="og:description" content="Specialty coffee roasted every week and ground to order for your brewer.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hillnote Coffee Roasters: coffee roasted this week, ground for your brewer. Three coffee bags in amber, plum and teal.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2E8">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Figtree:wght@400..600&display=swap">
+<link rel="preload" href="assets/img/bag.svg" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/glass.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/pages-shop.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body data-page="product">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce" data-shell="announce" data-zone="dark" role="region" aria-label="Announcement">
+  <p data-announcement></p>
+  <button type="button" class="announce__close" data-announce-close aria-label="Dismiss announcement"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+</div>
+
+<!-- Shell header: shell.js replaces this no-JS fallback with the full capsule (same geometry). -->
+<header class="site-header" data-shell="header">
+  <div class="capsule glass-chrome">
+    <div class="capsule__bar">
+      <span></span>
+      <a class="capsule__logo plate" href="index.html" aria-label="Home"><svg viewBox="0 0 204 40" width="112" height="22" aria-hidden="true" focusable="false"><use href="assets/img/logo.svg#logo"/></svg></a>
+      <nav class="capsule__nav plate" aria-label="Main"><ul>
+        <li><a class="capsule__link" href="shop.html">Shop coffee</a></li>
+        <li><a class="capsule__link" href="index.html#finder">Find your coffee</a></li>
+        <li><a class="capsule__link" href="guides/index.html">Brew guides</a></li>
+        <li><a class="capsule__link" href="cafes.html">Cafés</a></li>
+        <li><a class="capsule__link" href="about.html">Our story</a></li>
+      </ul></nav>
+      <a class="capsule__cart plate" href="cart.html" aria-label="Cart"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-bag"/></svg></a>
+    </div>
+  </div>
+</header>
+<noscript><p class="nojs">This shop needs JavaScript for the cart and filters. You can still read the guides and find a café.</p></noscript>
+
+<main id="main" tabindex="-1">
+  <div class="pdp" data-pdp aria-busy="true">
+    <div class="container pdp__loading">
+      <p><a class="link" href="shop.html">‹ All coffee</a></p>
+      <p class="pdp__loading-text">Loading coffees…</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- Shell footer: shell.js replaces this no-JS fallback. -->
+<footer class="footer" data-shell="footer" data-zone="dark">
+  <div class="container footer__static">
+    <nav aria-label="Footer"><ul>
+      <li><a href="shop.html">All coffee</a></li>
+      <li><a href="guides/index.html">Brew guides</a></li>
+      <li><a href="cafes.html">Cafés</a></li>
+      <li><a href="about.html">Our story</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul></nav>
+    <p>Demo store. No real orders or payments.</p>
+  </div>
+</footer>
+
+<!-- Sticky add bar (T1, < 1024 px, DESIGN §7.13): a direct child of <body>. product.js fills it. -->
+<div class="addbar glass-chrome" data-addbar data-dark-watch hidden>
+  <span class="lens lens--fixed" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+  <p class="addbar__info plate" data-addbar-info></p>
+  <button type="button" class="btn addbar__btn lacquer squish" data-addbar-btn>Add to cart</button>
+</div>
+
+<!-- Grind size guide (T2 bottom sheet, COPY §4.5) -->
+<dialog class="sheet sheet--bottom glass-sheet grind-sheet" id="grind-sheet" aria-labelledby="grind-sheet-title">
+  <span class="lens" aria-hidden="true"><svg><use href="#field" filter="url(#lensBlur)"/></svg></span>
+  <span class="sheet__handle" aria-hidden="true"></span>
+  <div class="sheet__head plate plate--solid">
+    <h2 class="sheet__title" id="grind-sheet-title">Grind size guide</h2>
+    <button type="button" class="plate--btn plate squish sheet__close" data-sheet-close aria-label="Close grind guide"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="assets/img/icons.svg#i-x"/></svg></button>
+  </div>
+  <div class="sheet__body" data-grind-guide></div>
+  <div class="sheet__toasts"></div>
+  <p class="sheet__live visually-hidden" aria-live="polite"></p>
+</dialog>
+
+<script type="module" src="assets/js/main.js"></script>
+<script type="module" src="assets/js/pages/product.js"></script>
+</body>
+</html>

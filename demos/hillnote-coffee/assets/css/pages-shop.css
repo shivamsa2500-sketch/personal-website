@@ -1,0 +1,699 @@
+/* ==========================================================================
+   PAGES-SHOP · Shop (shop.html) + Product detail (product.html)
+   Frontend Dev #2 · DESIGN §7.12–7.14, §8.2–8.3. Tokens only.
+   Page geometry (--band-h, --slab-overlap, --bb-size, --dial …) lives in
+   tokens.css' COMPONENT GEOMETRY block.
+   ========================================================================== */
+
+:root:has(body[data-page="product"]) { scroll-padding-top: var(--chrome-clear); }
+:root.addbar-on { scroll-padding-bottom: var(--addbar-clear); }
+
+
+/* ==========================================================================
+   SHOP
+   ========================================================================== */
+.shop { padding-block: var(--space-5) 0; }
+
+/* ---- header ---- */
+.shop-head { display: grid; justify-items: start; gap: var(--space-3); max-inline-size: 52rem; }
+.shop-head__title { font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: var(--tr-h2, -0.015em); font-variation-settings: "SOFT" var(--soft); }
+.shop-head__intro { max-inline-size: 60ch; font-size: var(--fs-ui); line-height: var(--lh-ui); color: var(--muted); }
+
+
+/* ---- brew banner: one sentence, two listbox popups ---- */
+.brew-banner {
+  display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--space-2); row-gap: 0;
+  margin-block-start: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--bb-size); line-height: 1.3;
+  font-variation-settings: "SOFT" var(--soft);
+}
+.brew-banner[hidden] { display: none; }
+.brew-banner__word { color: var(--ink); }
+.bb-control { position: relative; display: inline-flex; flex-direction: column; }
+.bb-control__cap {
+  position: absolute; inset-block-end: calc(100% - 2px); inset-inline-start: 0;
+  font-family: var(--font-body); font-size: var(--fs-micro); font-weight: var(--fw-strong); line-height: 1; color: var(--muted);
+  white-space: nowrap;
+  opacity: 0; transition: opacity var(--t-fast) var(--ease-std);
+  pointer-events: none;
+}
+.bb-control:focus-within .bb-control__cap, .bb-control.is-open .bb-control__cap { opacity: 1; }
+.bb-control__btn {
+  display: inline-flex; align-items: center; gap: 2px;
+  min-block-size: var(--tap);
+  padding: 0;
+  font: inherit; font-weight: var(--fw-display-strong);
+  color: var(--ink);
+  text-decoration: underline; text-decoration-color: var(--clay); text-decoration-thickness: 2px; text-underline-offset: 4px;
+}
+.bb-control__btn .icon { color: var(--clay); transition: transform var(--t-fast) var(--ease-std); }
+.bb-control__btn[aria-expanded="true"] .icon { transform: rotate(180deg); }
+@media (hover: hover) { .bb-control__btn:hover { text-decoration-color: var(--clay-hover); color: var(--clay-hover); } }
+.bb-list {
+  position: absolute; inset-block-start: calc(100% + var(--space-1)); inset-inline-start: calc(var(--space-2) * -1);
+  z-index: var(--z-sticky);
+  min-inline-size: 15rem; max-block-size: min(60vh, 26rem); overflow-y: auto;
+  margin: 0; padding: var(--space-1);
+  list-style: none;
+  background: var(--paper);
+  border: var(--edge-soft);
+  border-radius: var(--r-tile);
+  box-shadow: var(--shadow-lift);
+  font-family: var(--font-body); font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: var(--fw-ui);
+}
+.bb-list:focus-visible { outline: var(--focus-w) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.bb-list [role="option"] {
+  display: flex; align-items: center; gap: var(--space-2);
+  min-block-size: var(--tap);
+  padding-inline: var(--space-3);
+  border-radius: calc(var(--r-tile) - var(--space-1));
+  cursor: pointer;
+}
+.bb-list [role="option"].is-active, .bb-list [role="option"]:hover { background: var(--oat); }
+.bb-list__check { visibility: hidden; color: var(--pine); }
+.bb-list [aria-selected="true"] { font-weight: var(--fw-strong); }
+.bb-list [aria-selected="true"] .bb-list__check { visibility: visible; }
+
+/* ---- desktop grind sentence under the banner (C-09) ---- */
+.brew-grindline { display: none; font-size: var(--fs-ui); line-height: var(--lh-ui); }
+.brew-grindline .link { white-space: nowrap; }
+@media (min-width: 1024px) { .brew-grindline:not([hidden]) { display: block; } }
+
+/* ---- brew context notice (COPY §3.2) ---- */
+.brew-context {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-3); row-gap: var(--space-1);
+  align-items: start;
+  inline-size: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-input);
+  background: var(--oat);
+}
+.brew-context[hidden] { display: none; }
+.brew-context__icon { grid-row: 1 / span 2; margin-block-start: 2px; }
+.brew-context__text { font-size: var(--fs-ui); line-height: var(--lh-ui); }
+.brew-context__actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-4); margin-block-end: calc(var(--space-2) * -1); font-size: var(--fs-label); }
+@media (min-width: 600px) { .brew-context__actions { grid-column: 2; } }
+.brew-context__actions .text-btn, .brew-context__actions .link { min-block-size: var(--tap); display: inline-flex; align-items: center; }
+
+/* ---- brewer chip row: horizontal scroll ---- */
+.shop-chips { margin-block-start: var(--space-4); margin-inline: calc(var(--page-x) * -1); }
+.shop-chips__row {
+  display: flex; gap: var(--space-2);
+  overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+  margin: 0; padding: var(--space-1) var(--page-x) var(--space-2);
+  list-style: none;
+}
+.shop-chips .shop-chips__row { padding-inline: var(--page-x); scroll-padding-inline: var(--page-x); }   /* R2-4: beats base.css ul[role="list"] { padding: 0 }; first chip lines up with the H1 */
+.shop-chips__row::-webkit-scrollbar { display: none; }
+.shop-chips__row > li { flex: none; scroll-snap-align: start; }
+.shop-chips .brew-chip { border: var(--edge-strong); }
+
+/* ---- layout ---- */
+.shop-layout { display: grid; grid-template-columns: minmax(0, 1fr); margin-block-start: var(--space-3); }
+.shop-side { display: none; }
+@media (min-width: 1024px) {
+  .shop-chips { margin-inline: 0; }
+  .shop-chips .shop-chips__row { flex-wrap: wrap; overflow: visible; padding-inline: 0; }
+  /* sidebar cols 1–3 from the top; header, banner, chips and grid in cols 4–12 */
+  .shop { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: start; }
+  .shop > * { grid-column: 1 / -1; }
+  .shop > .shop-head, .shop > .shop-chips { grid-column: 4 / -1; }
+  .shop-layout { display: contents; }
+  .shop-side {
+    display: block;
+    isolation: isolate; z-index: 1;   /* C-05: nothing later in the page can paint over the facets */
+    grid-column: 1 / span 3; grid-row: 1 / span 3;
+    position: sticky; top: var(--chrome-clear); align-self: start;
+    max-block-size: calc(100vh - var(--chrome-clear) - var(--space-4));
+    overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+    padding-inline-end: var(--space-2);
+  }
+  .shop-main { grid-column: 4 / -1; grid-row: 3; min-inline-size: 0; margin-block-start: var(--space-3); }
+  .shop > .shop-head { grid-row: 1; }
+  .shop > .shop-chips { grid-row: 2; }
+  /* C-09: with the sidebar visible, the chip row and the Oat notice repeat the
+     banner; the grind sentence rides under the banner instead */
+  .shop > .shop-chips { display: none; }
+  .brew-context { display: none; }
+  .brew-context[hidden] { display: none; }
+  /* with a brewer set, the H1, banner and grind line already say it all:
+     the intro and a lone "French press ×" chip (the sidebar has it) give way */
+  .shop[data-has-brew] .shop-head { gap: var(--space-2); }
+  .shop[data-has-brew] .shop-head__intro { display: none; }
+  .shop[data-has-brew] .brew-banner { margin-block-start: 0; }
+  .shop[data-only-brew] .active-chips { display: none; }
+  .shop[data-has-brew] .shop-main { margin-block-start: 0; }
+  .shop[data-has-brew] .shop-toolbar { padding-block: 0 var(--space-1); }
+}
+.shop-side__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-block-size: var(--tap); border-block-end: var(--edge-soft); }
+.shop-side__title { font-size: var(--fs-h5); line-height: var(--lh-h4); font-weight: var(--fw-display-strong); }
+
+/* ---- toolbar ---- */
+.shop-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); padding-block: var(--space-2); }
+.shop-toolbar .btn--sm { min-block-size: var(--tap); padding-inline: var(--space-3); gap: var(--space-1); font-size: var(--fs-label); }
+.shop-toolbar .btn--sm .icon { inline-size: var(--icon-md); block-size: var(--icon-md); }
+.shop-toolbar__count { margin-inline-start: auto; font-size: var(--fs-label); line-height: var(--lh-label); font-weight: var(--fw-strong); color: var(--muted); font-variant-numeric: tabular-nums; }
+.shop-sort { display: none; align-items: center; gap: var(--space-2); }
+.shop-sort__label { font-size: var(--fs-label); font-weight: var(--fw-strong); color: var(--muted); }
+.shop-sort__select { border-radius: var(--r-pill); min-block-size: var(--tap); padding-inline-end: var(--space-8); }
+@media (min-width: 1024px) {
+  .shop-toolbar__filter, .shop-toolbar__sort { display: none; }
+  .shop-toolbar__count { margin-inline-start: 0; }
+  .shop-sort { display: flex; margin-inline-start: auto; }
+}
+
+/* ---- active filter chips ---- */
+.active-chips[hidden] { display: none; }
+.active-chips__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); list-style: none; padding: 0; margin: 0 0 var(--space-2); }
+.active-chip {
+  position: relative;
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  min-block-size: var(--tap);
+  padding: 0 var(--space-2) 0 var(--space-3);
+  background: none;
+  font-size: var(--fs-label); font-weight: var(--fw-strong); color: var(--ink);
+  isolation: isolate;
+}
+.active-chip::before {
+  content: ""; position: absolute; inset: 4px 0; z-index: -1;
+  border-radius: var(--r-pill);
+  background: var(--pine-tint);
+  border: 1px solid color-mix(in oklab, var(--pine) 30%, transparent);
+}
+@media (hover: hover) { .active-chip:hover::before { background: color-mix(in oklab, var(--pine) 18%, var(--paper)); } }
+.active-chips__clear { min-block-size: var(--tap); }
+
+/* ---- results ---- */
+.shop-results { margin-block-start: var(--space-1); }
+.shop-results[hidden] { display: none; }
+.shop-results__loading { padding-block: var(--space-7); color: var(--muted); }
+@media (min-width: 1024px) {
+  .shop-results .pgrid { grid-template-columns: repeat(auto-fill, minmax(max(13em, (100% - var(--gutter) * 2) / 3), 1fr)); }
+  /* C-09: a slightly landscape well so the first row's price and Add clear a 900 px fold */
+  .shop-results .pcard__well { aspect-ratio: 4 / 3; }
+}
+
+/* ---- empty state ---- */
+.shop-empty { display: grid; gap: var(--space-4); padding: var(--space-6) 0; border-block-start: var(--edge-soft); }
+.shop-empty[hidden] { display: none; }
+.shop-empty__title { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+.shop-empty__title:focus { outline: none; }
+.shop-empty__line { color: var(--muted); }
+.shop-empty__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-5); }
+.shop-empty__actions .text-btn { min-block-size: var(--tap); }
+.shop-empty__near { margin-block-start: var(--space-2); }
+
+/* ---- facets (sheet + sidebar) ---- */
+.facets { display: grid; gap: var(--space-2); }
+.facet__summary {
+  display: flex; align-items: center; gap: var(--space-2);
+  min-block-size: var(--facet-row-h);
+  list-style: none; cursor: pointer;
+  font-size: var(--fs-ui); font-weight: var(--fw-strong);
+}
+.facet__summary::-webkit-details-marker { display: none; }
+.facet__n { color: var(--muted); font-weight: var(--fw-body); font-variant-numeric: tabular-nums; }
+.facet__chev { margin-inline-start: auto; transition: transform var(--t-fast) var(--ease-std); }
+.facet[open] .facet__chev { transform: rotate(180deg); }
+.facet__body { border: 0; margin: 0; padding: 0 0 var(--space-2); min-inline-size: 0; }
+.facets--sheet { padding-inline: var(--space-1); }
+.facets--sheet .facet { padding: 0 var(--space-4); border-radius: var(--r-tile); background: var(--paper); border: var(--edge-soft); }
+.facets--side { gap: 0; }
+.facets--side .facet { border-block-end: var(--edge-soft); }
+
+.facet-row {
+  position: relative;
+  display: grid; grid-template-columns: var(--check) auto minmax(0, 1fr) auto; align-items: center; column-gap: var(--space-3);
+  min-block-size: var(--facet-row-h);
+  padding-block: var(--space-1);
+  cursor: pointer;
+}
+.facet-row:not(:has(.facet-row__meter)) { grid-template-columns: var(--check) minmax(0, 1fr) auto; }
+.facet-row__input { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.facet-row__box {
+  display: grid; place-items: center;
+  inline-size: var(--check); block-size: var(--check);
+  border-radius: var(--r-check);
+  border: var(--edge-strong);
+  background: var(--paper);
+  color: var(--on-pine);
+}
+.facet-row__box .icon { visibility: hidden; inline-size: var(--icon-sm); block-size: var(--icon-sm); }
+.facet-row:has(input:checked) .facet-row__box { background: var(--pine); border-color: var(--pine); }
+.facet-row:has(input:checked) .facet-row__box .icon { visibility: visible; }
+.facet-row:has(input:focus-visible) .facet-row__box { outline: var(--focus-w) solid var(--focus-ring); outline-offset: var(--focus-offset); box-shadow: var(--focus-shadow); }
+.facet-row__text { display: grid; }
+.facet-row__label { font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: var(--fw-ui); }
+.facet-row__help { font-size: var(--fs-label); line-height: var(--lh-label); color: var(--muted); }
+.facet-row__count { font-size: var(--fs-label); color: var(--muted); font-variant-numeric: tabular-nums; }
+.facet-row.is-dead { opacity: .5; cursor: not-allowed; }
+.facet-row.is-dead .facet-row__input { cursor: not-allowed; }
+@media (hover: hover) { .facet-row:not(.is-dead):hover .facet-row__box { border-color: var(--ink); } }
+
+/* sheets */
+.filter-sheet .sheet__head { padding-inline-start: var(--space-4); }
+.filter-sheet .sheet__title { margin-inline-end: auto; }
+.filter-sheet__clear { min-block-size: var(--tap); }
+.sort-list { border: 0; margin: 0; padding: 0 var(--space-1); display: grid; gap: var(--space-1); }
+.sort-row {
+  position: relative;
+  display: flex; align-items: center; gap: var(--space-3);
+  min-block-size: var(--facet-row-h);
+  padding-inline: var(--space-4);
+  border-radius: var(--r-tile);
+  background: var(--paper);
+  font-size: var(--fs-ui); font-weight: var(--fw-ui);
+  cursor: pointer;
+}
+.sort-row input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.sort-row__dot { inline-size: var(--check); block-size: var(--check); border-radius: 50%; border: var(--edge-strong); background: var(--paper); flex: none; }
+.sort-row:has(input:checked) { font-weight: var(--fw-strong); }
+.sort-row:has(input:checked) .sort-row__dot { border: 6px solid var(--pine); }
+.sort-row:has(input:focus-visible) { outline: var(--focus-w) solid var(--focus-ring); outline-offset: var(--focus-offset); box-shadow: var(--focus-shadow); }
+
+/* ---- grind helper (COPY §3.8) ---- */
+.grind-help { position: relative; margin-block-start: var(--section-y-tight); display: grid; gap: var(--space-4); }
+.grind-help__card {
+  display: grid; gap: var(--space-5);
+  min-inline-size: 0; max-inline-size: 100%;   /* C-04 */
+  padding: var(--space-6) var(--space-5) var(--space-8);
+  border-radius: var(--r-card);
+  background: var(--oat);
+}
+.grind-help__copy { display: grid; gap: var(--space-3); justify-items: start; align-content: start; }
+.grind-help__title { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+.grind-help__intro { color: var(--muted); max-inline-size: 40ch; }
+.grind-help__side { display: grid; gap: var(--space-4); min-inline-size: 0; }
+.grind-help__note { justify-self: end; }
+/* C-25: the panel spans the container; the note lives in its right column */
+@media (min-width: 1024px) {
+  .grind-help__card { grid-template-columns: 5fr 7fr; gap: var(--space-7); padding: var(--space-7) var(--space-7) var(--space-8); }
+}
+/* C-25: sidebar roast facet: no descriptor, rows align to the top */
+.facets--side [data-facet="roast"] .facet-row__help { display: none; }
+.facets--side .facet-row { align-items: start; }
+.grind-table { inline-size: 100%; border-collapse: collapse; font-size: var(--fs-label); line-height: var(--lh-label); }
+.grind-table th, .grind-table td { padding: var(--space-2) var(--space-2) var(--space-2) 0; text-align: start; border-block-end: 1px solid var(--rule); vertical-align: middle; }
+.grind-table thead th { font-weight: var(--fw-strong); color: var(--muted); }
+.grind-table tbody th { font-weight: var(--fw-strong); }
+.grind-table__brewer { display: inline-flex; align-items: center; gap: var(--space-2); }
+@media (max-width: 379.98px) { .grind-table .icon { display: none; } }
+
+
+/* ---- mobile overrides (kept after the base rules) ---- */
+.active-chips__count { display: none; list-style: none; }
+@media (max-width: 599.98px) {
+  .shop-head { gap: var(--space-2); }
+  .shop[data-has-brew] .shop-head__intro { display: none; }   /* the brew notice says it (first card above the fold) */
+  .brew-banner { column-gap: var(--space-1); }
+  .bb-control__btn .icon { inline-size: var(--icon-sm); block-size: var(--icon-sm); }
+  /* the count rides on the active-chip row when there is one */
+  .shop[data-has-active] .shop-toolbar__count { display: none; }
+  .active-chips__count { display: list-item; margin-inline-start: auto; font-size: var(--fs-label); font-weight: var(--fw-strong); color: var(--muted); font-variant-numeric: tabular-nums; }
+}
+
+
+/* ==========================================================================
+   PRODUCT DETAIL
+   ========================================================================== */
+.pdp__loading { padding-block: var(--space-6); display: grid; gap: var(--space-4); }
+.pdp__loading-text { color: var(--muted); }
+
+/* ---- breadcrumb ---- */
+.pdp-crumb { display: flex; align-items: center; min-block-size: var(--tap); margin-block: var(--space-2) var(--space-1); }
+.pdp-crumb__back { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); font-size: var(--fs-ui); font-weight: var(--fw-strong); text-decoration: none; color: var(--ink); }
+.pdp-crumb__back:hover { text-decoration: underline; text-underline-offset: 3px; }
+.pdp-crumb__trail { display: none; list-style: none; margin: 0; padding: 0; font-size: var(--fs-label); font-weight: var(--fw-ui); color: var(--muted); }
+.pdp-crumb__trail li { display: inline-flex; align-items: center; }
+.pdp-crumb__trail li + li::before { content: "›"; margin-inline: var(--space-2); }
+.pdp-crumb__trail a { color: var(--muted); display: inline-flex; min-block-size: var(--tap); align-items: center; }
+.pdp-crumb__trail [aria-current] { color: var(--ink); }
+@media (min-width: 1024px) {
+  .pdp-crumb__back { display: none; }
+  .pdp-crumb__trail { display: flex; }
+}
+
+/* ---- stage: full-bleed flood band behind the gallery + slab ---- */
+.pdp-stage { position: relative; isolation: isolate; }
+/* C-02 (< 1024): a taller band and a bigger bag. Page-scoped overrides of the
+   tokens.css geometry (values from FIX-LIST R1 C-02). */
+@media (max-width: 1023.98px) {
+  .pdp-stage { --band-h: clamp(380px, 56vh, 520px); --slab-overlap: 72px; }
+}
+/* The band is the bag colour pushed toward Ink so the bag never sits on its
+   own colour; the light pool is drawn here (placed under the bag by
+   product.js), so the gallery's scroller can't clip it into a rectangle. */
+.pdp-band {
+  --pool-x: 50%; --pool-y: 45%; --pool-r: 200px;
+  --band-paint: color-mix(in oklch, var(--bag) 78%, var(--ink));
+  position: absolute; inset: 0 0 auto 0; z-index: -1;
+  block-size: var(--band-h);
+  background:
+    radial-gradient(circle var(--pool-r) at var(--pool-x) var(--pool-y),
+      color-mix(in oklch, var(--bag-light) 85%, transparent),
+      color-mix(in oklch, var(--bag-light) 30%, transparent) 55%,
+      transparent 70%),
+    var(--band-paint);
+  overflow: hidden;
+}
+.pdp-band--flat { --band-paint: var(--bag); }
+.pdp-band__topo { position: absolute; inset: 0; color: color-mix(in oklab, var(--band-line) 20%, transparent); }
+.pdp-band__topo svg { inline-size: 100%; block-size: 100%; }
+
+.pdp-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+.pdp-gallery { position: relative; block-size: calc(var(--band-h) - var(--slab-overlap)); }
+.pdp-gallery__track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 100%;
+  block-size: 100%;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.pdp-gallery__track::-webkit-scrollbar { display: none; }
+.pdp-slide { scroll-snap-align: center; display: grid; place-items: center; min-block-size: 0; padding-block: var(--space-2) calc(var(--tap) - var(--space-1)); }
+.pdp-slide > * { block-size: 100%; aspect-ratio: 1; max-inline-size: 100%; display: grid; place-items: center; }
+.pdp-slide__bag { position: relative; }
+.pdp-slide__bag .bag { block-size: min(100%, calc(var(--band-h) * .62)); inline-size: auto; filter: drop-shadow(0 10px 16px color-mix(in oklab, var(--ink) 34%, transparent)); }
+.pdp-slide__photo img { inline-size: 100%; block-size: 100%; object-fit: cover; border-radius: var(--r-card); box-shadow: var(--shadow-card); }
+.pdp-slide__origin {
+  position: relative;
+  border-radius: var(--r-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  color: color-mix(in oklab, var(--ink) 60%, transparent);
+  overflow: hidden;
+}
+.pdp-slide__origin svg { inline-size: 100%; block-size: 100%; }
+.pdp-slide__origin-tag {
+  position: absolute; inset-block-end: var(--space-2); inset-inline-start: var(--space-2);
+  padding: 2px var(--space-2); border-radius: var(--r-slip);
+  background: var(--oat); color: var(--ink);
+  font-size: var(--fs-micro); font-weight: var(--fw-strong);
+}
+/* C-12: altitude profile slide. Tick labels sit on Paper plates inside the frame. */
+.pdp-profile { color: var(--bag-dark, var(--ink)); }
+.pdp-profile__tick {
+  position: absolute; inset-inline-start: var(--space-2); translate: 0 -50%;
+  max-inline-size: calc(100% - var(--space-4));
+  padding: 2px var(--space-2); border-radius: var(--r-slip);
+  background: var(--paper); box-shadow: 0 0 0 1px var(--rule);
+  color: var(--ink); font-size: var(--fs-micro); font-weight: var(--fw-strong); font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.pdp-gallery__nav { position: absolute; inset: auto 0 0 0; display: flex; justify-content: center; }
+.pdp-dots { display: flex; }
+.pdp-dot { display: grid; place-items: center; inline-size: var(--tap); block-size: var(--tap); background: none; border: 0; }
+.pdp-dot > span {
+  display: block; inline-size: 8px; block-size: 8px; border-radius: var(--r-pill);
+  background: var(--paper); box-shadow: 0 0 0 1px color-mix(in oklab, var(--ink) 24%, transparent);
+  transition: inline-size var(--t-fast) var(--ease-std), background-color var(--t-fast) var(--ease-std);
+}
+.pdp-dot[aria-current="true"] > span { inline-size: 24px; background: var(--pine); box-shadow: 0 0 0 1px var(--paper); }
+
+/* ---- buy slab (T3 baked, flood) ---- */
+.pdp-buy { min-inline-size: 0; position: relative; z-index: var(--z-raised); }
+.pdp-slab { --r: var(--r-sheet); display: flex; flex-direction: column; gap: var(--plate-inset); }
+.pdp-plate { padding: var(--space-4); }
+.pdp-plate--title { display: grid; gap: var(--space-2); justify-items: start; }
+.pdp-badges { display: flex; gap: var(--space-1); }
+.pdp-name { font-size: 1.75rem; line-height: 1.1429; font-weight: var(--fw-display-strong); letter-spacing: -0.01em; font-variation-settings: "SOFT" var(--soft), "opsz" 48; text-wrap: balance; }
+.pdp-tagline { font-family: var(--font-display); font-style: italic; font-size: var(--fs-slip); line-height: 1.4; font-variation-settings: "SOFT" var(--soft), "opsz" 14; }
+.pdp-region { font-size: var(--fs-label); line-height: var(--lh-label); font-weight: var(--fw-strong); }
+.pdp-rating { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: var(--tap); margin-block: calc(var(--space-2) * -1); font-size: var(--fs-label); font-weight: var(--fw-strong); color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule-strong, var(--rule)); text-underline-offset: 3px; }
+.pdp-rating .star { inline-size: var(--icon-sm); block-size: var(--icon-sm); }
+.pdp-notes { margin-block-start: var(--space-1); }
+/* Director decision (integration 2026-10-17): below 600 px the slab drops the
+   tagline (the description below repeats the idea) and sets the tasting notes
+   as one text line, so the inline Add sits within the first ~1.75 screens. */
+@media (max-width: 599.98px) {
+  .pdp-slab .pdp-tagline { display: none; }
+  .pdp-slab .pdp-notes { display: block; margin-block-start: 0; font-size: var(--fs-label); line-height: var(--lh-label); white-space: normal; min-inline-size: 0; }
+  .pdp-slab .pdp-notes li { display: inline; min-block-size: 0; padding: 0; border: 0; background: none; font-weight: var(--fw-ui); }
+  .pdp-slab .pdp-notes li + li::before { content: " · "; }
+}
+.pdp-roast__k { font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.pdp-metarow { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-3); }
+.pdp-pricebox { justify-self: stretch; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); margin-block-start: var(--space-2); padding-block-start: var(--space-3); border-block-start: var(--edge-soft); }
+.pdp-was[hidden] { display: none; }
+.pdp-price { font-size: 1.375rem; line-height: 1.2; font-weight: var(--fw-strong); font-variant-numeric: tabular-nums; }
+.pdp-was { font-size: var(--fs-ui); color: var(--muted); }
+.pdp-ground { flex-basis: 100%; font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: var(--fw-strong); }
+.pdp-ground[hidden] { display: none; }
+.pdp-plate > * { min-inline-size: 0; }
+/* R2-2: one config plate; grind, size and Add are hairline-separated sections, not plates */
+.pdp-config__sec { min-inline-size: 0; }
+.pdp-config__sec + .pdp-config__sec { border-block-start: var(--edge-soft); padding-block-start: var(--space-4); margin-block-start: var(--space-4); }   /* C-04: nothing in a plate can force the slab wider */
+/* C-13: the slip overlaps the title plate by one 8 px corner only and sits in
+   its own row, so it never crosses a text line or the next plate. */
+.pdp-slip {
+  --slip-rotate: -2deg;
+  align-self: flex-end;
+  max-inline-size: min(100% - var(--space-6), 30ch);
+  margin: calc(var(--space-2) * -1 - var(--plate-inset)) var(--space-3) 0 0;
+  position: relative; z-index: 1;
+}
+
+.pdp-grind .grind-pills { margin-block-start: 0; }
+.pdp-grind__msg { margin-block-start: var(--space-3); display: flex; align-items: center; gap: var(--space-2); color: var(--ink); font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.pdp-grind__msg[hidden] { display: none; }
+.grind-helper { display: grid; gap: var(--space-1); margin-block-start: var(--space-3); justify-items: start; }
+.grind-helper__text { font-size: var(--fs-ui); line-height: var(--lh-ui); }
+.grind-helper__note { font-size: var(--fs-label); line-height: var(--lh-label); color: var(--muted); }
+.grind-helper__note[hidden] { display: none; }
+.grind-helper__guide { min-block-size: var(--tap); }
+.grind-helper__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 var(--space-4); inline-size: 100%; }
+.pdp-rec-dot { position: absolute; inset-block-start: 6px; inset-inline-end: 6px; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--pine); box-shadow: 0 0 0 2px var(--paper); }
+.grind-pill:has(input:checked) .pdp-rec-dot { background: var(--paper); box-shadow: 0 0 0 2px var(--pine); }
+/* the guide link rides on the legend row; the "Recommended" key sits under the pills */
+.pdp-grind { position: relative; }
+.pdp-grind > .pdp-grind__legend { padding-inline-end: 9.5rem; }
+.pdp-grind__keyrow { position: absolute; inset-block-start: calc(var(--space-2) * -1); inset-inline-end: 0; display: flex; align-items: center; margin: 0; }
+.pdp-grind .grind-pills { clear: both; }
+.pdp-rec-key { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--fs-micro); font-weight: var(--fw-strong); color: var(--muted); }
+.pdp-rec-key .pdp-rec-dot { position: static; }
+.pdp-sizes .size-card { padding-inline: var(--space-2); }
+.pdp-sizes .size-card__sub { font-size: var(--fs-micro); white-space: nowrap; }
+.pdp-sizes .size-card__label { display: flex; flex-wrap: wrap; column-gap: .3em; line-height: 1.25; }
+.pdp-size-price { font-weight: var(--fw-ui); }
+.grind-scale { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-micro); font-weight: var(--fw-strong); color: var(--muted); }
+.grind-scale[hidden] { display: none; }
+.grind-scale__dots { display: flex; align-items: center; gap: 6px; }
+.grind-scale__dot {
+  inline-size: calc(4px + var(--i) * 2px); block-size: calc(4px + var(--i) * 2px);
+  border-radius: 40%;
+  background: var(--track-empty);
+}
+.grind-scale__dot.is-on { background: var(--pine); box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--pine); }
+
+.pdp-sizes { grid-template-columns: repeat(auto-fit, minmax(5.25rem, 1fr)); }
+.size-card__check { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); color: var(--pine); visibility: hidden; }
+.size-card:has(input:checked) .size-card__check { visibility: visible; }
+.pdp-size-note { margin-block-start: var(--space-2); font-size: var(--fs-label); color: var(--muted); }
+
+.pdp-addrow { display: flex; gap: var(--space-2); align-items: stretch; }
+.pdp-qty { flex: none; }
+.pdp-add { flex: 1 1 auto; min-inline-size: 0; padding-inline: var(--space-4); }
+/* C-03a: below 600 px the stepper takes its own row; Add is full width */
+@media (max-width: 599.98px) {
+  .pdp-addrow { flex-direction: column; align-items: stretch; }
+  .pdp-qty { align-self: flex-start; }
+  .pdp-add { inline-size: 100%; }
+}
+/* C-26: the "shines more in a …" note sits under Add, not between the grind and Add */
+.pdp-notrec { margin-block-start: var(--space-2); }
+.pdp-notrec[hidden] { display: none; }
+.pdp-add.is-added .icon { color: currentColor; }
+.pdp-qty-max, .pdp-sold-line { margin-block-start: var(--space-2); font-size: var(--fs-label); line-height: var(--lh-label); }
+.pdp-qty-max[hidden] { display: none; }
+.pdp-reassure { list-style: none; margin: var(--space-4) 0 0; padding-inline: var(--space-4); display: grid; gap: var(--space-3); font-size: var(--fs-label); line-height: var(--lh-label); }
+.pdp-reassure li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-3); align-items: start; }
+.pdp-reassure .icon { color: var(--ink); }
+
+/* ---- info (paper) ---- */
+.pdp-info { display: grid; gap: var(--section-y-tight); padding-block: var(--section-y-tight) 0; min-inline-size: 0; }
+.pdp-sec { display: grid; gap: var(--space-4); align-content: start; }
+.pdp-sec:focus { outline: none; }
+.pdp-h2 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+.pdp-h3 { font-size: var(--fs-h5); line-height: var(--lh-h4); font-weight: var(--fw-display-strong); }
+.pdp-desc { font-size: var(--fs-body); line-height: var(--lh-body); max-inline-size: var(--measure); text-wrap: pretty; }
+.pdp-drink { font-size: var(--fs-ui); font-weight: var(--fw-strong); }
+
+.fbars { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.fbar { display: grid; grid-template-columns: 7em 10em auto; justify-content: start; align-items: center; gap: var(--space-3); }  /* C-24 */
+.fbar__label { font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.fbar__cells { display: flex; gap: 4px; }
+.fbar__cells > span { inline-size: var(--fbar-w); block-size: var(--fbar-h); border-radius: 2px; background: var(--track-empty); }
+.fbar__cells > .is-on { background: var(--ink); }
+.fbar__num { font-size: var(--fs-label); font-weight: var(--fw-strong); font-variant-numeric: tabular-nums; }
+@media (max-width: 359.98px) { .fbar { grid-template-columns: 6rem auto auto; } .fbar__cells > span { inline-size: 20px; } }
+
+.fresh { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); }
+.fresh__dial { position: relative; inline-size: var(--dial); block-size: var(--dial); flex: none; }
+.fresh__dial svg { inline-size: 100%; block-size: 100%; fill: none; stroke-linecap: round; }
+.fresh__track { stroke: var(--track-empty); stroke-width: 2; }
+.fresh__dial svg { overflow: visible; }
+.fresh__ticks { stroke: var(--muted); stroke-width: 1; }   /* C-14: ≥ 3:1 on Paper */
+.fresh__arc { stroke: var(--ink); stroke-width: 2.5; }
+.fresh__rest { fill: var(--clay); stroke: var(--paper); stroke-width: 1; stroke-linejoin: round; }
+.fresh__centre { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font-size: var(--fs-micro); font-weight: var(--fw-strong); color: var(--muted); line-height: 1.2; }
+.fresh__n { font-family: var(--font-display); font-size: var(--fs-numeral); line-height: 1; font-weight: var(--fw-display); color: var(--ink); font-variant-numeric: lining-nums tabular-nums; }
+.fresh__text { display: grid; gap: var(--space-1); min-inline-size: 14rem; flex: 1; }
+.fresh__line { font-size: var(--fs-ui); line-height: var(--lh-ui); }
+.fresh__caption { font-size: var(--fs-ui); color: var(--muted); }
+.fresh__demo { font-size: var(--fs-micro); color: var(--muted); }
+
+.origin { display: grid; gap: var(--space-6); }
+.spec { display: grid; margin: 0; border-block-start: var(--edge-soft); }
+.spec__row { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: var(--space-3); padding-block: var(--space-3); border-block-end: var(--edge-soft); }
+.spec dt { font-size: var(--fs-label); line-height: var(--lh-label); font-weight: var(--fw-strong); color: var(--muted); padding-block-start: 2px; }
+.spec dd { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-ui); }
+.origin-art { margin: 0; display: grid; gap: var(--space-4); justify-items: start; }
+.origin-art__map { position: relative; inline-size: min(100%, var(--origin-art)); aspect-ratio: 1; color: color-mix(in oklab, var(--ink) 60%, transparent); }
+.origin-art__map svg { inline-size: 100%; block-size: 100%; }
+.origin-art__tick {
+  position: absolute; translate: 6px -50%;
+  padding: 0 var(--space-1);
+  background: var(--paper);
+  font-size: var(--fs-micro); font-weight: var(--fw-strong); color: var(--ink); font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.origin-art__tick::before { content: ""; position: absolute; inset-inline-start: -6px; inset-block-start: 50%; inline-size: 6px; block-size: 1px; background: var(--ink); }
+.origin-art__tick--flip { translate: calc(-100% - 6px) -50%; }
+.origin-art__tick--flip::before { inset-inline: auto -6px; }
+@media (min-width: 768px) {
+  .origin { grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+}
+
+.tips-card { display: grid; gap: var(--space-4); padding: 0 0 var(--space-5); border-radius: var(--r-card); background: var(--paper); box-shadow: var(--shadow-card); overflow: hidden; }
+.tips-card > :not(.tips-card__head):not(.tips-cells) { margin-inline: var(--space-5); }
+.tips-card__head { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); background: var(--oat); font-size: var(--fs-label); font-weight: var(--fw-strong); }
+.tips-card__empty { padding-block-start: var(--space-5); color: var(--muted); }
+.tips-cells { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-4); margin: 0; padding-inline: var(--space-5); }
+@media (min-width: 600px) { .tips-cells { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tips-cell { display: flex; flex-direction: column-reverse; gap: var(--space-1); }
+.tips-cell dt { font-size: var(--fs-label); font-weight: var(--fw-strong); color: var(--muted); }
+.tips-cell dd { margin: 0; }
+.tips-cell__n { font-family: var(--font-display); font-size: var(--fs-numeral); line-height: 1.1; font-weight: var(--fw-display); font-variant-numeric: lining-nums tabular-nums; }
+.tips-cell__u { font-size: var(--fs-ui); font-weight: var(--fw-ui); }
+.tips-cell--grind { grid-column: 1 / -1; }
+.tips-cell--grind dd { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-ui); }
+@media (min-width: 600px) { .tips-cell--grind { grid-column: auto / span 2; } }
+.tips-card__line { font-size: var(--fs-ui); line-height: var(--lh-body); color: var(--muted); max-inline-size: 60ch; }
+
+.pdp-reviews__sum { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-ui); font-weight: var(--fw-strong); }
+.pdp-reviews__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+@media (min-width: 768px) { .pdp-reviews__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pdp-reviews .review { margin: 0; }
+/* R2-2: PDP reviews are a hairline quote list, not cards (the Home carousel keeps its cards) */
+.pdp-reviews__list { gap: 0 var(--gutter); }
+.pdp-reviews .review { padding: var(--space-5) 0; background: none; box-shadow: none; border-radius: 0; border-block-start: var(--edge-soft); }
+.pdp-reviews .review__who span { display: block; }
+
+.pdp-wide:empty { display: none; }
+.pdp-wide { padding-block-start: var(--section-y-tight); }
+.pdp-related { display: grid; gap: var(--space-4); padding-block-start: var(--section-y-tight); }
+
+.grind-table--sheet { background: var(--paper); border-radius: var(--r-tile); }
+.grind-sheet .sheet__body { padding-inline: var(--space-4); }
+.grind-sheet__more { padding-block: var(--space-2); }
+
+/* ---- desktop layout ---- */
+/* C-01: the band is capped and the buy column starts at the band top beside the
+   gallery, so name, price, grind and Add sit above the fold at 1440×900. It is
+   sticky only within the viewport: capped height, its own scroll. */
+@media (min-width: 1024px) {
+  .pdp-stage { --band-h: min(56vh, 480px); }
+  .pdp-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .pdp-gallery { grid-column: 1 / span 6; grid-row: 1; block-size: auto; padding-block-start: var(--space-5); }
+  .pdp-gallery__track { block-size: auto; inline-size: min(100%, calc(var(--band-h) - var(--space-5) - var(--tap) - var(--space-4))); aspect-ratio: 1; margin-inline: auto; }
+  .pdp-slide { padding: 0; }
+  .pdp-slide > * { block-size: 100%; inline-size: 100%; }
+  .pdp-slide__bag .bag { block-size: 88%; }
+  .pdp-gallery__nav { position: static; margin-block-start: var(--space-2); }
+  .pdp-buy {
+    grid-column: 7 / -1; grid-row: 1 / span 2;
+    align-self: start;
+    position: sticky; top: var(--chrome-clear);
+    margin-block-start: var(--space-4);          /* overlaps the band by band-h − 16 px (≥ 64) */
+    /* R2-2: no inner scroll; the compact slab fits 1440×900 (guarded below for short screens) */
+    padding: var(--space-2); margin-inline: calc(var(--space-2) * -1);
+  }
+  .pdp-config__sec + .pdp-config__sec { padding-block-start: var(--space-3); margin-block-start: var(--space-3); }
+  .pdp-name { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+  /* compact slab so the whole buy path fits one desktop screen */
+  .pdp-slab .pdp-plate { padding: var(--space-3) var(--space-4); }
+  .pdp-plate--title { gap: var(--space-1); }
+  .pdp-slab .pdp-notes { display: block; margin-block-start: 0; font-size: var(--fs-label); line-height: var(--lh-label); }
+  .pdp-slab .pdp-notes li { display: inline; min-block-size: 0; padding: 0; border: 0; background: none; font-weight: var(--fw-ui); }
+  .pdp-slab .pdp-notes li + li::before { content: " · "; }
+  .pdp-pricebox { margin-block-start: var(--space-1); padding-block-start: var(--space-2); }
+  .pdp-slip { max-inline-size: none; padding-block: var(--space-1); }
+  .pdp-grind .field-group__legend { margin-block-end: var(--space-2); }
+  .pdp-grind .grind-pills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+  .pdp-grind .grind-pill { min-block-size: var(--tap); padding: var(--space-1) var(--space-2); column-gap: var(--space-2); grid-template-columns: auto minmax(0, 1fr); }
+  .pdp-grind .grind-pill > .icon { grid-row: auto; }
+  .pdp-grind .grind-pill__grind { display: none; }   /* R2-2: compact 44 px tiles; inline, the grind name truncated at 3-up, so it shows in the helper line and the radio's aria-label instead */
+  .pdp-grind .grind-pill__label { font-size: var(--fs-label); }
+  .grind-helper__text.is-intro { display: none; }   /* the guide link and the pills say it; Add stays above the fold */
+  .grind-helper { margin-block-start: var(--space-2); }
+  .pdp-sizes .size-card { min-block-size: 52px; padding-block: var(--space-1); }
+  .pdp-slab .field-group > legend { margin-block-end: var(--space-2); }
+  .pdp-info { grid-column: 1 / span 6; grid-row: 2; }
+  .pdp-wide { padding-block-start: var(--section-y-tight); }   /* outside .pdp-grid, so the sticky buy column stops above it */
+  /* C-20: origin spec in cols 1–4, graphic in 5–7 (of the info column) */
+  .origin { grid-template-columns: 4fr 3fr; align-items: start; }
+  .origin-art__map { inline-size: 100%; }
+  .pdp-reviews__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pdp-related .plist--rail .pgrid { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(auto-fit, minmax(13em, 1fr)); overflow: visible; }
+}
+/* R2-2: inner scroll only as a guard on short desktop screens */
+@media (min-width: 1024px) and (max-height: 760px) {
+  .pdp-buy { max-block-size: calc(100vh - var(--chrome-clear) - 16px); overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+}
+/* short desktop screens: the tagline repeats the description below, so it gives way to the buy path */
+@media (min-width: 1024px) and (max-height: 959.98px) { .pdp-slab .pdp-tagline { display: none; } }
+@media (min-width: 1280px) {
+  .pdp-grind .grind-pills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---- sticky add bar (T1, < 1024) ---- */
+.addbar {
+  --r: var(--r-pill);
+  position: fixed; z-index: var(--z-chrome);
+  inset-inline: var(--space-2);
+  inset-block-end: calc(var(--space-2) + env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: var(--space-2);
+  min-block-size: var(--addbar-h);
+  transform: translateY(calc(var(--addbar-shift) + var(--space-4)));
+  transition: transform var(--t-hide) var(--ease-in),
+    --shell-a var(--t-zone) var(--ease-std), --plate-a var(--t-zone) var(--ease-std), --sat var(--t-zone) var(--ease-std), --lens-o var(--t-zone) var(--ease-std);
+}
+.addbar[hidden] { display: none; }
+.addbar.is-visible { transform: none; transition-duration: var(--t-spring), var(--t-zone), var(--t-zone), var(--t-zone), var(--t-zone); transition-timing-function: var(--ease-spring), var(--ease-std), var(--ease-std), var(--ease-std), var(--ease-std); }
+.addbar:not(.is-visible) { visibility: hidden; transition: transform var(--t-hide) var(--ease-in), visibility 0s linear var(--t-hide); }
+.addbar__info {
+  flex: 1 1 auto; min-inline-size: 0;
+  display: flex; align-items: center;
+  min-block-size: var(--tap);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-ui); line-height: 1.25; font-weight: var(--fw-strong);
+  font-variant-numeric: tabular-nums;
+  flex-direction: column; align-items: stretch; justify-content: center;
+}
+/* C-03b: line 1 name · price (16/600), line 2 size · grind (14); each one line */
+.addbar__l1, .addbar__l2 { display: flex; min-inline-size: 0; white-space: nowrap; }
+.addbar__l1 { font-size: 1rem; font-weight: var(--fw-strong); gap: .25em; }
+.addbar__name { overflow: hidden; text-overflow: ellipsis; min-inline-size: 0; }
+.addbar__price { flex: none; font-weight: var(--fw-strong); }
+.addbar__l2 { font-size: var(--fs-label); font-weight: var(--fw-ui); overflow: hidden; text-overflow: ellipsis; display: block; }
+.addbar__btn { flex: none; min-block-size: 48px; padding-inline: var(--space-5); }
+@media (min-width: 1024px) { .addbar { display: none; } }
+@media (max-height: 500px) { .addbar { min-block-size: 56px; } .addbar__btn { min-block-size: var(--tap); } }
+
+/* ---- not found ---- */
+.pdp-missing { display: grid; gap: var(--space-4); justify-items: start; padding-block: var(--space-6) 0; }
+.pdp-missing__title { font-size: var(--fs-h2); line-height: var(--lh-h2); max-inline-size: 16ch; }
+.pdp-missing__title:focus { outline: none; }
+.pdp-missing__line { max-inline-size: 52ch; color: var(--muted); font-size: var(--fs-lead); }
+.pdp-missing__best { inline-size: 100%; display: grid; gap: var(--space-4); margin-block-start: var(--space-6); }

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 64 240 84" width="240" height="84" color="#2A1F17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<title>Line drawing of a tipped-over coffee cup with a small spill</title>
+<path d="M12 138h216" stroke-opacity=".4"/>
+<path d="M30 130c5 5 15 7 35 7s30-2 35-7M38 130h54"/>
+<path d="M106 96c14-4 24-7 36-9M106 134c14 2 26 2 38 1"/>
+<path d="M106 96c-8 2-12 10-12 19s4 17 12 19"/>
+<ellipse cx="146" cy="111" rx="8" ry="24" transform="rotate(-5 146 111)"/>
+<path d="M114 94c-2-11 6-17 14-13 4 2 5 6 4 10"/>
+<path d="M149 133c5-4 13-4 19-6 7-3 16-2 22 1 6 2 15 1 21 4 6 3 1 7-8 7-9 1-16-1-24 1-9 2-19 1-26-2-4-2-7-3-4-5z" style="stroke:var(--illo-accent,var(--clay,#A3462A));fill:var(--clay,#A3462A);fill-opacity:.25"/>
+</svg>

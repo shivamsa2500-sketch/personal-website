@@ -1,0 +1,508 @@
+/* ==========================================================================
+   GLASS  ·  reusable liquid-glass utilities
+   Spec: _studio/DESIGN.md §2 (= DESIGN-DECISIONS item 0). Values: tokens.css.
+   --------------------------------------------------------------------------
+   Tiers
+     .glass-chrome  T1 live chrome  (capsule / status island / PDP add bar,
+                                    desktop sticky recipe card)
+     .glass-sheet   T2 live sheet   (<dialog>: cart drawer, filter sheet,
+                                    mobile menu, finder dropdown, dialogs)
+     .glass-baked   T3 baked        (no backdrop-filter: chip tray, card
+                                    pockets, wells, buy slab, chips in glass
+                                    zones, café pins, slips' host, + Add rim)
+     .plate         T4 plate        (behind EVERY glyph inside T1/T2/T3)
+   Parts
+     .lens          first child of every glass object: baked lens rim
+     (specular rim = ::before, sheen + lips = ::after: do not reuse them)
+   Modifiers
+     [data-over="dark"] / .glass--dark   dark-zone thickening
+     .squish        press squish (every glass control + every Pine button)
+     .lacquer       solid Pine button gloss (primary CTA, + Add pill)
+   Hard rules (DESIGN.md §2.10)
+     - No glass inside glass. Inside T1/T2 use .plate or solid Paper only.
+     - Never overflow:hidden on a glass object. Only .lens clips.
+     - No position:fixed/sticky descendants inside any glass object.
+     - Overlays are top-level (<dialog> top layer or direct <body> child).
+   All base rules use :where() (zero specificity) so components can set
+   position, size and radius without fighting this file.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Shared shell
+   -------------------------------------------------------------------------- */
+:where(.glass-chrome, .glass-sheet, .glass-baked) {
+  --r: var(--r-pill);                       /* component sets its own radius here */
+  position: relative;
+  isolation: isolate;                       /* lens + rim paint between bg and content */
+  border-radius: var(--r);
+  padding: var(--plate-inset);              /* clear ring >= 6 px; focus halo fits */
+  border: var(--edge);
+  box-shadow: var(--shadow-float);
+  color: var(--ink);
+  /* tint is recomputed HERE so per-element --shell-a / --sheet-a changes apply */
+  background-color: color-mix(in oklab, var(--glass-base) var(--shell-a), transparent);
+  transition:
+    --shell-a var(--t-zone) var(--ease-std),
+    --plate-a var(--t-zone) var(--ease-std),
+    --sat var(--t-zone) var(--ease-std),
+    --bright var(--t-zone) var(--ease-std),
+    --lens-o var(--t-zone) var(--ease-std);
+}
+
+/* T1: live chrome */
+:where(.glass-chrome) {
+  -webkit-backdrop-filter: blur(var(--blur-chrome)) saturate(var(--sat)) brightness(var(--bright));
+          backdrop-filter: blur(var(--blur-chrome)) saturate(var(--sat)) brightness(var(--bright));
+}
+
+/* T2: live sheet (over the scrim) */
+:where(.glass-sheet) {
+  --r: var(--r-sheet);
+  background-color: color-mix(in oklab, var(--glass-base) var(--sheet-a), transparent);
+  -webkit-backdrop-filter: blur(var(--blur-sheet)) saturate(var(--sat));
+          backdrop-filter: blur(var(--blur-sheet)) saturate(var(--sat));
+  box-shadow: var(--shadow-sheet);
+}
+/* Scrim: Ink 32 % (A-12). ::backdrop inherits custom properties from its
+   dialog in current engines; the literal line covers older ones. The
+   scrim-in keyframes in components.css only animate FROM opacity 0, so the
+   resting state is always the full 32 %. */
+.glass-sheet::backdrop {
+  background: rgb(42 31 23 / .32);
+  background: color-mix(in oklab, var(--ink, #2A1F17) 32%, transparent);
+  opacity: 1;
+}
+
+/* T3: baked (no live blur; the .lens supplies the refraction) */
+:where(.glass-baked) {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+
+/* Common radii presets */
+.glass--card   { --r: var(--r-card); }
+.glass--sheet  { --r: var(--r-sheet); }
+.glass--panel  { --r: var(--r-panel); }
+.glass--well   { --r: var(--r-well); }
+.glass--island { --r: var(--r-island); }
+
+
+/* --------------------------------------------------------------------------
+   2. Lens rim (0.3): baked, transform-only, all browsers
+   Markup (first child of every glass object):
+     <span class="lens" aria-hidden="true">
+       <svg><use href="#field" filter="url(#lensBlur)"/></svg>
+     </span>
+   JS contract (one shared helper, on load + resize, rAF for fixed objects
+   only where scroll-timeline is unsupported):
+     --fx, --fy : negative page offset of the object's padding box (px)
+     --lw, --lh : object's width / height (px)
+     --field-w, --field-h : page field size (set once on :root)
+   -------------------------------------------------------------------------- */
+.lens {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;                 /* the ONLY clipping element in the system */
+  pointer-events: none;
+  contain: strict;
+  z-index: -2;
+  opacity: var(--lens-o);
+  padding: var(--lens-rim);
+  /* rounded-rect rim: padding box minus content box */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+/* round objects (café pins, 44 px icon plates): feathered radial rim */
+.lens--round {
+  padding: 0;
+  -webkit-mask: radial-gradient(closest-side, transparent calc(100% - var(--lens-rim) - 4px), #000 calc(100% - var(--lens-rim)));
+          mask: radial-gradient(closest-side, transparent calc(100% - var(--lens-rim) - 4px), #000 calc(100% - var(--lens-rim)));
+}
+/* small baked objects (ledger well, chips) use a thinner rim */
+.lens--thin { --lens-rim: 6px; }
+
+/* Lens strength (A-01, DESIGN-DECISIONS 0.12 test 5).
+   The capsule is the one lens people judge the glass by, so it gets a
+   stronger magnifier, a wider rim and crisp, darker lines: the #lensBlur
+   presentation attribute is overridden by CSS filter:none (no HTML edit).
+   Every other lens (wells, tray, slab, sheets) keeps the 1.06 magnifier
+   with a much lighter pre-blur than the old sigma 1.5. */
+.lens use { filter: blur(.5px); }
+.capsule > .lens {
+  --lens-scale: 1.18;
+  --lens-dy: 3px;
+  --lens-rim: 10px;
+}
+.capsule > .lens use {
+  --field-alpha: 38%;
+  --field-w: 1.5px;
+  filter: none;
+}
+/* The capsule lane (shell.js, data-field-lane): crisp 22 % lines, and a
+   16 px feather instead of 55 % of the 72-80 px lane (DV#3). */
+.capsule-lane[data-field-lane] {
+  -webkit-mask: linear-gradient(#000 calc(100% - 16px), transparent);
+          mask: linear-gradient(#000 calc(100% - 16px), transparent);
+}
+[data-field-lane] .field-win use {
+  --field-alpha: 22%;
+  filter: none;
+}
+
+/* Lane tint (A-02, Director D1). A soft tinted contour band under the
+   header, so the clear shell has something to bend on the first frame.
+   Markup (B-01, injected by shell.js; static on checkout, C-17):
+     <div class="lane-tint" aria-hidden="true">
+       <svg class="lane-tint__field"><use href="#field"/></svg></div>
+   glass.js hoists it to a direct child of <body> and writes --lane-top
+   (the announcement bar's bottom edge), so the band starts right under the
+   announcement, scrolls away with the page, and its field is in page
+   coordinates without any transform. Pages may set --lane-tint and
+   --lane-tint-2 on :root (product colour on the PDP, C-19).
+   It is colour, not blur: kept under reduced transparency, hidden only in
+   forced colours. Text never sits on it (it feathers out before the H1). */
+.lane-tint {
+  position: absolute;
+  inset-inline: 0;
+  top: var(--lane-top, 0px);
+  block-size: calc(var(--capsule-top) + var(--capsule-h) + var(--space-4) + 32px);
+  z-index: var(--z-field);
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+  background: linear-gradient(180deg,
+    color-mix(in oklch, var(--lane-tint, var(--pine)) 34%, var(--paper)) 0%,
+    color-mix(in oklch, var(--lane-tint-2, var(--clay)) 22%, var(--paper)) 55%,
+    var(--paper) 100%);
+  -webkit-mask: linear-gradient(#000 60%, transparent);
+          mask: linear-gradient(#000 60%, transparent);
+}
+.lane-tint__field {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2400px;
+  height: 3600px;
+  max-inline-size: none;
+  overflow: visible;
+  /* the band starts at --lane-top: pull the field back to page y = 0 */
+  transform: translateY(calc(var(--lane-top, 0px) * -1));
+}
+.lane-tint__field use {
+  --field-stroke: var(--lane-tint, var(--pine));
+  --field-alpha: 30%;
+  --field-w: 1.5px;
+  filter: none;
+}
+@media (forced-colors: active) { .lane-tint { display: none; } }
+
+/* Ledger thumbs (A-14): the bag ends 6 px above the well's 6 px lens rim,
+   so its base never sits under the translucent pocket edge. bag.js adds
+   .bag--well to every product-card bag; ledger mode only. */
+@container plist (inline-size < 600px) {
+  .plist:not(.plist--rail) .glass--well > .bag--well { inset-block-end: 12px; block-size: calc(86% - 8px); }
+}
+
+.lens > svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--field-w, 100vw);
+  height: var(--field-h, 100vh);
+  overflow: visible;
+  /* align field to page coords, push down 2 px, magnify x1.06 about the
+     object's centre (expressed in field coordinates) */
+  transform-origin:
+    calc(var(--fx, 0px) * -1 + var(--lw, 0px) / 2)
+    calc((var(--fy, 0px) + var(--fy-scroll)) * -1 + var(--lh, 0px) / 2);
+  transform:
+    translate(var(--fx, 0px), calc(var(--fy, 0px) + var(--fy-scroll) + var(--lens-dy)))
+    scale(var(--lens-scale));
+  will-change: transform;
+}
+
+/* Fixed chrome: follow scroll with a scroll-driven animation (no JS per
+   frame). --scroll-max = document scroll range in px, set by JS on resize. */
+@supports (animation-timeline: scroll()) {
+  .lens--fixed > svg {
+    animation: lens-follow linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes lens-follow {
+  from { --fy-scroll: 0px; }
+  to   { --fy-scroll: calc(var(--scroll-max, 0px) * -1); }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Specular rim (::before) + sheen and lips (::after)  (0.4)
+   Light always from the TOP-LEFT.
+   -------------------------------------------------------------------------- */
+:where(.glass-chrome, .glass-sheet, .glass-baked)::before {
+  content: "";
+  position: absolute;
+  inset: -1px;                               /* sit over the 1 px edge */
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(135deg, var(--rim-warm) 0%, var(--rim-mid) 45%, var(--rim-end) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+:where(.glass-chrome, .glass-sheet, .glass-baked)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  /* lips are recomputed here so --lip-a can change per element on press */
+  box-shadow:
+    inset 0 1px 0 rgb(255 250 240 / var(--lip-a)),
+    var(--lip-bottom),
+    var(--inner-glow);
+  background: radial-gradient(40% 60% at var(--sx, 30%) var(--sy, 0%), var(--sheen), transparent 70%);
+  transition: opacity var(--t-fast) var(--ease-std);
+}
+
+/* Pointer sheen: fine pointers only, motion allowed. JS writes --sx/--sy
+   (rAF-throttled). Touch gets the press shift instead. No scroll sheen. */
+@media not ((hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)) {
+  :where(.glass-chrome, .glass-sheet, .glass-baked) { --sx: 30%; --sy: 0%; }
+}
+
+
+/* --------------------------------------------------------------------------
+   4. T4 plate: behind every glyph
+   -------------------------------------------------------------------------- */
+:where(.plate) {
+  position: relative;
+  border-radius: max(calc(var(--r) - var(--plate-inset)), 0px);
+  background-color: color-mix(in oklab, var(--glass-base) var(--plate-a), transparent);
+  border: var(--edge);
+  color: var(--ink);
+  font-weight: var(--fw-ui);                /* >= 15 px at 500 (labels 14/600) */
+}
+/* plates can't sit edge-to-edge: the parent's padding guarantees the inset.
+   A plate used as a 44 px icon button: */
+.plate--btn {
+  display: inline-grid;
+  place-items: center;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  border-radius: var(--r-pill);
+  color: var(--ink);
+}
+/* solid plate (sheet headers, pinned footers, line items: 100 %) */
+.plate--solid { --plate-a: 100%; }
+.plate--oat   { background-color: var(--oat); }
+
+
+/* --------------------------------------------------------------------------
+   5. Dark-zone modifier (0.7)
+   Toggled on T1 by the IntersectionObserver; set statically on T3 objects
+   that sit over floods / photos / Pine bands (e.g. PDP buy slab).
+   AA never depends on this: 92 % plates already give 13.1:1 over pure Ink.
+   -------------------------------------------------------------------------- */
+:where([data-over="dark"], .glass--dark) {
+  --shell-a: var(--shell-a-dark);           /* 56 % */
+  --sat: var(--sat-dark);                   /* 130 % */
+  --plate-a: var(--plate-a-dark);           /* 100 % */
+  --bright: 1;
+  --lens-o: 0;                              /* contours over a photo would lie */
+}
+/* static flood surfaces: plates at 100 % but keep the band's own lens */
+.glass--flood { --plate-a: var(--plate-a-dark); }
+
+
+/* --------------------------------------------------------------------------
+   6. Press squish (0.8)  ·  NON-CUTTABLE
+   Press: scale .97 over 120 ms ease-out; lip .85 -> 1; sheen 8 % toward
+   the press point (JS may set --sx on pointerdown). Release springs back
+   over 380 ms with --ease-spring. Reduced motion: lip only, instant.
+   -------------------------------------------------------------------------- */
+.squish {
+  transition:
+    transform var(--t-spring) var(--ease-spring),
+    background-color var(--t-fast) var(--ease-std);
+  -webkit-tap-highlight-color: transparent;
+}
+.squish:active {
+  --lip-a: 1;
+  transform: scale(var(--press-scale));
+  transition: transform var(--t-press) var(--ease-out);
+}
+.squish:active::after { --sx: 38%; }
+.squish[data-soldout]:active,
+.squish[data-soldout].is-pressed { transform: none; }
+
+
+/* --------------------------------------------------------------------------
+   7. Lacquer: solid Pine button with a gloss lip (never glass)
+   White on Pine 10.0:1.
+   -------------------------------------------------------------------------- */
+.lacquer {
+  background-color: var(--pine);
+  color: var(--on-pine);
+  border: 0;
+  border-radius: var(--r-pill);
+  box-shadow: var(--lacquer-lip), var(--lacquer-shadow);
+  background-image: linear-gradient(180deg, rgb(255 255 255 / .10), rgb(255 255 255 / 0) 55%);
+}
+@media (hover: hover) {
+  .lacquer:hover { background-color: var(--pine-hover); }
+}
+.lacquer:active { background-color: var(--pine-press); }
+/* "Choose a grind" state (A-04): still actionable (it scrolls to and
+   focuses the grind group), so it keeps the full Pine lacquer, --on-pine
+   text, the pointer and the press squish. Never use [disabled]. */
+.lacquer[aria-disabled="true"] {
+  background-color: var(--pine);
+  color: var(--on-pine);
+  cursor: pointer;
+}
+/* The one real exception: "Sold out" (product.js sets data-soldout). Oat
+   ground, Ink text 12.6:1, Muted 3:1 boundary, no gloss, no squish. */
+.lacquer[data-soldout],
+.lacquer[data-soldout]:hover,
+.lacquer[data-soldout]:active {
+  background-color: var(--oat);
+  background-image: none;
+  color: var(--ink);
+  border: var(--edge-strong);
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Focus on glass (0.5): Pine outer ring + Paper inner halo, never clipped
+   -------------------------------------------------------------------------- */
+:where(.glass-chrome, .glass-sheet, .glass-baked, .plate, .lacquer) :focus-visible,
+:where(.plate, .lacquer, .squish):focus-visible {
+  outline: var(--focus-w) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  box-shadow: var(--focus-shadow), var(--shadow-1);
+}
+/* a hidden capsule (state class .is-hidden / [data-hidden]) reappears
+   when focus moves into it */
+.glass-chrome:where(.is-hidden, [data-hidden]):focus-within { transform: none; opacity: 1; }
+
+
+/* --------------------------------------------------------------------------
+   9. Live-blur budget (0.9): when a sheet is open, chrome stops blurring
+   (it is under the scrim and inert). Max 2 live layers mobile, 3 desktop.
+   -------------------------------------------------------------------------- */
+html:has(dialog.glass-sheet[open]) .glass-chrome,
+html.sheet-open .glass-chrome {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+/* no live blur on anything taller than 50vh except the active sheet:
+   enforced by usage (DESIGN.md); the ?debug=glass counter checks it. */
+
+
+/* --------------------------------------------------------------------------
+   10. FALLBACKS (0.11)
+   -------------------------------------------------------------------------- */
+
+/* 10a. No backdrop-filter: shell 90 %, sheet 94 %. Lens, rim, edges and
+   shadows are kept, so it still reads as polished glass. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :where(.glass-chrome, .glass-baked) { --shell-a: var(--shell-a-nofilter); }
+  :where(.glass-chrome, .glass-baked):where([data-over="dark"], .glass--dark) { --shell-a: 100%; }
+  :where(.glass-sheet) { --sheet-a: var(--sheet-a-nofilter); }
+}
+
+/* 10b. glass-lite (set pre-paint by the head script on low-end devices):
+   no live blur anywhere, shell 84 %, sheet 94 %, lens static. */
+html.glass-lite :where(.glass-chrome, .glass-sheet) {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+/* Only live chrome thickens: baked surfaces never had live blur, so
+   thickening them saved nothing (A-11). */
+html.glass-lite :where(.glass-chrome) { --shell-a: var(--shell-a-lite); }
+html.glass-lite :where(.glass-sheet) { --sheet-a: var(--sheet-a-lite); }
+html.glass-lite .lens--fixed > svg { animation: none; }
+
+/* 10c. Reduced transparency (OS, prefers-contrast, or the switch).
+   Tokens already force 100 % tints + strong edges; here we drop the
+   decorative layers. Shadows stay (depth survives). Plates don't move. */
+:root[data-glass="off"] :where(.glass-chrome, .glass-sheet, .glass-baked),
+:root[data-transparency="reduced"] :where(.glass-chrome, .glass-sheet, .glass-baked) {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+:root[data-glass="off"] .lens,
+:root[data-transparency="reduced"] .lens,
+:root[data-glass="off"] :where(.glass-chrome, .glass-sheet, .glass-baked)::after,
+:root[data-transparency="reduced"] :where(.glass-chrome, .glass-sheet, .glass-baked)::after,
+:root[data-glass="off"] :where(.glass-chrome, .glass-sheet, .glass-baked)::before,
+:root[data-transparency="reduced"] :where(.glass-chrome, .glass-sheet, .glass-baked)::before {
+  display: none;
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :where(.glass-chrome, .glass-sheet, .glass-baked) {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+  }
+  .lens,
+  :where(.glass-chrome, .glass-sheet, .glass-baked)::before,
+  :where(.glass-chrome, .glass-sheet, .glass-baked)::after { display: none; }
+}
+
+/* 10d. Forced colours */
+@media (forced-colors: active) {
+  :where(.glass-chrome, .glass-sheet, .glass-baked, .plate) {
+    background: Canvas;
+    color: CanvasText;
+    border: 1px solid CanvasText;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    forced-color-adjust: auto;
+  }
+  .lens,
+  :where(.glass-chrome, .glass-sheet, .glass-baked)::before,
+  :where(.glass-chrome, .glass-sheet, .glass-baked)::after { display: none; }
+  /* Chrome draws a Canvas backplate behind text, so the label must be
+     ButtonText on ButtonFace, never the inverse (A-03). */
+  .lacquer, .lacquer[aria-disabled="true"], .lacquer[data-soldout] {
+    background: ButtonFace; color: ButtonText; border: 1px solid ButtonText;
+    box-shadow: none; background-image: none; forced-color-adjust: none;
+  }
+  :where(.glass-chrome, .glass-sheet, .glass-baked, .plate, .lacquer, .squish) :focus-visible,
+  :where(.plate, .lacquer, .squish):focus-visible { outline: 2px solid Highlight; box-shadow: none; }
+  .glass-sheet::backdrop { background: rgb(0 0 0 / .5); }
+}
+
+/* 10e. Reduced motion: tokens zero the scale/translate; here we also stop
+   the scroll-following lens (re-aligned on load + scrollend by JS) and
+   pin the sheen. */
+@media (prefers-reduced-motion: reduce) {
+  .lens--fixed > svg { animation: none; }
+  .lens > svg { will-change: auto; }
+  :where(.glass-chrome, .glass-sheet, .glass-baked) { --sx: 30%; --sy: 0%; }
+  .squish:active::after { --sx: 30%; }
+}
+
+/* 10f. color-mix() unsupported: a var()-based background would compute to
+   transparent, so fall back to solid Paper surfaces. */
+@supports not (color: color-mix(in oklab, red, blue)) {
+  :where(.glass-chrome, .glass-sheet, .glass-baked, .plate) {
+    background-color: var(--paper);
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    border: 1px solid var(--muted);
+  }
+  .lens, :where(.glass-chrome, .glass-sheet, .glass-baked)::after { display: none; }
+}
