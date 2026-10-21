@@ -1,0 +1,96 @@
+/* ==========================================================================
+   TOKENS  ·  visual rebrand file. Change values marked "REBRAND HERE".
+   Fonts: Barlow Condensed (display) + Barlow (body), self-hosted, SIL OFL
+   1.1 (see assets/fonts/LICENSE.txt). No font CDN.
+   ========================================================================== */
+
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap; src: url('../fonts/barlow-condensed-800.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: italic; font-weight: 800; font-display: swap; src: url('../fonts/barlow-condensed-800-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/barlow-condensed-600.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/barlow-400.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/barlow-500.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/barlow-600.woff2') format('woff2'); }
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Colour · REBRAND HERE ------------------------------------------ */
+  --c-bg: #0b0b0c;            /* near-black base */
+  --c-bg-2: #101012;
+  --c-surface: #16161a;       /* cards */
+  --c-surface-2: #1e1e23;     /* raised / hover */
+  --c-line: rgb(255 255 255 / 0.10);
+  --c-line-strong: rgb(255 255 255 / 0.22);
+  --c-text: #f4f1ea;          /* warm off-white, 17.4:1 on --c-bg */
+  --c-text-muted: #b8b2a7;    /* 9.3:1 on --c-bg, 8.6:1 on --c-surface */
+  --c-text-dim: #8f897f;      /* 5.7:1 on --c-bg, 5.2:1 on --c-surface (small labels only) */
+  --c-accent: #f2e14c;        /* caption yellow, 14.7:1 on --c-bg */
+  --c-accent-hover: #f7ea78;
+  --c-accent-ink: #0b0b0c;    /* text on accent, 14.7:1 */
+  --c-accent-soft: rgb(242 225 76 / 0.13);
+  --c-accent-line: rgb(242 225 76 / 0.45);
+  --c-warm: #e9a25b;          /* spotlight warmth for glows only */
+  --c-danger: #ff8a7a;        /* 8.6:1 on --c-bg */
+  --c-danger-soft: rgb(255 138 122 / 0.12);
+  --c-success: #8be3b0;       /* 12.9:1 on --c-bg */
+  --c-success-soft: rgb(139 227 176 / 0.12);
+  --c-focus: #f2e14c;
+
+  /* ---- Type · REBRAND HERE -------------------------------------------- */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif;
+  --font-body: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Type scale. Roles: hero (H1, the one loud moment) > display (H2) >
+     title (H3, mixed case) > h4 > lead > body > small > meta. */
+  --fs-hero: clamp(3.5rem, 16.2vw, 11.5rem);   /* hero sets its own min() for short screens */
+  --fs-display: clamp(2.75rem, 1.8rem + 4.6vw, 6rem);
+  --fs-title: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  --fs-h3: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);
+  --fs-h4: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
+  --fs-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --fs-body: 1.0625rem;   /* 17 px */
+  --fs-small: 0.9375rem;  /* 15 px */
+  --fs-meta: 0.875rem;    /* 14 px, sentence-case labels */
+  --lh-body: 1.6;
+
+  /* ---- Space: strict 8 px grid ---------------------------------------- */
+  --s-0: 4px;  /* hairline gaps only */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+  --section-y: clamp(72px, 3rem + 6vw, 160px);
+  --gutter: clamp(16px, 4vw, 48px);
+  --container: 1320px;
+
+  /* ---- Shape ---------------------------------------------------------- */
+  --r-1: 8px;
+  --r-2: 16px;
+  --r-3: 24px;
+  --r-pill: 999px;
+  --tap: 48px;                /* comfortable tap target (min 44) */
+
+  /* ---- Depth ---------------------------------------------------------- */
+  --shadow-1: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 8px 24px rgb(0 0 0 / 0.35);
+  --shadow-2: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 24px 64px rgb(0 0 0 / 0.55);
+  --glow-accent: 0 8px 32px rgb(242 225 76 / 0.28);
+
+  /* ---- Motion --------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);       /* expo-ish out */
+  --ease-back: cubic-bezier(0.34, 1.4, 0.64, 1);    /* ~ back.out(1.4) */
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --d-fast: 160ms;
+  --d-base: 260ms;
+  --d-slow: 480ms;
+  --d-reveal: 720ms;
+  --stagger: 60ms;
+
+  /* ---- Layers --------------------------------------------------------- */
+  --z-header: 50;
+  --z-toast: 80;
+  --z-modal: 100;
+}

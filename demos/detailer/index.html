@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<script>
+(function(h){h.classList.add('js');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)h.classList.add('motion-ok')})(document.documentElement);
+</script>
+<title>Mirrorline Detail Studio | Paint correction &amp; ceramic coating (demo)</title>
+<meta name="description" content="Mirrorline Detail Studio: hand washing, machine paint correction and ceramic coating by appointment. Build an instant example quote and book a detail. Demo website.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mirrorline Detail Studio: mirror finish, every panel.">
+<meta property="og:description" content="Wash, correct, protect, reveal. Paint correction and ceramic coating by appointment. Demo website.">
+<meta property="og:image" content="thumb.jpg">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="900">
+<meta name="theme-color" content="#060708">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/barlow-condensed-800-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===== Shared SVG: icons, car parts, gradients (not display:none, so gradients work) ===== -->
+<svg class="defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+  <defs>
+    <!-- Paint: glossy black with sky + horizon reflections -->
+    <linearGradient id="g-paint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8291a6"/>
+      <stop offset=".1" stop-color="#2d394b"/>
+      <stop offset=".3" stop-color="#0d1219"/>
+      <stop offset=".55" stop-color="#090c11"/>
+      <stop offset=".61" stop-color="#46556c"/>
+      <stop offset=".67" stop-color="#11161d"/>
+      <stop offset=".82" stop-color="#06080b"/>
+      <stop offset="1" stop-color="#020304"/>
+    </linearGradient>
+    <linearGradient id="g-rimlight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4cc3ff" stop-opacity=".55"/>
+      <stop offset=".12" stop-color="#4cc3ff" stop-opacity="0"/>
+      <stop offset=".86" stop-color="#4cc3ff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#4cc3ff" stop-opacity=".4"/>
+    </linearGradient>
+    <linearGradient id="g-glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#35435a"/>
+      <stop offset=".45" stop-color="#0c1118"/>
+      <stop offset="1" stop-color="#030406"/>
+    </linearGradient>
+    <linearGradient id="g-lamp" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".6" stop-color="#bfe9ff"/>
+      <stop offset="1" stop-color="#4cc3ff"/>
+    </linearGradient>
+    <linearGradient id="g-sweep" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4cc3ff" stop-opacity="0"/>
+      <stop offset=".45" stop-color="#4cc3ff" stop-opacity=".38"/>
+      <stop offset=".6" stop-color="#9fe0ff" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#4cc3ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-mud" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b5a45" stop-opacity="0"/>
+      <stop offset="1" stop-color="#6b5a45" stop-opacity=".75"/>
+    </linearGradient>
+    <radialGradient id="g-rim" cx=".4" cy=".35" r=".75">
+      <stop offset="0" stop-color="#e6ebf1"/>
+      <stop offset=".5" stop-color="#8a94a1"/>
+      <stop offset="1" stop-color="#2b3038"/>
+    </radialGradient>
+    <radialGradient id="g-bubble" cx=".35" cy=".3" r=".7">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".55" stop-color="#eef6fb" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#b9cbd8" stop-opacity=".85"/>
+    </radialGradient>
+    <radialGradient id="g-bead" cx=".35" cy=".3" r=".7">
+      <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+      <stop offset=".3" stop-color="#cfefff" stop-opacity=".35"/>
+      <stop offset=".8" stop-color="#4cc3ff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
+    </radialGradient>
+    <radialGradient id="g-polish" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff6e6" stop-opacity=".95"/>
+      <stop offset=".35" stop-color="#ffc77a" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffb04a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-shadow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#000" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#4cc3ff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#4cc3ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g-beam" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#cfefff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#4cc3ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-fade-down" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="m-reflect" maskUnits="userSpaceOnUse" x="0" y="336" width="1000" height="130">
+      <rect x="0" y="336" width="1000" height="130" fill="url(#g-fade-down)"/>
+    </mask>
+
+    <!-- Swirl marks: fine concentric scratches, visible only on dark paint -->
+    <pattern id="p-swirl" width="140" height="120" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#fff" stroke-opacity=".22" stroke-width=".7">
+        <circle cx="70" cy="60" r="14"/><circle cx="70" cy="60" r="26"/><circle cx="70" cy="60" r="39"/><circle cx="70" cy="60" r="53"/>
+        <path d="M0 10 A60 60 0 0 1 40 0M100 120 A60 60 0 0 1 140 104"/>
+      </g>
+    </pattern>
+    <pattern id="p-dust" width="46" height="38" patternUnits="userSpaceOnUse">
+      <g fill="#c9b79c" fill-opacity=".55">
+        <circle cx="5" cy="6" r="1.2"/><circle cx="21" cy="14" r=".8"/><circle cx="37" cy="4" r="1"/><circle cx="12" cy="27" r="1.4"/><circle cx="31" cy="31" r=".9"/><circle cx="42" cy="21" r=".7"/>
+      </g>
+    </pattern>
+
+    <!-- Car body outline (side profile, facing left). Ground line y = 336. -->
+    <path id="body-shape" d="M92 292C70 290 58 278 60 260C62 246 70 238 86 232L168 214C250 200 330 190 405 178C455 150 505 124 548 112C600 102 660 102 705 110C765 122 820 146 868 170C900 180 928 188 940 200C950 212 952 240 946 262C942 280 930 290 912 292L852 292A80 80 0 0 0 692 292L318 292A80 80 0 0 0 158 292Z"/>
+    <clipPath id="clip-body"><use href="#body-shape"/></clipPath>
+
+    <g id="car-shell">
+      <path d="M160 292A78 78 0 0 1 316 292Z" fill="#020203"/>
+      <path d="M694 292A78 78 0 0 1 850 292Z" fill="#020203"/>
+      <use href="#body-shape" fill="url(#g-paint)"/>
+      <use href="#body-shape" fill="url(#g-rimlight)"/>
+      <path d="M96 236C300 214 600 196 940 206" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="10"/>
+      <path d="M96 236C300 214 600 196 940 206" fill="none" stroke="#dbe7f5" stroke-opacity=".42" stroke-width="1.6"/>
+      <path d="M318 292L320 274C450 270 580 268 692 270L692 292Z" fill="#000" fill-opacity=".55"/>
+      <g clip-path="url(#clip-body)">
+        <path d="M40 252C300 234 650 222 960 230L960 238C650 232 300 244 40 264Z" fill="#fff" fill-opacity=".16"/>
+        <path d="M300 281C500 277 700 277 960 281L960 285C700 282 500 283 300 287Z" fill="#9fdcff" fill-opacity=".14"/>
+        <path d="M180 214C260 202 330 192 400 182L402 186C330 196 260 206 182 218Z" fill="#fff" fill-opacity=".35"/>
+      </g>
+      <path d="M560 108C610 101 660 101 712 110" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M428 178C470 152 512 130 552 120C600 110 655 110 700 118C748 128 792 146 830 168C760 172 560 177 428 178Z" fill="url(#g-glass)" stroke="#fff" stroke-opacity=".14"/>
+      <path d="M470 172L560 119L592 116L505 172Z" fill="#fff" fill-opacity=".1"/>
+      <path d="M700 122L722 126L770 160L745 163Z" fill="#fff" fill-opacity=".06"/>
+      <path d="M630 113L648 113L642 176L620 176Z" fill="#040506"/>
+      <path d="M452 184C456 220 462 252 470 286M690 180C695 212 696 242 694 270" fill="none" stroke="#000" stroke-opacity=".75" stroke-width="1.6"/>
+      <path d="M453 184C457 220 463 252 471 286" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="1" transform="translate(2 0)"/>
+      <path d="M560 222h44" stroke="#9aa6b5" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+      <path d="M440 178C432 166 444 158 458 160L470 170C462 176 452 180 440 178Z" fill="#0b0f15" stroke="#fff" stroke-opacity=".12"/>
+      <path d="M66 270C80 266 110 264 150 268L156 286L96 290C80 288 70 282 66 270Z" fill="#030405" stroke="#fff" stroke-opacity=".08"/>
+      <path d="M66 250C84 236 124 224 176 216L172 228C128 234 96 244 72 258Z" fill="url(#g-lamp)"/>
+      <path d="M78 248C100 238 130 230 168 222" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <path d="M900 198C922 202 940 208 946 218L945 228C930 222 912 216 894 212Z" fill="#ff2a3d"/>
+      <path d="M860 292L930 290C940 284 944 276 946 268L880 276Z" fill="#030405"/>
+    </g>
+
+    <!-- Wheel parts, drawn around 0,0 so they can spin about their centre -->
+    <g id="wheel-base">
+      <circle r="62" fill="#0a0b0d"/>
+      <circle r="60" fill="none" stroke="#1d2127" stroke-width="3"/>
+      <circle r="49" fill="url(#g-rim)"/>
+      <circle r="44" fill="#13161b"/>
+    </g>
+    <g id="wheel-spokes">
+      <g fill="url(#g-rim)">
+        <path d="M-7-10L-4-44L4-44L7-10Z"/>
+        <path d="M-7-10L-4-44L4-44L7-10Z" transform="rotate(72)"/>
+        <path d="M-7-10L-4-44L4-44L7-10Z" transform="rotate(144)"/>
+        <path d="M-7-10L-4-44L4-44L7-10Z" transform="rotate(216)"/>
+        <path d="M-7-10L-4-44L4-44L7-10Z" transform="rotate(288)"/>
+      </g>
+      <circle r="11" fill="#22272e"/>
+      <circle r="5" fill="#0a64f5"/>
+      <circle r="49" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>
+    </g>
+    <path id="caliper" d="M19-33A38 38 0 0 1 37-9L29-7A30 30 0 0 0 15-26Z" fill="#0a64f5"/>
+
+    <!-- Full static car (hero + reflections) -->
+    <g id="car">
+      <use href="#car-shell"/>
+      <g transform="translate(238 274)"><use href="#wheel-base"/><use href="#caliper"/><use href="#wheel-spokes"/></g>
+      <g transform="translate(772 274)"><use href="#wheel-base"/><use href="#caliper"/><use href="#wheel-spokes"/></g>
+    </g>
+  </defs>
+
+  <!-- Icons -->
+  <symbol id="i-mark" viewBox="0 0 32 32"><path d="M16 2.5L29.5 16 16 29.5 2.5 16z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 16l7-7 2.6 2.6-7 7z" fill="currentColor"/><path d="M14.4 21.4l7-7L23 16l-7 7z" fill="currentColor" opacity=".55"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3.1-5.4 3.1 1.2-6L3.3 9.5l6.1-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.5 4.2-2 1.5a12 12 0 0 0 6.1 6.1l1.5-2 4.2 1.5v2.6a2.1 2.1 0 0 1-2.3 2.1A17 17 0 0 1 4.5 5.8 2.1 2.1 0 0 1 6.6 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5c3.5 4.3 6 7.6 6 10.7a6 6 0 0 1-12 0c0-3.1 2.5-6.4 6-10.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5l1.9 7.6 7.6 1.9-7.6 1.9L12 21.5l-1.9-7.6L2.5 12l7.6-1.9z" fill="currentColor"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-coupe" viewBox="0 0 48 24"><path d="M3 17c0-3 2-4 5-4.5l7-1c4-3.5 8-5 13-5s9 2 13 5c3 .5 5 2 5 4.5v1H3z" fill="currentColor"/><circle cx="12" cy="18" r="3.6" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/><circle cx="37" cy="18" r="3.6" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/></symbol>
+  <symbol id="i-sedan" viewBox="0 0 48 24"><path d="M2 17v-3c0-1.5 2-2 5-2.5l6-.5c3-3.5 7-5 13-5 5 0 8 1.5 11 5l6 .5c2.5.5 3.5 1.5 3.5 3.5V18H2z" fill="currentColor"/><circle cx="11.5" cy="18" r="3.6" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/><circle cx="37.5" cy="18" r="3.6" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/></symbol>
+  <symbol id="i-suv" viewBox="0 0 48 24"><path d="M2 18v-7c0-1.5 1-2 3-2h5l4-5h24c2 0 4 2 6 5 2 .5 2.5 1.5 2.5 3v6z" fill="currentColor"/><circle cx="12" cy="18.5" r="3.9" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/><circle cx="37" cy="18.5" r="3.9" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 48 24"><path d="M2 18v-7c0-1 1-1.5 2.5-1.5L11 9l3-5h12v6h20v8z" fill="currentColor"/><circle cx="11" cy="18.5" r="3.9" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/><circle cx="38" cy="18.5" r="3.9" fill="currentColor" stroke="var(--c-surface)" stroke-width="1.6"/></symbol>
+</svg>
+
+<header class="site-header" data-header>
+  <div class="container header__bar">
+    <a class="brand" href="#top" aria-label="Mirrorline Detail Studio, back to top">
+      <svg class="brand__mark" width="28" height="28" aria-hidden="true" focusable="false"><use href="#i-mark"/></svg>
+      <span class="brand__word" aria-hidden="true"><span data-brand="shortName">Mirrorline</span><small>Detail Studio</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#quote">Quote</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </nav>
+    <div class="header__ctas">
+      <a class="header__phone" href="tel:+15550142290" data-brand-phone><svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span data-brand-phone-text>(555) 014-2290</span></a>
+      <a class="btn btn--accent btn--sm" href="#book">Book a detail</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ===== 1. Hero: the reveal is the first frame ========================== -->
+  <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__glow"></div>
+      <div class="hero__floor"></div>
+    </div>
+
+    <div class="container hero__inner">
+      <div class="hero__top">
+        <p class="kicker"><span class="kicker__dot" aria-hidden="true"></span>Paint correction · Ceramic coating · Detailing</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="line">Mirror finish.</span>
+          <span class="line line--accent">Every panel.</span>
+        </h1>
+      </div>
+
+      <figure class="hero__car" data-hero-car>
+        <div class="hero__lights" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="hero__ghost" aria-hidden="true">GLOSS</p>
+        <svg class="car-svg" viewBox="0 80 1000 380" role="img" aria-labelledby="hero-car-alt" preserveAspectRatio="xMidYMid meet">
+          <title id="hero-car-alt">A gloss-black sports coupe under blue studio light, its paint reflecting the light strips above, with a mirror reflection on the floor.</title>
+          <ellipse cx="505" cy="338" rx="470" ry="18" fill="url(#g-shadow)"/>
+          <path class="hero__beam" d="M70 244L-260 196L-260 330Z" fill="url(#g-beam)"/>
+          <g mask="url(#m-reflect)" opacity=".3"><use href="#car" transform="translate(0 672) scale(1 -1)"/></g>
+          <use href="#car"/>
+          <g clip-path="url(#clip-body)">
+            <g class="hero__sweep"><rect x="-260" y="80" width="200" height="260" fill="url(#g-sweep)" transform="skewX(-22)"/></g>
+          </g>
+          <g class="hero__sparks" fill="#fff">
+            <use href="#i-spark" x="520" y="96" width="30" height="30"/>
+            <use href="#i-spark" x="150" y="196" width="22" height="22"/>
+            <use href="#i-spark" x="905" y="186" width="18" height="18"/>
+          </g>
+        </svg>
+      </figure>
+
+      <div class="hero__bottom">
+        <p class="hero__lead">Hand wash, machine polish and ceramic coating, by appointment. Your car leaves deeper, glossier and easier to keep clean.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--accent btn--lg" href="#book">Book a detail<svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost btn--lg" href="#quote">Get a quote</a>
+        </div>
+        <ul class="hero__trust" role="list">
+          <li><span class="stars" aria-hidden="true">★★★★★</span> 4.9 from sample reviews</li>
+          <li>Studio drop-off or mobile</li>
+          <li>Fully insured</li>
+        </ul>
+      </div>
+    </div>
+    <a class="hero__scroll" href="#process" aria-label="Scroll to the process"><span aria-hidden="true"></span></a>
+  </section>
+
+  <!-- ===== 2. Process: scroll-driven stages ================================ -->
+  <section class="stages" id="process" aria-labelledby="process-title" data-stages>
+    <div class="stages__pin" data-stages-pin>
+      <div class="stages__bg" aria-hidden="true">
+        <span class="stages__light" data-stage-light="0" style="--c:var(--c-stage-arrival)"></span>
+        <span class="stages__light" data-stage-light="1" style="--c:var(--c-stage-purify)"></span>
+        <span class="stages__light" data-stage-light="2" style="--c:var(--c-stage-correct)"></span>
+        <span class="stages__light" data-stage-light="3" style="--c:var(--c-stage-protect)"></span>
+        <span class="stages__light" data-stage-light="4" style="--c:var(--c-stage-reveal)"></span>
+        <span class="stages__spot" data-stage-spot></span>
+      </div>
+
+      <div class="container stages__inner">
+        <header class="stages__head">
+          <h2 class="stages__title" id="process-title">The process</h2>
+          <ol class="stages__rail" role="list" aria-label="Stages">
+            <li data-stage-dot="0" class="is-active">Arrival</li>
+            <li data-stage-dot="1">Purify</li>
+            <li data-stage-dot="2">Correct</li>
+            <li data-stage-dot="3">Protect</li>
+            <li data-stage-dot="4">Reveal</li>
+          </ol>
+          <div class="stages__bar" aria-hidden="true"><span data-stage-bar></span></div>
+        </header>
+
+        <div class="stages__car">
+          <p class="stages__num" aria-hidden="true"><span data-stage-num="0" class="is-active">01</span><span data-stage-num="1">02</span><span data-stage-num="2">03</span><span data-stage-num="3">04</span><span data-stage-num="4">05</span></p>
+          <svg class="car-svg" viewBox="0 80 1000 380" role="img" aria-labelledby="stage-car-alt" data-stage-svg>
+            <title id="stage-car-alt">Illustration of the same black coupe moving through each detailing stage: dusty on arrival, covered in snow foam, polished, coated with water beading, then revealed with a full gloss.</title>
+            <ellipse cx="505" cy="338" rx="470" ry="18" fill="url(#g-shadow)"/>
+            <g data-car-move>
+              <g mask="url(#m-reflect)" opacity=".22"><use href="#car" transform="translate(0 672) scale(1 -1)"/></g>
+              <use href="#car-shell"/>
+              <g clip-path="url(#clip-body)">
+                <g data-fx="dirt">
+                  <rect x="0" y="90" width="1000" height="210" fill="#7a6a55" fill-opacity=".34"/>
+                  <rect x="0" y="220" width="1000" height="80" fill="url(#g-mud)"/>
+                  <rect x="0" y="90" width="1000" height="210" fill="url(#p-dust)"/>
+                </g>
+                <rect data-fx="swirl" x="0" y="90" width="1000" height="210" fill="url(#p-swirl)"/>
+                <rect data-fx="foam" x="0" y="90" width="1000" height="210" fill="#fff" fill-opacity=".22"/>
+                <g data-fx="polish"><circle data-polisher cx="0" cy="0" r="90" fill="url(#g-polish)"/></g>
+                <rect data-fx="sheen" x="0" y="90" width="1000" height="210" fill="url(#g-sheen)"/>
+                <g data-fx="beads"><g data-gen="beads"></g></g>
+                <g data-fx="sweep"><rect x="-300" y="80" width="260" height="260" fill="url(#g-sweep)" transform="skewX(-22)"/><rect x="-200" y="80" width="60" height="260" fill="url(#g-sweep)" transform="skewX(-22)"/></g>
+              </g>
+              <g transform="translate(238 274)"><use href="#wheel-base"/><use href="#caliper"/><use href="#wheel-spokes" data-wheel/></g>
+              <g transform="translate(772 274)"><use href="#wheel-base"/><use href="#caliper"/><use href="#wheel-spokes" data-wheel/></g>
+              <g data-fx="foam"><g data-gen="foam"></g></g>
+              <g data-fx="spray" stroke="#dff3ff" stroke-linecap="round" fill="none"><g data-gen="spray"></g></g>
+              <g data-fx="sparks" fill="#fff"><g data-gen="sparks"></g></g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="stages__copy" data-stage-cards>
+          <article class="stage-card is-active" data-stage-card="0">
+            <p class="stage-card__num"><span>01</span>/05 · Arrival</p>
+            <h3 class="stage-card__title">Rolled in as it is.</h3>
+            <p class="stage-card__text">Road film, brake dust and car-wash swirls. We inspect every panel under studio light and photograph it before we touch it.</p>
+            <ul class="chips" role="list"><li>Photo check-in</li><li>Paint depth readings</li></ul>
+          </article>
+          <article class="stage-card" data-stage-card="1">
+            <p class="stage-card__num"><span>02</span>/05 · Purify</p>
+            <h3 class="stage-card__title">Foam, wash, decontaminate.</h3>
+            <p class="stage-card__text">Snow foam, a two-bucket hand wash, iron fallout remover and clay. Everything bonded to the paint comes off safely.</p>
+            <ul class="chips" role="list"><li>pH-neutral foam</li><li>Iron + tar removal</li><li>Clay bar</li></ul>
+          </article>
+          <article class="stage-card" data-stage-card="2">
+            <p class="stage-card__num"><span>03</span>/05 · Correct</p>
+            <h3 class="stage-card__title">Polish out the swirls.</h3>
+            <p class="stage-card__text">One to three machine polishing stages lift swirl marks and light scratches, panel by panel, until the clear coat reflects like glass.</p>
+            <ul class="chips" role="list"><li>Swirl removal</li><li>Up to 3 stages</li><li>Checked under light</li></ul>
+          </article>
+          <article class="stage-card" data-stage-card="3">
+            <p class="stage-card__num"><span>04</span>/05 · Protect</p>
+            <h3 class="stage-card__title">Lock it in with ceramic.</h3>
+            <p class="stage-card__text">A hard ceramic coating bonds to the clear coat. Water beads and rolls off, and dirt lets go with a simple rinse.</p>
+            <ul class="chips" role="list"><li>Hydrophobic</li><li>UV protection</li><li>Easier washes</li></ul>
+          </article>
+          <article class="stage-card" data-stage-card="4">
+            <p class="stage-card__num"><span>05</span>/05 · Reveal</p>
+            <h3 class="stage-card__title">Better than the day you bought it.</h3>
+            <p class="stage-card__text">A final walk-round under studio light, then your keys and a simple care guide. Most cars are ready in one to three days.</p>
+            <a class="btn btn--accent stage-card__cta" href="#book">Book your reveal<svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. Packages (no prices, owner has not set them) ================= -->
+  <section class="section packages" id="packages" aria-labelledby="packages-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow">Packages</p>
+        <h2 class="section-title" id="packages-title">Pick your level of shine.</h2>
+        <p class="lead">Three packages, priced to your car and its paint. Tell us what you drive and we will send an exact quote.</p>
+      </header>
+      <ul class="pkg-grid" role="list" data-packages aria-label="Packages">
+        <!-- rendered from data/packages.js by assets/js/packages.js -->
+      </ul>
+      <p class="pkg-hint" aria-hidden="true"><svg width="18" height="18"><use href="#i-swap"/></svg>Swipe to compare all three</p>
+    </div>
+  </section>
+
+  <!-- ===== 4. Before / after ============================================== -->
+  <section class="section results" id="results" aria-labelledby="results-title">
+    <div class="container results__grid">
+      <header class="section-head">
+        <p class="eyebrow">Before / after</p>
+        <h2 class="section-title" id="results-title">Drag to see the difference.</h2>
+        <p class="lead">The same hood, under the same light. Left: years of automatic car washes. Right: after a two-stage Gloss Correction.</p>
+        <ul class="ticks" role="list">
+          <li><svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Swirls and haze removed</li>
+          <li><svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Sharp, deep reflections</li>
+          <li><svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>Water beads off the coating</li>
+        </ul>
+      </header>
+
+      <div class="ba" data-ba style="--pos:50%">
+        <div class="ba__layer ba__before">
+          <svg viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="ba-before-alt">
+            <title id="ba-before-alt">Before: dull black paint covered in fine circular swirl marks, haze and dust around the reflected light strips.</title>
+            <rect width="800" height="560" fill="#14161a"/>
+            <rect width="800" height="560" fill="url(#ba-curve)"/>
+            <g fill="#8b9097" fill-opacity=".22">
+              <path d="M-40 80L860 30L860 92L-40 150Z"/>
+              <path d="M-40 250L860 214L860 262L-40 306Z"/>
+              <path d="M-40 420L860 396L860 430L-40 462Z"/>
+            </g>
+            <g fill="#8b9097" fill-opacity=".14">
+              <path d="M-40 52L860 2L860 120L-40 178Z"/><path d="M-40 226L860 190L860 286L-40 330Z"/><path d="M-40 400L860 376L860 450L-40 482Z"/>
+            </g>
+            <g fill="none" stroke="#fff" stroke-width=".9">
+              <g stroke-opacity=".28"><circle cx="250" cy="110" r="30"/><circle cx="250" cy="110" r="60"/><circle cx="250" cy="110" r="95"/><circle cx="250" cy="110" r="135"/><circle cx="250" cy="110" r="180"/></g>
+              <g stroke-opacity=".22"><circle cx="560" cy="240" r="24"/><circle cx="560" cy="240" r="52"/><circle cx="560" cy="240" r="84"/><circle cx="560" cy="240" r="122"/><circle cx="560" cy="240" r="166"/></g>
+              <g stroke-opacity=".18"><circle cx="330" cy="420" r="28"/><circle cx="330" cy="420" r="58"/><circle cx="330" cy="420" r="92"/><circle cx="330" cy="420" r="130"/></g>
+            </g>
+            <rect width="800" height="560" fill="url(#p-swirl)" opacity=".55"/>
+            <rect width="800" height="560" fill="url(#p-dust)" opacity=".6"/>
+            <g fill="none" stroke="#c9ced6" stroke-opacity=".3" stroke-width="1.4">
+              <circle cx="120" cy="330" r="9"/><circle cx="660" cy="470" r="12"/><circle cx="470" cy="90" r="7"/><circle cx="700" cy="150" r="10"/><circle cx="210" cy="500" r="8"/>
+            </g>
+          </svg>
+        </div>
+        <div class="ba__layer ba__after" data-ba-after>
+          <svg viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="ba-after-alt">
+            <title id="ba-after-alt">After: deep gloss-black paint with crisp, sharp reflections of the studio light strips and a few water beads.</title>
+            <defs>
+              <linearGradient id="ba-curve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3442" stop-opacity=".6"/><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient>
+              <linearGradient id="ba-strip" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset=".35" stop-color="#fff"/><stop offset=".75" stop-color="#e8f6ff"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></linearGradient>
+            </defs>
+            <rect width="800" height="560" fill="#030405"/>
+            <rect width="800" height="560" fill="url(#ba-curve)"/>
+            <g fill="#4cc3ff" fill-opacity=".1">
+              <path d="M-40 70L860 20L860 104L-40 160Z"/><path d="M-40 240L860 204L860 272L-40 316Z"/><path d="M-40 412L860 388L860 438L-40 470Z"/>
+            </g>
+            <g fill="url(#ba-strip)">
+              <path d="M-40 92L860 42L860 80L-40 136Z"/>
+              <path d="M-40 260L860 224L860 252L-40 296Z"/>
+              <path d="M-40 428L860 404L860 422L-40 454Z"/>
+            </g>
+            <path d="M-40 520C200 500 600 492 860 500" fill="none" stroke="#4cc3ff" stroke-opacity=".55" stroke-width="2"/>
+            <g>
+              <circle cx="150" cy="340" r="9" fill="url(#g-bead)"/><circle cx="182" cy="356" r="5" fill="url(#g-bead)"/><circle cx="640" cy="480" r="11" fill="url(#g-bead)"/><circle cx="676" cy="462" r="6" fill="url(#g-bead)"/><circle cx="520" cy="160" r="7" fill="url(#g-bead)"/><circle cx="710" cy="320" r="8" fill="url(#g-bead)"/><circle cx="300" cy="190" r="5" fill="url(#g-bead)"/>
+            </g>
+          </svg>
+        </div>
+        <span class="ba__tag ba__tag--before" aria-hidden="true">Before</span>
+        <span class="ba__tag ba__tag--after" aria-hidden="true">After</span>
+        <div class="ba__handle" aria-hidden="true"><span class="ba__knob"><svg width="22" height="22"><use href="#i-swap"/></svg></span></div>
+        <label class="visually-hidden" for="ba-range">Before and after comparison. Use left and right arrows to move the divider.</label>
+        <input class="ba__range" id="ba-range" type="range" min="0" max="100" value="50" step="1" data-ba-range aria-valuetext="50% after">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. Instant quote builder ======================================= -->
+  <section class="section quote-sec" id="quote" aria-labelledby="quote-title">
+    <div class="container">
+      <header class="section-head section-head--center">
+        <p class="eyebrow">Instant quote</p>
+        <h2 class="section-title" id="quote-title">Your estimate in 10 seconds.</h2>
+        <p class="lead">Pick your car and a package. You will see an example price range straight away.</p>
+      </header>
+
+      <form class="quote" data-quote novalidate aria-describedby="quote-note">
+        <div class="quote__steps">
+          <fieldset class="qfield">
+            <legend><span class="qfield__n">1</span>Car size</legend>
+            <div class="opt-grid opt-grid--4" data-quote-sizes><!-- from data/quote.js --></div>
+          </fieldset>
+          <fieldset class="qfield">
+            <legend><span class="qfield__n">2</span>Package</legend>
+            <div class="opt-grid opt-grid--3" data-quote-packages><!-- from data/packages.js --></div>
+          </fieldset>
+          <fieldset class="qfield">
+            <legend><span class="qfield__n">3</span>Add-ons <span class="qfield__opt">optional</span></legend>
+            <div class="chip-grid" data-quote-addons><!-- from data/quote.js --></div>
+          </fieldset>
+        </div>
+
+        <aside class="quote__result" aria-label="Your estimate">
+          <p class="quote__label"><span class="example-flag">Example</span> Estimated range</p>
+          <p class="quote__price" aria-live="polite" aria-atomic="true" data-quote-price>Pick a size and package</p>
+          <dl class="quote__meta">
+            <div><dt>Car</dt><dd data-quote-sum-size>Not chosen</dd></div>
+            <div><dt>Package</dt><dd data-quote-sum-pkg>Not chosen</dd></div>
+            <div><dt>Typical time</dt><dd data-quote-sum-time>Varies</dd></div>
+          </dl>
+          <p class="quote__note" id="quote-note">Example numbers for a demo business, not real prices. Your exact quote depends on paint condition and is confirmed after a quick look at your car.</p>
+          <a class="btn btn--accent btn--lg btn--block" href="#book" data-quote-book>Book with this estimate<svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        </aside>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== 6. Reviews ===================================================== -->
+  <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+    <div class="container">
+      <header class="section-head reviews__head">
+        <div>
+          <p class="eyebrow">Reviews</p>
+          <h2 class="section-title" id="reviews-title">Owners notice the difference.</h2>
+        </div>
+        <div class="score">
+          <p class="score__num">4.9</p>
+          <p class="score__meta"><span class="stars" aria-hidden="true">★★★★★</span><span>Average of sample reviews</span></p>
+        </div>
+      </header>
+      <ul class="review-grid" role="list" data-reviews><!-- from data/reviews.js --></ul>
+      <p class="sample-note">Sample reviews with generic names for a demo website. Replace with your own.</p>
+    </div>
+  </section>
+
+  <!-- ===== 7. Booking ===================================================== -->
+  <section class="section book" id="book" aria-labelledby="book-title" data-book-section>
+    <div class="container book__grid">
+      <div class="book__intro">
+        <p class="eyebrow">Book a detail</p>
+        <h2 class="section-title" id="book-title">Reserve your slot.</h2>
+        <p class="lead">Send a request and we will confirm a time within one working day. No payment now.</p>
+        <ul class="contact-list" role="list">
+          <li><a class="contact-link" href="tel:+15550142290" data-brand-phone><svg width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span><strong data-brand-phone-text>(555) 014-2290</strong><small>Call or text</small></span></a></li>
+          <li><a class="contact-link" href="mailto:hello@example.com" data-brand-email><svg width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg><span><strong data-brand-email-text>hello@example.com</strong><small>Replies within one working day</small></span></a></li>
+          <li><span class="contact-link"><svg width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><span><strong data-brand-hours>Mon to Sat · 8 am to 6 pm</strong><small>By appointment · studio drop-off or mobile</small></span></span></li>
+        </ul>
+      </div>
+
+      <div class="book__card">
+        <form class="form" data-book-form novalidate>
+          <div class="form__row form__row--pair">
+            <div class="field">
+              <label for="bk-name">Your name</label>
+              <input id="bk-name" name="name" type="text" autocomplete="name" required>
+              <p class="field__error" id="bk-name-err" hidden></p>
+            </div>
+            <div class="field">
+              <label for="bk-phone">Phone</label>
+              <input id="bk-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+              <p class="field__error" id="bk-phone-err" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="bk-email">Email <span class="field__opt">optional</span></label>
+            <input id="bk-email" name="email" type="email" autocomplete="email">
+            <p class="field__error" id="bk-email-err" hidden></p>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="bk-car">Car make and model</label>
+              <input id="bk-car" name="car" type="text" placeholder="e.g. 2021 hatchback" required>
+              <p class="field__error" id="bk-car-err" hidden></p>
+            </div>
+            <div class="field">
+              <label for="bk-size">Car size</label>
+              <select id="bk-size" name="size" data-book-size required><option value="">Choose a size</option></select>
+              <p class="field__error" id="bk-size-err" hidden></p>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="bk-pkg">Package</label>
+              <select id="bk-pkg" name="package" data-book-pkg required><option value="">Choose a package</option></select>
+              <p class="field__error" id="bk-pkg-err" hidden></p>
+            </div>
+            <div class="field">
+              <label for="bk-date">Preferred date</label>
+              <input id="bk-date" name="date" type="date" required data-book-date>
+              <p class="field__error" id="bk-date-err" hidden></p>
+            </div>
+          </div>
+          <fieldset class="field seg">
+            <legend>Where</legend>
+            <div class="seg__opts">
+              <label><input type="radio" name="where" value="studio" checked><span>Studio drop-off</span></label>
+              <label><input type="radio" name="where" value="mobile"><span>Mobile visit</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="bk-notes">Anything we should know? <span class="field__opt">optional</span></label>
+            <textarea id="bk-notes" name="notes" rows="3" data-book-notes></textarea>
+          </div>
+          <button class="btn btn--accent btn--lg btn--block" type="submit">Request my slot<svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+          <p class="demo-note">Demo form: nothing is sent anywhere. On a live site this goes to the owner's inbox (e.g. Formspree or email).</p>
+        </form>
+
+        <div class="book__done" data-book-done hidden tabindex="-1">
+          <svg class="book__done-icon" width="56" height="56" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>
+          <h3>Request received.</h3>
+          <p data-book-done-text>Thanks. We will confirm your slot within one working day.</p>
+          <p class="demo-note">Demo only: nothing was sent.</p>
+          <button type="button" class="btn btn--ghost" data-book-again>Make another request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <p class="footer__logo"><svg width="32" height="32" aria-hidden="true" focusable="false"><use href="#i-mark"/></svg><span data-brand="name">Mirrorline Detail Studio</span></p>
+      <p class="footer__blurb" data-brand="footerBlurb">A paint correction and ceramic coating studio. Hand washed, machine polished and coated by appointment.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <ul>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#results">Before / after</a></li>
+        <li><a href="#quote">Instant quote</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#book">Book</a></li>
+      </ul>
+    </nav>
+    <div class="footer__contact">
+      <a class="text-link" href="tel:+15550142290" data-brand-phone><span data-brand-phone-text>(555) 014-2290</span></a>
+      <a class="text-link" href="mailto:hello@example.com" data-brand-email><span data-brand-email-text>hello@example.com</span></a>
+      <span data-brand-hours>Mon to Sat · 8 am to 6 pm</span>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p><strong>This is a demo website.</strong> Mirrorline Detail Studio is fictional, and the phone number and email are placeholders. Reviews are samples and quote numbers are examples, not prices. All car visuals are original illustrations.</p>
+    <p>© <span data-year>2026</span> <span data-brand="name">Mirrorline Detail Studio</span></p>
+    <p class="credit">Demo by <a class="text-link" href="https://www.analystsolution.com" target="_blank" rel="noopener">analystsolution.com</a></p>
+  </div>
+</footer>
+
+<!-- Mobile sticky call / book dock -->
+<div class="dock" data-dock>
+  <a class="btn btn--ghost dock__call" href="tel:+15550142290" data-brand-phone><svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>Call</a>
+  <a class="btn btn--accent dock__book" href="#book">Book a detail<svg width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+</div>
+
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
