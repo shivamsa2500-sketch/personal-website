@@ -1,3 +1,10 @@
 node_modules/
 dist/
 .DS_Store
+
+# Reference-only media (not licensed) - never publish
+demos/fitness-coach/media-placeholder/
+demos/fitness-coach/thumb.jpg
+
+# Scratch/temp files - never publish
+_work/
