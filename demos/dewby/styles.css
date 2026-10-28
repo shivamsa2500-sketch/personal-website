@@ -1207,3 +1207,33 @@ h2.display {
   text-decoration-thickness: 5px;
   text-underline-offset: 8px;
 }
+
+/* ---------- Phone tap targets ---------- */
+.nav__links a,
+.crumbs a,
+.buybox__rating {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.nav__links a {
+  padding: 0;
+}
+.footer__top ul {
+  gap: 0;
+}
+.footer__top a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.crumbs ol {
+  padding: 8px 0;
+  align-items: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
