@@ -43,6 +43,7 @@
       <select id="design" name="design">
         <option value="Not sure yet">Not sure yet</option>
         <option value="dewby Skincare Store">dewby Skincare Store</option>
+        <option value="Morrow Coffee House">Morrow Coffee House</option>
         <option value="Something new">Something new, made for me</option>
       </select>
     </div>
@@ -85,6 +86,7 @@
   const form = document.getElementById('form');
   const design = new URLSearchParams(location.search).get('design');
   if (design === 'dewby') form.design.value = 'dewby Skincare Store';
+  if (design === 'morrow') form.design.value = 'Morrow Coffee House';
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

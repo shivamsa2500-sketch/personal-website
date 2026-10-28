@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Morrow Coffee | Neighborhood coffee house (demo)</title>
+    <meta name="description" content="Morrow Coffee: a neighborhood coffee house for the first hour of the day, with pour-over, a window seat and a cup you can spin. Demo website." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Morrow Coffee: Good morrow." />
+    <meta property="og:description" content="A neighborhood coffee house for the first hour of the day. Demo website." />
+    <meta property="og:image" content="thumb.jpg" />
+    <meta property="og:image:width" content="1440" />
+    <meta property="og:image:height" content="900" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23F3EBDD'/%3E%3Cpath d='M9 27a11 11 0 0 1 22 0Z' fill='%23D98A3D'/%3E%3Crect x='5' y='27' width='30' height='2' fill='%232B1D15'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="sun" viewBox="0 0 40 30">
+          <path d="M7.6 24a12.4 12.4 0 0 1 24.8 0Z" fill="var(--sun, #D98A3D)" />
+          <rect x="0" y="23.4" width="40" height="1.2" fill="var(--rule, currentColor)" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- Window light that drifts across the page as you scroll -->
+    <div class="lightshaft" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav wrap" aria-label="Main">
+        <a class="lockup" href="#top" aria-label="Morrow Coffee, home">
+          <svg class="lockup__sun"><use href="#sun" /></svg>
+          <span class="lockup__word">Morrow</span>
+        </a>
+        <ul class="nav__links">
+          <li><a href="#today">Today</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#room">The room</a></li>
+          <li><a href="#beans">Beans</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+        <a class="btn btn--dark nav__cta" href="#beans">Order beans</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="sr-only">Menu</span><span></span><span></span>
+        </button>
+      </nav>
+      <!-- Scroll progress: the sun travels the horizon -->
+      <div class="horizon" aria-hidden="true"><span class="horizon__sun"></span></div>
+      <div class="mobile-nav" id="mobile-nav" hidden>
+        <a href="#today">Today</a><a href="#menu">Menu</a><a href="#room">The room</a><a href="#beans">Beans</a><a href="#visit">Visit</a>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- Hero -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__grid wrap">
+          <div class="hero__copy">
+            <p class="entry" data-entry aria-label="Today's morning entry" data-intro>
+              <span data-entry-no>No. 0214</span><span data-entry-date>Wed 28 Oct</span><span data-entry-sun>Sunrise 7:24</span>
+            </p>
+            <h1 class="display hero__title" id="hero-title">
+              <span class="line"><em data-intro>Good</em></span>
+              <span class="line"><em data-intro>morrow.</em></span>
+            </h1>
+            <p class="lede" data-intro>Pour-over, a window seat and the first hour of the day, taken slowly. A neighborhood coffee house on the corner of Elm &amp; 4th.</p>
+            <div class="hero__ctas" data-intro>
+              <a class="btn btn--dark" href="#menu">See today's menu</a>
+              <a class="btn btn--line" href="#beans">Order beans</a>
+            </div>
+          </div>
+          <div class="hero__stage" data-spin data-frames="96" data-src="img/spin/{n}.webp" role="img" aria-label="The Morrow cup on a turntable, turning slowly. Drag or use the arrow keys to spin it.">
+            <img class="spin__poster" src="img/spin/000.webp" alt="" width="720" height="960" fetchpriority="high" draggable="false" />
+            <canvas class="spin__canvas" aria-hidden="true"></canvas>
+            <div class="hero__glow" aria-hidden="true"></div>
+            <p class="hero__hint mono" aria-hidden="true"><span>↔</span> Drag to turn the cup</p>
+            <div class="hours-card" data-intro>
+              <span class="label">Open today</span>
+              <span class="mono">6:30 – 2:00</span>
+              <span class="hours-card__state" data-open-state>Kettle's on</span>
+            </div>
+          </div>
+        </div>
+        <a class="scroll-cue mono" href="#band" aria-label="Scroll down"><span></span>Scroll</a>
+      </section>
+
+      <!-- Sunrise band: the image opens from a thin horizon as you scroll -->
+      <section class="band" id="band" aria-label="Every morning is a new page">
+        <div class="band__sticky">
+          <div class="band__frame">
+            <img src="img/g01.webp" alt="The Morrow paper cup with its amber half-sun mark, lit by low sun" width="2048" height="1152" loading="lazy" />
+          </div>
+          <p class="band__line display" data-words><em>Every morning is a new page.</em></p>
+        </div>
+      </section>
+
+      <!-- Today -->
+      <section class="section wrap" id="today" aria-labelledby="today-title">
+        <header class="section__head" data-head>
+          <span class="mono section__no">01</span>
+          <h2 class="section__title" id="today-title">Today</h2>
+          <span class="label">The morning entry, printed daily</span>
+        </header>
+        <div class="today">
+          <div class="today__entry ruled" data-rise>
+            <p class="entry entry--lg" data-entry>
+              <span data-entry-no>No. 0214</span><span data-entry-date>Wed 28 Oct</span><span data-entry-sun>Sunrise 7:24</span>
+            </p>
+            <p class="today__line display" data-words><em data-today-line>Sunrise was 7:24. The kettle was on at 6:30.</em></p>
+            <p class="muted">We print today's number, date and sunrise on every sleeve, receipt and the board by the door. Keep one, and you have a diary of mornings.</p>
+          </div>
+          <article class="today__bar" data-rise>
+            <figure class="media" data-tilt><img src="img/f06.webp" alt="A barista pouring water into a ceramic Morrow pour-over dripper in striped window light" width="896" height="1200" loading="lazy" /></figure>
+            <div class="today__bar-copy">
+              <span class="label">On the bar this week</span>
+              <h3 class="display">Guji, <em>Ethiopia</em></h3>
+              <p class="mono muted">Peach · jasmine · black tea</p>
+              <p class="mono">Pour-over 7.00</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Menu -->
+      <section class="section section--oat" id="menu" aria-labelledby="menu-title">
+        <div class="wrap">
+          <header class="section__head" data-head>
+            <span class="mono section__no">02</span>
+            <h2 class="section__title" id="menu-title">Menu</h2>
+            <span class="label">6:30 – 2:00 · every day</span>
+          </header>
+          <div class="menu">
+            <div class="menu__card" data-rise>
+              <div class="menu__group">
+                <h3 class="menu__heading"><em>Morning</em></h3>
+                <ul>
+                  <li><span>Drip, house</span><span class="mono">4.00</span></li>
+                  <li><span>Pour-over, rotating</span><span class="mono">6.50</span></li>
+                  <li><span>Espresso</span><span class="mono">3.75</span></li>
+                  <li><span>Cortado</span><span class="mono">5.00</span></li>
+                  <li><span>Latte</span><span class="mono">6.50</span></li>
+                </ul>
+              </div>
+              <div class="menu__group">
+                <h3 class="menu__heading"><em>Slower</em></h3>
+                <ul>
+                  <li><span>Honey oat latte</span><span class="mono">7.00</span></li>
+                  <li><span>Cascara tonic</span><span class="mono">6.00</span></li>
+                  <li><span>Sunrise chai, steeped to order</span><span class="mono">6.50</span></li>
+                </ul>
+              </div>
+              <div class="menu__group">
+                <h3 class="menu__heading"><em>Bakery</em></h3>
+                <ul>
+                  <li><span>Morning bun</span><span class="mono">5.00</span></li>
+                  <li><span>Rye toast, cultured butter</span><span class="mono">6.00</span></li>
+                  <li><span>Soft egg, chives, sourdough</span><span class="mono">9.00</span></li>
+                </ul>
+              </div>
+              <p class="menu__note mono">Oat and whole milk at no charge. Ask us what tastes good today.</p>
+            </div>
+            <figure class="media menu__photo" data-speed="-0.12">
+              <img src="img/f07.webp" alt="A cortado in a small Morrow glass on a saucer, lit from the side on a dark brown table" width="896" height="1200" loading="lazy" />
+            </figure>
+            <figure class="media menu__photo menu__photo--small" data-speed="0.18">
+              <img src="img/n06.webp" alt="A barista passing a cream Morrow cup across the oak counter" width="896" height="1200" loading="lazy" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ticker: speeds up with scroll velocity -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>Drip 4.00</span><span class="ticker__sun"></span><span><em>Good morrow.</em></span><span class="ticker__sun"></span><span>Pour-over 6.50</span><span class="ticker__sun"></span><span>Cortado 5.00</span><span class="ticker__sun"></span><span><em>Open 6:30</em></span><span class="ticker__sun"></span><span>Morning bun 5.00</span><span class="ticker__sun"></span>
+        </div>
+      </div>
+
+      <!-- The room: pinned horizontal walk-through -->
+      <section class="room" id="room" aria-labelledby="room-title">
+        <div class="room__pin">
+          <div class="wrap room__intro">
+            <header class="section__head" data-head>
+              <span class="mono section__no">03</span>
+              <h2 class="section__title" id="room-title">The room</h2>
+              <span class="label">Oak, plaster and tall windows facing east</span>
+            </header>
+            <p class="section__intro display"><em>Take the window seat.</em> Nobody's rushing you.</p>
+          </div>
+          <div class="room__track" data-track>
+            <figure class="room__panel room__panel--tall">
+              <div class="media"><img src="img/f04.webp" alt="The coffee house just after sunrise, light on oak tables beneath the half-sun mark" width="896" height="1200" loading="lazy" /></div>
+              <figcaption class="mono">06:58 · Before the door opens</figcaption>
+            </figure>
+            <figure class="room__panel">
+              <div class="media"><img src="img/n07.webp" alt="The coffee bar with an espresso machine, a pastry case and the Morrow mark on the wall" width="896" height="1200" loading="lazy" /></div>
+              <figcaption class="mono">07:05 · Buns out of the oven</figcaption>
+            </figure>
+            <figure class="room__panel room__panel--tall">
+              <div class="media"><img src="img/f05.webp" alt="Someone seen from behind at the window seat holding a Morrow cup, leaf shadows on the table" width="896" height="1200" loading="lazy" /></div>
+              <figcaption class="mono">07:30 · The east window</figcaption>
+            </figure>
+            <figure class="room__panel">
+              <div class="media"><img src="img/n09.webp" alt="A notebook, a Morrow cup and a morning bun on the sunny window ledge" width="896" height="1200" loading="lazy" /></div>
+              <figcaption class="mono">08:10 · The ledge</figcaption>
+            </figure>
+            <figure class="room__panel room__panel--tall">
+              <div class="media"><img src="img/n08.webp" alt="The coffee house mid-morning, a few people reading and working at oak tables" width="896" height="1200" loading="lazy" /></div>
+              <figcaption class="mono">09:40 · Mid-morning</figcaption>
+            </figure>
+            <div class="room__end">
+              <p class="display"><em>Pull up a chair.</em></p>
+              <a class="btn btn--line" href="#visit">Find us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Regulars -->
+      <section class="section section--roast" id="regulars" aria-labelledby="regulars-title">
+        <div class="wrap">
+          <header class="section__head" data-head>
+            <span class="mono section__no">04</span>
+            <h2 class="section__title" id="regulars-title">The regulars</h2>
+            <span class="label">Same table, most mornings</span>
+          </header>
+          <div class="regulars" data-stagger>
+            <figure class="regular" data-tilt>
+              <div class="media"><img src="img/n01.webp" alt="A woman with freckles holding a Morrow cup by the window, smiling" width="896" height="1200" loading="lazy" /></div>
+              <figcaption><span class="mono">7:10 · window seat</span><em>"Pour-over, whatever's on. I don't check."</em></figcaption>
+            </figure>
+            <figure class="regular" data-tilt>
+              <div class="media"><img src="img/n02.webp" alt="A man with glasses reading a newspaper at an oak table, a Morrow cup beside him" width="896" height="1200" loading="lazy" /></div>
+              <figcaption><span class="mono">6:45 · table four</span><em>"The paper, a drip, and twenty quiet minutes."</em></figcaption>
+            </figure>
+            <figure class="regular" data-tilt>
+              <div class="media"><img src="img/n03.webp" alt="A barista in a brown apron pouring latte art behind the counter" width="896" height="1200" loading="lazy" /></div>
+              <figcaption><span class="mono">6:00 · behind the bar</span><em>"I light the kettle before the sun's up."</em></figcaption>
+            </figure>
+            <figure class="regular" data-tilt>
+              <div class="media"><img src="img/n04.webp" alt="Two friends laughing at the window seat, each holding a Morrow cup" width="896" height="1200" loading="lazy" /></div>
+              <figcaption><span class="mono">8:30 · Saturdays</span><em>"Two cortados and the long version of the week."</em></figcaption>
+            </figure>
+            <figure class="regular" data-tilt>
+              <div class="media"><img src="img/n05.webp" alt="An older couple on a bench outside the brown storefront at sunrise, holding Morrow cups" width="896" height="1200" loading="lazy" /></div>
+              <figcaption><span class="mono">6:30 · the bench outside</span><em>"We wait for the door, then we wait for the sun."</em></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beans -->
+      <section class="section wrap" id="beans" aria-labelledby="beans-title">
+        <header class="section__head" data-head>
+          <span class="mono section__no">05</span>
+          <h2 class="section__title" id="beans-title">Beans</h2>
+          <span class="label">Roasted weekly, shipped Mondays</span>
+        </header>
+        <div class="beans">
+          <figure class="media beans__photo" data-tilt>
+            <img src="img/f02.webp" alt="A kraft bag of Morrow First Light coffee on a linen breakfast table with a carafe and a morning bun" width="896" height="1200" loading="lazy" />
+          </figure>
+          <div class="beans__copy" data-rise>
+            <span class="label">House blend</span>
+            <h3 class="display beans__title"><em>First Light</em></h3>
+            <p class="lede">Our morning coffee, for your morning. Sweet and round enough for a drip machine, bright enough for a pour-over.</p>
+            <dl class="specs">
+              <div><dt>Origin</dt><dd class="mono">Huila, CO · Guji, ET</dd></div>
+              <div><dt>Notes</dt><dd class="mono">Honey · stone fruit · cocoa</dd></div>
+              <div><dt>Roast</dt><dd class="mono">Medium-light</dd></div>
+              <div><dt>Size</dt><dd class="mono">12 oz · whole bean or ground</dd></div>
+            </dl>
+            <div class="beans__buy">
+              <span class="beans__price display">$24</span>
+              <button class="btn btn--dark" type="button" data-add>Add to bag</button>
+              <span class="mono muted" data-added role="status" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="loyalty" data-rise>
+          <div class="loyalty__copy">
+            <span class="label">Ten mornings</span>
+            <h3 class="display">The sun rises one stamp at a time.</h3>
+            <p class="muted">Get a card at the bar. Every cup lifts the sun a little higher, and the tenth morning is on us.</p>
+          </div>
+          <ol class="loyalty__stamps" aria-label="Loyalty card with ten stamps, six filled">
+            <!-- filled by app.js -->
+          </ol>
+        </div>
+      </section>
+
+      <!-- Visit -->
+      <section class="section section--oat" id="visit" aria-labelledby="visit-title">
+        <div class="wrap visit">
+          <figure class="media visit__photo" data-speed="-0.1">
+            <img src="img/n10.webp" alt="The dark brown Morrow storefront at sunrise with its tall arched window and the door open" width="896" height="1200" loading="lazy" />
+          </figure>
+          <div class="visit__copy" data-rise>
+            <header class="section__head">
+              <span class="mono section__no">06</span>
+              <h2 class="section__title" id="visit-title">Visit</h2>
+            </header>
+            <p class="display visit__address">Corner of Elm &amp; 4th</p>
+            <table class="hours">
+              <caption class="label">Hours</caption>
+              <tbody>
+                <tr><th scope="row">Monday – Friday</th><td class="mono">6:30 – 2:00</td></tr>
+                <tr><th scope="row">Saturday – Sunday</th><td class="mono">7:00 – 3:00</td></tr>
+                <tr><th scope="row">Kitchen</th><td class="mono">Until 1:30</td></tr>
+              </tbody>
+            </table>
+            <p class="muted">Open before the sun most of the year. Dogs welcome on the bench outside. The window seat is first come, first served.</p>
+            <a class="btn btn--line" href="https://www.google.com/maps/search/?api=1&amp;query=Elm+St+%26+4th+St" target="_blank" rel="noopener">Get directions</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__sunset" aria-hidden="true"><span class="footer__sun"></span><span class="footer__line"></span></div>
+      <div class="wrap footer__grid">
+        <div>
+          <p class="display footer__sign" data-words><em>See you tomorrow.</em></p>
+          <a class="lockup lockup--lg" href="#top" aria-label="Morrow Coffee, back to top">
+            <svg class="lockup__sun"><use href="#sun" /></svg>
+            <span class="lockup__word">Morrow</span>
+          </a>
+        </div>
+        <form class="signup" data-signup>
+          <label class="label" for="email">The Morning Entry, once a week</label>
+          <p class="muted">What's on the bar, what's in the oven, what time the sun gets up.</p>
+          <div class="signup__row">
+            <input id="email" type="email" required placeholder="Your email address" autocomplete="email" />
+            <button class="btn btn--sun" type="submit">Sign up</button>
+          </div>
+          <p class="mono signup__msg" role="status" aria-live="polite" data-signup-msg></p>
+        </form>
+      </div>
+      <div class="wrap footer__base">
+        <p class="entry entry--light" data-entry><span data-entry-no>No. 0214</span><span data-entry-date>Wed 28 Oct</span><span data-entry-sun>Sunrise 7:24</span></p>
+        <p class="footer__legal"><strong>This is a demo website.</strong> Morrow Coffee is fictional; the address, hours, menu and prices are examples, and the photos are AI-generated.</p>
+        <p class="mono">Demo by <a href="https://www.analystsolution.com/templates/">Analyst Solution</a></p>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+    <script src="app.js?v=7" defer></script>
+    <script src="spin.js?v=3" defer></script>
+  </body>
+</html>
