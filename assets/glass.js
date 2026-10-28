@@ -1,5 +1,5 @@
 // Moves the specular highlight on glass surfaces to follow the pointer.
-const glass = document.querySelectorAll('.top,.rows,.steps>div,.card,.plan,.hello,.feature-body,.next-up,.form,.next,.pill');
+const glass = document.querySelectorAll('.policy,.top,.rows,.steps>div,.card,.plan,.hello,.feature-body,.next-up,.form,.next,.pill');
 if (matchMedia('(hover: hover)').matches) {
   glass.forEach((el) => {
     el.addEventListener('pointermove', (e) => {

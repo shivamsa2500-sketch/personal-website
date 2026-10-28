@@ -335,3 +335,25 @@ body::after{
   .foot{border-radius:24px;padding:16px 20px}
   .steps>div{padding:22px}
 }
+
+/* privacy policy: one long glass sheet, set for reading */
+.policy{
+  position:relative;isolation:isolate;max-width:860px;margin:0 0 96px;padding:56px 64px;border-radius:40px;
+  background:var(--glass-strong);border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  font-size:18px;line-height:1.7;color:#26262C;
+}
+.policy::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:radial-gradient(520px circle at var(--mx,20%) var(--my,0%),rgba(255,255,255,.55),transparent 45%),linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%);
+  mix-blend-mode:soft-light}
+.policy>p:first-child{margin-top:0;font-size:20px;color:var(--ink)}
+.policy h2{margin:48px 0 12px;padding-top:28px;border-top:1px solid var(--glass-line);font-family:var(--display);font-weight:400;font-size:clamp(32px,4vw,48px);line-height:1;text-transform:uppercase;color:var(--ink)}
+.policy h3{margin:28px 0 6px;font-size:19px;font-weight:600;color:var(--ink)}
+.policy p{margin:0 0 14px}
+.policy ul{margin:0 0 14px;padding-left:22px}
+.policy li{margin:6px 0}
+.policy li::marker{color:var(--accent)}
+.policy a{color:var(--accent);text-underline-offset:3px}
+.foot span:first-child a{text-decoration:underline;text-underline-offset:3px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.policy{background:rgba(255,255,255,.92)}}
+@media (max-width:640px){.policy{padding:28px 22px;border-radius:28px;font-size:17px;margin-bottom:64px}.policy h2{margin-top:36px}}
