@@ -23,6 +23,7 @@
 - [AURENNE Serum Collection](https://www.analystsolution.com/templates/aurenne-serum-collection/): Ecom, 1 page. A luxury skincare launch for a three-serum range: a turn-the-bottle showcase, an ingredient story, a serum finder quiz and a shop section, all in warm cream and gold.
 - [PITLANE/26 F1 Showroom](https://www.analystsolution.com/templates/pitlane-26-f1-showroom/): Automotive, 2 pages. An interactive 3D garage with all eleven 2026 Formula 1 cars parked in championship order. Hover to turn a car, click to fly into a 360° studio that names every external part as you rotate it.
 - [Sill Furniture Shop](https://www.analystsolution.com/templates/sill-furniture-shop/): Furniture, 1 page. A calm furniture store for chairs, stools, tables and lamps: an arched-window hero that cycles through pieces, a catalogue you filter by the width of your room, and an order bag that collects pieces as you browse.
+- [dewby Skincare Store](https://www.analystsolution.com/templates/dewby-skincare-store/): Ecom, 3 pages. A bold, playful skincare store for a three-step routine: glossy 3D jelly blobs that bounce in, follow the cursor and squish when tapped, a shop page with filters and sort, and a product page for every item.
 
 ## Contact
 

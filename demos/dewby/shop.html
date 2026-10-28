@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop all · dewby</title>
+    <meta name="description" content="Every dewby product: Jelly Cleanser, Barrier Cream, SPF 40 Stick, Lip Jelly, Sleep Jelly Mask and The Routine set." />
+    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="stylesheet" href="styles.css?v=7" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to products</a>
+
+    <header class="site-header">
+      <nav class="nav wrap" aria-label="Main">
+        <a class="logo" href="index.html" aria-label="dewby home">dewby</a>
+        <ul class="nav__links">
+          <li><a href="shop.html" aria-current="page">Shop all</a></li>
+          <li><a href="index.html#routine">The routine</a></li>
+          <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <button class="bag-btn" type="button" aria-label="Bag, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="bag-count" aria-hidden="true">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="shop-head" aria-labelledby="shop-title">
+        <div class="shop-head__grid wrap">
+          <h1 class="display" id="shop-title">Shop all</h1>
+          <p>Six squishy things for your sink. Every one is fragrance-free and under $25, except the set, which saves you $6.</p>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="toolbar">
+          <fieldset class="chips">
+            <legend class="visually-hidden">Filter by type</legend>
+            <button class="chip" type="button" data-filter="All" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-filter="Cleanse" aria-pressed="false">Cleanse</button>
+            <button class="chip" type="button" data-filter="Treat" aria-pressed="false">Treat</button>
+            <button class="chip" type="button" data-filter="Protect" aria-pressed="false">Protect</button>
+            <button class="chip" type="button" data-filter="Sets" aria-pressed="false">Sets</button>
+          </fieldset>
+          <label class="sort">
+            Sort by
+            <select id="sort">
+              <option value="featured">Featured</option>
+              <option value="low">Price, low to high</option>
+              <option value="high">Price, high to low</option>
+            </select>
+          </label>
+        </div>
+
+        <p class="result-count" id="result-count" role="status" aria-live="polite">6 products</p>
+        <ul class="grid" id="product-grid"></ul>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__top wrap">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html?type=Sets">The Routine set</a></li>
+          <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <p class="footer__note">dewby is a demo brand made for a branding portfolio. Products, prices and reviews are fictional.</p>
+      </div>
+      <p class="footer__mark" aria-hidden="true">dewby</p>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js?v=4"></script>
+  </body>
+</html>
