@@ -1,6 +1,0 @@
-:HL["/demos/glass/_next/static/chunks/41_eko7w_nwe_.css","style"]
-:HL["/demos/glass/_next/static/media/6bd983bd58a87a3d-s.p.1hey5yyym6mz_.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/demos/glass/_next/static/media/f06bf9da926bae75-s.p.2874ccu1_u7jf.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-2:[["children",{"s":"__PAGE__","h":160}]]
-1:[["children",{"s":"about","h":64,"c":"$Q2"}]]
-0:{"b":"jIRIRZ6kLsFnQgf2f16Z5","t":{"t":{"s":"","h":16,"c":"$Q1"}}}

@@ -1,34 +1,7 @@
-# analystsolution.com
+# Analyst Solution
 
-> analystsolution.com sells finished website designs for local businesses such as plumbers, cafes and online shops. Every design is a working demo you can open; the buyer gets it built as their own site. Every project is quoted by email. Orders and questions go by email to analyst2sales@gmail.com.
+> A small AI branding studio. We make logos, UGC ads, websites, SEO and product images in one consistent style, then a person checks every detail.
 
-## About the business
-
-- [How it works](https://www.analystsolution.com/how-it-works/): contact for quotation, 50% deposit and 50% at launch, preview in 14 days, 2 rounds of changes, refund before work starts
-- [About](https://www.analystsolution.com/about/): remote studio in India building websites for local businesses
-- [Contact](https://www.analystsolution.com/contact/): email analyst2sales@gmail.com
-- [Terms](https://www.analystsolution.com/terms/) and [Privacy policy](https://www.analystsolution.com/privacy/)
-
-## Website designs
-
-- [Clearflow Plumbing](https://www.analystsolution.com/templates/clearflow-plumbing/): Plumber, 15 pages. Residential plumbing for San Francisco homes, with a service page for every job type.
-- [Editorial Plumbing](https://www.analystsolution.com/templates/editorial-plumbing/): Plumber, 15 pages. A magazine-styled take on a trade site, with long-form service pages and quote forms.
-- [Glass Plumbing](https://www.analystsolution.com/templates/glass-plumbing/): Plumber, 5 pages. Frosted-glass surfaces over a soft blueprint grid, built around the emergency call-out.
-- [Clearline Plumbing](https://www.analystsolution.com/templates/clearline-plumbing/): Plumber, 5 pages. Shows the system behind the wall, so the customer understands the job before the visit.
-- [Coffee House — Atmosphere](https://www.analystsolution.com/templates/coffee-house-atmosphere/): Coffee house, 6 pages. Photography is the room and the interface sits on it like glass on a table. For a cafe that sells the feeling before the flat white.
-- [Coffee House — Brochure](https://www.analystsolution.com/templates/coffee-house-brochure/): Coffee house, 5 pages. The same cafe, the same words, the same menu, without the shop. For a place that wants to be found, read and phoned.
-- [Hillnote — Coffee Roastery Store](https://www.analystsolution.com/templates/hillnote-coffee-roastery-store/): Coffee house, 12 pages. A white-label specialty-coffee shop in liquid glass. Visitors pick their brewer and every bag is ground to match, from filters to a basket and a demo checkout. Rebrand it for any roaster in minutes.
-- [Energy Drink Store](https://www.analystsolution.com/templates/energy-drink-store/): Ecom, 11 pages. A white-label storefront for a drinks brand: three flavours, three pack sizes, a basket that remembers you and a checkout that walks all the way through.
-- [Nitro Energy Site](https://www.analystsolution.com/templates/nitro-energy-site/): Ecom, 1 page. The Nitro launch page as a standalone build: scroll-scrubbed can film, three hover-spin flavours and dark liquid-glass styling on one page.
-- [AURENNE Serum Collection](https://www.analystsolution.com/templates/aurenne-serum-collection/): Ecom, 1 page. A luxury skincare launch for a three-serum range: a turn-the-bottle showcase, an ingredient story, a serum finder quiz and a shop section, all in warm cream and gold.
-- [PITLANE/26 F1 Showroom](https://www.analystsolution.com/templates/pitlane-26-f1-showroom/): Automotive, 2 pages. An interactive 3D garage with all eleven 2026 Formula 1 cars parked in championship order. Hover to turn a car, click to fly into a 360° studio that names every external part as you rotate it.
-- [Sill Furniture Shop](https://www.analystsolution.com/templates/sill-furniture-shop/): Furniture, 1 page. A calm furniture store for chairs, stools, tables and lamps: an arched-window hero that cycles through pieces, a catalogue you filter by the width of your room, and an order bag that collects pieces as you browse.
-- [dewby Skincare Store](https://www.analystsolution.com/templates/dewby-skincare-store/): Ecom, 3 pages. A bold, playful skincare store for a three-step routine: glossy 3D jelly blobs that bounce in, follow the cursor and squish when tapped, a shop page with filters and sort, and a product page for every item.
-
-## Contact
-
-- Email: analyst2sales@gmail.com
-- Instagram: https://www.instagram.com/analystsolution/
-- Facebook: https://www.facebook.com/1312597425265084
-- YouTube: https://www.youtube.com/@analystsolution
-- LinkedIn: https://www.linkedin.com/in/analyst-solution-717052430/
+- [Home](https://www.analystsolution.com/): what we make and how it works
+- [Templates](https://www.analystsolution.com/templates/): working website templates, starting with dewby, a skincare store
+- [Contact](https://www.analystsolution.com/contact/): email analyst2sales@gmail.com or use the form
