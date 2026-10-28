@@ -124,14 +124,6 @@ img{display:block;max-width:100%;height:auto}
 @media (prefers-reduced-motion:no-preference){
   .drum{animation:roll 10s cubic-bezier(.7,0,.3,1) infinite}
   @keyframes roll{0%,16%{transform:rotateX(0deg)}20%,36%{transform:rotateX(72deg)}40%,56%{transform:rotateX(144deg)}60%,76%{transform:rotateX(216deg)}80%,96%{transform:rotateX(288deg)}100%{transform:rotateX(360deg)}}
-  @supports (animation-timeline:view()){
-    .left{animation:left linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
-    .right{animation:right linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
-    @keyframes left{from{transform:translateX(0%)}to{transform:translateX(-30%)}}
-    @keyframes right{from{transform:translateX(-30%)}to{transform:translateX(0%)}}
-    .grow{animation:grow linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
-    @keyframes grow{from{letter-spacing:.2em;opacity:.4}to{letter-spacing:-.01em;opacity:1}}
-  }
 }
 
 /* ---------- inner pages ---------- */
@@ -226,7 +218,6 @@ body::before{
     radial-gradient(32vmax 32vmax at 22% 90%,rgba(255,122,217,.5),transparent 64%),
     radial-gradient(30vmax 24vmax at 58% 48%,rgba(80,120,255,.38),transparent 66%),
     radial-gradient(22vmax 22vmax at 38% 60%,rgba(0,194,255,.28),transparent 66%);
-  filter:blur(30px);
 }
 body::after{
   background:radial-gradient(40vmax 26vmax at 30% 30%,rgba(255,255,255,.35),transparent 70%);
@@ -440,3 +431,55 @@ body::after{
 .next{position:sticky;top:112px}
 @media (max-width:820px){.next{position:relative;top:auto}}
 @media (max-width:640px){.foot span:last-child{row-gap:0}}
+
+/* =========================================================
+   3D scroll effects (driven by motion.js)
+   Transforms and opacity only: nothing changes size, so text
+   never jumps to another line while scrolling.
+   ========================================================= */
+.motion [data-3d]{will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+
+/* hero and page titles fall back into the screen as you scroll past */
+.motion [data-3d="exit"]{
+  transform:perspective(1000px) translate3d(0,calc(var(--x,0) * -40px),calc(var(--x,0) * -180px)) rotateX(calc(var(--x,0) * 24deg));
+  transform-origin:50% 0;
+  opacity:calc(1 - var(--x,0) * .85);
+}
+
+/* glass panels rise up and lean back into place */
+.motion [data-3d="rise"]{
+  transform:perspective(1200px) translate3d(0,calc((1 - var(--p,1)) * 70px),0) rotateX(calc((1 - var(--p,1)) * 16deg));
+  transform-origin:50% 0;
+  opacity:calc(.2 + var(--p,1) * .8);
+}
+
+/* cards swing in from depth, alternating sides */
+.motion [data-3d="tilt"]{
+  transform:perspective(1000px) translate3d(0,calc((1 - var(--p,1)) * 80px),calc((1 - var(--p,1)) * -140px)) rotateX(calc((1 - var(--p,1)) * 22deg)) rotateY(calc((1 - var(--p,1)) * var(--dir,0) * 16deg));
+  transform-origin:50% 100%;
+  opacity:calc(.15 + var(--p,1) * .85);
+}
+.motion .steps>div:nth-child(odd){--dir:-1}
+.motion .steps>div:nth-child(even){--dir:1}
+.motion .card,.motion .shot{--dir:-1}
+.motion .next{--dir:1}
+
+/* service rows flip up like a split-flap board */
+.motion .rows{perspective:900px}
+.motion [data-3d="flip"]{
+  transform:rotateX(calc((1 - var(--p,1)) * -82deg)) translate3d(0,calc((1 - var(--p,1)) * 24px),0);
+  transform-origin:50% 0;
+  opacity:calc(var(--p,1));
+}
+
+/* the big type bands slide across and rock in 3D */
+.motion .ticker{perspective:700px}
+.motion .ticker p{will-change:transform}
+.motion .ticker .left{transform:translate3d(calc(var(--t,.5) * -32%),0,0) rotateX(calc((var(--t,.5) - .5) * -50deg))}
+.motion .ticker .right{transform:translate3d(calc(-32% + var(--t,.5) * 32%),0,0) rotateX(calc((var(--t,.5) - .5) * 50deg))}
+
+/* phones: lighter glass and a still background keep scrolling smooth */
+@media (max-width:820px),(hover:none){
+  :root{--glass-blur:blur(14px) saturate(170%)}
+  body::before{animation:none}
+}
